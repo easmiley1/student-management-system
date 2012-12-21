@@ -1,0 +1,41 @@
+.bodyPanel {
+	background-color: #dddddd;
+}
+
+.profileDottedGrid1 {
+	border-right: medium;
+	border-right-style: dotted;
+	border-right-color: #999999;
+	border-right-width: 1px;
+	vertical-align: middle;
+}
+
+.profileDottedGrid2 {
+	border-right: medium;
+	border-right-style: dotted;
+	border-right-color: #999999;
+	border-right-width: 1px;
+	text-align: center;
+}
+
+.profileDottedGrid3 {
+	border-right: medium;
+	border-right-style: dotted;
+	border-right-color: #999999;
+	border-right-width: 1px;
+}
+
+.profileDottedGrid4 {
+	vertical-align: middle;
+}
+
+.errorValidationText{
+	font-size: 10px;
+	font-family: Arial,sans-serif;	
+	color: #ff00000;
+}
+.labelText{
+	font-size: 12px;
+	font-family: Arial,sans-serif;	
+	color: #555555
+} 

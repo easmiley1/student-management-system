@@ -1,0 +1,67 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<f:view>
+		<h:panelGrid id="pfThirdGridWrapper"  columns="3" border="0" cellpadding="0px" cellspacing="0px" >
+			<h:panelGrid id="pfThirdGrid"  columns="2"  border="0" cellpadding="0px" cellspacing="0px" >			
+
+					<h:panelGroup>
+						<h:outputText value="*" styleClass="errorValidationText" />
+						<h:outputText value="Joining Class:" styleClass="labelText"/>
+					</h:panelGroup>
+					<h:inputText id="joiningClass" styleClass="commonInput" tabindex="1" required="true"  maxlength="40" value="#{associateAction.studentDTO.joiningClass}" requiredMessage="Required Field" ajaxSingle="true">
+					</h:inputText>
+					<h:panelGrid id="joiningClassError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
+						<h:message for="joiningClass" styleClass="errorValidationText" />
+					</h:panelGrid>
+					<h:outputText />	
+
+					<h:panelGroup>
+						<h:outputText value="*" styleClass="errorValidationText" />
+						<h:outputText value="Previous School:" styleClass="labelText"/>
+					</h:panelGroup>
+					<h:inputText id="previousSchool" styleClass="commonInput" tabindex="1" required="true"  maxlength="40" value="#{associateAction.studentDTO.previousSchool}" requiredMessage="Required Field" ajaxSingle="true">
+					</h:inputText>
+					<h:panelGrid id="previousSchoolError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
+						<h:message for="previousSchool" styleClass="errorValidationText" />
+					</h:panelGrid>
+					<h:outputText />				
+
+					<h:panelGroup>
+						<h:outputText value="" styleClass="errorValidationText" />
+						<h:outputText value="Extra Curricular Interest: " styleClass="labelText"/>
+					</h:panelGroup>
+					<h:inputText id="extraCurricularInterest" styleClass="commonInput" tabindex="1"  maxlength="40" value="#{associateAction.studentDTO.extraCurricularInterest}">
+					</h:inputText>
+					<h:panelGrid id="extraCurricularInterestError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
+						<h:message for="extraCurricularInterest" styleClass="errorValidationText" />
+					</h:panelGrid>
+					<h:outputText />				
+					
+					<h:panelGroup>
+						<h:outputText value="" styleClass="errorValidationText" />
+						<h:outputText value="Mode of Transport:" styleClass="labelText"/>
+					</h:panelGroup>
+					<h:selectOneMenu id="modeOfTransport" styleClass="labelText" value="#{associateAction.studentDTO.modeOfTransport}">
+						<f:selectItem itemValue="School" itemLabel="School"/>
+						<f:selectItem itemValue="Parents" itemLabel="Parents"/>
+					</h:selectOneMenu>
+
+					<h:panelGrid id="modeOfTransportError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
+						<h:message for="modeOfTransport" styleClass="errorValidationText" />
+					</h:panelGrid>
+					<h:outputText />
+
+					<a4j:commandButton value="Save"  id="saveBtn" actionListener="#{associateAction.saveStudent}"/>
+					<a4j:commandButton value="Cancel"  id="cancelBtn"/>
+					<h:panelGrid id="dummy" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
+					</h:panelGrid>
+					<h:outputText />				
+
+			</h:panelGrid>							
+		</h:panelGrid>
+	</f:view>
+</ui:composition>

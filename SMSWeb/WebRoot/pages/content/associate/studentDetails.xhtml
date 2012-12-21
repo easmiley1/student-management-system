@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<f:view>
+		<h:body>
+			<ui:composition template="/pages/layout/commonLayout.xhtml">
+				<ui:define name="content">
+					<rich:panel header="Add Student" styleClass="dialogBodyPanel">
+						
+						<h:form id="studentForm">
+							<h:panelGrid columns="4" width="100%"
+								columnClasses="profileDottedGrid1,profileDottedGrid2,profileDottedGrid3,profileDottedGrid4">
+								
+								<ui:include src="associateDetailsGrid1.xhtml"/>
+								<ui:include src="associateDetailsGrid2.xhtml"/>	
+								<ui:include src="studentDetailsGrid3.xhtml"/>								
+
+							</h:panelGrid>
+						</h:form>	
+					</rich:panel>
+				</ui:define>
+			</ui:composition>
+		</h:body>
+	</f:view>
+</ui:composition>

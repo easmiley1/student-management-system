@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JSFFlowViewLayout version="1.0">
+  <Drawing gridVisible="true" snapOn="true" />
+  <JSFFlowResource path="/pages/content/add/addNewStudent.xhtml" location="30,130" dimension="274,36" />
+  <JSFFlowResource path="/pages/layout/header.xhtml" location="180,30" dimension="192,36" />
+  <JSFFlowNavigationCase id="/pages/layout/header.xhtml,/pages/content/add/addNewStudent.xhtml,addNewStudent,&lt;empty&gt;" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="276,66" />
+      <AbsolutePoint location="276,130" />
+    </AutomaticBendpoints>
+  </JSFFlowNavigationCase>
+</JSFFlowViewLayout>
+

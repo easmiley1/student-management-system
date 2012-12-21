@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns="http://www.ish.com/soa/sms" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	attributeFormDefault="unqualified" elementFormDefault="qualified"
+	targetNamespace="http://www.ish.com/soa/sms" version="1.0">
+
+	<xs:element name="associateDTO" type="associateDTO" />
+	<xs:complexType name="associateDTO">
+		<xs:sequence>
+			<xs:element name="id" type="xs:int" minOccurs="0"  />
+			<xs:element name="firstName" type="xs:string" />
+			<xs:element name="fatherName" type="xs:string" />
+			<xs:element name="motherName" type="xs:string" />
+			<xs:element name="gender" default="Male">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Male" />
+						<xs:enumeration value="Female" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="address" type="xs:string" />
+			<xs:element name="state" type="xs:string" />
+			<xs:element name="city" type="xs:string" />
+			<xs:element name="zipCode" type="xs:int" minOccurs="0" />
+			<xs:element name="contactNo" type="xs:int" minOccurs="0" />
+			<xs:element name="contactEmail" type="xs:string"  minOccurs="0"/>
+			<xs:element name="emergencyContactNo" type="xs:int" minOccurs="0" />
+			<xs:element name="otherContactInfo" type="xs:string"  minOccurs="0"/>
+			<xs:element name="bloodGroup" type="xs:string" />
+			<xs:element name="dateofJoining" type="xs:string" />
+			<xs:element name="comments" type="xs:string"  minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="studentDTO" type="studentDTO" />
+	<xs:complexType name="studentDTO">
+		<xs:complexContent>
+			<xs:extension base="associateDTO">
+				<xs:sequence>
+					<xs:element name="previousSchool" type="xs:string" />
+					<xs:element name="joiningClass" type="xs:string" />
+					<xs:element name="extraCurricularInterest" type="xs:string" minOccurs="0"/>
+					<xs:element name="modeOfTransport" >
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="School" />
+								<xs:enumeration value="Parents" />
+							</xs:restriction>
+						</xs:simpleType>					
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+</xs:schema>
