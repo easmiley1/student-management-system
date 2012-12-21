@@ -16,7 +16,7 @@ import com.ish.sms.web.util.SMSSpringFactory;
 @ManagedBean(name = "associateAction")
 @RequestScoped
 public class AssociateAction extends BaseAction {
-
+ 
 	private AssociateDTO associateDTO = new AssociateDTO();
 	private StudentDTO studentDTO = new StudentDTO();
 	private ObjectFactory objfactory = new ObjectFactory();
