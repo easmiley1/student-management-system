@@ -1,0 +1,89 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<f:view>
+		<h:head>
+			 <style type="text/css">
+			 
+				.commonInput {
+					height: 21px;
+					width: 165px;
+					border-color: #999999;
+					border-style: solid;
+					border-width: 1px;
+					font-family: Arial, Helvetica, sans-serif;
+					font-size: 12px;
+					font-style: normal;
+					color: #333333;
+					background-image: none;
+					background-color: #ffffff;
+					padding-top:4px\9 ;	/* \9 is an IE hack*/
+				    height:18px\9 ;
+				}
+			 
+			    .bodyPanel {
+					background-color: #dddddd;
+				}
+				
+				.profileDottedGrid1 {
+					padding-left:80px;				
+					border-right: medium;
+					border-right-style: dotted;
+					border-right-color: #999999;
+					border-right-width: 1px;
+					vertical-align: middle;
+				}
+				
+				.profileDottedGrid2 {
+					padding-left:80px;
+					border-right: medium;
+					border-right-style: dotted;
+					border-right-color: #999999;
+					border-right-width: 1px;
+					text-align: center;
+				}
+				
+				.profileDottedGrid3 {
+					padding-left:80px;
+					border-right: medium;
+					border-right-style: dotted;
+					border-right-color: #999999;
+					border-right-width: 1px;
+				}
+				
+				.profileDottedGrid4 {
+					vertical-align: middle;
+				}
+				
+				.errorValidationText{
+					font-size: 10px;
+					font-family: Arial,sans-serif;	
+					color: #ff0000;
+				}
+				.labelText{
+					font-size: 12px;
+					font-family: Arial,sans-serif;	
+					color: #555555
+				} 
+						 
+			 </style>
+		</h:head>
+		<h:form>
+			<rich:toolbar height="26px">
+				<rich:dropDownMenu>
+					<f:facet name="label">
+						<h:panelGroup>
+							<h:outputText value="Add" />
+						</h:panelGroup>
+					</f:facet>
+					<rich:menuItem label="Student" action="#{associateAction.initAddStudentAction}">
+					</rich:menuItem>
+					<rich:menuItem label="Teacher" />
+				</rich:dropDownMenu>
+			</rich:toolbar>
+		</h:form>
+	</f:view>
+</ui:composition>

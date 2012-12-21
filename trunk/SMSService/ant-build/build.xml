@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<project name="SMSService" default="xsd2java" basedir=".">
+
+	<!--
+    ===================================================================================
+    Local Properties
+    ===================================================================================
+    -->
+	<property file="build.properties" />
+	<target name="xsd2java">
+
+		<xsd2java-pk schemadir="${xsd.dir}" package="com.ish.sms.service.dto" producesinclude="**/sms/service/dto/**" />
+	</target>
+
+	<macrodef name="xsd2java-pk">
+		<attribute name="package" default="" />
+		<attribute name="catalog" default="**/*catalog.xml" />
+		<attribute name="schemadir" default="${xsd.dir}" />
+		<attribute name="schemainclude" default="*.xsd" />
+		<attribute name="producesinclude" default="**/**" />
+		<attribute name="dependsinclude" default="**/**" />
+		<sequential>
+			<fileset id="xjc.jars" dir="${repository.dir}">
+				<includesfile name="xjc.classpath.include" />
+			</fileset>
+			<path id="xjc.classpath">
+				<fileset refid="xjc.jars" />
+			</path>
+			<taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+				<classpath refid="xjc.classpath" />
+			</taskdef>
+			<xjc target="${generated.dir}" package="@{package}" removeOldOutput="yes" extension="true" catalog="@{catalog}">
+				<schema dir="@{schemadir}" includes="@{schemainclude}" />
+				<depends dir="@{schemadir}" includes="@{dependsinclude}" />
+				<produces dir="${generated.dir}" includes="@{producesinclude}" />
+				<arg line="-Xcollection-setter-injector -extension" />
+			</xjc>
+
+		</sequential>
+	</macrodef>
+</project>

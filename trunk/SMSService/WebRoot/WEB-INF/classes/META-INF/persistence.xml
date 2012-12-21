@@ -1,0 +1,10 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+
+  <persistence-unit name="smsServicePersistenceUnit" transaction-type="RESOURCE_LOCAL">
+  	<class>com.ish.sms.service.entity.Student</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>    
+	<non-jta-data-source>java:/smsDS</non-jta-data-source>       
+  </persistence-unit>
+
+</persistence>
