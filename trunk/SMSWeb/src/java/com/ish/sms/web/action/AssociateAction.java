@@ -65,6 +65,8 @@ public class AssociateAction extends BaseAction {
 	public String initAddStudentAction() {
 		associateDTO = objfactory.createAssociateDTO();
 		associateDTO.setGender(DEFAULT_GENDER);
+		studentDTO = objfactory.createStudentDTO();
+		studentDTO.setModeOfTransport("School");
 		return SAVE_STUDENT_PAGE;
 	}
 

@@ -14,7 +14,7 @@
 				</h:panelGroup>
 				<h:inputText id="firstName"	styleClass="commonInput" tabindex="1" required="true"  maxlength="100" value="#{associateAction.associateDTO.firstName}" requiredMessage="Required Field" ajaxSingle="true"/>
 				<h:panelGrid id="firstNameError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
-					<h:message for="firstName" styleClass="errorValidationText" />
+					<rich:message for="firstName" styleClass="errorValidationText" />
 				</h:panelGrid>
 				<h:outputText />
 				
@@ -25,7 +25,7 @@
 				<h:inputText id="fatherName"	styleClass="commonInput" tabindex="2" required="true"  maxlength="100" value="#{associateAction.associateDTO.fatherName}" requiredMessage="Required Field" ajaxSingle="true">
 				</h:inputText>
 				<h:panelGrid id="fatherError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
-					<h:message for="fatherName" styleClass="errorValidationText" />
+					<rich:message for="fatherName" styleClass="errorValidationText" />
 				</h:panelGrid>
 				<h:outputText />
 				
@@ -33,10 +33,10 @@
 					<h:outputText value="*" styleClass="errorValidationText" />
 					<h:outputText value="Mother's Name" styleClass="labelText"/>
 				</h:panelGroup>
-				<h:inputText id="motherName"	styleClass="commonInput" tabindex="1" required="true"  maxlength="100" value="#{associateAction.associateDTO.motherName}" requiredMessage="Required Field" ajaxSingle="true">
+				<h:inputText id="motherName"	styleClass="commonInput" tabindex="3" required="true"  maxlength="100" value="#{associateAction.associateDTO.motherName}" requiredMessage="Required Field" ajaxSingle="true">
 				</h:inputText>
 				<h:panelGrid id="lastNameError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
-					<h:message for="motherName" styleClass="errorValidationText" />
+					<rich:message for="motherName" styleClass="errorValidationText" />
 				</h:panelGrid>
 				<h:outputText />
 													
@@ -44,12 +44,12 @@
 					<h:outputText value="*" styleClass="errorValidationText" />
 					<h:outputText value="Gender" styleClass="labelText"/>
 				</h:panelGroup>
-				<h:selectOneRadio id="gender" styleClass="labelText" value="#{associateAction.associateDTO.gender}">
+				<h:selectOneRadio id="gender" styleClass="labelText" value="#{associateAction.associateDTO.gender}" tabindex="4" ajaxSingle="true">
 					<f:selectItem itemValue="Male" itemLabel="Male"/>
 					<f:selectItem itemValue="Female" itemLabel="Female"/>
 				</h:selectOneRadio>
 				<h:panelGrid id="Error" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
-					<h:message for="gender" styleClass="errorValidationText" />
+					<rich:message for="gender" styleClass="errorValidationText" />
 				</h:panelGrid>									
 				<h:outputText />
 	
@@ -57,22 +57,22 @@
 					<h:outputText value="*" styleClass="errorValidationText" />
 					<h:outputText value="Contact No:" styleClass="labelText"/>
 				</h:panelGroup>
-				<h:inputText id="contactNo"	styleClass="commonInput" tabindex="1" required="true"  maxlength="10" value="#{associateAction.associateDTO.contactNo}" requiredMessage="Required Field" ajaxSingle="true" converterMessage="Invalid characters">
+				<h:inputText id="contactNo"	styleClass="commonInput" tabindex="5" required="true"  maxlength="15" value="#{associateAction.associateDTO.contactNo}" requiredMessage="Required Field" ajaxSingle="true" converterMessage="Invalid characters">
 					<f:convertNumber integerOnly="true"/>
 				</h:inputText>
 				<h:panelGrid id="contactError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
-					<h:message for="contactNo" styleClass="errorValidationText" />
+					<rich:message for="contactNo" styleClass="errorValidationText" />
 				</h:panelGrid>
 				<h:outputText />
 	
 				<h:panelGroup>
-					<h:outputText value="*" styleClass="errorValidationText" />
+					<h:outputText value="" styleClass="errorValidationText" />
 					<h:outputText value="Contact Email:" styleClass="labelText"/>
 				</h:panelGroup>
-				<h:inputText id="contactEmail"	styleClass="commonInput" tabindex="1" required="true"  maxlength="40" value="#{associateAction.associateDTO.contactEmail}" requiredMessage="Required Field" ajaxSingle="true">
+				<h:inputText id="contactEmail"	styleClass="commonInput" tabindex="6" maxlength="100" value="#{associateAction.associateDTO.contactEmail}"  ajaxSingle="true">
 				</h:inputText>
 				<h:panelGrid id="contactEmailError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
-					<h:message for="contactEmail" styleClass="errorValidationText" />
+					<rich:message for="contactEmail" styleClass="errorValidationText" />
 				</h:panelGrid>
 				<h:outputText />
 	
@@ -80,10 +80,10 @@
 					<h:outputText value="*" styleClass="errorValidationText" />
 					<h:outputText value="Address:" styleClass="labelText"/>
 				</h:panelGroup>
-				<h:inputText id="address" styleClass="commonInput" tabindex="1" required="true"  maxlength="40" value="#{associateAction.associateDTO.address}" requiredMessage="Required Field" ajaxSingle="true">
+				<h:inputText id="address" styleClass="commonInput" tabindex="7" required="true"  maxlength="255" value="#{associateAction.associateDTO.address}" requiredMessage="Required Field" ajaxSingle="true">
 				</h:inputText>
 				<h:panelGrid id="addressError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
-					<h:message for="address" styleClass="errorValidationText" />
+					<rich:message for="address" styleClass="errorValidationText" />
 				</h:panelGrid>
 				<h:outputText />
 	
@@ -91,10 +91,10 @@
 					<h:outputText value="*" styleClass="errorValidationText" />
 					<h:outputText value="City:" styleClass="labelText"/>
 				</h:panelGroup>
-				<h:inputText id="city" styleClass="commonInput" tabindex="1" required="true"  maxlength="40" value="#{associateAction.associateDTO.city}" requiredMessage="Required Field" ajaxSingle="true">
+				<h:inputText id="city" styleClass="commonInput" tabindex="8" required="true"  maxlength="45" value="#{associateAction.associateDTO.city}" requiredMessage="Required Field" ajaxSingle="true">
 				</h:inputText>
 				<h:panelGrid id="cityError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
-					<h:message for="city" styleClass="errorValidationText" />
+					<rich:message for="city" styleClass="errorValidationText" />
 				</h:panelGrid>
 				<h:outputText />
 	
@@ -102,10 +102,10 @@
 					<h:outputText value="*" styleClass="errorValidationText" />
 					<h:outputText value="State:" styleClass="labelText"/>
 				</h:panelGroup>
-				<h:inputText id="state" styleClass="commonInput" tabindex="1" required="true"  maxlength="40" value="#{associateAction.associateDTO.state}" requiredMessage="Required Field" ajaxSingle="true">
+				<h:inputText id="state" styleClass="commonInput" tabindex="9" required="true"  maxlength="45" value="#{associateAction.associateDTO.state}" requiredMessage="Required Field" ajaxSingle="true">
 				</h:inputText>
 				<h:panelGrid id="stateError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
-					<h:message for="state" styleClass="errorValidationText" />
+					<rich:message for="state" styleClass="errorValidationText" />
 				</h:panelGrid>
 				<h:outputText />
 	
@@ -113,13 +113,14 @@
 					<h:outputText value="*" styleClass="errorValidationText" />
 					<h:outputText value="Zip Code:" styleClass="labelText"/>
 				</h:panelGroup>
-				<h:inputText id="zipCode" styleClass="commonInput" tabindex="1" required="true"  maxlength="40" value="#{associateAction.associateDTO.zipCode}" requiredMessage="Required Field" ajaxSingle="true" converterMessage="Invalid characters">
+				<h:inputText id="zipCode" styleClass="commonInput" tabindex="10" required="true"  maxlength="10" value="#{associateAction.associateDTO.zipCode}" requiredMessage="Required Field" ajaxSingle="true" converterMessage="Invalid characters">
 					<f:convertNumber integerOnly="true"/>				
 				</h:inputText>
 				<h:panelGrid id="zipCodeError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
-					<h:message for="zipCode" styleClass="errorValidationText" />
+					<rich:message for="zipCode" styleClass="errorValidationText" />
 				</h:panelGrid>
 				<h:outputText />
+
 													
 			</h:panelGrid>
 		</h:panelGrid>

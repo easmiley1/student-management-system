@@ -8,6 +8,9 @@
 		<h:head>
 			 <style type="text/css">
 			 
+			  	.mySelectStyle input{
+        			width: 100px;
+			 	}
 				.commonInput {
 					height: 21px;
 					width: 165px;
@@ -72,18 +75,7 @@
 			 </style>
 		</h:head>
 		<h:form>
-			<rich:toolbar height="26px">
-				<rich:dropDownMenu>
-					<f:facet name="label">
-						<h:panelGroup>
-							<h:outputText value="Add" />
-						</h:panelGroup>
-					</f:facet>
-					<rich:menuItem label="Student" action="#{associateAction.initAddStudentAction}">
-					</rich:menuItem>
-					<rich:menuItem label="Teacher" />
-				</rich:dropDownMenu>
-			</rich:toolbar>
+			<ui:include src="/pages/menu/adminMenu.xhtml"/>
 		</h:form>
 	</f:view>
 </ui:composition>

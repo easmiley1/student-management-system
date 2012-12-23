@@ -28,7 +28,10 @@
 			<xs:element name="otherContactInfo" type="xs:string"  minOccurs="0"/>
 			<xs:element name="bloodGroup" type="xs:string" />
 			<xs:element name="dateofJoining" type="xs:string" />
-			<xs:element name="comments" type="xs:string"  minOccurs="0"/>
+			<xs:element name="dateofBirth" type="xs:string" />
+			<xs:element name="age" type="xs:int" minOccurs="0" />
+			<xs:element name="comments" type="xs:string" minOccurs="0"/>
+			<xs:element name="previousSchool" type="xs:string" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
 
@@ -37,7 +40,6 @@
 		<xs:complexContent>
 			<xs:extension base="associateDTO">
 				<xs:sequence>
-					<xs:element name="previousSchool" type="xs:string" />
 					<xs:element name="joiningClass" type="xs:string" />
 					<xs:element name="extraCurricularInterest" type="xs:string" minOccurs="0"/>
 					<xs:element name="modeOfTransport" >
