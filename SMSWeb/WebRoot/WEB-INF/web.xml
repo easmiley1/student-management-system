@@ -4,8 +4,6 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
-    <display-name>Sample RichFaces 4 Application</display-name>
-
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
@@ -39,14 +37,5 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/smsWebApplicationContext.xml</param-value>
 	</context-param>
-
-
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-
-	<listener>
-		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
-	</listener>
 	
 </web-app>

@@ -4,7 +4,7 @@ import org.jboss.resteasy.client.ProxyFactory;
 import org.jboss.resteasy.plugins.providers.RegisterBuiltin;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
-import com.ish.sms.service.client.SMSAssociateServiceInterface;
+import com.ish.sms.web.service.client.SMSAssociateServiceInterface;
 
 /**
  * Service locator class which initializes the restful service interfaces and provides the look up for the same.
@@ -31,6 +31,5 @@ public class SMSServiceLocator {
 		RegisterBuiltin.register(ResteasyProviderFactory.getInstance());
 		smsAssociateServiceInterface = ProxyFactory.create(SMSAssociateServiceInterface.class, associateServiceURL);
 	}
-
 
 }

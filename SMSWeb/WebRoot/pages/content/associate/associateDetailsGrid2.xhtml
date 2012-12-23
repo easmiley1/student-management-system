@@ -10,12 +10,37 @@
 
 					<h:panelGroup>
 						<h:outputText value="*" styleClass="errorValidationText" />
+						<h:outputText value="Date of Birth:" styleClass="labelText"/>
+					</h:panelGroup>
+					<rich:calendar  id="dateofBirth" datePattern="MM/dd/yyyy" cellWidth="24px" required="true" cellHeight="22px" style="width:200px" value="#{associateAction.associateDTO.dateofBirth}" requiredMessage="Required Field" ajaxSingle="true" tabIndex="11">
+						<f:converter converterId="DateStrConveter"/>
+					</rich:calendar>
+					<h:panelGrid id="dateofBirthError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
+						<rich:message for="dateofBirth" styleClass="errorValidationText" />
+					</h:panelGrid>
+					<h:outputText />				
+
+					<h:panelGroup>
+						<h:outputText value="*" styleClass="errorValidationText" />
+						<h:outputText value="Age:" styleClass="labelText"/>
+					</h:panelGroup>
+					<h:inputText id="age" styleClass="commonInput" tabindex="12" required="true"  maxlength="3" value="#{associateAction.associateDTO.age}" requiredMessage="Required Field" ajaxSingle="true" converterMessage="Invalid characters">
+						<f:convertNumber integerOnly="true"/>
+					</h:inputText>
+					<h:panelGrid id="ageError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
+						<rich:message for="age" styleClass="errorValidationText" />
+					</h:panelGrid>
+					<h:outputText />	
+
+					<h:panelGroup>
+						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Emergency Contact No:" styleClass="labelText"/>
 					</h:panelGroup>
-					<h:inputText id="emergencyContactNo" styleClass="commonInput" tabindex="1" required="true"  maxlength="40" value="#{associateAction.associateDTO.emergencyContactNo}" requiredMessage="Required Field" ajaxSingle="true">
+					<h:inputText id="emergencyContactNo" styleClass="commonInput" tabindex="13" required="true"  maxlength="15" value="#{associateAction.associateDTO.emergencyContactNo}" requiredMessage="Required Field" ajaxSingle="true" converterMessage="Invalid characters">
+						<f:convertNumber integerOnly="true"/>
 					</h:inputText>
 					<h:panelGrid id="emergencyContactNoError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
-						<h:message for="emergencyContactNo" styleClass="errorValidationText" />
+						<rich:message for="emergencyContactNo" styleClass="errorValidationText" />
 					</h:panelGrid>
 					<h:outputText />	
 					
@@ -23,20 +48,32 @@
 						<h:outputText value="" styleClass="errorValidationText" />
 						<h:outputText value="Other Contact Info:" styleClass="labelText"/>
 					</h:panelGroup>
-					<h:inputTextarea id="otherContactInfo" styleClass="commonInput" tabindex="1" style="width:170px;height:100px;resize:none;" value="#{associateAction.associateDTO.otherContactInfo}"/>
+					<h:inputTextarea id="otherContactInfo" styleClass="commonInput" tabindex="14" style="width:170px;height:60px;resize:none;" value="#{associateAction.associateDTO.otherContactInfo}" ajaxSingle="true"/>
 					<h:panelGrid id="otherContactInfoError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
-						<h:message for="otherContactInfo" styleClass="errorValidationText" />
+						<rich:message for="otherContactInfo" styleClass="errorValidationText" />
 					</h:panelGrid>
 					<h:outputText />					
+
+
+					<h:panelGroup>
+						<h:outputText value="" styleClass="errorValidationText" />
+						<h:outputText value="Previous School:" styleClass="labelText"/>
+					</h:panelGroup>
+					<h:inputText id="previousSchool" styleClass="commonInput" tabindex="15"  maxlength="100" value="#{associateAction.associateDTO.previousSchool}" requiredMessage="Required Field" ajaxSingle="true">
+					</h:inputText>
+					<h:panelGrid id="previousSchoolError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
+						<rich:message for="previousSchool" styleClass="errorValidationText" />
+					</h:panelGrid>
+					<h:outputText />				
 
 					<h:panelGroup>
 						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Blood Group:" styleClass="labelText"/>
 					</h:panelGroup>
-					<h:inputText id="bloodGroup" styleClass="commonInput" tabindex="1" required="true"  maxlength="40" value="#{associateAction.associateDTO.bloodGroup}" requiredMessage="Required Field" ajaxSingle="true">
+					<h:inputText id="bloodGroup" styleClass="commonInput" tabindex="16" required="true"  maxlength="5" value="#{associateAction.associateDTO.bloodGroup}" requiredMessage="Required Field" ajaxSingle="true">
 					</h:inputText>
 					<h:panelGrid id="bloodGroupError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
-						<h:message for="bloodGroup" styleClass="errorValidationText" />
+						<rich:message for="bloodGroup" styleClass="errorValidationText" />
 					</h:panelGrid>
 					<h:outputText />
 
@@ -44,11 +81,11 @@
 						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Date of Joining:" styleClass="labelText"/>
 					</h:panelGroup>
-					<rich:calendar  id="dateofJoining" datePattern="MM/dd/yyyy" cellWidth="24px" cellHeight="22px" style="width:200px" value="#{associateAction.associateDTO.dateofJoining}" requiredMessage="Required Field" ajaxSingle="true">
+					<rich:calendar  id="dateofJoining" datePattern="MM/dd/yyyy" cellWidth="24px" tabindex="17" required="true" cellHeight="22px" style="width:200px" value="#{associateAction.associateDTO.dateofJoining}" requiredMessage="Required Field" ajaxSingle="true">
 						<f:converter converterId="DateStrConveter"/>
 					</rich:calendar>
 					<h:panelGrid id="dateofJoiningError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
-						<h:message for="dateofJoining" styleClass="errorValidationText" />
+						<rich:message for="dateofJoining" styleClass="errorValidationText" />
 					</h:panelGrid>
 					<h:outputText />				
 
@@ -56,10 +93,10 @@
 						<h:outputText value="" styleClass="errorValidationText" />
 						<h:outputText value="Comments:" styleClass="labelText"/>
 					</h:panelGroup>
-					<h:inputTextarea id="comments" styleClass="commonInput" tabindex="1" style="width:170px;height:100px;resize:none;" value="#{associateAction.associateDTO.comments}">
+					<h:inputTextarea id="comments" styleClass="commonInput" tabindex="18" style="width:170px;height:100px;resize:none;" value="#{associateAction.associateDTO.comments}" ajaxSingle="true">
 					</h:inputTextarea>
 					<h:panelGrid id="commentsError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
-						<h:message for="comments" styleClass="errorValidationText" />
+						<rich:message for="comments" styleClass="errorValidationText" />
 					</h:panelGrid>
 					<h:outputText />				
 					
