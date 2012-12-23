@@ -4,7 +4,11 @@ package com.ish.sms.service.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+import com.ish.sms.service.util.QueryConstants;
 
 /**
  * This entity represents the student table in the database
@@ -12,6 +16,7 @@ import javax.persistence.Table;
  * @author Naren
  *
  */
+@NamedQueries( { @NamedQuery(name = QueryConstants.FIND_ALL_STUDENTS, query = QueryConstants.FIND_ALL_STUDENTS_QUERY) })
 @Entity
 @Table(name="Student")
 public class Student {
@@ -57,8 +62,12 @@ public class Student {
     protected String extraCurricularInterest;
     @Column(nullable=false, name="mode_of_transport")
     protected String modeOfTransport;
+    @Column(nullable=false, name="age")
+    protected Integer age;
+    @Column(nullable=true, name="date_of_birth")
+    protected String dateofBirth;
 
-    /**
+	/**
      * Gets the value of the id property.
      * 
      */
@@ -505,5 +514,54 @@ public class Student {
     public void setModeOfTransport(String value) {
         this.modeOfTransport = value;
     }
+
+    /**
+     * Gets the value of the dateofBirth property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDateofBirth() {
+        return dateofBirth;
+    }
+
+    /**
+     * Sets the value of the dateofBirth property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDateofBirth(String value) {
+        this.dateofBirth = value;
+    }
+
+    /**
+     * Gets the value of the age property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getAge() {
+        return age;
+    }
+
+    /**
+     * Sets the value of the age property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setAge(Integer value) {
+        this.age = value;
+    }
+
 
 }
