@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ish.sms.service.dao.AssociateOperationsDAO;
 import com.ish.sms.service.dto.StudentDTO;
-import com.ish.sms.service.dto.StudentList;
+import com.ish.sms.service.dto.StudentListDTO;
 import com.ish.sms.service.entity.Student;
 
 /**
@@ -46,9 +46,9 @@ public class AssociateOperations extends EntityOperations {
 	 * @throws Exception
 	 */
 	@Transactional(readOnly=true)
-	public StudentList retrieveAllStudents() throws Exception {
+	public StudentListDTO retrieveAllStudents() throws Exception {
 
-		StudentList studentList = new StudentList();
+		StudentListDTO studentList = new StudentListDTO();
 		List<Student> studentsList = associateOperationsDAO.retrieveAllStudents();
 		for (Student student : studentsList) {
 			StudentDTO studentDTO = new StudentDTO();
