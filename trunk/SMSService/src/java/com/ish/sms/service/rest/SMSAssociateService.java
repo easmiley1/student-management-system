@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ish.sms.service.dto.StudentDTO;
-import com.ish.sms.service.dto.StudentList;
+import com.ish.sms.service.dto.StudentListDTO;
 import com.ish.sms.service.ops.AssociateOperations;
 import com.ish.sms.service.util.ServiceTransformer;
 
@@ -65,8 +65,8 @@ public class SMSAssociateService {
 
 		String studentListXML = null;
 		try {
-			StudentList studentList = associateOperations.retrieveAllStudents();
-			studentListXML = serviceTransformer.transformToXML(studentList, "studentList");
+			StudentListDTO studentList = associateOperations.retrieveAllStudents();
+			studentListXML = serviceTransformer.transformToXML(studentList, "studentListDTO");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
