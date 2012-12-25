@@ -9,16 +9,7 @@
 			<ui:composition template="/pages/layout/commonLayout.xhtml">
 				<ui:define name="content">
 					<rich:panel header="Add Student" styleClass="dialogBodyPanel">
-						
-						<h:form id="studentForm">
-							<h:panelGrid columns="4" width="100%"
-								columnClasses="profileDottedGrid1,profileDottedGrid2,profileDottedGrid3,profileDottedGrid4">
-								
-								<ui:include src="associateDetailsGrid1.xhtml"/>
-								<ui:include src="associateDetailsGrid2.xhtml"/>	
-								<ui:include src="studentDetailsGrid3.xhtml"/>	
-							</h:panelGrid>
-						</h:form>	
+						<ui:include src="studentDetailsContainer.xhtml"/>
 					</rich:panel>
 				</ui:define>
 			</ui:composition>
