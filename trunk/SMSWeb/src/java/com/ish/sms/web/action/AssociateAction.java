@@ -1,11 +1,10 @@
 package com.ish.sms.web.action;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
-import com.ish.sms.service.dto.AssociateDTO;
-import com.ish.sms.service.dto.ObjectFactory;
-import com.ish.sms.service.dto.StudentDTO;
+import com.ish.sms.web.bean.AssociateBean;
 import com.ish.sms.web.business.AssociateBusiness;
 import com.ish.sms.web.util.SMSSpringFactory;
 
@@ -17,44 +16,29 @@ import com.ish.sms.web.util.SMSSpringFactory;
 @RequestScoped
 public class AssociateAction extends BaseAction {
  
-	private AssociateDTO associateDTO = new AssociateDTO();
-	private StudentDTO studentDTO = new StudentDTO();
-	private ObjectFactory objfactory = new ObjectFactory();
-	private AssociateBusiness saveBusiness;
+	private AssociateBusiness associateBusiness;
+	@ManagedProperty(value="#{associateBean}")
+	private AssociateBean associateBean;
+
+	/**
+	 * @return associateBean
+	 */
+	public AssociateBean getAssociateBean() {
+		return associateBean;
+	}
+
+	/**
+	 * @param associateBean
+	 */
+	public void setAssociateBean(AssociateBean associateBean) {
+		this.associateBean = associateBean;
+	}
 
 	/**
 	 * Constructor to initialize the business class.
 	 */
 	public AssociateAction() {
-		saveBusiness = (AssociateBusiness) SMSSpringFactory.getInstance().getBean("associateBusiness");
-	}
-
-	/**
-	 * @return studentDTO
-	 */
-	public StudentDTO getStudentDTO() {
-		return studentDTO;
-	}
-
-	/**
-	 * @return associateDTO
-	 */
-	public AssociateDTO getAssociateDTO() {
-		return associateDTO;
-	}
-
-	/**
-	 * @param associateDTO
-	 */
-	public void setAssociateDTO(AssociateDTO associateDTO) {
-		this.associateDTO = associateDTO;
-	}
-
-	/**
-	 * @param studentDTO
-	 */
-	public void setStudentDTO(StudentDTO studentDTO) {
-		this.studentDTO = studentDTO;
+		associateBusiness = (AssociateBusiness) SMSSpringFactory.getInstance().getBean("associateBusiness");
 	}
 
 	/**
@@ -62,12 +46,30 @@ public class AssociateAction extends BaseAction {
 	 * 
 	 * @return student.xhtml
 	 */
-	public String initAddStudentAction() {
-		associateDTO = objfactory.createAssociateDTO();
-		associateDTO.setGender(DEFAULT_GENDER);
-		studentDTO = objfactory.createStudentDTO();
-		studentDTO.setModeOfTransport("School");
+	public String initAddStudentPersonalDetails() {
+		associateBean.initAddStudentPersonalDetails();
 		return SAVE_STUDENT_PAGE;
+	}
+	
+	/**
+	 * Method to return the list of all the students in the school for modification
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String initModifySearchAllStudents() throws Exception{
+		associateBean.initModifySearchAllStudents(associateBusiness.retrieveAllStudents());
+		return MODIFY_STUDENT_LIST_PAGE;
+	}
+	/**
+	 * Method to return the list of all the students in the school and redirect to the studentList.xhtml
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String initViewSearchAllStudents() throws Exception{
+		associateBean.initModifySearchAllStudents(associateBusiness.retrieveAllStudents());
+		return VIEW_STUDENT_LIST_PAGE;
 	}
 
 	/**
@@ -76,7 +78,27 @@ public class AssociateAction extends BaseAction {
 	 * @throws Exception
 	 */
 	public void saveStudent() throws Exception {
-		saveBusiness.saveStudent(studentDTO, associateDTO);
+		associateBusiness.saveStudent(associateBean.getStudentDTO(), associateBean.getAssociateDTO());
+	}
+
+	/**
+	 * Set the selected student in the grid to the selection model for editing by setting readonlymode to false
+	 * 
+	 * @throws Exception
+	 */
+	public void applySelectionForEdit() throws Exception{
+		associateBean.setReadOnlyMode(false);
+		associateBean.applyStudentSelection();
+	}
+
+	/**
+	 * Set the selected student in the grid to the selection model for viewing by setting readonlymode to true
+	 * 
+	 * @throws Exception
+	 */
+	public void applySelectionForView() throws Exception{
+		associateBean.setReadOnlyMode(true);
+		associateBean.applyStudentSelection();
 	}
 
 }

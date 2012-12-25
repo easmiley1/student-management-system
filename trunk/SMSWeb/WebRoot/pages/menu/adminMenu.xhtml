@@ -12,9 +12,32 @@
 						<h:outputText value="Add" />
 					</h:panelGroup>
 				</f:facet>
-				<rich:menuItem label="Student" action="#{associateAction.initAddStudentAction}">
-				</rich:menuItem>
+				<rich:menuGroup label="Student">
+					<rich:menuItem label="Personal Details" action="#{associateAction.initAddStudentPersonalDetails}"/>
+                </rich:menuGroup>				
 				<rich:menuItem label="Teacher" />
+			</rich:dropDownMenu>
+			<rich:dropDownMenu>
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="Modify" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuGroup label="Student Personal Detail">
+					<rich:menuItem label="Search All Students" action="#{associateAction.initModifySearchAllStudents}"/>
+                </rich:menuGroup>				
+				<rich:menuItem label="All Teachers" />
+			</rich:dropDownMenu>
+			<rich:dropDownMenu>
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="View" />
+					</h:panelGroup>
+				</f:facet> 
+				<rich:menuGroup label="Student Personal Details">
+					<rich:menuItem label="Search All Students" action="#{associateAction.initViewSearchAllStudents}"/>
+                </rich:menuGroup>				
+				<rich:menuItem label="All Teachers" />
 			</rich:dropDownMenu>
 		</rich:toolbar>
 	</f:view>

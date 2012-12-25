@@ -3,6 +3,13 @@
 	attributeFormDefault="unqualified" elementFormDefault="qualified"
 	targetNamespace="http://www.ish.com/soa/sms" version="1.0">
 
+	<xs:element name="studentListDTO" type="studentListDTO" />
+	<xs:complexType name="studentListDTO">
+		<xs:sequence>
+			<xs:element name="studentDTOList" type="studentDTO" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	
 	<xs:element name="associateDTO" type="associateDTO" />
 	<xs:complexType name="associateDTO">
 		<xs:sequence>

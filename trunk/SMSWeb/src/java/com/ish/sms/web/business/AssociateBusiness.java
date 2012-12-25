@@ -1,10 +1,16 @@
 package com.ish.sms.web.business;
 
+
+
+
+import java.util.List;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ish.sms.service.dto.AssociateDTO;
 import com.ish.sms.service.dto.StudentDTO;
+import com.ish.sms.service.dto.StudentListDTO;
 import com.ish.sms.web.businessdelegate.AssociateBusinessDelegate;
 import com.ish.sms.web.util.WebConstants;
 
@@ -16,7 +22,7 @@ import com.ish.sms.web.util.WebConstants;
  * @author Naren
  * 
  */
-public class AssociateBusiness extends BaseBusiness implements WebConstants{
+public class AssociateBusiness extends BaseBusiness implements WebConstants {
 
 	@Autowired
 	private AssociateBusinessDelegate saveBusinessDelegate;
@@ -36,4 +42,18 @@ public class AssociateBusiness extends BaseBusiness implements WebConstants{
 		studentXml = saveBusinessDelegate.saveStudent(studentXml);
 		return serviceTransformer.parseXml(studentXml);
 	}
+
+	/**
+	 * Method to return the list of all the students in the school.
+	 * 
+	 * @return studentList
+	 * @throws Exception
+	 */
+	public List<StudentDTO> retrieveAllStudents() throws Exception {
+
+		String studentListXML = saveBusinessDelegate.retrieveAllStudents();
+		StudentListDTO studentList = serviceTransformer.parseXml(studentListXML);
+		return studentList.getStudentDTOList();
+	}
+
 }

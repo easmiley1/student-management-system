@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	<f:view>
+		<h:body>
+			<ui:include src="applicationStyles.xhtml"/>
+			<ui:composition template="/pages/layout/commonLayout.xhtml">
+				<ui:define name="content">
+					<rich:panel header="Student List" styleClass="dialogBodyPanel" id="viewStudentListPanel">
+						<h:form id="studentListForm">
+					        <rich:extendedDataTable value="#{associateBean.studentDTOList}" var="associate" id="studentListGrid" frozenColumns="1"
+					         selectionMode="single" selection="#{associateBean.selectedStudent}" listener="#{associateBean.selectionListener}">
+								<ui:include src="associateGridList.xhtml"/>
+								<ui:include src="studentGridList.xhtml"/>
+				                <f:facet name="footer">
+				                    <rich:dataScroller />
+									<a4j:commandButton value="View Details" action="#{associateAction.applySelectionForView}"  id="viewBtn" 
+									oncomplete="document.getElementById('viewStudentPanelFrame').src='/SMSWeb/pages/content/associate/details/add-modify/studentDetailsContainer.xhtml';
+									#{rich:component('viewStudentPopup')}.show()" 
+									style="margin-left:50px;width:90px; height:22px;" /> 													                    
+				                </f:facet>					            					            
+        					</rich:extendedDataTable>
+        					<a4j:jsFunction name="updateGridForView" action="#{associateAction.initViewSearchAllStudents}" render="studentListGrid@body"/>
+					        <rich:popupPanel id="viewStudentPopup" autosized="true" modal="true" moveable="false">
+							        <f:facet name="header">
+							            <h:outputText value="View Student" />
+							        </f:facet>					        
+									<iframe src="" id="viewStudentPanelFrame" style="width:1200px;height:580px" frameborder="0" scrolling="no"/>
+							        <f:facet name="controls">
+							            <h:outputLink value="#" onclick="updateGridForView();#{rich:component('viewStudentPopup')}.hide(); return false;">
+							                Close X
+							            </h:outputLink>
+							        </f:facet>									
+					        </rich:popupPanel>        					
+						</h:form>	
+					</rich:panel>
+				</ui:define>
+			</ui:composition>
+		</h:body>
+	</f:view>
+</ui:composition>

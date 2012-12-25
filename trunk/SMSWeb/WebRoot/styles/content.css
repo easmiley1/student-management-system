@@ -1,8 +1,30 @@
-.bodyPanel {
+
+.mySelectStyle input{
+   			width: 100px;
+}
+
+.commonInput {
+	height: 21px;
+	width: 165px;
+	border-color: #999999;
+	border-style: solid;
+	border-width: 1px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	color: #333333;
+	background-image: none;
+	background-color: #ffffff;
+	padding-top:4px\9 ;	/* \9 is an IE hack*/
+    height:18px\9 ;
+}
+
+   .bodyPanel {
 	background-color: #dddddd;
 }
 
 .profileDottedGrid1 {
+	padding-left:80px;				
 	border-right: medium;
 	border-right-style: dotted;
 	border-right-color: #999999;
@@ -11,6 +33,7 @@
 }
 
 .profileDottedGrid2 {
+	padding-left:80px;
 	border-right: medium;
 	border-right-style: dotted;
 	border-right-color: #999999;
@@ -19,6 +42,7 @@
 }
 
 .profileDottedGrid3 {
+	padding-left:80px;
 	border-right: medium;
 	border-right-style: dotted;
 	border-right-color: #999999;
@@ -32,7 +56,7 @@
 .errorValidationText{
 	font-size: 10px;
 	font-family: Arial,sans-serif;	
-	color: #ff00000;
+	color: #ff0000;
 }
 .labelText{
 	font-size: 12px;
