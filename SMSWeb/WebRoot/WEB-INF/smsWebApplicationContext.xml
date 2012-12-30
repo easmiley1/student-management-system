@@ -14,15 +14,44 @@
 	<context:annotation-config />
 
 	<bean id="smsSpringFactory" class="com.ish.sms.web.util.SMSSpringFactory"/>
+	<bean id="jbossCacheProvider" class="com.ish.sms.web.cache.JBossCacheProvider"/>
+	<bean id="serviceTransformer" class="com.ish.sms.web.service.ServiceTransformer" />
 
 	<bean id="associateBusiness" class="com.ish.sms.web.business.AssociateBusiness"/>
-	<bean id="serviceTransformer" class="com.ish.sms.web.service.ServiceTransformer" />
-	<bean id="associateBusinessDelegate" class="com.ish.sms.web.businessdelegate.AssociateBusinessDelegate" />
+	<bean id="referenceBusiness" class="com.ish.sms.web.business.ReferenceBusiness"/>
 	
+	<bean id="associateBusinessDelegate" class="com.ish.sms.web.businessdelegate.AssociateBusinessDelegate" />
+	<bean id="referenceBusinessDelegate" class="com.ish.sms.web.businessdelegate.ReferenceBusinessDelegate" />
+
 	<bean id="smsServiceLocator" class="com.ish.sms.web.service.SMSServiceLocator">
 		<constructor-arg value="http://localhost:8080/SMSService/websvc/smsAssociateService" />
+		<constructor-arg value="http://localhost:8080/SMSService/websvc/smsReferenceService" />
 	</bean>	
 	
+ 	<bean id="referenceDataTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+	  	<property name="jobDetail" ref="referenceDataLoadJob"/>
+	  	<property name="startDelay" value="0"/>
+	  	<property name="repeatInterval" value="144000000"/>
+	</bean>	
+
+    <bean id="referenceDataLoadJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+	  <property name="targetObject" ref="referenceMetaDataScheduler"/>
+	  <property name="targetMethod" value="loadReferenceData"/>	  
+	  <property name="concurrent" value="false"/>
+	</bean>
+	
+	<bean id="referenceMetaDataScheduler" class="com.ish.sms.web.scheduler.ReferenceMetaDataScheduler">	
+		<property name="jbossCacheProvider" ref="jbossCacheProvider" />
+	</bean>
+	
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+	  <property name="triggers">
+	    <list>
+	       <ref bean="referenceDataTrigger"/>
+	    </list>
+	  </property>
+	</bean>	
+		
 </beans>
 
 

@@ -15,12 +15,15 @@ import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Service class to transform xml to DTO and vice-versa.
  * 
  * @author Naren
  *
  */
+@Component
 public class ServiceTransformer {
 
 	private Schema schema;

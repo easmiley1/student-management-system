@@ -7,6 +7,7 @@
 	<f:view>
 		<h:body>
 			<ui:include src="/pages/layout/applicationStyles.xhtml"/>
+				<a4j:status onstart="#{rich:component('statPane')}.show()" onstop="#{rich:component('statPane')}.hide()" />			
 				<h:form id="studentForm">				
 			
 					<h:panelGrid columns="4" width="100%" columnClasses="profileDottedGrid1,profileDottedGrid2,profileDottedGrid3,profileDottedGrid4" id="studentPanel">

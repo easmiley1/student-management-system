@@ -17,7 +17,6 @@
 								<ui:include src="associateGridList.xhtml"/>
 								<ui:include src="studentGridList.xhtml"/>
 				                <f:facet name="footer">
-				                    <rich:dataScroller />
 									<a4j:commandButton value="Edit Details" action="#{associateAction.applySelectionForEdit}"  id="editBtn" 
 									oncomplete="document.getElementById('editStudentPanelFrame').src='/SMSWeb/pages/content/associate/details/add-modify/studentDetailsContainer.xhtml';
 									#{rich:component('editStudentPopup')}.show()" 

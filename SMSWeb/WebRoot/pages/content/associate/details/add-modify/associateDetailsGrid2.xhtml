@@ -69,7 +69,9 @@
 						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Blood Group:" styleClass="labelText"/>
 					</h:panelGroup>
-					<h:inputText id="bloodGroup" styleClass="commonInput" tabindex="16" required="true"  maxlength="5" value="#{associateBean.associateDTO.bloodGroup}" requiredMessage="Required Field" ajaxSingle="true" readonly="#{associateBean.readOnlyMode}" />
+					<rich:select id="bloodGroup"  styleClass="selectStyle" converter="#{bloodGroupConverter}" value="#{associateBean.associateDTO.bloodGroupDTO}" tabindex="16" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" >
+						<f:selectItems value="#{referenceBean.bloodGroupDTOList}" var="bloodGroupDTO" itemValue="#{bloodGroupDTO}" itemLabel="#{bloodGroupDTO.name}"/>
+					</rich:select>
 					<h:panelGrid id="bloodGroupError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
 						<rich:message for="bloodGroup" styleClass="errorValidationText" />
 					</h:panelGrid>
@@ -79,7 +81,7 @@
 						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Date of Joining:" styleClass="labelText"/>
 					</h:panelGroup>
-					<rich:calendar  id="dateofJoining" datePattern="MM/dd/yyyy" cellWidth="24px" tabindex="17" required="true" cellHeight="22px" style="width:200px" value="#{associateBean.associateDTO.dateofJoining}" requiredMessage="Required Field" ajaxSingle="true" readonly="#{associateBean.readOnlyMode}" >
+					<rich:calendar  id="dateofJoining" datePattern="MM/dd/yyyy" cellWidth="54px" tabindex="17" required="true" cellHeight="22px" style="width:200px" value="#{associateBean.associateDTO.dateofJoining}" requiredMessage="Required Field" ajaxSingle="true" readonly="#{associateBean.readOnlyMode}" >
 						<f:converter converterId="DateStrConveter"/>
 					</rich:calendar>
 					<h:panelGrid id="dateofJoiningError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">

@@ -4,6 +4,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
+import org.jboss.cache.CacheException;
+
 import com.ish.sms.web.bean.AssociateBean;
 import com.ish.sms.web.business.AssociateBusiness;
 import com.ish.sms.web.util.SMSSpringFactory;
@@ -45,9 +47,11 @@ public class AssociateAction extends BaseAction {
 	 * Method to initialize the DTO's and redirect the page to student.xhtml
 	 * 
 	 * @return student.xhtml
+	 * @throws CacheException 
 	 */
-	public String initAddStudentPersonalDetails() {
+	public String initAddStudentPersonalDetails() throws CacheException {
 		associateBean.initAddStudentPersonalDetails();
+
 		return SAVE_STUDENT_PAGE;
 	}
 	

@@ -1,4 +1,4 @@
-package com.ish.sms.web.filter;
+package com.ish.sms.web.gridFilter;
 
 import java.io.Serializable;
 
