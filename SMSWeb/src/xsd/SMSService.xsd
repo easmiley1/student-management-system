@@ -12,6 +12,7 @@
 	<xs:element name="bloodGroupDTO" type="bloodGroupDTO" />
 	<xs:element name="modeofTransportDTO" type="modeofTransportDTO" />
 	<xs:element name="referenceListDTO" type="referenceListDTO" />
+	<xs:element name="classDTO" type="classDTO" />
 	
 	<xs:complexType name="referenceListDTO">
 		<xs:sequence>
@@ -37,15 +38,17 @@
 	</xs:complexType>
 
 	<xs:complexType name="classDTO">
-		<xs:sequence>
-			<xs:element name="id" type="xs:int" minOccurs="0" />
-			<xs:element name="name" type="xs:string" />
-			<xs:element name="section" type="xs:string" />
-			<xs:element name="teacherDTO" type="teacherDTO" minOccurs="0" />
-			<xs:element name="studentCount" type="xs:int" minOccurs="0" />			
-		</xs:sequence>
+		<xs:complexContent>
+			<xs:extension base="baseReferenceDTO">	
+				<xs:sequence>
+					<xs:element name="section" type="xs:string" />
+					<xs:element name="teacherDTO" type="teacherDTO" minOccurs="0" />
+					<xs:element name="studentCount" type="xs:int" minOccurs="0" />			
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
 	</xs:complexType>
-
+	
 	<xs:complexType name="stateDTO">
 		<xs:complexContent>
 			<xs:extension base="baseReferenceDTO">
