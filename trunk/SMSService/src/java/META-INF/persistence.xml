@@ -2,9 +2,18 @@
 
   <persistence-unit name="smsServicePersistenceUnit" transaction-type="RESOURCE_LOCAL">
   	<class>com.ish.sms.service.entity.Student</class>
+  	<class>com.ish.sms.service.entity.BloodGroup</class>
+  	<class>com.ish.sms.service.entity.Class</class>
+  	<class>com.ish.sms.service.entity.ExtraCurricular</class>
+  	<class>com.ish.sms.service.entity.ModeofTransport</class>
+  	<class>com.ish.sms.service.entity.State</class>
+  	<class>com.ish.sms.service.entity.Teacher</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>    
 	<non-jta-data-source>java:/smsDS</non-jta-data-source>       
+ 	<properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
+            <property name="hibernate.show_sql" value="true" />
+     </properties>      
   </persistence-unit>
-
-</persistence>
+ </persistence>

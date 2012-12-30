@@ -2,11 +2,7 @@ package com.ish.sms.service.dao;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import com.ish.sms.service.entity.Student;
-import com.ish.sms.service.util.QueryConstants;
 
 /**
  * DAO class for all the associate related entities.
@@ -14,17 +10,7 @@ import com.ish.sms.service.util.QueryConstants;
  * @author Naren
  * 
  */
-public class AssociateOperationsDAO implements QueryConstants {
-
-	private EntityManager entityManager;
-
-	/**
-	 * @param entityManager
-	 */
-	@PersistenceContext
-	public void setEntityManager(EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}
+public class AssociateOperationsDAO extends BaseOperationsDAO {
 
 	/**
 	 * Method to create or update a student.

@@ -16,23 +16,27 @@
 	<context:annotation-config />
 
 	<bean id="persistenceAnnotation" class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+	<bean id="serviceTransformer" class="com.ish.sms.service.util.ServiceTransformer"/>
+
 	<bean id="associateOperationsDAO" class="com.ish.sms.service.dao.AssociateOperationsDAO"/>
 	<bean id="associateOperations" class="com.ish.sms.service.ops.AssociateOperations"/>
+	<bean id="referenceOperationsDAO" class="com.ish.sms.service.dao.ReferenceOperationsDAO"/>
+	<bean id="referenceOperations" class="com.ish.sms.service.ops.ReferenceOperations"/>
+	
 	<bean id="smsAssociateService" class="com.ish.sms.service.rest.SMSAssociateService"/>
-	<bean id="serviceTransformer" class="com.ish.sms.service.util.ServiceTransformer"/>
+	<bean id="smsReferenceService" class="com.ish.sms.service.rest.SMSReferenceService"/>
 
 	<bean id="entityManagerFactory"	class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="smsServicePersistenceUnit" />
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-   <bean id="dbTransactionManager"  class="org.springframework.orm.jpa.JpaTransactionManager">
+   	<bean id="dbTransactionManager"  class="org.springframework.orm.jpa.JpaTransactionManager">
       <property name="entityManagerFactory" ref="entityManagerFactory"/>
-   </bean>	
+	</bean>	
 
  	<jee:jndi-lookup id="dataSource" jndi-name="java:/smsDS"/>
 
 	<tx:annotation-driven transaction-manager="dbTransactionManager"/>
-
 
 </beans>

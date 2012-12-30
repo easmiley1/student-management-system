@@ -33,7 +33,7 @@
 				<schema dir="@{schemadir}" includes="@{schemainclude}" />
 				<depends dir="@{schemadir}" includes="@{dependsinclude}" />
 				<produces dir="${generated.dir}" includes="@{producesinclude}" />
-				<arg line="-Xcollection-setter-injector -extension" />
+				<arg line="-Xcollection-setter-injector -extension -b xjc-bindings.xml" />
 			</xjc>
 
 		</sequential>

@@ -5,13 +5,10 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ish.sms.service.dto.StudentDTO;
 import com.ish.sms.service.dto.StudentListDTO;
-import com.ish.sms.service.ops.AssociateOperations;
-import com.ish.sms.service.util.ServiceTransformer;
 
 /**
  * Restful service class to handle all Associate related operations.
@@ -21,13 +18,7 @@ import com.ish.sms.service.util.ServiceTransformer;
  */
 @Service
 @Path("/smsAssociateService")
-public class SMSAssociateService {
-
-	@Autowired
-	private ServiceTransformer serviceTransformer;
-
-	@Autowired
-	private AssociateOperations associateOperations;
+public class SMSAssociateService extends SMSBaseService{
 
 	/**
 	 * Method to create or update a student and return the persisted studentXML.
@@ -72,4 +63,5 @@ public class SMSAssociateService {
 		}
 		return studentListXML;
 	}
+
 }
