@@ -12,17 +12,33 @@
 						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Joining Class:" styleClass="labelText"/>
 					</h:panelGroup>
-					<h:inputText id="joiningClass" styleClass="commonInput" tabindex="19" required="true"  maxlength="40" value="#{associateBean.studentDTO.joiningClass}" requiredMessage="Required Field" ajaxSingle="true" readonly="#{associateBean.readOnlyMode}" />
+					<rich:select id="joiningClass"  styleClass="selectStyle" converter="#{classConverter}" value="#{associateBean.studentDTO.joiningClassDTO}" tabindex="19" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" >
+						<f:selectItems value="#{referenceBean.classDTOList}" var="joiningClassDTO" itemValue="#{joiningClassDTO}" itemLabel="#{joiningClassDTO.name} #{joiningClassDTO.section}"/>
+					</rich:select> 					
 					<h:panelGrid id="joiningClassError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
 						<rich:message for="joiningClass" styleClass="errorValidationText" />
 					</h:panelGrid>
 					<h:outputText />	
 
 					<h:panelGroup>
-						<h:outputText value="" styleClass="errorValidationText" />
+						<h:outputText value="*" styleClass="errorValidationText" />
+						<h:outputText value="Current Class:" styleClass="labelText"/>
+					</h:panelGroup>
+					<rich:select id="currentClass"  styleClass="selectStyle" converter="#{classConverter}" value="#{associateBean.studentDTO.currentClassDTO}" tabindex="19" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" >
+						<f:selectItems value="#{referenceBean.classDTOList}" var="currentClassDTO" itemValue="#{currentClassDTO}" itemLabel="#{currentClassDTO.name} #{currentClassDTO.section}"/>
+					</rich:select> 					
+					<h:panelGrid id="currentClassError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
+						<rich:message for="currentClass" styleClass="errorValidationText" />
+					</h:panelGrid>
+					<h:outputText />	
+
+					<h:panelGroup>
+						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Extra Curricular Interest: " styleClass="labelText"/>
 					</h:panelGroup>
-					<h:inputText id="extraCurricularInterest" styleClass="commonInput" tabindex="20"  maxlength="100" value="#{associateBean.studentDTO.extraCurricularInterest}" ajaxSingle="true" readonly="#{associateBean.readOnlyMode}" />
+					<rich:select id="extraCurricularInterest"  styleClass="selectStyle" converter="#{extraCurricularInterestConverter}" value="#{associateBean.studentDTO.extraCurricularInterestDTO}" tabindex="20" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" >
+						<f:selectItems value="#{referenceBean.extraCurricularDTOList}" var="extraCurricularInterestDTO" itemValue="#{extraCurricularInterestDTO}" itemLabel="#{extraCurricularInterestDTO.name}"/>
+					</rich:select>
 					<h:panelGrid id="extraCurricularInterestError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
 						<rich:message for="extraCurricularInterest" styleClass="errorValidationText" />
 					</h:panelGrid>
@@ -32,9 +48,8 @@
 						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Mode of Transport:" styleClass="labelText"/>
 					</h:panelGroup>
-					<rich:select id="modeOfTransport"  styleClass="mySelectStyle" value="#{associateBean.studentDTO.modeOfTransport}" tabindex="21" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" >
-						<f:selectItem itemValue="School" itemLabel="School"/>
-						<f:selectItem itemValue="Parents" itemLabel="Parents"/>
+					<rich:select id="modeOfTransport"  styleClass="selectStyle" converter="#{modeOfTransportConverter}" value="#{associateBean.studentDTO.modeofTransportDTO}" tabindex="21" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" >
+						<f:selectItems value="#{referenceBean.modeofTransportDTOList}" var="modeofTransportDTO" itemValue="#{modeofTransportDTO}" itemLabel="#{modeofTransportDTO.name}"/>
 					</rich:select>
 
 					<h:panelGrid id="modeOfTransportError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
@@ -50,5 +65,9 @@
 
 			</h:panelGrid>							
 		</h:panelGrid>
+        <rich:popupPanel id="statPane" autosized="true">
+            <h:graphicImage value="/images/ai.gif" alt="ai" />
+            Please wait...
+        </rich:popupPanel>		
 	</f:view>
 </ui:composition>

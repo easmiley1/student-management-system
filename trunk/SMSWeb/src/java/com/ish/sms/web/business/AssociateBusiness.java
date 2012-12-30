@@ -25,7 +25,7 @@ import com.ish.sms.web.util.WebConstants;
 public class AssociateBusiness extends BaseBusiness implements WebConstants {
 
 	@Autowired
-	private AssociateBusinessDelegate saveBusinessDelegate;
+	private AssociateBusinessDelegate associateBusinessDelegate;
 
 	/**
 	 * Method to update/insert Students.
@@ -39,7 +39,7 @@ public class AssociateBusiness extends BaseBusiness implements WebConstants {
 
 		BeanUtils.copyProperties(studentDTO, associateDTO);
 		String studentXml = serviceTransformer.transformToXML(studentDTO, STUDENT_DTO);
-		studentXml = saveBusinessDelegate.saveStudent(studentXml);
+		studentXml = associateBusinessDelegate.saveStudent(studentXml);
 		return serviceTransformer.parseXml(studentXml);
 	}
 
@@ -51,7 +51,7 @@ public class AssociateBusiness extends BaseBusiness implements WebConstants {
 	 */
 	public List<StudentDTO> retrieveAllStudents() throws Exception {
 
-		String studentListXML = saveBusinessDelegate.retrieveAllStudents();
+		String studentListXML = associateBusinessDelegate.retrieveAllStudents();
 		StudentListDTO studentList = serviceTransformer.parseXml(studentListXML);
 		return studentList.getStudentDTOList();
 	}

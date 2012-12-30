@@ -12,12 +12,11 @@
 				<ui:define name="content">
 					<rich:panel header="Student List" styleClass="dialogBodyPanel" id="viewStudentListPanel">
 						<h:form id="studentListForm">
-					        <rich:extendedDataTable value="#{associateBean.studentDTOList}" var="associate" id="studentListGrid" frozenColumns="1"
+					        <rich:extendedDataTable value="#{associateBean.studentDTOList}" var="associate" id="studentListGrid" frozenColumns="2"
 					         selectionMode="single" selection="#{associateBean.selectedStudent}" listener="#{associateBean.selectionListener}">
 								<ui:include src="associateGridList.xhtml"/>
 								<ui:include src="studentGridList.xhtml"/>
 				                <f:facet name="footer">
-				                    <rich:dataScroller />
 									<a4j:commandButton value="View Details" action="#{associateAction.applySelectionForView}"  id="viewBtn" 
 									oncomplete="document.getElementById('viewStudentPanelFrame').src='/SMSWeb/pages/content/associate/details/add-modify/studentDetailsContainer.xhtml';
 									#{rich:component('viewStudentPopup')}.show()" 

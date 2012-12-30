@@ -95,9 +95,11 @@
 	
 				<h:panelGroup>
 					<h:outputText value="*" styleClass="errorValidationText" />
-					<h:outputText value="State:" styleClass="labelText"/>
+					<h:outputText value="State:" styleClass="labelText" />
 				</h:panelGroup>
-				<h:inputText id="state" styleClass="commonInput" tabindex="9" required="true"  maxlength="45" value="#{associateBean.associateDTO.state}" requiredMessage="Required Field" ajaxSingle="true" readonly="#{associateBean.readOnlyMode}" />
+				<rich:select id="state"  styleClass="mySelectStyle" converter="#{stateConverter}" value="#{associateBean.associateDTO.stateDTO}" tabindex="9" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" >
+					<f:selectItems value="#{referenceBean.stateDTOList}" var="stateDTO" itemValue="#{stateDTO}" itemLabel="#{stateDTO.name}"/>
+				</rich:select>					
 				<h:panelGrid id="stateError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
 					<rich:message for="state" styleClass="errorValidationText" />
 				</h:panelGrid>

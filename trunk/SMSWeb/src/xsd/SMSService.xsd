@@ -1,19 +1,82 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <xs:schema xmlns="http://www.ish.com/soa/sms" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	attributeFormDefault="unqualified" elementFormDefault="qualified"
-	targetNamespace="http://www.ish.com/soa/sms" version="1.0">
+	elementFormDefault="qualified" targetNamespace="http://www.ish.com/soa/sms" version="1.0">
 
 	<xs:element name="studentListDTO" type="studentListDTO" />
-	<xs:complexType name="studentListDTO">
+	<xs:element name="associateDTO" type="associateDTO" />
+	<xs:element name="studentDTO" type="studentDTO" />
+	<xs:element name="teacherDTO" type="teacherDTO" />
+	<xs:element name="stateDTO" type="stateDTO" />
+	<xs:element name="extraCurricularDTO" type="extraCurricularDTO" />
+	<xs:element name="baseReferenceDTO" type="baseReferenceDTO" />
+	<xs:element name="bloodGroupDTO" type="bloodGroupDTO" />
+	<xs:element name="modeofTransportDTO" type="modeofTransportDTO" />
+	<xs:element name="referenceListDTO" type="referenceListDTO" />
+	
+	<xs:complexType name="referenceListDTO">
 		<xs:sequence>
-			<xs:element name="studentDTOList" type="studentDTO" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="stateDTOList" type="stateDTO"	minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="extraCurricularDTOList" type="extraCurricularDTO"	minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="bloodGroupDTOList" type="bloodGroupDTO"	minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="modeofTransportDTOList" type="modeofTransportDTO"	minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="classDTOList" type="classDTO"	minOccurs="0" maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
-	
-	<xs:element name="associateDTO" type="associateDTO" />
+
+	<xs:complexType name="studentListDTO">
+		<xs:sequence>
+			<xs:element name="studentDTOList" type="studentDTO"	minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="baseReferenceDTO">
+		<xs:sequence>
+			<xs:element name="id" type="xs:int" minOccurs="0" />
+			<xs:element name="name" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="classDTO">
+		<xs:sequence>
+			<xs:element name="id" type="xs:int" minOccurs="0" />
+			<xs:element name="name" type="xs:string" />
+			<xs:element name="section" type="xs:string" />
+			<xs:element name="teacherDTO" type="teacherDTO" minOccurs="0" />
+			<xs:element name="studentCount" type="xs:int" minOccurs="0" />			
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="stateDTO">
+		<xs:complexContent>
+			<xs:extension base="baseReferenceDTO">
+				<xs:sequence>
+					<xs:element name="abbrevation" type="xs:string" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="extraCurricularDTO">
+		<xs:complexContent>
+			<xs:extension base="baseReferenceDTO"></xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="modeofTransportDTO">
+		<xs:complexContent>
+			<xs:extension base="baseReferenceDTO"></xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="bloodGroupDTO">
+		<xs:complexContent>
+			<xs:extension base="baseReferenceDTO"></xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
 	<xs:complexType name="associateDTO">
 		<xs:sequence>
-			<xs:element name="id" type="xs:int" minOccurs="0"  />
+			<xs:element name="id" type="xs:int" minOccurs="0" />
 			<xs:element name="firstName" type="xs:string" />
 			<xs:element name="fatherName" type="xs:string" />
 			<xs:element name="motherName" type="xs:string" />
@@ -26,37 +89,42 @@
 				</xs:simpleType>
 			</xs:element>
 			<xs:element name="address" type="xs:string" />
-			<xs:element name="state" type="xs:string" />
+			<xs:element name="stateDTO" type="stateDTO" />
 			<xs:element name="city" type="xs:string" />
 			<xs:element name="zipCode" type="xs:int" minOccurs="0" />
 			<xs:element name="contactNo" type="xs:int" minOccurs="0" />
-			<xs:element name="contactEmail" type="xs:string"  minOccurs="0"/>
+			<xs:element name="contactEmail" type="xs:string" minOccurs="0" />
 			<xs:element name="emergencyContactNo" type="xs:int" minOccurs="0" />
-			<xs:element name="otherContactInfo" type="xs:string"  minOccurs="0"/>
-			<xs:element name="bloodGroup" type="xs:string" />
+			<xs:element name="otherContactInfo" type="xs:string" minOccurs="0" />
+			<xs:element name="bloodGroupDTO" type="bloodGroupDTO" />
 			<xs:element name="dateofJoining" type="xs:string" />
 			<xs:element name="dateofBirth" type="xs:string" />
 			<xs:element name="age" type="xs:int" minOccurs="0" />
-			<xs:element name="comments" type="xs:string" minOccurs="0"/>
-			<xs:element name="previousSchool" type="xs:string" minOccurs="0"/>
+			<xs:element name="comments" type="xs:string" minOccurs="0" />
+			<xs:element name="previousSchool" type="xs:string"	minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 
-	<xs:element name="studentDTO" type="studentDTO" />
 	<xs:complexType name="studentDTO">
 		<xs:complexContent>
 			<xs:extension base="associateDTO">
 				<xs:sequence>
-					<xs:element name="joiningClass" type="xs:string" />
-					<xs:element name="extraCurricularInterest" type="xs:string" minOccurs="0"/>
-					<xs:element name="modeOfTransport" >
-						<xs:simpleType>
-							<xs:restriction base="xs:string">
-								<xs:enumeration value="School" />
-								<xs:enumeration value="Parents" />
-							</xs:restriction>
-						</xs:simpleType>					
-					</xs:element>
+					<xs:element name="joiningClassDTO" type="classDTO" />
+					<xs:element name="currentClassDTO" type="classDTO" />
+					<xs:element name="extraCurricularInterestDTO" type="extraCurricularDTO" />
+					<xs:element name="modeofTransportDTO" type="modeofTransportDTO" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="teacherDTO">
+		<xs:complexContent>
+			<xs:extension base="associateDTO">
+				<xs:sequence>
+					<xs:element name="previousOccupation" type="xs:string" minOccurs="0"/>
+					<xs:element name="education" type="xs:string" minOccurs="0" />
+					<xs:element name="experience" type="xs:int" minOccurs="0" />
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>

@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.jboss.cache.CacheException;
 
 import com.ish.sms.service.dto.AssociateDTO;
 import com.ish.sms.service.dto.StudentDTO;
@@ -98,12 +99,13 @@ public class AssociateBean extends BaseBean implements WebConstants {
 	 * Method to initialize the DTO's for new student Action
 	 * 
 	 * @return student.xhtml
+	 * @throws CacheException 
 	 */
-	public void initAddStudentPersonalDetails() {
+	public void initAddStudentPersonalDetails() throws CacheException {
+		setReadOnlyMode(false);
 		setAssociateDTO(objfactory.createAssociateDTO());
 		associateDTO.setGender(DEFAULT_GENDER);
 		setStudentDTO(objfactory.createStudentDTO());
-		studentDTO.setModeOfTransport(DEFAULT_MOD_OF_TRSPRT);
 	}
 
 	/**

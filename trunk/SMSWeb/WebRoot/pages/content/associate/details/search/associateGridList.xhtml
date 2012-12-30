@@ -49,7 +49,7 @@
 	          </f:facet>
 	          <h:outputText value="#{associate.gender}" />
 	      </rich:column>
-	      <rich:column  width="90px" filterExpression="#{fn:containsIgnoreCase(associate.state, associateFilter.stateFilter)}">
+	      <rich:column  width="90px" filterExpression="#{fn:containsIgnoreCase(associate.stateDTO.name, associateFilter.stateFilter)}">
 	          <f:facet name="header">
 				<h:outputText value="State" />
 		        <h:inputText value="#{associateFilter.stateFilter}" id="stateFilter" ajaxSingle="true" style="width:80px;">
@@ -58,8 +58,19 @@
 		            </a4j:ajax>
 		        </h:inputText>
 	          </f:facet>
-	          <h:outputText value="#{associate.state}" />
+	          <h:outputText value="#{associate.stateDTO.name}" />
 	      </rich:column>					            
+	      <rich:column  width="200px" filterExpression="#{fn:containsIgnoreCase(associate.address, associateFilter.addressFilter)}">
+	          <f:facet name="header">
+				<h:outputText value="Address" />
+		        <h:inputText value="#{associateFilter.addressFilter}" id="addressFilter" ajaxSingle="true" style="width:190px;">
+		            <a4j:ajax event="keyup" render="studentListGrid@body">
+		                <a4j:attachQueue  requestDelay="700" ignoreDupResponses="true" />
+		            </a4j:ajax>
+		        </h:inputText>
+	          </f:facet>
+	          <h:outputText value="#{associate.address}" />
+	      </rich:column>	
 	      <rich:column  width="100px" filterExpression="#{fn:containsIgnoreCase(associate.city, associateFilter.cityFilter)}">
 	          <f:facet name="header">
 				<h:outputText value="City" />
@@ -115,7 +126,7 @@
 	          </f:facet>
 	          <h:outputText value="#{associate.emergencyContactNo}" />
 	      </rich:column>					            
-	      <rich:column  width="50px" filterExpression="#{fn:containsIgnoreCase(associate.bloodGroup, associateFilter.bloodGroupFilter)}">
+	      <rich:column  width="50px" filterExpression="#{fn:containsIgnoreCase(associate.bloodGroupDTO.name, associateFilter.bloodGroupFilter)}">
 	          <f:facet name="header">
 				<h:outputText value="B.Grp" />		
 		        <h:inputText value="#{associateFilter.bloodGroupFilter}" id="bloodGroupFilter" ajaxSingle="true" style="width:40px;">
@@ -124,7 +135,7 @@
 		            </a4j:ajax>
 		        </h:inputText>
 	          </f:facet>
-	          <h:outputText value="#{associate.bloodGroup}" />
+	          <h:outputText value="#{associate.bloodGroupDTO.name}" />
 	      </rich:column>					            
 	      <rich:column  width="70px" filterExpression="#{fn:containsIgnoreCase(associate.dateofJoining, associateFilter.dateofJoiningFilter)}">
 	          <f:facet name="header">
