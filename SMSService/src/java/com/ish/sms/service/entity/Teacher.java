@@ -1,4 +1,3 @@
-
 package com.ish.sms.service.entity;
 
 import javax.persistence.Column;
@@ -13,69 +12,63 @@ import javax.persistence.Table;
 import com.ish.sms.service.util.QueryConstants;
 
 /**
- * This entity represents the student table in the database
+ * This entity represents the teacher table in the database
  * 
  * @author Naren
- *
+ * 
  */
-@NamedQueries( { @NamedQuery(name = QueryConstants.FIND_ALL_STUDENTS, query = QueryConstants.FIND_ALL_STUDENTS_QUERY) })
+@NamedQueries({ @NamedQuery(name = QueryConstants.FIND_ALL_TEACHERS, query = QueryConstants.FIND_ALL_TEACHERS_QUERY) })
 @Entity
-@Table(name="Student_Details")
-public class Student {
+@Table(name = "Teacher_Details")
+public class Teacher {
 
-    @Id
-    @Column(name="student_id")
-    private Integer id;
-    @Column(nullable=false, name="first_name")
-    private String firstName;
-    @Column(nullable=false, name="father_name")
-    private String fatherName;
-    @Column(nullable=false, name="mother_name")
-    private String motherName;
-    @Column(nullable=false, name="gender")
-    private String gender;
-    @Column(nullable=false, name="address")
-    private String address;
-    @ManyToOne
-    @JoinColumn(nullable=false, name="state")
-    private State state;
-    @Column(nullable=false, name="city")
-    private String city;
-    @Column(nullable=false, name="zip_code")
-    private int zipCode;
-    @Column(nullable=false, name="contact_no")
-    private int contactNo;
-    @Column(nullable=true, name="contact_email")
-    private String contactEmail;
-    @Column(nullable=false, name="emergency_contact_no")
-    private int emergencyContactNo;
-    @Column(nullable=true, name="other_contact_info")
-    private String otherContactInfo;
-    @ManyToOne
-    @JoinColumn(nullable=false, name="blood_group")
-    private BloodGroup bloodGroup;
-    @Column(nullable=false, name="date_of_joining")
-    private String dateofJoining;
-    @Column(nullable=true, name="comments")
-    private String comments;
-    @Column(nullable=true, name="previous_school")
-    private String previousSchool;
-    @ManyToOne
-    @JoinColumn(nullable=false, name="joining_class")
-    private Class joiningClass;
-    @ManyToOne
-    @JoinColumn(nullable=false, name="current_class")
-    private Class currentClass;
+	@Id
+	@Column(name = "teacher_id")
+	private Integer id;
+	@Column(nullable = false, name = "first_name")
+	private String firstName;
+	@Column(nullable = false, name = "father_name")
+	private String fatherName;
+	@Column(nullable = false, name = "mother_name")
+	private String motherName;
+	@Column(nullable = false, name = "gender")
+	private String gender;
+	@Column(nullable = false, name = "address")
+	private String address;
 	@ManyToOne
-    @JoinColumn(name="extra_curr_interest")
-    private ExtraCurricular extraCurricularInterest;
-    @ManyToOne
-    @JoinColumn(name="mode_of_transport")
-    private ModeofTransport modeOfTransport;
-    @Column(nullable=false, name="age")
-    private Integer age;
-    @Column(nullable=true, name="date_of_birth")
-    private String dateofBirth;
+	@JoinColumn( name = "state")
+	private State state;
+	@Column(nullable = false, name = "city")
+	private String city;
+	@Column(nullable = false, name = "zip_code")
+	private int zipCode;
+	@Column(nullable = false, name = "contact_no")
+	private int contactNo;
+	@Column(nullable = true, name = "contact_email")
+	private String contactEmail;
+	@Column(nullable = false, name = "emergency_contact_no")
+	private int emergencyContactNo;
+	@Column(nullable = true, name = "other_contact_info")
+	private String otherContactInfo;
+	@ManyToOne
+	@JoinColumn( name = "blood_group")
+	private BloodGroup bloodGroup;
+	@Column(nullable = false, name = "date_of_joining")
+	private String dateofJoining;
+	@Column(nullable = true, name = "comments")
+	private String comments;
+	@Column(nullable = true, name = "previous_school")
+	private String previousSchool;
+	@Column(nullable = false, name = "age")
+	private Integer age;
+	@Column(nullable = true, name = "date_of_birth")
+	private String dateofBirth;
+	@Column(nullable = true, name = "previous_occupation")
+	private String previousOccupation;
+	@Column(nullable = true, name = "education")
+	private String education;
+	@Column(nullable = true, name = "experience")
+	private Integer experience;
 	/**
 	 * @return the id
 	 */
@@ -281,42 +274,6 @@ public class Student {
 		this.previousSchool = previousSchool;
 	}
 	/**
-	 * @return the joiningClass
-	 */
-	public Class getJoiningClass() {
-		return joiningClass;
-	}
-	/**
-	 * @param joiningClass the joiningClass to set
-	 */
-	public void setJoiningClass(Class joiningClass) {
-		this.joiningClass = joiningClass;
-	}
-	/**
-	 * @return the extraCurricularInterest
-	 */
-	public ExtraCurricular getExtraCurricularInterest() {
-		return extraCurricularInterest;
-	}
-	/**
-	 * @param extraCurricularInterest the extraCurricularInterest to set
-	 */
-	public void setExtraCurricularInterest(ExtraCurricular extraCurricularInterest) {
-		this.extraCurricularInterest = extraCurricularInterest;
-	}
-	/**
-	 * @return the modeOfTransport
-	 */
-	public ModeofTransport getModeOfTransport() {
-		return modeOfTransport;
-	}
-	/**
-	 * @param modeOfTransport the modeOfTransport to set
-	 */
-	public void setModeOfTransport(ModeofTransport modeOfTransport) {
-		this.modeOfTransport = modeOfTransport;
-	}
-	/**
 	 * @return the age
 	 */
 	public Integer getAge() {
@@ -340,16 +297,41 @@ public class Student {
 	public void setDateofBirth(String dateofBirth) {
 		this.dateofBirth = dateofBirth;
 	}
-    /**
-	 * @return the currentClass
+	/**
+	 * @return the previousOccupation
 	 */
-	public Class getCurrentClass() {
-		return currentClass;
+	public String getPreviousOccupation() {
+		return previousOccupation;
 	}
 	/**
-	 * @param currentClass the currentClass to set
+	 * @param previousOccupation the previousOccupation to set
 	 */
-	public void setCurrentClass(Class currentClass) {
-		this.currentClass = currentClass;
+	public void setPreviousOccupation(String previousOccupation) {
+		this.previousOccupation = previousOccupation;
 	}
+	/**
+	 * @return the education
+	 */
+	public String getEducation() {
+		return education;
+	}
+	/**
+	 * @param education the education to set
+	 */
+	public void setEducation(String education) {
+		this.education = education;
+	}
+	/**
+	 * @return the experience
+	 */
+	public Integer getExperience() {
+		return experience;
+	}
+	/**
+	 * @param experience the experience to set
+	 */
+	public void setExperience(Integer experience) {
+		this.experience = experience;
+	}
+
 }
