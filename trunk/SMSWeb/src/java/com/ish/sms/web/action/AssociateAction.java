@@ -4,8 +4,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
-import org.jboss.cache.CacheException;
-
 import com.ish.sms.web.bean.AssociateBean;
 import com.ish.sms.web.business.AssociateBusiness;
 import com.ish.sms.web.util.SMSSpringFactory;
@@ -47,26 +45,36 @@ public class AssociateAction extends BaseAction {
 	 * Method to initialize the DTO's and redirect the page to student.xhtml
 	 * 
 	 * @return student.xhtml
-	 * @throws CacheException 
+	 * @throws Exception 
 	 */
-	public String initAddStudentPersonalDetails() throws CacheException {
+	public String initAddStudentPersonalDetails() throws Exception {
 		associateBean.initAddStudentPersonalDetails();
 
 		return SAVE_STUDENT_PAGE;
 	}
+	/**
+	 * Method to initialize the DTO's and redirect the page to student.xhtml
+	 * 
+	 * @return student.xhtml
+	 * @throws Exception 
+	 */
+	public String initAddTeacherPersonalDetails() throws Exception {
+		associateBean.initAddTeacherPersonalDetails();
+		return SAVE_TEACHER_PAGE;
+	}
 	
 	/**
-	 * Method to return the list of all the students in the school for modification
+	 * Method to return the list of all the students in the school for modification and redirect to the appropriate xhtml page
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
-	public String initModifySearchAllStudents() throws Exception{
+	public String initModifySearchAllStudents() throws Exception {
 		associateBean.initModifySearchAllStudents(associateBusiness.retrieveAllStudents());
 		return MODIFY_STUDENT_LIST_PAGE;
 	}
 	/**
-	 * Method to return the list of all the students in the school and redirect to the studentList.xhtml
+	 * Method to return the list of all the students in the school for viewing and redirect to the appropriate page
 	 * 
 	 * @return
 	 * @throws Exception
@@ -77,6 +85,27 @@ public class AssociateAction extends BaseAction {
 	}
 
 	/**
+	 * Method to return the list of all the teachers in the school for modification and redirect to the appropriate xhtml page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String initModifySearchAllTeachers() throws Exception {
+		associateBean.initModifySearchAllTeacers(associateBusiness.retrieveAllTeachers());
+		return MODIFY_TEACHER_LIST_PAGE;
+	}
+	/**
+	 * Method to return the list of all the teachers in the school for viewing and redirect to the appropriate page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String initViewSearchAllTeachers() throws Exception{
+		associateBean.initModifySearchAllTeacers(associateBusiness.retrieveAllTeachers());
+		return VIEW_TEACHER_LIST_PAGE;
+	}
+
+	/**
 	 * Method to save the student object
 	 * 
 	 * @throws Exception
@@ -84,13 +113,22 @@ public class AssociateAction extends BaseAction {
 	public void saveStudent() throws Exception {
 		associateBusiness.saveStudent(associateBean.getStudentDTO(), associateBean.getAssociateDTO());
 	}
+	
+	/**
+	 * Method to save the student object
+	 * 
+	 * @throws Exception
+	 */
+	public void saveTeacher() throws Exception {
+		associateBusiness.saveTeacher(associateBean.getTeacherDTO(), associateBean.getAssociateDTO());
+	}
 
 	/**
 	 * Set the selected student in the grid to the selection model for editing by setting readonlymode to false
 	 * 
 	 * @throws Exception
 	 */
-	public void applySelectionForEdit() throws Exception{
+	public void applyStudentSelectionForEdit() throws Exception{
 		associateBean.setReadOnlyMode(false);
 		associateBean.applyStudentSelection();
 	}
@@ -100,7 +138,27 @@ public class AssociateAction extends BaseAction {
 	 * 
 	 * @throws Exception
 	 */
-	public void applySelectionForView() throws Exception{
+	public void applyStudentSelectionForView() throws Exception{
+		associateBean.setReadOnlyMode(true);
+		associateBean.applyStudentSelection();
+	}
+
+	/**
+	 * Set the selected teacher in the grid to the selection model for editing by setting readonlymode to false
+	 * 
+	 * @throws Exception
+	 */
+	public void applyTeacherSelectionForEdit() throws Exception{
+		associateBean.setReadOnlyMode(false);
+		associateBean.applyStudentSelection();
+	}
+
+	/**
+	 * Set the selected teacher in the grid to the selection model for viewing by setting readonlymode to true
+	 * 
+	 * @throws Exception
+	 */
+	public void applyTeacherSelectionForView() throws Exception{
 		associateBean.setReadOnlyMode(true);
 		associateBean.applyStudentSelection();
 	}

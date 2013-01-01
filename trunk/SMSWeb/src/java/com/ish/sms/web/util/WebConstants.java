@@ -4,11 +4,14 @@ public interface WebConstants {
 
 	public final static String DEFAULT_GENDER = "Male";
 	public final static String STUDENT_DTO = "studentDTO";
+	public final static String TEACHER_DTO = "teacherDTO";
 	public final static String DEFAULT_MOD_OF_TRSPRT = "School";
 	public final static String SAVE_STUDENT_PAGE = "/pages/content/associate/details/add-modify/addStudentDetails.xhtml";
+	public final static String SAVE_TEACHER_PAGE = "/pages/content/associate/details/add-modify/addTeacherDetails.xhtml";
 	public final static String MODIFY_STUDENT_LIST_PAGE = "/pages/content/associate/details/search/modifyStudentDetailsGridPage.xhtml";
 	public final static String VIEW_STUDENT_LIST_PAGE = "/pages/content/associate/details/search/viewStudentDetailsGridPage.xhtml";
-
+	public final static String MODIFY_TEACHER_LIST_PAGE = "/pages/content/associate/details/search/modifyTeacherDetailsGridPage.xhtml";
+	public final static String VIEW_TEACHER_LIST_PAGE = "/pages/content/associate/details/search/viewTeacherDetailsGridPage.xhtml";
 	/* Jboss cache related constants*/
 	public static final String BLOOD_GROUP_KEY = "BLOOD_GROUP_KEY";
 	public static final String EXTRA_CURRICULAR_KEY = "EXTRA_CURRICULAR_KEY";

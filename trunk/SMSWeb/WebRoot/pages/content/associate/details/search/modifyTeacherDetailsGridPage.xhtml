@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	<f:view>
+		<h:body>
+			<ui:include src="applicationStyles.xhtml"/>
+			<ui:composition template="/pages/layout/commonLayout.xhtml">
+				<ui:define name="content">
+					<rich:panel header="Teacher List" styleClass="dialogBodyPanel" id="modifyTeacherGridPanel">
+						<h:form id="teacherListForm">
+					        <rich:extendedDataTable value="#{associateBean.teacherDTOList}" var="associate" id="teacherListGrid" frozenColumns="1"
+					         selectionMode="single" selection="#{associateBean.selectedTeacher}" >
+								<ui:include src="associateGridList.xhtml"/>
+								<ui:include src="teacherGridList.xhtml"/>
+				                <f:facet name="footer">
+									<a4j:commandButton value="Edit Details" action="#{associateAction.applyTeacerSelectionForEdit}"  id="editTeacherBtn" 
+									oncomplete="document.getElementById('editTeacherPanelFrame').src='/SMSWeb/pages/content/associate/details/add-modify/teacherDetailsContainer.xhtml';
+									#{rich:component('editTeacherPopup')}.show()" 
+									style="margin-left:50px;width:90px; height:22px;" /> 													                    
+				                </f:facet>					            					            
+        					</rich:extendedDataTable>
+        					<a4j:jsFunction name="updateGridForEditTeacher" action="#{associateAction.initModifySearchAllTeachers}" render="teacherListGrid@body"/>
+					        <rich:popupPanel id="editTeacherPopup" autosized="true" modal="true" moveable="false">
+							        <f:facet name="header">
+							            <h:outputText value="Edit Teacher" />
+							        </f:facet>					        
+									<iframe src="" id="editTeacherPanelFrame" style="width:1200px;height:580px" frameborder="0" scrolling="no"/>
+							        <f:facet name="controls">
+							            <h:outputLink value="#" onclick="updateGridForEditTeacher();#{rich:component('editTeacherPopup')}.hide(); return false;">
+							                Close X
+							            </h:outputLink>
+							        </f:facet>									
+					        </rich:popupPanel>        					
+						</h:form>	
+					</rich:panel>
+				</ui:define>
+			</ui:composition>
+		</h:body>
+	</f:view>
+</ui:composition>

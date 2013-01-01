@@ -17,7 +17,7 @@
 								<ui:include src="associateGridList.xhtml"/>
 								<ui:include src="studentGridList.xhtml"/>
 				                <f:facet name="footer">
-									<a4j:commandButton value="View Details" action="#{associateAction.applySelectionForView}"  id="viewBtn" 
+									<a4j:commandButton value="View Details" action="#{associateAction.applyStudentSelectionForView}"  id="viewStudentBtn" 
 									oncomplete="document.getElementById('viewStudentPanelFrame').src='/SMSWeb/pages/content/associate/details/add-modify/studentDetailsContainer.xhtml';
 									#{rich:component('viewStudentPopup')}.show()" 
 									style="margin-left:50px;width:90px; height:22px;" /> 													                    

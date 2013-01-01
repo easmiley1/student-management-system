@@ -18,8 +18,20 @@ public interface SMSAssociateServiceInterface {
     @Path("/createStudent/")
     @Produces("text/xml")
     @Consumes( "text/xml" )
-	public String createStudent(String xml) ;
-    
+	public String createStudent(String studentXml) ;
+
+	/**
+	 * Method to create or update a teacher and return the persisted teacherXML.
+	 * 
+	 * @param teacherXML
+	 * @return teacherXML
+	 */
+    @POST
+    @Path("/createTeacher/")
+    @Produces("text/xml")
+    @Consumes( "text/xml" )
+	public String createTeacher(String teacherXML) ;
+
 	/**
 	 * Method to return the list of all the students in the school.
 	 * 
@@ -30,4 +42,14 @@ public interface SMSAssociateServiceInterface {
 	@Produces("text/xml")
 	public String retrieveAllStudents() ;
 
+	/**
+	 * Method to return the list of all the teachers in the school.
+	 * 
+	 * @return teacherListXML
+	 */
+	@POST
+	@Path("/retrieveAllTeachers/")
+	@Produces("text/xml")
+	public String retrieveAllTeachers() ;
+	
 }

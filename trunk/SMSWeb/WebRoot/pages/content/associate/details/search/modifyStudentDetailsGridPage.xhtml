@@ -13,24 +13,24 @@
 					<rich:panel header="Student List" styleClass="dialogBodyPanel" id="modifyStudentGridPanel">
 						<h:form id="studentListForm">
 					        <rich:extendedDataTable value="#{associateBean.studentDTOList}" var="associate" id="studentListGrid" frozenColumns="1"
-					         selectionMode="single" selection="#{associateBean.selectedStudent}" listener="#{associateBean.selectionListener}">
+					         selectionMode="single" selection="#{associateBean.selectedStudent}" >
 								<ui:include src="associateGridList.xhtml"/>
 								<ui:include src="studentGridList.xhtml"/>
 				                <f:facet name="footer">
-									<a4j:commandButton value="Edit Details" action="#{associateAction.applySelectionForEdit}"  id="editBtn" 
+									<a4j:commandButton value="Edit Details" action="#{associateAction.applyStudentSelectionForEdit}"  id="editStudentBtn" 
 									oncomplete="document.getElementById('editStudentPanelFrame').src='/SMSWeb/pages/content/associate/details/add-modify/studentDetailsContainer.xhtml';
 									#{rich:component('editStudentPopup')}.show()" 
 									style="margin-left:50px;width:90px; height:22px;" /> 													                    
 				                </f:facet>					            					            
         					</rich:extendedDataTable>
-        					<a4j:jsFunction name="updateGridForEdit" action="#{associateAction.initModifySearchAllStudents}" render="studentListGrid@body"/>
+        					<a4j:jsFunction name="updateGridForEditStudent" action="#{associateAction.initModifySearchAllStudents}" render="studentListGrid@body"/>
 					        <rich:popupPanel id="editStudentPopup" autosized="true" modal="true" moveable="false">
 							        <f:facet name="header">
 							            <h:outputText value="Edit Student" />
 							        </f:facet>					        
 									<iframe src="" id="editStudentPanelFrame" style="width:1200px;height:580px" frameborder="0" scrolling="no"/>
 							        <f:facet name="controls">
-							            <h:outputLink value="#" onclick="updateGridForEdit();#{rich:component('editStudentPopup')}.hide(); return false;">
+							            <h:outputLink value="#" onclick="updateGridForEditStudent();#{rich:component('editStudentPopup')}.hide(); return false;">
 							                Close X
 							            </h:outputLink>
 							        </f:facet>									
