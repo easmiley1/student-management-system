@@ -12,11 +12,14 @@ import com.ish.sms.service.dto.ModeofTransportDTO;
 import com.ish.sms.service.dto.StateDTO;
 import com.ish.sms.service.dto.StudentDTO;
 import com.ish.sms.service.dto.StudentListDTO;
+import com.ish.sms.service.dto.TeacherDTO;
+import com.ish.sms.service.dto.TeacherListDTO;
 import com.ish.sms.service.entity.BloodGroup;
 import com.ish.sms.service.entity.ExtraCurricular;
 import com.ish.sms.service.entity.ModeofTransport;
 import com.ish.sms.service.entity.State;
 import com.ish.sms.service.entity.Student;
+import com.ish.sms.service.entity.Teacher;
 
 /**
  * Class to handle all business logic for associate related entity database operations
@@ -45,7 +48,7 @@ public class AssociateOperations extends BaseOperations {
 		ModeofTransport modeofTransport = new ModeofTransport();
 		ExtraCurricular extraCurricular = new ExtraCurricular();
 		
-		// Populate all the attributes in the above created DTO's
+		// Populate all the attributes in the above created entities for persisting in database.
 		BeanUtils.copyProperties(studentDTO, student);
 		BeanUtils.copyProperties(state, studentDTO.getStateDTO());
 		BeanUtils.copyProperties(bloodGroup, studentDTO.getBloodGroupDTO());
@@ -54,7 +57,7 @@ public class AssociateOperations extends BaseOperations {
 		BeanUtils.copyProperties(modeofTransport, studentDTO.getModeofTransportDTO());
 		BeanUtils.copyProperties(extraCurricular, studentDTO.getExtraCurricularInterestDTO());
 		
-		// Set the DTO's in the studentDTO
+		// Set the relational entities in the student
 		student.setBloodGroup(bloodGroup);
 		student.setState(state);
 		student.setCurrentClass(currentClass);
@@ -67,6 +70,69 @@ public class AssociateOperations extends BaseOperations {
 		return studentDTO;
 	}
 
+	/**
+	 * Method to create or update a teacher.
+	 * 
+	 * @param studentDTO
+	 * @return studentDTO
+	 * @throws Exception
+	 */
+	@Transactional
+	public TeacherDTO createOrUpdateTeacher(TeacherDTO teacherDTO) throws Exception {
+
+		Teacher teacher = new Teacher();
+		BeanUtils.copyProperties(teacher, teacherDTO);
+		BloodGroup bloodGroup = new BloodGroup();
+		State state = new State();
+		
+		// Populate all the attributes in the above created entities for persisting in the database.
+		BeanUtils.copyProperties(teacherDTO, teacher);
+		BeanUtils.copyProperties(state, teacherDTO.getStateDTO());
+		BeanUtils.copyProperties(bloodGroup, teacherDTO.getBloodGroupDTO());
+		
+		// Set the relational entities in the teacher
+		teacher.setBloodGroup(bloodGroup);
+		teacher.setState(state);
+
+		teacher = associateOperationsDAO.createOrUpdateTeacher(teacher);
+		BeanUtils.copyProperties(teacherDTO, teacher);
+		return teacherDTO;
+	}
+
+	
+	/**
+	 * Method to return the list of all the teachers in the school.
+	 * 
+	 * @return teacherList
+	 * @throws Exception
+	 */
+	@Transactional(readOnly=true)
+	public TeacherListDTO retrieveAllTeachers() throws Exception {
+
+		TeacherListDTO teacherListDTO = new TeacherListDTO();
+		List<Teacher> teachersList = associateOperationsDAO.retrieveAllTeachers();
+		for (Teacher teacher : teachersList) {
+		
+			// Create all the DTO's required to construct the TeacherDTO
+			TeacherDTO teacherDTO = new TeacherDTO();
+			BloodGroupDTO bloodGroupDTO = new BloodGroupDTO();
+			StateDTO stateDTO = new StateDTO();
+			
+			// Populate all the attributes in the above created DTO's
+			BeanUtils.copyProperties(teacherDTO, teacher);
+			BeanUtils.copyProperties(stateDTO, teacher.getState());
+			BeanUtils.copyProperties(bloodGroupDTO, teacher.getBloodGroup());
+			
+			// Set the DTO's in the teacherDTO
+			teacherDTO.setBloodGroupDTO(bloodGroupDTO);
+			teacherDTO.setStateDTO(stateDTO);
+			
+			teacherListDTO.getTeacherDTOList().add(teacherDTO);
+		}
+		return teacherListDTO;
+	}
+	
+	
 	/**
 	 * Method to return the list of all the students in the school.
 	 * 
