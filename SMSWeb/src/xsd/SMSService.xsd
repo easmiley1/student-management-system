@@ -3,6 +3,7 @@
 	elementFormDefault="qualified" targetNamespace="http://www.ish.com/soa/sms" version="1.0">
 
 	<xs:element name="studentListDTO" type="studentListDTO" />
+	<xs:element name="teacherListDTO" type="teacherListDTO" />
 	<xs:element name="associateDTO" type="associateDTO" />
 	<xs:element name="studentDTO" type="studentDTO" />
 	<xs:element name="teacherDTO" type="teacherDTO" />
@@ -30,6 +31,13 @@
 		</xs:sequence>
 	</xs:complexType>
 
+	<xs:complexType name="teacherListDTO">
+		<xs:sequence>
+			<xs:element name="teacherDTOList" type="teacherDTO"	minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+
 	<xs:complexType name="baseReferenceDTO">
 		<xs:sequence>
 			<xs:element name="id" type="xs:int" minOccurs="0" />
@@ -48,7 +56,7 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	
+
 	<xs:complexType name="stateDTO">
 		<xs:complexContent>
 			<xs:extension base="baseReferenceDTO">

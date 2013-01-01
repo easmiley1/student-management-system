@@ -5,9 +5,9 @@
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
 	<f:view>
-           <rich:column  width="150px" filterExpression="#{fn:containsIgnoreCase(associate.joiningClassDTO.name, studentFilter.joiningClassFilter)}">
+           <rich:column  width="60px" filterExpression="#{fn:containsIgnoreCase(associate.joiningClassDTO.name, studentFilter.joiningClassFilter)}">
                <f:facet name="header">
-               	<h:outputText value="Joining Class" />
+               	<h:outputText value="J. Class" />
 	            <h:inputText value="#{studentFilter.joiningClassFilter}" id="joiningClassFilter" ajaxSingle="true">
 	                <a4j:ajax event="keyup" render="studentListGrid@body">
 	                    <a4j:attachQueue  requestDelay="700" ignoreDupResponses="true" />
@@ -16,7 +16,7 @@
                </f:facet>
                <h:outputText value="#{associate.joiningClassDTO.name}" />
            </rich:column>					            
-           <rich:column  width="150px" filterExpression="#{fn:containsIgnoreCase(associate.modeofTransportDTO.name, studentFilter.modeOfTransportFilter)}">
+           <rich:column  width="100px" filterExpression="#{fn:containsIgnoreCase(associate.modeofTransportDTO.name, studentFilter.modeOfTransportFilter)}">
                <f:facet name="header">
                	<h:outputText value="Transportation" />
 	            <h:inputText value="#{studentFilter.modeOfTransportFilter}" id="modeOfTransportFilter" ajaxSingle="true">

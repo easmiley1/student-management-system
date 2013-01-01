@@ -24,7 +24,7 @@
 						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Current Class:" styleClass="labelText"/>
 					</h:panelGroup>
-					<rich:select id="currentClass"  styleClass="selectStyle" converter="#{classConverter}" value="#{associateBean.studentDTO.currentClassDTO}" tabindex="19" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" >
+					<rich:select id="currentClass"  styleClass="selectStyle" converter="#{classConverter}" value="#{associateBean.studentDTO.currentClassDTO}" tabindex="20" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" >
 						<f:selectItems value="#{referenceBean.classDTOList}" var="currentClassDTO" itemValue="#{currentClassDTO}" itemLabel="#{currentClassDTO.name} #{currentClassDTO.section}"/>
 					</rich:select> 					
 					<h:panelGrid id="currentClassError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
@@ -36,7 +36,7 @@
 						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Extra Curricular Interest: " styleClass="labelText"/>
 					</h:panelGroup>
-					<rich:select id="extraCurricularInterest"  styleClass="selectStyle" converter="#{extraCurricularInterestConverter}" value="#{associateBean.studentDTO.extraCurricularInterestDTO}" tabindex="20" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" >
+					<rich:select id="extraCurricularInterest"  styleClass="selectStyle" converter="#{extraCurricularInterestConverter}" value="#{associateBean.studentDTO.extraCurricularInterestDTO}" tabindex="21" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" >
 						<f:selectItems value="#{referenceBean.extraCurricularDTOList}" var="extraCurricularInterestDTO" itemValue="#{extraCurricularInterestDTO}" itemLabel="#{extraCurricularInterestDTO.name}"/>
 					</rich:select>
 					<h:panelGrid id="extraCurricularInterestError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
@@ -48,7 +48,7 @@
 						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Mode of Transport:" styleClass="labelText"/>
 					</h:panelGroup>
-					<rich:select id="modeOfTransport"  styleClass="selectStyle" converter="#{modeOfTransportConverter}" value="#{associateBean.studentDTO.modeofTransportDTO}" tabindex="21" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" >
+					<rich:select id="modeOfTransport"  styleClass="selectStyle" converter="#{modeOfTransportConverter}" value="#{associateBean.studentDTO.modeofTransportDTO}" tabindex="22" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" >
 						<f:selectItems value="#{referenceBean.modeofTransportDTOList}" var="modeofTransportDTO" itemValue="#{modeofTransportDTO}" itemLabel="#{modeofTransportDTO.name}"/>
 					</rich:select>
 

@@ -15,7 +15,9 @@
 				<rich:menuGroup label="Student">
 					<rich:menuItem label="Personal Details" action="#{associateAction.initAddStudentPersonalDetails}"/>
                 </rich:menuGroup>				
-				<rich:menuItem label="Teacher" />
+				<rich:menuGroup label="Teacher">
+					<rich:menuItem label="Personal Details" action="#{associateAction.initAddTeacherPersonalDetails}"/>
+				</rich:menuGroup>	
 			</rich:dropDownMenu>
 			<rich:dropDownMenu>
 				<f:facet name="label">
@@ -26,8 +28,10 @@
 				<rich:menuGroup label="Student Detail">
 					<rich:menuItem label="Search All Students" action="#{associateAction.initModifySearchAllStudents}"/>
                 </rich:menuGroup>				
-				<rich:menuItem label="All Teachers" />
-			</rich:dropDownMenu>
+				<rich:menuGroup label="Teacher Detail">
+					<rich:menuItem label="Search All Teachers" action="#{associateAction.initModifySearchAllTeachers}"/>
+                </rich:menuGroup>		
+            </rich:dropDownMenu>
 			<rich:dropDownMenu>
 				<f:facet name="label">
 					<h:panelGroup>
@@ -37,8 +41,10 @@
 				<rich:menuGroup label="Student Details">
 					<rich:menuItem label="Search All Students" action="#{associateAction.initViewSearchAllStudents}"/>
                 </rich:menuGroup>				
-				<rich:menuItem label="All Teachers" />
-			</rich:dropDownMenu>
+				<rich:menuGroup label="Teacher Details">
+					<rich:menuItem label="Search All Teachers" action="#{associateAction.initViewSearchAllTeachers}"/>
+                </rich:menuGroup>			
+  			</rich:dropDownMenu>
 		</rich:toolbar>
 	</f:view>
 </ui:composition>	

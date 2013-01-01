@@ -1,16 +1,14 @@
 package com.ish.sms.web.business;
 
-
-
-
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.ish.sms.service.dto.AssociateDTO;
 import com.ish.sms.service.dto.StudentDTO;
 import com.ish.sms.service.dto.StudentListDTO;
+import com.ish.sms.service.dto.TeacherDTO;
+import com.ish.sms.service.dto.TeacherListDTO;
 import com.ish.sms.web.businessdelegate.AssociateBusinessDelegate;
 import com.ish.sms.web.util.WebConstants;
 
@@ -42,6 +40,22 @@ public class AssociateBusiness extends BaseBusiness implements WebConstants {
 		studentXml = associateBusinessDelegate.saveStudent(studentXml);
 		return serviceTransformer.parseXml(studentXml);
 	}
+	
+	/**
+	 * Method to update/insert Teachers.
+	 * 
+	 * @param teacherDTO
+	 * @param associateDTO
+	 * @return teacherDTO
+	 * @throws Exception
+	 */
+	public TeacherDTO saveTeacher(TeacherDTO teacherDTO, AssociateDTO associateDTO) throws Exception {
+
+		BeanUtils.copyProperties(teacherDTO, associateDTO);
+		String teacherXML = serviceTransformer.transformToXML(teacherDTO, TEACHER_DTO);
+		teacherXML = associateBusinessDelegate.saveTeacher(teacherXML);
+		return serviceTransformer.parseXml(teacherXML);
+	}	
 
 	/**
 	 * Method to return the list of all the students in the school.
@@ -54,6 +68,19 @@ public class AssociateBusiness extends BaseBusiness implements WebConstants {
 		String studentListXML = associateBusinessDelegate.retrieveAllStudents();
 		StudentListDTO studentList = serviceTransformer.parseXml(studentListXML);
 		return studentList.getStudentDTOList();
+	}
+
+	/**
+	 * Method to return the list of all the teachers in the school.
+	 * 
+	 * @return studentList
+	 * @throws Exception
+	 */
+	public List<TeacherDTO> retrieveAllTeachers() throws Exception {
+
+		String teacherListXML = associateBusinessDelegate.retrieveAllTeachers();
+		TeacherListDTO teacherList = serviceTransformer.parseXml(teacherListXML);
+		return teacherList.getTeacherDTOList();
 	}
 
 }

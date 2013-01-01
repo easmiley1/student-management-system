@@ -7,10 +7,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.jboss.cache.CacheException;
 
 import com.ish.sms.service.dto.AssociateDTO;
 import com.ish.sms.service.dto.StudentDTO;
+import com.ish.sms.service.dto.TeacherDTO;
 import com.ish.sms.web.util.WebConstants;
 
 @ManagedBean(name = "associateBean")
@@ -20,9 +20,53 @@ public class AssociateBean extends BaseBean implements WebConstants {
 	private static final long serialVersionUID = 1L;
 	private AssociateDTO associateDTO;
 	private StudentDTO studentDTO;
+	private TeacherDTO teacherDTO;
 	private List<StudentDTO> studentDTOList;
+	private List<TeacherDTO> teacherDTOList;	
 	private Collection<Object> selectedStudent;
+	private Collection<Object> selectedTeacher;
+	/**
+	 * @return the selectedTeacher
+	 */
+	public Collection<Object> getSelectedTeacher() {
+		return selectedTeacher;
+	}
+
+	/**
+	 * @param selectedTeacher the selectedTeacher to set
+	 */
+	public void setSelectedTeacher(Collection<Object> selectedTeacher) {
+		this.selectedTeacher = selectedTeacher;
+	}
+
 	private boolean readOnlyMode;
+
+	/**
+	 * @return the teacherDTOList
+	 */
+	public List<TeacherDTO> getTeacherDTOList() {
+		return teacherDTOList;
+	}
+
+	/**
+	 * @param teacherDTOList the teacherDTOList to set
+	 */
+	public void setTeacherDTOList(List<TeacherDTO> teacherDTOList) {
+		this.teacherDTOList = teacherDTOList;
+	}	
+	/**
+	 * @return the teacherDTO
+	 */
+	public TeacherDTO getTeacherDTO() {
+		return teacherDTO;
+	}
+
+	/**
+	 * @param teacherDTO the teacherDTO to set
+	 */
+	public void setTeacherDTO(TeacherDTO teacherDTO) {
+		this.teacherDTO = teacherDTO;
+	}
 
 	/**
 	 * @return the readOnlyMode
@@ -95,13 +139,27 @@ public class AssociateBean extends BaseBean implements WebConstants {
 		this.studentDTOList = studentDTOList;
 	}
 
+	
 	/**
 	 * Method to initialize the DTO's for new student Action
 	 * 
 	 * @return student.xhtml
-	 * @throws CacheException 
+	 * 
 	 */
-	public void initAddStudentPersonalDetails() throws CacheException {
+	public void initAddTeacherPersonalDetails() {
+		setReadOnlyMode(false);
+		setAssociateDTO(objfactory.createAssociateDTO());
+		associateDTO.setGender(DEFAULT_GENDER);
+		setTeacherDTO(objfactory.createTeacherDTO());
+	}
+	
+	/**
+	 * Method to initialize the DTO's for new student Action
+	 * 
+	 * @return student.xhtml
+	 * 
+	 */
+	public void initAddStudentPersonalDetails() {
 		setReadOnlyMode(false);
 		setAssociateDTO(objfactory.createAssociateDTO());
 		associateDTO.setGender(DEFAULT_GENDER);
@@ -122,7 +180,21 @@ public class AssociateBean extends BaseBean implements WebConstants {
 	}
 
 	/**
-	 * Method to initialize the DTO's for Grid display
+	 * Set the selected teacher in the grid to the selection model
+	 * 
+	 * @throws Exception
+	 */
+	public void applyTeacherSelection() throws Exception {
+		
+		Integer selectedTeacherPos = (Integer) selectedTeacher.toArray()[0];
+		setTeacherDTO(teacherDTOList.get(selectedTeacherPos));
+		setAssociateDTO(objfactory.createAssociateDTO());
+		BeanUtils.copyProperties(associateDTO, teacherDTO);
+	}
+	
+	
+	/**
+	 * Method to initialize the DTO's for student Grid display
 	 * 
 	 * @param studentDTOList
 	 */
@@ -132,4 +204,14 @@ public class AssociateBean extends BaseBean implements WebConstants {
 
 	}
 
+	/**
+	 * Method to initialize the DTO's for teacher Grid display
+	 * 
+	 * @param teacherDTOList
+	 */
+	public void initModifySearchAllTeacers(List<TeacherDTO> teacherDTOList){
+		setTeacherDTO(new TeacherDTO());
+		setTeacherDTOList(teacherDTOList);
+
+	}
 }

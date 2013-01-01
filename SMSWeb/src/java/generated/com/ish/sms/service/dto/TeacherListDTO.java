@@ -18,16 +18,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for studentListDTO complex type.
+ * <p>Java class for teacherListDTO complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="studentListDTO">
+ * &lt;complexType name="teacherListDTO">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="studentDTOList" type="{http://www.ish.com/soa/sms}studentDTO" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="teacherDTOList" type="{http://www.ish.com/soa/sms}teacherDTO" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,56 +37,56 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "studentListDTO", propOrder = {
-    "studentDTOList"
+@XmlType(name = "teacherListDTO", propOrder = {
+    "teacherDTOList"
 })
-public class StudentListDTO
+public class TeacherListDTO
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
     @XmlElement(namespace = "http://www.ish.com/soa/sms", required = true)
-    protected List<StudentDTO> studentDTOList;
+    protected List<TeacherDTO> teacherDTOList;
 
     /**
-     * Gets the value of the studentDTOList property.
+     * Gets the value of the teacherDTOList property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the studentDTOList property.
+     * This is why there is not a <CODE>set</CODE> method for the teacherDTOList property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getStudentDTOList().add(newItem);
+     *    getTeacherDTOList().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link StudentDTO }
+     * {@link TeacherDTO }
      * 
      * 
      */
-    public List<StudentDTO> getStudentDTOList() {
-        if (studentDTOList == null) {
-            studentDTOList = new ArrayList<StudentDTO>();
+    public List<TeacherDTO> getTeacherDTOList() {
+        if (teacherDTOList == null) {
+            teacherDTOList = new ArrayList<TeacherDTO>();
         }
-        return this.studentDTOList;
+        return this.teacherDTOList;
     }
 
     /**
-     * Sets the value of the studentDTOList property.
+     * Sets the value of the teacherDTOList property.
      * 
-     * @param studentDTOList
+     * @param teacherDTOList
      *     allowed object is
-     *     {@link StudentDTO }
+     *     {@link TeacherDTO }
      *     
      */
-    public void setStudentDTOList(List<StudentDTO> studentDTOList) {
-        this.studentDTOList = studentDTOList;
+    public void setTeacherDTOList(List<TeacherDTO> teacherDTOList) {
+        this.teacherDTOList = teacherDTOList;
     }
 
 }

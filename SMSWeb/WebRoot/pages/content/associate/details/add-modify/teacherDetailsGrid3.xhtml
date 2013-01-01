@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<f:view>
+		<h:panelGrid id="pfThirdGridWrapper"  columns="3" border="0" cellpadding="0px" cellspacing="0px" >
+			<h:panelGrid id="pfThirdGrid"  columns="2"  border="0" cellpadding="0px" cellspacing="0px" >			
+
+					<h:panelGroup>
+						<h:outputText value="*" styleClass="errorValidationText" />
+						<h:outputText value="Previous Occupation:" styleClass="labelText"/>
+					</h:panelGroup>
+					<h:inputText id="previousOccupation" styleClass="commonInput" tabindex="19" required="true"  maxlength="100" value="#{associateBean.teacherDTO.previousOccupation}" requiredMessage="Required Field" ajaxSingle="true" readonly="#{associateBean.readOnlyMode}" />
+					<h:panelGrid id="previousOccupationError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
+						<rich:message for="previousOccupation" styleClass="errorValidationText" />
+					</h:panelGrid>
+					<h:outputText />	
+
+					<h:panelGroup>
+						<h:outputText value="*" styleClass="errorValidationText" />
+						<h:outputText value="Education:" styleClass="labelText"/>
+					</h:panelGroup>
+					<h:inputText id="education" styleClass="commonInput" tabindex="20" required="true"  maxlength="100" value="#{associateBean.teacherDTO.education}" requiredMessage="Required Field" ajaxSingle="true" readonly="#{associateBean.readOnlyMode}" />
+					<h:panelGrid id="educationError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
+						<rich:message for="education" styleClass="errorValidationText" />
+					</h:panelGrid>
+					<h:outputText />	
+
+					<h:panelGroup>
+						<h:outputText value="*" styleClass="errorValidationText" />
+						<h:outputText value="Experience: " styleClass="labelText"/>
+					</h:panelGroup>
+					<h:inputText id="experience" styleClass="commonInput" tabindex="21" required="true"  maxlength="100" value="#{associateBean.teacherDTO.experience}" requiredMessage="Required Field" ajaxSingle="true" readonly="#{associateBean.readOnlyMode}" />
+					<h:panelGrid id="experienceError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
+						<rich:message for="experience" styleClass="errorValidationText" />
+					</h:panelGrid>
+					<h:outputText />				
+					
+					<h:outputText />
+					<a4j:commandButton value="Save"  id="saveBtn" action="#{associateAction.saveTeacher}" style="width:100px;height:35px;" disabled="#{associateBean.readOnlyMode}"/>
+					<h:panelGrid id="dummy" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
+					</h:panelGrid>
+					<h:outputText />				
+
+			</h:panelGrid>							
+		</h:panelGrid>
+        <rich:popupPanel id="statPane" autosized="true">
+            <h:graphicImage value="/images/ai.gif" alt="ai" />
+            Please wait...
+        </rich:popupPanel>		
+	</f:view>
+</ui:composition>
