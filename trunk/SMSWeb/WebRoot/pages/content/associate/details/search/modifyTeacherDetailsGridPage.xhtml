@@ -10,6 +10,8 @@
 			<ui:include src="applicationStyles.xhtml"/>
 			<ui:composition template="/pages/layout/commonLayout.xhtml">
 				<ui:define name="content">
+					<ui:include src="/pages/content/common/statusPage.xhtml"/>
+					<a4j:status onstart="#{rich:component('statPane')}.show()" onstop="#{rich:component('statPane')}.hide()" />			
 					<rich:panel header="Teacher List" styleClass="dialogBodyPanel" id="modifyTeacherGridPanel">
 						<h:form id="teacherListForm">
 					        <rich:extendedDataTable value="#{associateBean.teacherDTOList}" var="associate" id="teacherListGrid" frozenColumns="1"
@@ -17,7 +19,7 @@
 								<ui:include src="associateGridList.xhtml"/>
 								<ui:include src="teacherGridList.xhtml"/>
 				                <f:facet name="footer">
-									<a4j:commandButton value="Edit Details" action="#{associateAction.applyTeacerSelectionForEdit}"  id="editTeacherBtn" 
+									<a4j:commandButton value="Edit Details" action="#{associateAction.applyTeacherSelectionForEdit}"  id="editTeacherBtn" 
 									oncomplete="document.getElementById('editTeacherPanelFrame').src='/SMSWeb/pages/content/associate/details/add-modify/teacherDetailsContainer.xhtml';
 									#{rich:component('editTeacherPopup')}.show()" 
 									style="margin-left:50px;width:90px; height:22px;" /> 													                    

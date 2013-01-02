@@ -7,6 +7,7 @@
 	<f:view>
 		<h:body>
 			<ui:include src="/pages/layout/applicationStyles.xhtml"/>
+				<ui:include src="/pages/content/common/statusPage.xhtml"/>
 				<a4j:status onstart="#{rich:component('statPane')}.show()" onstop="#{rich:component('statPane')}.hide()" />			
 				<h:form id="studentForm">				
 			

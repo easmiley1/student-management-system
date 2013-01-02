@@ -1,5 +1,6 @@
 package com.ish.sms.web.converter;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -11,15 +12,31 @@ import javax.faces.convert.ConverterException;
 
 import com.ish.sms.service.dto.ClassDTO;
 import com.ish.sms.web.bean.ReferenceBean;
+import com.ish.sms.web.util.WebConstants;
 import com.ish.sms.web.util.WebUtils;
 
-@ManagedBean(name="classConverter")
+/**
+ * Custom converter for Class reference selection
+ * 
+ * @author Naren
+ * 
+ */
+@ManagedBean(name = WebConstants.CLASS_CONVERTER)
 @ViewScoped
-public class ClassConverter implements Converter {
+public class ClassConverter implements Converter, Serializable, WebConstants {
 
+	private static final long serialVersionUID = 1L;
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * javax.faces.convert.Converter#getAsObject(javax.faces.context.FacesContext
+	 * , javax.faces.component.UIComponent, java.lang.String)
+	 */
 	public Object getAsObject(FacesContext context, UIComponent component, String value) throws ConverterException {
 
-		ReferenceBean referenceBean = WebUtils.findBean("referenceBean");
+		ReferenceBean referenceBean = WebUtils.findBean(REFERENCE_BEAN);
 		List<ClassDTO> ClassDTOList = referenceBean.getClassDTOList();
 		ClassDTO selectedClassDTO = null;
 		for (ClassDTO classDTO : ClassDTOList) {
@@ -32,10 +49,18 @@ public class ClassConverter implements Converter {
 		return selectedClassDTO;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * javax.faces.convert.Converter#getAsString(javax.faces.context.FacesContext
+	 * , javax.faces.component.UIComponent, java.lang.Object)
+	 */
 	public String getAsString(FacesContext context, UIComponent component, Object value) throws ConverterException {
 
 		ClassDTO classDTO = (ClassDTO) value;
-		if(classDTO ==null) return null;
+		if (classDTO == null)
+			return null;
 		return classDTO.getName().toString();
 	}
 
