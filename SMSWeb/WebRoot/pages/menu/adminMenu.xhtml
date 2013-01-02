@@ -9,41 +9,42 @@
 			<rich:dropDownMenu>
 				<f:facet name="label">
 					<h:panelGroup>
-						<h:outputText value="Add" />
+						<h:outputText value="Student Management" />
 					</h:panelGroup>
 				</f:facet>
-				<rich:menuGroup label="Student">
+				<rich:menuGroup label="Add Student">
 					<rich:menuItem label="Personal Details" action="#{associateAction.initAddStudentPersonalDetails}"/>
                 </rich:menuGroup>				
-				<rich:menuGroup label="Teacher">
-					<rich:menuItem label="Personal Details" action="#{associateAction.initAddTeacherPersonalDetails}"/>
+				<rich:menuGroup label="Modify Student">
+					<rich:menuItem label="Search All" action="#{associateAction.initModifySearchAllStudents}"/>
 				</rich:menuGroup>	
+				<rich:menuGroup label="Edit Student">
+					<rich:menuItem label="Search All" action="#{associateAction.initViewSearchAllStudents}"/>
+                </rich:menuGroup>				
 			</rich:dropDownMenu>
 			<rich:dropDownMenu>
 				<f:facet name="label">
 					<h:panelGroup>
-						<h:outputText value="Modify" />
+						<h:outputText value="Teacher Management" />
 					</h:panelGroup>
 				</f:facet>
-				<rich:menuGroup label="Student Detail">
-					<rich:menuItem label="Search All Students" action="#{associateAction.initModifySearchAllStudents}"/>
+				<rich:menuGroup label="Add Teacher">
+					<rich:menuItem label="Personal Details" action="#{associateAction.initAddTeacherPersonalDetails}"/>
                 </rich:menuGroup>				
-				<rich:menuGroup label="Teacher Detail">
-					<rich:menuItem label="Search All Teachers" action="#{associateAction.initModifySearchAllTeachers}"/>
-                </rich:menuGroup>		
-            </rich:dropDownMenu>
+				<rich:menuGroup label="Modify Teacher">
+					<rich:menuItem label="Search All" action="#{associateAction.initModifySearchAllTeachers}"/>
+				</rich:menuGroup>	
+				<rich:menuGroup label="Edit Teacher">
+					<rich:menuItem label="Search All " action="#{associateAction.initViewSearchAllTeachers}"/>
+                </rich:menuGroup>				
+			</rich:dropDownMenu>
 			<rich:dropDownMenu>
 				<f:facet name="label">
 					<h:panelGroup>
-						<h:outputText value="View" />
+						<h:outputText value="Settings" />
 					</h:panelGroup>
 				</f:facet> 
-				<rich:menuGroup label="Student Details">
-					<rich:menuItem label="Search All Students" action="#{associateAction.initViewSearchAllStudents}"/>
-                </rich:menuGroup>				
-				<rich:menuGroup label="Teacher Details">
-					<rich:menuItem label="Search All Teachers" action="#{associateAction.initViewSearchAllTeachers}"/>
-                </rich:menuGroup>			
+				<rich:menuItem label="Change Theme" action="#{applicationThemeAction.initChangeTheme}"/>
   			</rich:dropDownMenu>
 		</rich:toolbar>
 	</f:view>

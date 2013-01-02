@@ -3,15 +3,19 @@ package com.ish.sms.web.util;
 public interface WebConstants {
 
 	public final static String DEFAULT_GENDER = "Male";
+
+	/* DTO Name related constants*/
 	public final static String STUDENT_DTO = "studentDTO";
 	public final static String TEACHER_DTO = "teacherDTO";
-	public final static String DEFAULT_MOD_OF_TRSPRT = "School";
+	
+	/*XHTML page navigattion related contants */
 	public final static String SAVE_STUDENT_PAGE = "/pages/content/associate/details/add-modify/addStudentDetails.xhtml";
 	public final static String SAVE_TEACHER_PAGE = "/pages/content/associate/details/add-modify/addTeacherDetails.xhtml";
 	public final static String MODIFY_STUDENT_LIST_PAGE = "/pages/content/associate/details/search/modifyStudentDetailsGridPage.xhtml";
 	public final static String VIEW_STUDENT_LIST_PAGE = "/pages/content/associate/details/search/viewStudentDetailsGridPage.xhtml";
 	public final static String MODIFY_TEACHER_LIST_PAGE = "/pages/content/associate/details/search/modifyTeacherDetailsGridPage.xhtml";
 	public final static String VIEW_TEACHER_LIST_PAGE = "/pages/content/associate/details/search/viewTeacherDetailsGridPage.xhtml";
+	
 	/* Jboss cache related constants*/
 	public static final String BLOOD_GROUP_KEY = "BLOOD_GROUP_KEY";
 	public static final String EXTRA_CURRICULAR_KEY = "EXTRA_CURRICULAR_KEY";
@@ -26,4 +30,11 @@ public interface WebConstants {
 	public static final String REPL_SYNC_FILE = "replSync-eviction-service.xml"; 
 	public static final String TREECACHE_MBEAN_SERVICE = "jboss.cache:service=TreeCache";
 
+	/*Bean name related constants*/
+	public static final String REFERENCE_BEAN = "referenceBean";
+	public static final String BLOODGROUP_CONVERTER = "bloodGroupConverter";
+	public static final String CLASS_CONVERTER = "classConverter";
+	public static final String EXTRA_CURRICULAR_CONVERTER = "extraCurricularInterestConverter";
+	public static final String MODE_OF_TRANSPORT_CONVERTER = "modeOfTransportConverter";
+	public static final String STATE_CONVERTER = "stateConverter"; 
 }

@@ -150,7 +150,7 @@ public class AssociateAction extends BaseAction {
 	 */
 	public void applyTeacherSelectionForEdit() throws Exception{
 		associateBean.setReadOnlyMode(false);
-		associateBean.applyStudentSelection();
+		associateBean.applyTeacherSelection();
 	}
 
 	/**
@@ -160,7 +160,7 @@ public class AssociateAction extends BaseAction {
 	 */
 	public void applyTeacherSelectionForView() throws Exception{
 		associateBean.setReadOnlyMode(true);
-		associateBean.applyStudentSelection();
+		associateBean.applyTeacherSelection();
 	}
 
 }
