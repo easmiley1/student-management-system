@@ -8,5 +8,13 @@
         <converter-id>DateStrConveter </converter-id>
         <converter-class> com.ish.sms.web.converter.DateConverter</converter-class>
      </converter>	
+     
+	<navigation-rule>
+	    <navigation-case>
+	        <from-outcome>userNotInSession</from-outcome>
+	        <to-view-id>/pages/content/login/login.xhtml</to-view-id>
+	        <redirect />
+	    </navigation-case>
+	</navigation-rule>     
 
 </faces-config>
