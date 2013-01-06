@@ -2,7 +2,7 @@ package com.ish.sms.web.action;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import com.ish.sms.web.bean.AssociateBean;
 import com.ish.sms.web.business.AssociateBusiness;
@@ -13,9 +13,10 @@ import com.ish.sms.web.util.SMSSpringFactory;
  * 
  */
 @ManagedBean(name = "associateAction")
-@RequestScoped
+@ViewScoped
 public class AssociateAction extends BaseAction {
  
+	private static final long serialVersionUID = 1L;
 	private AssociateBusiness associateBusiness;
 	@ManagedProperty(value="#{associateBean}")
 	private AssociateBean associateBean;
