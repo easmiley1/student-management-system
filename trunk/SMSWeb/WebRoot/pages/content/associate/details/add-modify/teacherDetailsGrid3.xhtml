@@ -12,7 +12,7 @@
 						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Previous Occupation:" styleClass="labelText"/>
 					</h:panelGroup>
-					<h:inputText id="previousOccupation" styleClass="commonInput" tabindex="19" required="true"  maxlength="100" value="#{associateBean.teacherDTO.previousOccupation}" requiredMessage="Required Field" ajaxSingle="true" readonly="#{associateBean.readOnlyMode}" />
+					<h:inputText id="previousOccupation" styleClass="commonInput" tabindex="19" required="true"  maxlength="100" value="#{associateBean.teacherDTO.previousOccupation}" requiredMessage="Required Field" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
 					<h:panelGrid id="previousOccupationError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
 						<rich:message for="previousOccupation" styleClass="errorValidationText" />
 					</h:panelGrid>
@@ -22,7 +22,7 @@
 						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Education:" styleClass="labelText"/>
 					</h:panelGroup>
-					<h:inputText id="education" styleClass="commonInput" tabindex="20" required="true"  maxlength="100" value="#{associateBean.teacherDTO.education}" requiredMessage="Required Field" ajaxSingle="true" readonly="#{associateBean.readOnlyMode}" />
+					<h:inputText id="education" styleClass="commonInput" tabindex="20" required="true"  maxlength="100" value="#{associateBean.teacherDTO.education}" requiredMessage="Required Field" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
 					<h:panelGrid id="educationError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
 						<rich:message for="education" styleClass="errorValidationText" />
 					</h:panelGrid>
@@ -32,7 +32,7 @@
 						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Experience: " styleClass="labelText"/>
 					</h:panelGroup>
-					<h:inputText id="experience" styleClass="commonInput" tabindex="21" required="true"  maxlength="100" value="#{associateBean.teacherDTO.experience}" requiredMessage="Required Field" ajaxSingle="true" readonly="#{associateBean.readOnlyMode}" />
+					<h:inputText id="experience" styleClass="commonInput" tabindex="21" required="true"  maxlength="100" value="#{associateBean.teacherDTO.experience}" requiredMessage="Required Field" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
 					<h:panelGrid id="experienceError" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
 						<rich:message for="experience" styleClass="errorValidationText" />
 					</h:panelGrid>
