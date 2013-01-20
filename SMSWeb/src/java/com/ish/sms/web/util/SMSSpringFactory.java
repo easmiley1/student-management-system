@@ -1,11 +1,3 @@
-/*
- * $Revision: 1.2.4.1 $
- * $Archive$
- * $Date: 2012/07/13 20:33:37 $
- * $Author: uvjaya $ 
- * 
- * Copyright © 2010, Arbitron, Inc. All rights reserved.
- */
 package com.ish.sms.web.util;
 
 import org.apache.commons.logging.Log;
@@ -13,6 +5,12 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+/**
+ * Utility class for getting the spring beans
+ * 
+ * @author Naren
+ *
+ */
 public class SMSSpringFactory {
     /**
      * The name of the system property that defines the spring
@@ -60,7 +58,7 @@ public class SMSSpringFactory {
         }
 
         return result;
-    } //END getConfigName method
+    } 
 
     /**
      * Creates a new spring factory instance based on the given 
@@ -81,7 +79,7 @@ public class SMSSpringFactory {
            LOGGER.error(e);
         }
         return result;
-    } //END createFromConfig method
+    } 
 
     /**
      * Initializes the singleton instance
@@ -96,7 +94,7 @@ public class SMSSpringFactory {
             }
         }
        
-    } //END initialize method 
+    }  
 
     /**
      * Sets the instance's reference to the active bean factory
@@ -104,7 +102,7 @@ public class SMSSpringFactory {
      */
     private void setBeanFactory(final BeanFactory value) {
         beanFactory = value;
-    } //END setBeanFactory method 
+    }  
 
     /**
      * Gets the singleton spring factory instance 
@@ -121,13 +119,14 @@ public class SMSSpringFactory {
         }
        
         return instance;
-    } //END getInstance method
+    } 
 
     /**
      * Gets a bean from the spring bean factory
      */
     public Object getBean(final String beanId) {
         return beanFactory.getBean(beanId);
-    } //END getBean method
+    } 
 
+   
 }
