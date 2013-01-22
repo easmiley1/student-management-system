@@ -20,6 +20,12 @@
 	</servlet-mapping>
 
 	<context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>#{applicationThemeBean.theme}</param-value>
+  	</context-param>
+
+	<!-- Commenting out Richfaces related config 
+	<context-param>
 	  <param-name>org.richfaces.skin</param-name>
 	  <param-value>#{applicationThemeAction.theme}</param-value>
 	</context-param>
@@ -27,6 +33,7 @@
 	  <param-name>org.richfaces.enableControlSkinning</param-name>
 	  <param-value>true</param-value>
 	</context-param>
+	-->
 
 	<context-param>
 		<param-name>javax.faces.CONFIG_FILES</param-name>
