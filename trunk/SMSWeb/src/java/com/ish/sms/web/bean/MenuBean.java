@@ -2,31 +2,21 @@ package com.ish.sms.web.bean;
 
 import java.io.Serializable;
 
-import javax.el.MethodExpression;
-import javax.faces.application.Application;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.component.html.HtmlOutputText;
-import javax.faces.context.FacesContext;
-
-import org.richfaces.component.AbstractDropDownMenu.Facets;
-import org.richfaces.component.UIDropDownMenu;
-import org.richfaces.component.UIMenuGroup;
-import org.richfaces.component.UIMenuItem;
-import org.richfaces.component.UIToolbar;
 
 @ManagedBean(name = "menuBean")
 @ViewScoped
-public class MenuBean implements Serializable{
+public class MenuBean implements Serializable{/*
 
-	/**
+	*//**
 	 * 
-	 */
+	 *//*
 	private static final long serialVersionUID = 1L;
 	private UIToolbar uiToolbar;
-	/**
+	*//**
 	 * @return the uiToolbar
-	 */
+	 *//*
 	public UIToolbar getUiToolbar() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		Application application = facesContext.getApplication();
@@ -59,9 +49,9 @@ public class MenuBean implements Serializable{
 		return uiToolbar;
 	}
 
-	/**
+	*//**
 	 * @param uiToolbar the uiToolbar to set
-	 */
+	 *//*
 	public void setUiToolbar(UIToolbar uiToolbar) {
 		this.uiToolbar = uiToolbar;
 	}
@@ -70,4 +60,4 @@ public class MenuBean implements Serializable{
 	public MenuBean() {
 	}
 
-}
+*/}
