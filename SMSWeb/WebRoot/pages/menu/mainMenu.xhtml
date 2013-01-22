@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<f:view>
+		<p:toolbar >
+			<p:toolbarGroup align="left" >
+				<p:menubar style="padding:0px;">
+					<p:submenu label="Student Management" >
+						<p:submenu label="Add Student" >
+							<p:menuitem value="Personal Details" action="#{associateAction.initAddStudentPersonalDetails}" ajax="false" />
+						</p:submenu>
+						<p:submenu label="Modify Student" >
+							<p:menuitem value="Search All" action="#{associateAction.initModifySearchAllStudents}" ajax="false"/>
+						</p:submenu>
+						<p:submenu label="View Student" >
+							<p:menuitem value="Search All" action="#{associateAction.initViewSearchAllStudents}" ajax="false"/>
+						</p:submenu>
+					</p:submenu>
+					
+					<p:submenu label="Teacher Management" >
+						<p:submenu label="Add Teacher" >
+							<p:menuitem value="Personal Details" action="#{associateAction.initAddTeacherPersonalDetails}" ajax="false" />
+						</p:submenu>
+						<p:submenu label="Modify Teacher" >
+							<p:menuitem value="Search All" action="#{associateAction.initModifySearchAllTeachers}" ajax="false"/>
+						</p:submenu>
+						<p:submenu label="View Teacher" >
+							<p:menuitem value="Search All" action="#{associateAction.initViewSearchAllTeachers}" ajax="false"/>
+						</p:submenu>
+					</p:submenu>
+					
+				</p:menubar>
+			</p:toolbarGroup>
+			<p:toolbarGroup align="Right">
+				<p:themeSwitcher value="#{applicationThemeBean.theme}" style="width:165px" effect="fade" id="statefulSwitcher">  
+            		<f:selectItem itemLabel="Choose Theme" itemValue="" />  
+            		<f:selectItems value="#{applicationThemeBean.themes}" />  
+            		<p:ajax listener="#{applicationThemeBean.saveTheme}" />  
+        		</p:themeSwitcher>  
+			</p:toolbarGroup>
+		</p:toolbar>
+	</f:view>
+</ui:composition>
