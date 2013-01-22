@@ -6,4 +6,24 @@
 	<jxb:globalBindings>
         <xjc:serializable uid="1" />
 	</jxb:globalBindings>
+	
+  <jxb:bindings node="//xs:element[@name='attendanceDayMap']">
+  	 <jxb:property>
+    	<jxb:baseType name="com.ish.sms.web.service.dto.AttendanceDayMap&lt;String,AttendanceDaysList&gt;" />
+   	 </jxb:property>
+  </jxb:bindings>
+
+  <jxb:bindings node="//xs:element[@name='attendanceMonthMap']">
+  	 <jxb:property>
+    	<jxb:baseType name="com.ish.sms.web.service.dto.AttendanceMonthMap&lt;String,AttendanceMonthsList&gt;" />
+   	 </jxb:property>
+  </jxb:bindings>
+
+  <jxb:bindings node="//xs:element[@name='attendanceYearMap']">
+  	 <jxb:property>
+    	<jxb:baseType name="com.ish.sms.web.service.dto.AttendanceYearMap&lt;String,AttendanceYearsList&gt;" />
+   	 </jxb:property>
+  </jxb:bindings>
+
+  	
 </jxb:bindings>
