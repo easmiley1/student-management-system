@@ -2,20 +2,16 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:a4j="http://richfaces.org/a4j"
-	xmlns:rich="http://richfaces.org/rich">
+	xmlns:p="http://primefaces.org/ui">
 	<f:view>
 		<h:body>
 			<ui:include src="/pages/layout/applicationStyles.xhtml"/>
-				<ui:include src="/pages/content/common/statusPage.xhtml"/>
-				<a4j:status onstart="#{rich:component('statPane')}.show()" onstop="#{rich:component('statPane')}.hide()" />			
 				<h:form id="studentForm">				
-			
+					<p:growl id="growlAddStudent" showDetail="true" sticky="true" />
 					<h:panelGrid columns="4" width="100%" columnClasses="profileDottedGrid1,profileDottedGrid2,profileDottedGrid3,profileDottedGrid4" id="studentPanel">
-				
 						<ui:include src="associateDetailsGrid1.xhtml"/>
-						<ui:include src="associateDetailsGrid2.xhtml"/>	
-						<ui:include src="studentDetailsGrid3.xhtml"/>	
+						<ui:include src="associateDetailsGrid2.xhtml"/>
+						<ui:include src="studentDetailsGrid3.xhtml"/>						
 					</h:panelGrid>
 				</h:form>	
 		</h:body>
