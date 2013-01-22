@@ -18,16 +18,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for teacherListDTO complex type.
+ * <p>Java class for attendanceDaysList complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="teacherListDTO">
+ * &lt;complexType name="attendanceDaysList">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="teacherDTOList" type="{http://www.ish.com/soa/sms}teacherDTO" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="attendanceDayListDTO" type="{http://www.ish.com/soa/sms}attendanceDayDTO" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,56 +37,56 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "teacherListDTO", propOrder = {
-    "teacherDTOList"
+@XmlType(name = "attendanceDaysList", propOrder = {
+    "attendanceDayListDTO"
 })
-public class TeacherListDTO
+public class AttendanceDaysList
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
     @XmlElement(namespace = "http://www.ish.com/soa/sms", required = true)
-    protected List<TeacherDTO> teacherDTOList;
+    protected List<AttendanceDayDTO> attendanceDayListDTO;
 
     /**
-     * Gets the value of the teacherDTOList property.
+     * Gets the value of the attendanceDayListDTO property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the teacherDTOList property.
+     * This is why there is not a <CODE>set</CODE> method for the attendanceDayListDTO property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getTeacherDTOList().add(newItem);
+     *    getAttendanceDayListDTO().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link TeacherDTO }
+     * {@link AttendanceDayDTO }
      * 
      * 
      */
-    public List<TeacherDTO> getTeacherDTOList() {
-        if (teacherDTOList == null) {
-            teacherDTOList = new ArrayList<TeacherDTO>();
+    public List<AttendanceDayDTO> getAttendanceDayListDTO() {
+        if (attendanceDayListDTO == null) {
+            attendanceDayListDTO = new ArrayList<AttendanceDayDTO>();
         }
-        return this.teacherDTOList;
+        return this.attendanceDayListDTO;
     }
 
     /**
-     * Sets the value of the teacherDTOList property.
+     * Sets the value of the attendanceDayListDTO property.
      * 
-     * @param teacherDTOList
+     * @param attendanceDayListDTO
      *     allowed object is
-     *     {@link TeacherDTO }
+     *     {@link AttendanceDayDTO }
      *     
      */
-    public void setTeacherDTOList(List<TeacherDTO> teacherDTOList) {
-        this.teacherDTOList = teacherDTOList;
+    public void setAttendanceDayListDTO(List<AttendanceDayDTO> attendanceDayListDTO) {
+        this.attendanceDayListDTO = attendanceDayListDTO;
     }
 
 }

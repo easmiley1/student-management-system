@@ -14,7 +14,95 @@
 	<xs:element name="modeofTransportDTO" type="modeofTransportDTO" />
 	<xs:element name="referenceListDTO" type="referenceListDTO" />
 	<xs:element name="classDTO" type="classDTO" />
+	<xs:element name="attendanceDayDTO" type="attendanceDayDTO" />
+	<xs:element name="attendanceMonthDTO" type="attendanceMonthDTO" />
+	<xs:element name="attendanceYearDTO" type="attendanceYearDTO" />
+	<xs:element name="attendanceDaysList" type="attendanceDaysList" />
+	<xs:element name="attendanceMonthsList" type="attendanceMonthsList" />
+	<xs:element name="attendanceYearsList" type="attendanceYearsList" />
 	
+	<xs:complexType name="attendanceDayDTO">
+		<xs:sequence>
+			<xs:element name="day" type="xs:string" />
+			<xs:element name="present" type="xs:boolean" />
+		</xs:sequence> 
+	</xs:complexType>
+	
+	<xs:complexType name="attendanceMonthDTO">
+	  <xs:sequence>	 
+		<xs:element name="attendanceDayMap" type="attendanceDays" minOccurs="0"/>
+      </xs:sequence>			
+	</xs:complexType>	
+
+	<xs:complexType name="attendanceYearDTO">
+		<xs:sequence>
+			<xs:element name="attendanceMonthMap" type="attendanceMonths" minOccurs="0"  />		
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="attendanceDTO">
+		<xs:sequence>
+			<xs:element name="attendanceYearMap" type="attendanceYears" minOccurs="0" />		
+		</xs:sequence>
+	</xs:complexType>		
+
+   	<xs:complexType name="attendanceDays">
+       	  <xs:sequence>
+           	<xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
+           	  	<xs:complexType>
+               	 	<xs:sequence>
+               			<xs:element name="key" type="xs:string"/>
+						<xs:element name="value" type="attendanceDaysList" />		
+               	  	</xs:sequence>
+             	</xs:complexType>
+           	</xs:element>
+      	  </xs:sequence>
+   	</xs:complexType>
+
+   	<xs:complexType name="attendanceMonths">
+       	  <xs:sequence>
+           	<xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
+           	  	<xs:complexType>
+               	 	<xs:sequence>
+               			<xs:element name="key" type="xs:string"/>
+						<xs:element name="value" type="attendanceMonthsList" />		
+               	  	</xs:sequence>
+             	</xs:complexType>
+           	</xs:element>
+      	  </xs:sequence>
+   	</xs:complexType>
+
+   	<xs:complexType name="attendanceYears">
+       	  <xs:sequence>
+           	<xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
+           	  	<xs:complexType>
+               	 	<xs:sequence>
+               			<xs:element name="key" type="xs:string"/>
+						<xs:element name="value" type="attendanceYearsList" />		
+               	  	</xs:sequence>
+             	</xs:complexType>
+           	</xs:element>
+      	  </xs:sequence>
+   	</xs:complexType>
+   	
+	<xs:complexType name="attendanceDaysList">
+		<xs:sequence>
+			<xs:element name="attendanceDayListDTO" type="attendanceDayDTO" minOccurs="0" maxOccurs="unbounded" />		
+		</xs:sequence>
+	</xs:complexType>	
+
+	<xs:complexType name="attendanceMonthsList">
+		<xs:sequence>
+			<xs:element name="attendanceMonthListDTO" type="attendanceMonthDTO" minOccurs="0" maxOccurs="unbounded" />		
+		</xs:sequence>
+	</xs:complexType>	
+
+	<xs:complexType name="attendanceYearsList">
+		<xs:sequence>
+			<xs:element name="attendanceYearListDTO" type="attendanceYearDTO" minOccurs="0" maxOccurs="unbounded" />		
+		</xs:sequence>
+	</xs:complexType>
+
 	<xs:complexType name="referenceListDTO">
 		<xs:sequence>
 			<xs:element name="stateDTOList" type="stateDTO"	minOccurs="0" maxOccurs="unbounded" />

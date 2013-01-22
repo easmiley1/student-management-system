@@ -16,18 +16,19 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for stateDTO complex type.
+ * <p>Java class for attendanceDayDTO complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="stateDTO">
+ * &lt;complexType name="attendanceDayDTO">
  *   &lt;complexContent>
- *     &lt;extension base="{http://www.ish.com/soa/sms}baseReferenceDTO">
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="abbrevation" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="day" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="present" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *       &lt;/sequence>
- *     &lt;/extension>
+ *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
@@ -35,40 +36,58 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "stateDTO", propOrder = {
-    "abbrevation"
+@XmlType(name = "attendanceDayDTO", propOrder = {
+    "day",
+    "present"
 })
-public class StateDTO
-    extends BaseReferenceDTO
+public class AttendanceDayDTO
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
+    @XmlElement(namespace = "http://www.ish.com/soa/sms", required = true)
+    protected String day;
     @XmlElement(namespace = "http://www.ish.com/soa/sms")
-    protected String abbrevation;
+    protected boolean present;
 
     /**
-     * Gets the value of the abbrevation property.
+     * Gets the value of the day property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getAbbrevation() {
-        return abbrevation;
+    public String getDay() {
+        return day;
     }
 
     /**
-     * Sets the value of the abbrevation property.
+     * Sets the value of the day property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setAbbrevation(String value) {
-        this.abbrevation = value;
+    public void setDay(String value) {
+        this.day = value;
+    }
+
+    /**
+     * Gets the value of the present property.
+     * 
+     */
+    public boolean isPresent() {
+        return present;
+    }
+
+    /**
+     * Sets the value of the present property.
+     * 
+     */
+    public void setPresent(boolean value) {
+        this.present = value;
     }
 
 }
