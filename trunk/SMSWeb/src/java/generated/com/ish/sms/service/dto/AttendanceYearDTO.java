@@ -13,21 +13,22 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import com.ish.sms.web.service.dto.AttendanceMonthMap;
 
 
 /**
- * <p>Java class for stateDTO complex type.
+ * <p>Java class for attendanceYearDTO complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="stateDTO">
+ * &lt;complexType name="attendanceYearDTO">
  *   &lt;complexContent>
- *     &lt;extension base="{http://www.ish.com/soa/sms}baseReferenceDTO">
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="abbrevation" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="attendanceMonthMap" type="{http://www.ish.com/soa/sms}attendanceMonths" minOccurs="0"/>
  *       &lt;/sequence>
- *     &lt;/extension>
+ *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
@@ -35,40 +36,39 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "stateDTO", propOrder = {
-    "abbrevation"
+@XmlType(name = "attendanceYearDTO", propOrder = {
+    "attendanceMonthMap"
 })
-public class StateDTO
-    extends BaseReferenceDTO
+public class AttendanceYearDTO
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
-    @XmlElement(namespace = "http://www.ish.com/soa/sms")
-    protected String abbrevation;
+    @XmlElement(namespace = "http://www.ish.com/soa/sms", type = AttendanceMonths.class)
+    protected AttendanceMonthMap<String, AttendanceMonthsList> attendanceMonthMap;
 
     /**
-     * Gets the value of the abbrevation property.
+     * Gets the value of the attendanceMonthMap property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link AttendanceMonths }
      *     
      */
-    public String getAbbrevation() {
-        return abbrevation;
+    public AttendanceMonthMap<String, AttendanceMonthsList> getAttendanceMonthMap() {
+        return attendanceMonthMap;
     }
 
     /**
-     * Sets the value of the abbrevation property.
+     * Sets the value of the attendanceMonthMap property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link AttendanceMonths }
      *     
      */
-    public void setAbbrevation(String value) {
-        this.abbrevation = value;
+    public void setAttendanceMonthMap(AttendanceMonthMap<String, AttendanceMonthsList> value) {
+        this.attendanceMonthMap = value;
     }
 
 }
