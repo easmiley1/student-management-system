@@ -1,6 +1,5 @@
 package com.ish.sms.web.bean;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -23,23 +22,38 @@ public class AssociateBean extends BaseBean implements WebConstants {
 	private TeacherDTO teacherDTO;
 	private List<StudentDTO> studentDTOList;
 	private List<TeacherDTO> teacherDTOList;	
-	private Collection<Object> selectedStudent;
-	private Collection<Object> selectedTeacher;
-	/**
-	 * @return the selectedTeacher
-	 */
-	public Collection<Object> getSelectedTeacher() {
-		return selectedTeacher;
-	}
-
-	/**
-	 * @param selectedTeacher the selectedTeacher to set
-	 */
-	public void setSelectedTeacher(Collection<Object> selectedTeacher) {
-		this.selectedTeacher = selectedTeacher;
-	}
+	private List<StudentDTO> filteredStudentList;
+	private List<TeacherDTO> filteredTeacherList;	
 
 	private boolean readOnlyMode;
+
+	/**
+	 * @return the filteredStudentList
+	 */
+	public List<StudentDTO> getFilteredStudentList() {
+		return filteredStudentList;
+	}
+
+	/**
+	 * @param filteredStudentList the filteredStudentList to set
+	 */
+	public void setFilteredStudentList(List<StudentDTO> filteredStudentList) {
+		this.filteredStudentList = filteredStudentList;
+	}
+
+	/**
+	 * @return the filteredTeacherList
+	 */
+	public List<TeacherDTO> getFilteredTeacherList() {
+		return filteredTeacherList;
+	}
+
+	/**
+	 * @param filteredTeacherList the filteredTeacherList to set
+	 */
+	public void setFilteredTeacherList(List<TeacherDTO> filteredTeacherList) {
+		this.filteredTeacherList = filteredTeacherList;
+	}
 
 	/**
 	 * @return the teacherDTOList
@@ -82,20 +96,6 @@ public class AssociateBean extends BaseBean implements WebConstants {
 		this.readOnlyMode = readOnlyMode;
 	}
 
-	/**
-	 * @return the selectedStudent
-	 */
-	public Collection<Object> getSelectedStudent() {
-		return selectedStudent;
-	}
-
-	/**
-	 * @param selectedStudent
-	 *            the selectedStudent to set
-	 */
-	public void setSelectedStudent(Collection<Object> selectedStudent) {
-		this.selectedStudent = selectedStudent;
-	}
 
 	/**
 	 * @return studentDTO
@@ -173,8 +173,6 @@ public class AssociateBean extends BaseBean implements WebConstants {
 	 */
 	public void applyStudentSelection() throws Exception {
 		
-		Integer selectedStudentPos = (Integer) selectedStudent.toArray()[0];
-		setStudentDTO(studentDTOList.get(selectedStudentPos));
 		setAssociateDTO(objfactory.createAssociateDTO());
 		BeanUtils.copyProperties(associateDTO, studentDTO);
 	}
@@ -186,8 +184,6 @@ public class AssociateBean extends BaseBean implements WebConstants {
 	 */
 	public void applyTeacherSelection() throws Exception {
 		
-		Integer selectedTeacherPos = (Integer) selectedTeacher.toArray()[0];
-		setTeacherDTO(teacherDTOList.get(selectedTeacherPos));
 		setAssociateDTO(objfactory.createAssociateDTO());
 		BeanUtils.copyProperties(associateDTO, teacherDTO);
 	}
