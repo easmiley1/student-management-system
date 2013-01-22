@@ -2,173 +2,67 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:a4j="http://richfaces.org/a4j"
-	xmlns:rich="http://richfaces.org/rich">
+	xmlns:p="http://primefaces.org/ui">
 	<f:view>
-	      <rich:column  width="100px" filterExpression="#{fn:containsIgnoreCase(associate.firstName, associateFilter.firstNameFilter)}" id="firstNameColumn">
-	          <f:facet name="header">
-				<h:outputText value="First Name" />
-		        <h:inputText value="#{associateFilter.firstNameFilter}" id="firstNameFilter" ajaxSingle="true" style="width:90px;">
-		            <a4j:ajax event="keyup" render="studentListGrid@body">
-		                <a4j:attachQueue  requestDelay="700" ignoreDupResponses="true" />
-		            </a4j:ajax>
-		        </h:inputText>
-	          </f:facet>
-	          <h:outputText value="#{associate.firstName}" />
-	      </rich:column>
-	      <rich:column  width="100px" filterExpression="#{fn:containsIgnoreCase(associate.fatherName, associateFilter.fatherNameFilter)}">
-	          <f:facet name="header">
-				<h:outputText value="Father Name" />
-		        <h:inputText value="#{associateFilter.fatherNameFilter}" id="fatherNameFilter" ajaxSingle="true" style="width:90px;">
-		            <a4j:ajax event="keyup" render="studentListGrid@body">
-		                <a4j:attachQueue  requestDelay="700" ignoreDupResponses="true" />
-		            </a4j:ajax>
-		        </h:inputText>
-	          </f:facet>
-	          <h:outputText value="#{associate.fatherName}" />
-	      </rich:column>
-	      <rich:column  width="100px" filterExpression="#{fn:containsIgnoreCase(associate.motherName, associateFilter.motherNameFilter)}">
-	          <f:facet name="header">
-				<h:outputText value="Mother Name" />
-		        <h:inputText value="#{associateFilter.motherNameFilter}" id="motherNameFilter" ajaxSingle="true" style="width:90px;">
-		            <a4j:ajax event="keyup" render="studentListGrid@body">
-		                <a4j:attachQueue  requestDelay="700" ignoreDupResponses="true" />
-		            </a4j:ajax>
-		        </h:inputText>
-	          </f:facet>
-	          <h:outputText value="#{associate.motherName}" />
-	      </rich:column>
-	      <rich:column  width="60px" filterExpression="#{fn:containsIgnoreCase(associate.gender, associateFilter.genderFilter)}">
-	          <f:facet name="header">
-				<h:outputText value="Gender" />
-		        <h:inputText value="#{associateFilter.genderFilter}" id="genderFilter" ajaxSingle="true" style="width:50px;">
-		            <a4j:ajax event="keyup" render="studentListGrid@body">
-		                <a4j:attachQueue  requestDelay="700" ignoreDupResponses="true" />
-		            </a4j:ajax>
-		        </h:inputText>
-	          </f:facet>
-	          <h:outputText value="#{associate.gender}" />
-	      </rich:column>
-	      <rich:column  width="90px" filterExpression="#{fn:containsIgnoreCase(associate.stateDTO.name, associateFilter.stateFilter)}">
-	          <f:facet name="header">
-				<h:outputText value="State" />
-		        <h:inputText value="#{associateFilter.stateFilter}" id="stateFilter" ajaxSingle="true" style="width:80px;">
-		            <a4j:ajax event="keyup" render="studentListGrid@body">
-		                <a4j:attachQueue  requestDelay="700" ignoreDupResponses="true" />
-		            </a4j:ajax>
-		        </h:inputText>
-	          </f:facet>
-	          <h:outputText value="#{associate.stateDTO.name}" />
-	      </rich:column>					            
-	      <rich:column  width="200px" filterExpression="#{fn:containsIgnoreCase(associate.address, associateFilter.addressFilter)}">
-	          <f:facet name="header">
-				<h:outputText value="Address" />
-		        <h:inputText value="#{associateFilter.addressFilter}" id="addressFilter" ajaxSingle="true" style="width:190px;">
-		            <a4j:ajax event="keyup" render="studentListGrid@body">
-		                <a4j:attachQueue  requestDelay="700" ignoreDupResponses="true" />
-		            </a4j:ajax>
-		        </h:inputText>
-	          </f:facet>
-	          <h:outputText value="#{associate.address}" />
-	      </rich:column>	
-	      <rich:column  width="100px" filterExpression="#{fn:containsIgnoreCase(associate.city, associateFilter.cityFilter)}">
-	          <f:facet name="header">
-				<h:outputText value="City" />
-		        <h:inputText value="#{associateFilter.cityFilter}" id="cityFilter" ajaxSingle="true" style="width:90px;">
-		            <a4j:ajax event="keyup" render="studentListGrid@body">
-		                <a4j:attachQueue  requestDelay="700" ignoreDupResponses="true" />
-		            </a4j:ajax>
-		        </h:inputText>
-	          </f:facet>
-	          <h:outputText value="#{associate.city}" />
-	      </rich:column>					            
-	      <rich:column  width="70px" filterExpression="#{fn:containsIgnoreCase(associate.zipCode, associateFilter.zipCodeFilter)}">
-	          <f:facet name="header">
-				<h:outputText value="Zip code" />		
-		        <h:inputText value="#{associateFilter.zipCodeFilter}" id="zipCodeFilter" ajaxSingle="true" style="width:60px;">
-		            <a4j:ajax event="keyup" render="studentListGrid@body">
-		                <a4j:attachQueue  requestDelay="700" ignoreDupResponses="true" />
-		            </a4j:ajax>
-		        </h:inputText>
-	          </f:facet>
-	          <h:outputText value="#{associate.zipCode}" />
-	      </rich:column>					            
-	      <rich:column  width="100px" filterExpression="#{fn:containsIgnoreCase(associate.contactNo, associateFilter.contactNoFilter)}">
-	          <f:facet name="header">
-				<h:outputText value="Contact No." />		
-		        <h:inputText value="#{associateFilter.contactNoFilter}" id="contactNoFilter" ajaxSingle="true" style="width:90px;">
-		            <a4j:ajax event="keyup" render="studentListGrid@body">
-		                <a4j:attachQueue  requestDelay="700" ignoreDupResponses="true" />
-		            </a4j:ajax>
-		        </h:inputText>
-	          </f:facet>
-	          <h:outputText value="#{associate.contactNo}" />
-	      </rich:column>					            
-	      <rich:column  width="150px" filterExpression="#{fn:containsIgnoreCase(associate.contactEmail, associateFilter.contactEmailFilter)}">
-	          <f:facet name="header">
-				<h:outputText value="Contact Email" />		
-		        <h:inputText value="#{associateFilter.contactEmailFilter}" id="contactEmailFilter" ajaxSingle="true" style="width:140px;">
-		            <a4j:ajax event="keyup" render="studentListGrid@body">
-		                <a4j:attachQueue  requestDelay="700" ignoreDupResponses="true" />
-		            </a4j:ajax>
-		        </h:inputText>
-	          </f:facet>
-	          <h:outputText value="#{associate.contactEmail}" />
-	      </rich:column>					            
-	      <rich:column  width="100px" filterExpression="#{fn:containsIgnoreCase(associate.emergencyContactNo, associateFilter.emergencyContactNoFilter)}">
-	          <f:facet name="header">
-				<h:outputText value="Em. Contact No." />		
-		        <h:inputText value="#{associateFilter.emergencyContactNoFilter}" id="emergencyContactNoFilter" ajaxSingle="true" style="width:90px;">
-		            <a4j:ajax event="keyup" render="studentListGrid@body">
-		                <a4j:attachQueue  requestDelay="700" ignoreDupResponses="true" />
-		            </a4j:ajax>
-		        </h:inputText>
-	          </f:facet>
-	          <h:outputText value="#{associate.emergencyContactNo}" />
-	      </rich:column>					            
-	      <rich:column  width="50px" filterExpression="#{fn:containsIgnoreCase(associate.bloodGroupDTO.name, associateFilter.bloodGroupFilter)}">
-	          <f:facet name="header">
-				<h:outputText value="B.Grp" />		
-		        <h:inputText value="#{associateFilter.bloodGroupFilter}" id="bloodGroupFilter" ajaxSingle="true" style="width:40px;">
-		            <a4j:ajax event="keyup" render="studentListGrid@body">
-		                <a4j:attachQueue  requestDelay="700" ignoreDupResponses="true" />
-		            </a4j:ajax>
-		        </h:inputText>
-	          </f:facet>
-	          <h:outputText value="#{associate.bloodGroupDTO.name}" />
-	      </rich:column>					            
-	      <rich:column  width="70px" filterExpression="#{fn:containsIgnoreCase(associate.dateofJoining, associateFilter.dateofJoiningFilter)}">
-	          <f:facet name="header">
-				<h:outputText value="Join.Date" />		
-		        <h:inputText value="#{associateFilter.dateofJoiningFilter}" id="dateofJoiningFilter" ajaxSingle="true" style="width:60px;">
-		            <a4j:ajax event="keyup" render="studentListGrid@body">
-		                <a4j:attachQueue  requestDelay="700" ignoreDupResponses="true" />
-		            </a4j:ajax>
-		        </h:inputText>
-	          </f:facet>
-	          <h:outputText value="#{associate.dateofJoining}" />
-	      </rich:column>					            
-	      <rich:column  width="70px" filterExpression="#{fn:containsIgnoreCase(associate.dateofBirth, associateFilter.dateofBirthFilter)}">
-	          <f:facet name="header">
-				<h:outputText value="Birth.Date" />		
-		        <h:inputText value="#{associateFilter.dateofBirthFilter}" id="input" ajaxSingle="true" style="width:60px;">
-		            <a4j:ajax event="keyup" render="studentListGrid@body">
-		                <a4j:attachQueue  requestDelay="700" ignoreDupResponses="true" />
-		            </a4j:ajax>
-		        </h:inputText>
-	          </f:facet>
-	          <h:outputText value="#{associate.dateofBirth}" />
-	      </rich:column>					            
-	      <rich:column  width="30px" filterExpression="#{fn:containsIgnoreCase(associate.age, associateFilter.ageFilter)}">
-	          <f:facet name="header">
-				<h:outputText value="Age" />		
-		        <h:inputText value="#{associateFilter.ageFilter}" id="ageFilter" ajaxSingle="true" style="width:20px;">
-		            <a4j:ajax event="keyup" render="studentListGrid@body">
-		                <a4j:attachQueue  requestDelay="700" ignoreDupResponses="true" />
-		            </a4j:ajax>
-		        </h:inputText>
-	          </f:facet>
-	          <h:outputText value="#{associate.age}" />
-	      </rich:column>	
+		<p:column id="firstNameColumn" filterBy="#{associate.firstName}" headerText="First Name"  filterMatchMode="contains" style="width:100px">  
+            <h:outputText value="#{associate.firstName}" />  
+        </p:column> 
+        
+		<p:column id="fatherNameColumn" filterBy="#{associate.fatherName}" headerText="Father Name"  filterMatchMode="contains" style="width:100px">  
+            <h:outputText value="#{associate.fatherName}" />  
+        </p:column> 
+		
+		<p:column id="motherNameColumn" filterBy="#{associate.motherName}" headerText="Mother Name"  filterMatchMode="contains" style="width:100px">  
+            <h:outputText value="#{associate.motherName}" />  
+        </p:column> 	    
+
+		<p:column id="genderColumn" filterBy="#{associate.gender}" headerText="Gender"  filterMatchMode="contains" style="width:90px">  
+            <h:outputText value="#{associate.gender}" />  
+        </p:column> 	    
+
+		<p:column id="stateColumn" filterBy="#{associate.stateDTO.name}" headerText="State"  filterMatchMode="contains" style="width:100px">  
+            <h:outputText value="#{associate.stateDTO.name}" />  
+        </p:column> 	  
+        
+		<p:column id="addressColumn" filterBy="#{associate.address}" headerText="Address"  filterMatchMode="contains" style="width:190px">  
+            <h:outputText value="#{associate.address}" />  
+        </p:column> 	  
+        
+		<p:column id="cityColumn" filterBy="#{associate.city}" headerText="City"  filterMatchMode="contains" style="width:100px">  
+            <h:outputText value="#{associate.city}" />  
+        </p:column> 	  
+	     					            
+		<p:column id="zipCodeColumn" filterBy="#{associate.zipCode}" headerText="ZipCode"  filterMatchMode="contains" style="width:100px">  
+            <h:outputText value="#{associate.zipCode}" />  
+        </p:column> 	  
+
+		<p:column id="contactNoColumn" filterBy="#{associate.contactNo}" headerText="Contact No."  filterMatchMode="contains" style="width:140px">  
+            <h:outputText value="#{associate.contactNo}" />  
+        </p:column> 	  
+
+		<p:column id="contactEmailColumn" filterBy="#{associate.contactEmail}" headerText="Contact Email"  filterMatchMode="contains" style="width:240px">  
+            <h:outputText value="#{associate.contactEmail}" />  
+        </p:column> 	  
+
+		<p:column id="emergencyContactNoColumn" filterBy="#{associate.emergencyContactNo}" headerText="Emergency Contact"  filterMatchMode="contains" style="width:120px">  
+            <h:outputText value="#{associate.emergencyContactNo}" />  
+        </p:column> 	  
+
+		<p:column id="bloodGroupColumn" filterBy="#{associate.bloodGroupDTO.name}" headerText="Blood Group"  filterMatchMode="contains" style="width:100px">  
+            <h:outputText value="#{associate.bloodGroupDTO.name}" />  
+        </p:column> 	  
+
+		<p:column id="dateofJoiningColumn" filterBy="#{associate.dateofJoining}" headerText="Joining Date"  filterMatchMode="contains" style="width:100px">  
+            <h:outputText value="#{associate.dateofJoining}" />  
+        </p:column> 	  
+
+		<p:column id="dateofBirthColumn" filterBy="#{associate.dateofBirth}" headerText="Birth Date"  filterMatchMode="contains" style="width:100px">  
+            <h:outputText value="#{associate.dateofBirth}" />  
+        </p:column> 					            
+				            
+		<p:column id="ageColumn" filterBy="#{associate.age}" headerText="Age"  filterMatchMode="contains" style="width:50px">  
+            <h:outputText value="#{associate.age}" />  
+        </p:column> 
+        
 	</f:view>
 </ui:composition>	
