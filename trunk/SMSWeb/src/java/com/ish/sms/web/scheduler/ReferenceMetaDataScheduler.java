@@ -1,8 +1,5 @@
 package com.ish.sms.web.scheduler;
 
-import org.springframework.web.jsf.FacesContextUtils;
-import org.springframework.web.jsf.el.SpringBeanFacesELResolver;
-
 import com.ish.sms.web.cache.JBossCacheProvider;
 
 /**
