@@ -11,7 +11,7 @@
 						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Date of Birth:" styleClass="labelText"/>
 					</h:panelGroup>
-					<p:calendar  id="dateofBirth" pattern="MM/dd/yyyy" cellWidth="24px" required="true" cellHeight="22px" style="width:200px" value="#{associateBean.associateDTO.dateofBirth}" requiredMessage="Date of Birth Required" ajaxSingle="true" tabIndex="11" disabled="#{associateBean.readOnlyMode}" effect="explode">
+					<p:calendar  id="dateofBirth" pattern="MM/dd/yyyy" cellWidth="24px" required="true" cellHeight="22px" style="width:200px" value="#{associateBean.associateDTO.dateofBirth}" requiredMessage="Date of Birth Required" ajaxSingle="true" tabindex="11" disabled="#{associateBean.readOnlyMode}" effect="explode">
 						<f:converter converterId="DateStrConveter"/>
 					</p:calendar>
 
