@@ -11,19 +11,19 @@
 						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Previous Occupation:" styleClass="labelText"/>
 					</h:panelGroup>
-					<p:inputText id="previousOccupation" styleClass="commonInput" tabindex="19" required="true"  maxlength="100" value="#{associateBean.teacherDTO.previousOccupation}" requiredMessage="Required Field" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
+					<p:inputText id="previousOccupation" styleClass="commonInput" tabindex="19" required="true"  maxlength="100" value="#{associateBean.teacherDTO.previousOccupation}" requiredMessage="Occupation Required" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
 
 					<h:panelGroup>
 						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Education:" styleClass="labelText"/>
 					</h:panelGroup>
-					<p:inputText id="education" styleClass="commonInput" tabindex="20" required="true"  maxlength="100" value="#{associateBean.teacherDTO.education}" requiredMessage="Required Field" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
+					<p:inputText id="education" styleClass="commonInput" tabindex="20" required="true"  maxlength="100" value="#{associateBean.teacherDTO.education}" requiredMessage="Education Required" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
 
 					<h:panelGroup>
 						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Experience: " styleClass="labelText"/>
 					</h:panelGroup>
-					<p:inputText id="experience" styleClass="commonInput" tabindex="21" required="true"  maxlength="100" value="#{associateBean.teacherDTO.experience}" requiredMessage="Required Field" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
+					<p:inputText id="experience" styleClass="commonInput" tabindex="21" required="true"  maxlength="100" value="#{associateBean.teacherDTO.experience}" requiredMessage="Experience Required" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
 					
 					<h:outputText />
 					<p:commandButton value="Save"  id="saveBtn" action="#{associateAction.saveTeacher}" style="width:100px;height:35px;" disabled="#{associateBean.readOnlyMode}"  update="growlAddTeacher"/>
