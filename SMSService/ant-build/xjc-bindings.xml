@@ -6,4 +6,11 @@
 	<jxb:globalBindings>
         <xjc:serializable uid="1" />
 	</jxb:globalBindings>
+	
+  <jxb:bindings node="//xs:element[@name='attendanceMap']">
+  	 <jxb:property>
+    	<jxb:baseType name="com.ish.sms.service.dto.AttendanceMap&lt;String,Boolean&gt;" />
+   	 </jxb:property>
+  </jxb:bindings>
+    	
 </jxb:bindings>

@@ -11,7 +11,8 @@ import javax.persistence.Table;
 
 import com.ish.sms.service.util.QueryConstants;
 
-@NamedQueries( { @NamedQuery(name = QueryConstants.FIND_ALL_CLASSES, query = QueryConstants.FIND_ALL_CLASSES_QUERY) })
+@NamedQueries( { @NamedQuery(name = QueryConstants.FIND_ALL_CLASSES, query = QueryConstants.FIND_ALL_CLASSES_QUERY),
+	 @NamedQuery(name = QueryConstants.FIND_CLASS_BY_ID, query = QueryConstants.FIND_CLASS_BY_ID_QUERY) })
 @Entity
 @Table(name = "class_details")
 public class Class {
