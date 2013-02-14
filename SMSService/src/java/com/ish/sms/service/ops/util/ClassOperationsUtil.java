@@ -45,7 +45,7 @@ public class ClassOperationsUtil {
 		ClassAttendanceDef classAttendanceDef = new ClassAttendanceDef();
 		BeanUtils.copyProperties(classAttendanceDef, classAttendanceDefDTO);
 		com.ish.sms.service.entity.Class classObj = new com.ish.sms.service.entity.Class();
-		BeanUtils.copyProperties(classObj, classAttendanceDefDTO.getClassRef());
+		BeanUtils.copyProperties(classObj, classAttendanceDefDTO.getClassDTO());
 		classAttendanceDef.setClassRef(classObj);
 		
 		return classAttendanceDef;
