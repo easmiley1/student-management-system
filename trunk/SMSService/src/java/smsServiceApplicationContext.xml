@@ -18,13 +18,22 @@
 	<bean id="persistenceAnnotation" class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 	<bean id="serviceTransformer" class="com.ish.sms.service.util.ServiceTransformer"/>
 
+	<!--DAO beans declaration -->
 	<bean id="associateOperationsDAO" class="com.ish.sms.service.dao.AssociateOperationsDAO"/>
-	<bean id="associateOperations" class="com.ish.sms.service.ops.AssociateOperations"/>
 	<bean id="referenceOperationsDAO" class="com.ish.sms.service.dao.ReferenceOperationsDAO"/>
-	<bean id="referenceOperations" class="com.ish.sms.service.ops.ReferenceOperations"/>
+	<bean id="classOperationsDAO" class="com.ish.sms.service.dao.ClassOperationsDAO"/>
 	
+	<!--Business Operations beans declaration -->
+	<bean id="associateOperations" class="com.ish.sms.service.ops.AssociateOperations"/>
+	<bean id="referenceOperations" class="com.ish.sms.service.ops.ReferenceOperations"/>
+	<bean id="classOperations" class="com.ish.sms.service.ops.ClassOperations"/>
+	<bean id="associateOperationsUtil" class="com.ish.sms.service.ops.util.AssociateOperationsUtil"/>
+	<bean id="classOperationsUtil" class="com.ish.sms.service.ops.util.ClassOperationsUtil"/>
+	
+	<!--Restful Webservices bean declaration -->
 	<bean id="smsAssociateService" class="com.ish.sms.service.rest.SMSAssociateService"/>
 	<bean id="smsReferenceService" class="com.ish.sms.service.rest.SMSReferenceService"/>
+	<bean id="smsClassService" class="com.ish.sms.service.rest.SMSClassService"/>
 
 	<bean id="entityManagerFactory"	class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="smsServicePersistenceUnit" />

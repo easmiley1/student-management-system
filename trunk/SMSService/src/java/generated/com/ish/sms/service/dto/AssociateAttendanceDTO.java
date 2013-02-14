@@ -16,16 +16,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for baseReferenceDTO complex type.
+ * <p>Java class for associateAttendanceDTO complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="baseReferenceDTO">
+ * &lt;complexType name="associateAttendanceDTO">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *         &lt;element name="attendanceMap" type="{http://www.ish.com/soa/sms}attendances" minOccurs="0"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -36,42 +36,42 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "baseReferenceDTO", propOrder = {
-    "id",
+@XmlType(name = "associateAttendanceDTO", propOrder = {
+    "attendanceMap",
     "name"
 })
-public class BaseReferenceDTO
+public class AssociateAttendanceDTO
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
-    @XmlElement(namespace = "http://www.ish.com/soa/sms")
-    protected Integer id;
+    @XmlElement(namespace = "http://www.ish.com/soa/sms", type = Attendances.class)
+    protected AttendanceMap<String, Boolean> attendanceMap;
     @XmlElement(namespace = "http://www.ish.com/soa/sms", required = true)
-    protected String name;
+    protected java.lang.String name;
 
     /**
-     * Gets the value of the id property.
+     * Gets the value of the attendanceMap property.
      * 
      * @return
      *     possible object is
-     *     {@link Integer }
+     *     {@link Attendances }
      *     
      */
-    public Integer getId() {
-        return id;
+    public AttendanceMap<String, Boolean> getAttendanceMap() {
+        return attendanceMap;
     }
 
     /**
-     * Sets the value of the id property.
+     * Sets the value of the attendanceMap property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Integer }
+     *     {@link Attendances }
      *     
      */
-    public void setId(Integer value) {
-        this.id = value;
+    public void setAttendanceMap(AttendanceMap<String, Boolean> value) {
+        this.attendanceMap = value;
     }
 
     /**
@@ -79,10 +79,10 @@ public class BaseReferenceDTO
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link java.lang.String }
      *     
      */
-    public String getName() {
+    public java.lang.String getName() {
         return name;
     }
 
@@ -91,10 +91,10 @@ public class BaseReferenceDTO
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link java.lang.String }
      *     
      */
-    public void setName(String value) {
+    public void setName(java.lang.String value) {
         this.name = value;
     }
 

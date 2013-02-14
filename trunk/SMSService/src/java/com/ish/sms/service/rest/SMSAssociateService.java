@@ -29,10 +29,10 @@ public class SMSAssociateService extends SMSBaseService{
 	 * @return studentXML
 	 */
 	@POST
-	@Path("/createStudent/")
+	@Path("/saveStudent/")
 	@Produces("text/xml")
 	@Consumes("text/xml")
-	public String createStudent(String xml) {
+	public String saveStudent(String xml) {
 
 		StudentDTO studentDTO = null;
 		String studentXML = null;
@@ -53,10 +53,10 @@ public class SMSAssociateService extends SMSBaseService{
 	 * @return teacherXml
 	 */
 	@POST
-	@Path("/createTeacher/")
+	@Path("/saveTeacher/")
 	@Produces("text/xml")
 	@Consumes("text/xml")
-	public String createTeacher(String xml) {
+	public String saveTeacher(String xml) {
 
 		TeacherDTO teacherDTO = null;
 		String teacherXml = null;

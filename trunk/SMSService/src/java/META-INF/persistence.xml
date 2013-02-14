@@ -12,7 +12,7 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>    
 	<non-jta-data-source>java:/smsDS</non-jta-data-source>       
  	<properties>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
             <property name="hibernate.show_sql" value="true" />
      </properties>      
   </persistence-unit>
