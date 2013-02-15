@@ -42,8 +42,7 @@
 	<xs:complexType name="classAttendanceDefDTO">
 		<xs:sequence>
 			<xs:element name="id" type="xs:int" minOccurs="0" />
-			<xs:element name="month" type="xs:int" />
-			<xs:element name="year" type="xs:int" />
+			<xs:element name="monthYear" type="xs:string" />
 			<xs:element name="classDTO" type="classDTO" />
 		</xs:sequence>
 	</xs:complexType>
