@@ -21,11 +21,8 @@ public class ClassAttendanceDef {
 	@Column(name = "attendance_month_id")
 	private Integer id;
 
-	@Column(nullable = false, name = "month")
-	private Integer month;
-
-	@Column(nullable = false, name = "year")
-	private Integer year;
+	@Column(nullable = false, name = "month_year")
+	private String monthYear;
 	
 	@ManyToOne
 	@JoinColumn(name = "class_id")
@@ -46,31 +43,17 @@ public class ClassAttendanceDef {
 	}
 
 	/**
-	 * @return the month
+	 * @return the monthYear
 	 */
-	public Integer getMonth() {
-		return month;
+	public String getMonthYear() {
+		return monthYear;
 	}
 
 	/**
-	 * @param month the month to set
+	 * @param monthYear the monthYear to set
 	 */
-	public void setMonth(Integer month) {
-		this.month = month;
-	}
-
-	/**
-	 * @return the year
-	 */
-	public Integer getYear() {
-		return year;
-	}
-
-	/**
-	 * @param year the year to set
-	 */
-	public void setYear(Integer year) {
-		this.year = year;
+	public void setMonthYear(String monthYear) {
+		this.monthYear = monthYear;
 	}
 
 	/**
