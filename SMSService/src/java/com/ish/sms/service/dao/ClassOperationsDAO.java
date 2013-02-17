@@ -1,8 +1,8 @@
 package com.ish.sms.service.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.ish.sms.service.entity.Class;
 import com.ish.sms.service.entity.ClassAttendanceDef;
 
 /**
@@ -14,40 +14,24 @@ import com.ish.sms.service.entity.ClassAttendanceDef;
 public class ClassOperationsDAO extends BaseOperationsDAO {
 
 	/**
-	 * Method to return the attendance definition list for particular class.
+	 * Method to perform DAO operations related to removing and deleting the classAttendanceDefList
 	 * 
-	 * @return bloodGroupsList
-	 */ 
-	@SuppressWarnings("unchecked")
-	public List<ClassAttendanceDef> retrieveClassAttendanceDefList(Integer classId) {
-
-		List<ClassAttendanceDef> classAttendanceDefList = (List<ClassAttendanceDef>) entityManager
-				.createNamedQuery(FIND_CLASS_ATTENDANCE_DEF).setParameter(ID, classId).getResultList();
-		return classAttendanceDefList;
-	}
-
-	/**
-	 * Method to return the class for a specific classid
-	 * 
-	 * @param classId
-	 * @return class
+	 * @param classAttendanceDefList
+	 * @return updateClassAttendanceDefList
 	 */
-	public com.ish.sms.service.entity.Class retrieveClassForId(Integer classId) {
+	public List<ClassAttendanceDef> updateClassAttendanceDefList(List<ClassAttendanceDef> classAttendanceDefList) {
+		List<ClassAttendanceDef> updatedClassAttendanceDefList = new ArrayList<ClassAttendanceDef>();
 
-		com.ish.sms.service.entity.Class classObj = (Class) entityManager.createNamedQuery(FIND_CLASS_BY_ID, Class.class)
-				.setParameter(ID, classId).getSingleResult();
-		return classObj;
+		for (ClassAttendanceDef classAttendanceDef : classAttendanceDefList) {
+			if (classAttendanceDef.getModification().equals(CLASS_DEF_MODIFICATION.Added.name())) {
+				ClassAttendanceDef updatedAttendanceDef = (ClassAttendanceDef) createOrUpdateEntity(classAttendanceDef);
+				updatedClassAttendanceDefList.add(updatedAttendanceDef);
+			} else if (classAttendanceDef.getModification().equals(CLASS_DEF_MODIFICATION.Deleted.name())) {
+				removeEntityByID(ClassAttendanceDef.class, classAttendanceDef.getId());
+			}
+		}
+
+		return updatedClassAttendanceDefList;
 	}
 
-	/**
-	 * Method to create or update classAttendanceDef entity
-	 * 
-	 * @param classAttendanceDef
-	 * @return classAttendanceDef
-	 */
-	public ClassAttendanceDef createOrUpdateClassAttendanceDef(ClassAttendanceDef classAttendanceDef){
-		return entityManager.merge(classAttendanceDef);
-		
-	}
-	
 }

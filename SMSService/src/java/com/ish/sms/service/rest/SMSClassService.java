@@ -9,7 +9,6 @@ import javax.ws.rs.Produces;
 
 import org.springframework.stereotype.Service;
 
-import com.ish.sms.service.dto.ClassAttendanceDefDTO;
 import com.ish.sms.service.dto.ClassAttendanceDefListDTO;
 import com.ish.sms.service.dto.ClassDTO;
 
@@ -43,6 +42,27 @@ public class SMSClassService extends SMSBaseService {
 		return classAttendanceDefListDTOXML;
 	}
 
+	/**
+	 * Method to remove or delete the given ClassAttendanceDefDTO List and return the updated one wrapped in classAttendanceDefListDTO 
+	 * 
+	 * @return classAttendanceDefListDTOXML
+	 */
+	@POST
+	@Path("/updateClassAttendanceDefList/")
+	@Produces("text/xml")
+	@Consumes("text/xml")	
+	public String updateClassAttendanceDefList(String classAttendanceDefListDTOXML) {
+
+		ClassAttendanceDefListDTO classAttendanceDefListDTO = null;
+		try {
+			classAttendanceDefListDTO = serviceTransformer.tryParseXml(classAttendanceDefListDTOXML);
+			classAttendanceDefListDTO = classOperations.updateClassAttendanceDefList(classAttendanceDefListDTO);
+			classAttendanceDefListDTOXML = serviceTransformer.transformToXML(classAttendanceDefListDTO, "classAttendanceDefListDTO");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return classAttendanceDefListDTOXML;
+	}
 
 	/**
 	 * Method to get the Class Entity for the given classid.
@@ -64,28 +84,5 @@ public class SMSClassService extends SMSBaseService {
 		return classDTOXML;
 	}
 	
-	/**
-	 * Method to create or update a ClassAttendanceDef and return the persisted studentXML.
-	 * 
-	 * @param studentXml
-	 * @return studentXML
-	 */
-	@POST
-	@Path("/saveClassAttendanceDef/")
-	@Produces("text/xml")
-	@Consumes("text/xml")
-	public String saveClassAttendanceDef(String xml) {
-
-		ClassAttendanceDefDTO classAttendanceDefDTO = null;
-		String classAttendanceDefDTOXML = null;
-		try {
-			classAttendanceDefDTO = serviceTransformer.tryParseXml(xml);
-			classAttendanceDefDTO = classOperations.createOrUpdateClassAttendanceDef(classAttendanceDefDTO);
-			classAttendanceDefDTOXML = serviceTransformer.transformToXML(classAttendanceDefDTO, "classAttendanceDefDTO");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return classAttendanceDefDTOXML;
-	}	
 
 }
