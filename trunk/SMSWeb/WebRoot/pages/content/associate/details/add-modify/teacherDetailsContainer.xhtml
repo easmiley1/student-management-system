@@ -7,12 +7,13 @@
 		<h:body>
 			<ui:include src="/pages/layout/applicationStyles.xhtml"/>
 				<h:form id="teacherForm">
-					<p:growl id="growlAddTeacher" showDetail="true" sticky="true" />
+					<p:growl id="growlAddTeacher" showDetail="true" />
 					<h:panelGrid columns="4" width="100%" columnClasses="profileDottedGrid1,profileDottedGrid2,profileDottedGrid3,profileDottedGrid4" id="studentPanel">
 						<ui:include src="associateDetailsGrid1.xhtml"/>
 						<ui:include src="associateDetailsGrid2.xhtml"/>	
 						<ui:include src="teacherDetailsGrid3.xhtml"/>	
 					</h:panelGrid>
+					<p:blockUI block="teacherForm" trigger="saveBtn" />
 				</h:form>	
 		</h:body>
 	</f:view>

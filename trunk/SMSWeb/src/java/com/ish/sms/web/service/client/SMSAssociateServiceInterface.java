@@ -18,7 +18,7 @@ public interface SMSAssociateServiceInterface {
     @Path("/createStudent/")
     @Produces("text/xml")
     @Consumes( "text/xml" )
-	public String createStudent(String studentXml) ;
+	public String saveStudent(String studentXml) ;
 
 	/**
 	 * Method to create or update a teacher and return the persisted teacherXML.
@@ -30,7 +30,7 @@ public interface SMSAssociateServiceInterface {
     @Path("/createTeacher/")
     @Produces("text/xml")
     @Consumes( "text/xml" )
-	public String createTeacher(String teacherXML) ;
+	public String saveTeacher(String teacherXML) ;
 
 	/**
 	 * Method to return the list of all the students in the school.

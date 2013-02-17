@@ -5,6 +5,7 @@ import org.jboss.resteasy.plugins.providers.RegisterBuiltin;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
 import com.ish.sms.web.service.client.SMSAssociateServiceInterface;
+import com.ish.sms.web.service.client.SMSClassServiceInterface;
 import com.ish.sms.web.service.client.SMSReferenceServiceInterface;
 
 /**
@@ -18,6 +19,8 @@ public class SMSServiceLocator {
 	private SMSAssociateServiceInterface smsAssociateServiceInterface;
 	
 	private SMSReferenceServiceInterface smsReferenceServiceInterface;
+	
+	private SMSClassServiceInterface smsClassServiceInterface;
 
 
 	/**
@@ -36,18 +39,28 @@ public class SMSServiceLocator {
 	}
 
 	/**
+	 * @return the smsClassServiceInterface
+	 */
+	public SMSClassServiceInterface getSmsClassServiceInterface() {
+		return smsClassServiceInterface;
+	}
+
+
+	/**
 	 * Constructor initializes the restful service interfaces
 	 */
-	public SMSServiceLocator(String associateServiceURL, String referenceServiceURL) {
+	public SMSServiceLocator(String associateServiceURL, String referenceServiceURL, String classServiceURL) {
 		RegisterBuiltin.register(ResteasyProviderFactory.getInstance());
 		smsAssociateServiceInterface = ProxyFactory.create(SMSAssociateServiceInterface.class, associateServiceURL);
 		smsReferenceServiceInterface = ProxyFactory.create(SMSReferenceServiceInterface.class, referenceServiceURL);
+		smsClassServiceInterface = ProxyFactory.create(SMSClassServiceInterface.class, classServiceURL);
 	}
 	
 	public static void main(String args[]){
 		
-		SMSServiceLocator smsServiceLocator = new SMSServiceLocator("", "http://localhost:8080/SMSService/websvc/smsReferenceService");
-		System.out.println(smsServiceLocator.getSmsReferenceServiceInterface().retrieveAllReferenceList());
+		SMSServiceLocator smsServiceLocator = new SMSServiceLocator("", "","http://localhost:8080/SMSService/websvc/smsClassService");
+		String classxml = smsServiceLocator.getSmsClassServiceInterface().retrieveClassForId(1);
+		System.out.println("class xml " + classxml);
 	}
 	
 }

@@ -30,6 +30,12 @@
 							<p:menuitem value="Search All" action="#{associateAction.initViewSearchAllTeachers}" ajax="false"/>
 						</p:submenu>
 					</p:submenu>
+
+					<p:submenu label="Class Management" >
+						<p:submenu label="Class LKG A" >
+							<p:menuitem value="Attendance Register" action="#{classAction.createAttendanceBean(1)}" ajax="false" />
+						</p:submenu>
+					</p:submenu>
 					
 				</p:menubar>
 			</p:toolbarGroup>
@@ -41,5 +47,7 @@
         		</p:themeSwitcher>  
 			</p:toolbarGroup>
 		</p:toolbar>
+
+
 	</f:view>
 </ui:composition>

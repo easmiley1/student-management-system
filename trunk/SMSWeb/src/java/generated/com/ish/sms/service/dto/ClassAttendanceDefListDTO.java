@@ -18,16 +18,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for studentListDTO complex type.
+ * <p>Java class for classAttendanceDefListDTO complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="studentListDTO">
+ * &lt;complexType name="classAttendanceDefListDTO">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="studentDTOList" type="{http://www.ish.com/soa/sms}studentDTO" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="classAttendanceDefDTOList" type="{http://www.ish.com/soa/sms}classAttendanceDefDTO" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,56 +37,56 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "studentListDTO", propOrder = {
-    "studentDTOList"
+@XmlType(name = "classAttendanceDefListDTO", propOrder = {
+    "classAttendanceDefDTOList"
 })
-public class StudentListDTO
+public class ClassAttendanceDefListDTO
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
     @XmlElement(namespace = "http://www.ish.com/soa/sms", required = true)
-    protected List<StudentDTO> studentDTOList;
+    protected List<ClassAttendanceDefDTO> classAttendanceDefDTOList;
 
     /**
-     * Gets the value of the studentDTOList property.
+     * Gets the value of the classAttendanceDefDTOList property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the studentDTOList property.
+     * This is why there is not a <CODE>set</CODE> method for the classAttendanceDefDTOList property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getStudentDTOList().add(newItem);
+     *    getClassAttendanceDefDTOList().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link StudentDTO }
+     * {@link ClassAttendanceDefDTO }
      * 
      * 
      */
-    public List<StudentDTO> getStudentDTOList() {
-        if (studentDTOList == null) {
-            studentDTOList = new ArrayList<StudentDTO>();
+    public List<ClassAttendanceDefDTO> getClassAttendanceDefDTOList() {
+        if (classAttendanceDefDTOList == null) {
+            classAttendanceDefDTOList = new ArrayList<ClassAttendanceDefDTO>();
         }
-        return this.studentDTOList;
+        return this.classAttendanceDefDTOList;
     }
 
     /**
-     * Sets the value of the studentDTOList property.
+     * Sets the value of the classAttendanceDefDTOList property.
      * 
-     * @param studentDTOList
+     * @param classAttendanceDefDTOList
      *     allowed object is
-     *     {@link StudentDTO }
+     *     {@link ClassAttendanceDefDTO }
      *     
      */
-    public void setStudentDTOList(List<StudentDTO> studentDTOList) {
-        this.studentDTOList = studentDTOList;
+    public void setClassAttendanceDefDTOList(List<ClassAttendanceDefDTO> classAttendanceDefDTOList) {
+        this.classAttendanceDefDTOList = classAttendanceDefDTOList;
     }
 
 }

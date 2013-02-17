@@ -16,17 +16,19 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for baseReferenceDTO complex type.
+ * <p>Java class for classAttendanceDefDTO complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="baseReferenceDTO">
+ * &lt;complexType name="classAttendanceDefDTO">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="monthYear" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="classDTO" type="{http://www.ish.com/soa/sms}classDTO" minOccurs="0"/>
+ *         &lt;element name="modification" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,11 +38,13 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "baseReferenceDTO", propOrder = {
+@XmlType(name = "classAttendanceDefDTO", propOrder = {
     "id",
-    "name"
+    "monthYear",
+    "classDTO",
+    "modification"
 })
-public class BaseReferenceDTO
+public class ClassAttendanceDefDTO
     implements Serializable
 {
 
@@ -48,7 +52,11 @@ public class BaseReferenceDTO
     @XmlElement(namespace = "http://www.ish.com/soa/sms")
     protected Integer id;
     @XmlElement(namespace = "http://www.ish.com/soa/sms", required = true)
-    protected String name;
+    protected String monthYear;
+    @XmlElement(namespace = "http://www.ish.com/soa/sms")
+    protected ClassDTO classDTO;
+    @XmlElement(namespace = "http://www.ish.com/soa/sms")
+    protected String modification;
 
     /**
      * Gets the value of the id property.
@@ -75,27 +83,75 @@ public class BaseReferenceDTO
     }
 
     /**
-     * Gets the value of the name property.
+     * Gets the value of the monthYear property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getName() {
-        return name;
+    public String getMonthYear() {
+        return monthYear;
     }
 
     /**
-     * Sets the value of the name property.
+     * Sets the value of the monthYear property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setName(String value) {
-        this.name = value;
+    public void setMonthYear(String value) {
+        this.monthYear = value;
+    }
+
+    /**
+     * Gets the value of the classDTO property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ClassDTO }
+     *     
+     */
+    public ClassDTO getClassDTO() {
+        return classDTO;
+    }
+
+    /**
+     * Sets the value of the classDTO property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ClassDTO }
+     *     
+     */
+    public void setClassDTO(ClassDTO value) {
+        this.classDTO = value;
+    }
+
+    /**
+     * Gets the value of the modification property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getModification() {
+        return modification;
+    }
+
+    /**
+     * Sets the value of the modification property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setModification(String value) {
+        this.modification = value;
     }
 
 }

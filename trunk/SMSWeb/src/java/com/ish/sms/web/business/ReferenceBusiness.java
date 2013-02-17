@@ -1,20 +1,15 @@
 package com.ish.sms.web.business;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.ish.sms.service.dto.ReferenceListDTO;
-import com.ish.sms.web.businessdelegate.ReferenceBusinessDelegate;
 
 /**
- * 
+ * Business class for all reference related actions. This is called from the Action bean/class. The methods in the class also converts the
+ * DTO to xml and vice-versa the response from the rest service.
  * 
  * @author Naren
- *
+ * 
  */
 public class ReferenceBusiness extends BaseBusiness {
-
-	@Autowired
-	private ReferenceBusinessDelegate referenceBusinessDelegate;
 
 	/**
 	 * Method to get all the reference entities.

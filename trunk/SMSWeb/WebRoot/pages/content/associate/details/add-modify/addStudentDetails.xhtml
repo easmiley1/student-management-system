@@ -7,9 +7,10 @@
 		<h:body>
 			<ui:composition template="/pages/layout/commonLayout.xhtml">
 				<ui:define name="content">
-					<p:panel header="Add Student" styleClass="dialogBodyPanel">
+					<p:panel header="Add Student" styleClass="dialogBodyPanel" id="pnl">
 						<ui:include src="studentDetailsContainer.xhtml"/>						
 					</p:panel>
+					<p:blockUI block="pnl" trigger="saveBtn" />
 				</ui:define>
 			</ui:composition>
 		</h:body>
