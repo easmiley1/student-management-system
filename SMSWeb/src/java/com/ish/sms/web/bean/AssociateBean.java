@@ -12,6 +12,12 @@ import com.ish.sms.service.dto.StudentDTO;
 import com.ish.sms.service.dto.TeacherDTO;
 import com.ish.sms.web.util.WebConstants;
 
+/**
+ * Bean class which is in session scope and holds the state of all associate related screens
+ * 
+ * @author Naren
+ *
+ */
 @ManagedBean(name = "associateBean")
 @SessionScoped
 public class AssociateBean extends BaseBean implements WebConstants {

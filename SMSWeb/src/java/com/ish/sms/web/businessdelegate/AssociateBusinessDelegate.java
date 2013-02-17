@@ -1,9 +1,7 @@
 package com.ish.sms.web.businessdelegate;
 
-
 /**
- * Associate Business Delegate which is used to lookup the rest service and call
- * the same.
+ * Associate Business Delegate which is used to lookup the associate rest service and call the same.
  * 
  * @author Naren
  * 
@@ -17,8 +15,9 @@ public class AssociateBusinessDelegate extends BaseBusinessDelegate {
 	 * @return persistedstudentXML
 	 */
 	public String saveStudent(String studentXml) {
-		return smsServiceLocator.getSmsAssociateServiceInterface().createStudent(studentXml);
+		return smsServiceLocator.getSmsAssociateServiceInterface().saveStudent(studentXml);
 	}
+
 	/**
 	 * Method to create or update a Teacher.
 	 * 
@@ -26,8 +25,9 @@ public class AssociateBusinessDelegate extends BaseBusinessDelegate {
 	 * @return persistedTeacherXml
 	 */
 	public String saveTeacher(String teacherXml) {
-		return smsServiceLocator.getSmsAssociateServiceInterface().createTeacher(teacherXml);
+		return smsServiceLocator.getSmsAssociateServiceInterface().saveTeacher(teacherXml);
 	}
+
 	/**
 	 * Method to return the list of all the students in the school.
 	 * 
@@ -37,6 +37,7 @@ public class AssociateBusinessDelegate extends BaseBusinessDelegate {
 
 		return smsServiceLocator.getSmsAssociateServiceInterface().retrieveAllStudents();
 	}
+
 	/**
 	 * Method to return the list of all the teachers in the school.
 	 * 

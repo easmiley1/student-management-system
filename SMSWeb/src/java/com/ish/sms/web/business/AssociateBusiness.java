@@ -3,27 +3,22 @@ package com.ish.sms.web.business;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import com.ish.sms.service.dto.AssociateDTO;
 import com.ish.sms.service.dto.StudentDTO;
 import com.ish.sms.service.dto.StudentListDTO;
 import com.ish.sms.service.dto.TeacherDTO;
 import com.ish.sms.service.dto.TeacherListDTO;
-import com.ish.sms.web.businessdelegate.AssociateBusinessDelegate;
-import com.ish.sms.web.util.WebConstants;
 
 /**
- * Business class for all associate related actions. This is called from the
- * Action bean/class. The methods in the class also converts the DTO to xml and
- * vice-versa the response from the rest service.
+ * Business class for all associate related actions. This is called from the Action bean/class. The methods in the class also converts the
+ * DTO to xml and vice-versa the response from the rest service.
  * 
  * @author Naren
  * 
  */
-public class AssociateBusiness extends BaseBusiness implements WebConstants {
+public class AssociateBusiness extends BaseBusiness  {
 
-	@Autowired
-	private AssociateBusinessDelegate associateBusinessDelegate;
 
 	/**
 	 * Method to update/insert Students.

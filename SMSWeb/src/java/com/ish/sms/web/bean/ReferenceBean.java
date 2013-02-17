@@ -13,6 +13,12 @@ import com.ish.sms.service.dto.StateDTO;
 import com.ish.sms.web.cache.JBossCacheProvider;
 import com.ish.sms.web.util.SMSSpringFactory;
 
+/**
+ * Bean class to hold all reference data. They will be reference once a day.
+ * 
+ * @author Naren
+ *
+ */
 @ManagedBean(name = "referenceBean")
 @SessionScoped
 public class ReferenceBean extends BaseBean {

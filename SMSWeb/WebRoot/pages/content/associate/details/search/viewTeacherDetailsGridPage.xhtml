@@ -13,7 +13,8 @@
 					        <p:dataTable value="#{associateBean.teacherDTOList}" var="associate" id="teacherListGridID" rowKey="#{associate.id}"
 					         selectionMode="single" selection="#{associateBean.teacherDTO}" widgetVar="teacherListGrid"   
             				 emptyMessage="No Teacher found with given criteria" filteredValue="#{associateBean.filteredTeacherList}"
-            				 scrollable="true" scrollWidth="1200" resizableColumns="true" scrollHeight="500">
+            				 scrollable="true" paginator="true" rows="15" resizableColumns="true"  
+                 			 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" >
 								<ui:include src="associateGridList.xhtml"/>
 								<ui:include src="teacherGridList.xhtml"/>
 				                <f:facet name="footer">

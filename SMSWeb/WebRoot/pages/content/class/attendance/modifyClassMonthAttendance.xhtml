@@ -1,0 +1,47 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<f:view>
+		<h:body>
+			<ui:include src="applicationStyles.xhtml" />
+			<ui:composition template="/pages/layout/commonLayout.xhtml">
+				<ui:define name="content">
+					<h:form id="classAttendanceForm">
+						<p:growl id="attendanceRegisterGrowl" showDetail="true" sticky="false" />
+    						<p:panel header="Class Attendance" styleClass="dialogBodyPanel"	id="classAttendancePanel">
+							<p:toolbar>
+								<p:toolbarGroup align="right" >
+									<p:commandButton value="Register Maintenance" update="attnMainDialogId" oncomplete="attnMainDialog.show()" />  	
+								</p:toolbarGroup>
+							</p:toolbar>
+						
+							<p:dataTable id="attendanceDataTableId" var="attendance" value="#{classBean.attendanceRegisterBean.attendanceList}"
+							 scrollable="true" paginator="true" rows="15"  
+                 			 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" >
+                 				<p:column headerText="Name" style="width:200px">
+                 					<h:outputText value="#{attendance.name}" />  
+                 				</p:column>
+								<p:columns value="#{classBean.attendanceRegisterBean.columnNames}" var="column" columnIndexVar="colIndex" style="width:20px">
+									<f:facet name="header">  
+               							 #{column}  
+            						</f:facet>  
+						             <p:selectBooleanCheckbox value="#{attendance.attendanceMap[column]}" />  
+       							 </p:columns>
+							</p:dataTable>
+						</p:panel>
+						<p:dialog header="Maintain Register" widgetVar="attnMainDialog" showEffect="fold" hideEffect="fold" modal="true" id="attnMainDialogId" >  
+							<h:panelGrid id="classAttPickGrid" columns="1" cellpadding="5">
+							  	 <p:pickList id="classAttPickList" value="#{classBean.maintainRegisterMonthBean.classAttendanceDTOModel}" var="classAtt" 
+							  	 effect="slide" itemLabel="#{classAtt}" itemValue="#{classAtt}" showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains"/>  
+								<p:commandButton value="Submit" oncomplete="attnMainDialog.hide()" action="#{classAction.submitMaintainClassAttendanceDef}"
+								 ajax="true" update="attendanceRegisterGrowl"/>  	
+							</h:panelGrid>
+						</p:dialog>						
+					</h:form>
+				</ui:define>
+			</ui:composition>
+		</h:body>
+	</f:view>
+</ui:composition>

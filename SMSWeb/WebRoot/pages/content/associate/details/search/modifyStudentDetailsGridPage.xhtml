@@ -12,7 +12,8 @@
 					        <p:dataTable value="#{associateBean.studentDTOList}" var="associate" id="studentListGridID" rowKey="#{associate.id}"
 					         selectionMode="single" selection="#{associateBean.studentDTO}" widgetVar="studentListGrid"   
             				 emptyMessage="No Student found with given criteria" filteredValue="#{associateBean.filteredStudentList}"
-            				 scrollable="true" scrollWidth="1200" resizableColumns="true" scrollHeight="500">
+            				 scrollable="true" paginator="true" rows="15" resizableColumns="true"  
+                 			 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
 								<ui:include src="associateGridList.xhtml"/>
 								<ui:include src="studentGridList.xhtml"/>
 				                <f:facet name="footer">

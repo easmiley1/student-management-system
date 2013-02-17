@@ -17,15 +17,20 @@
 	<bean id="jbossCacheProvider" class="com.ish.sms.web.cache.JBossCacheProvider"/>
 	<bean id="serviceTransformer" class="com.ish.sms.web.service.ServiceTransformer" />
 
+	<!-- Web Business Operations beans declaration -->
 	<bean id="associateBusiness" class="com.ish.sms.web.business.AssociateBusiness"/>
 	<bean id="referenceBusiness" class="com.ish.sms.web.business.ReferenceBusiness"/>
+	<bean id="classBusiness" class="com.ish.sms.web.business.ClassBusiness"/>
 	
+	<!--Business Delegate beans declaration -->
 	<bean id="associateBusinessDelegate" class="com.ish.sms.web.businessdelegate.AssociateBusinessDelegate" />
 	<bean id="referenceBusinessDelegate" class="com.ish.sms.web.businessdelegate.ReferenceBusinessDelegate" />
+	<bean id="classBusinessDelegate" class="com.ish.sms.web.businessdelegate.ClassBusinessDelegate" />
 
 	<bean id="smsServiceLocator" class="com.ish.sms.web.service.SMSServiceLocator">
 		<constructor-arg value="http://localhost:8080/SMSService/websvc/smsAssociateService" />
 		<constructor-arg value="http://localhost:8080/SMSService/websvc/smsReferenceService" />
+		<constructor-arg value="http://localhost:8080/SMSService/websvc/smsClassService" />
 	</bean>	
 	
  	<bean id="referenceDataTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">

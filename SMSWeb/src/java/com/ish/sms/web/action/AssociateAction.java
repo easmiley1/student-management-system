@@ -1,24 +1,24 @@
 package com.ish.sms.web.action;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import com.ish.sms.web.bean.AssociateBean;
-import com.ish.sms.web.business.AssociateBusiness;
-import com.ish.sms.web.util.SMSSpringFactory;
 
 /**
- * Managed bean class for all the associate related actions.
- * 
+ * Action Bean class which is in request scope for all the associate related actions.
+ *
+ * @author Naren
  */
 @ManagedBean(name = "associateAction")
 @ViewScoped
 public class AssociateAction extends BaseAction {
- 
+
 	private static final long serialVersionUID = 1L;
-	private AssociateBusiness associateBusiness;
-	@ManagedProperty(value="#{associateBean}")
+	@ManagedProperty(value = "#{associateBean}")
 	private AssociateBean associateBean;
 
 	/**
@@ -36,34 +36,28 @@ public class AssociateAction extends BaseAction {
 	}
 
 	/**
-	 * Constructor to initialize the business class.
-	 */
-	public AssociateAction() {
-		associateBusiness = (AssociateBusiness) SMSSpringFactory.getInstance().getBean("associateBusiness");
-	}
-
-	/**
 	 * Method to initialize the DTO's and redirect the page to student.xhtml
 	 * 
 	 * @return student.xhtml
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public String initAddStudentPersonalDetails() throws Exception {
 		associateBean.initAddStudentPersonalDetails();
 
 		return SAVE_STUDENT_PAGE;
 	}
+
 	/**
 	 * Method to initialize the DTO's and redirect the page to student.xhtml
 	 * 
 	 * @return student.xhtml
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public String initAddTeacherPersonalDetails() throws Exception {
 		associateBean.initAddTeacherPersonalDetails();
 		return SAVE_TEACHER_PAGE;
 	}
-	
+
 	/**
 	 * Method to return the list of all the students in the school for modification and redirect to the appropriate xhtml page
 	 * 
@@ -74,13 +68,14 @@ public class AssociateAction extends BaseAction {
 		associateBean.initModifySearchAllStudents(associateBusiness.retrieveAllStudents());
 		return MODIFY_STUDENT_LIST_PAGE;
 	}
+
 	/**
 	 * Method to return the list of all the students in the school for viewing and redirect to the appropriate page
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
-	public String initViewSearchAllStudents() throws Exception{
+	public String initViewSearchAllStudents() throws Exception {
 		associateBean.initModifySearchAllStudents(associateBusiness.retrieveAllStudents());
 		return VIEW_STUDENT_LIST_PAGE;
 	}
@@ -95,13 +90,14 @@ public class AssociateAction extends BaseAction {
 		associateBean.initModifySearchAllTeacers(associateBusiness.retrieveAllTeachers());
 		return MODIFY_TEACHER_LIST_PAGE;
 	}
+
 	/**
 	 * Method to return the list of all the teachers in the school for viewing and redirect to the appropriate page
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
-	public String initViewSearchAllTeachers() throws Exception{
+	public String initViewSearchAllTeachers() throws Exception {
 		associateBean.initModifySearchAllTeacers(associateBusiness.retrieveAllTeachers());
 		return VIEW_TEACHER_LIST_PAGE;
 	}
@@ -114,14 +110,19 @@ public class AssociateAction extends BaseAction {
 	public void saveStudent() throws Exception {
 		associateBusiness.saveStudent(associateBean.getStudentDTO(), associateBean.getAssociateDTO());
 	}
-	
+
 	/**
 	 * Method to save the student object
 	 * 
-	 * @throws Exception
 	 */
-	public void saveTeacher() throws Exception {
-		associateBusiness.saveTeacher(associateBean.getTeacherDTO(), associateBean.getAssociateDTO());
+	public void saveTeacher()  {
+		try {
+			associateBusiness.saveTeacher(associateBean.getTeacherDTO(), associateBean.getAssociateDTO());
+		} catch (Exception e) {
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Save Failed", "Server Error. Please contact Technical Support"));
+
+		}
 	}
 
 	/**
@@ -129,7 +130,7 @@ public class AssociateAction extends BaseAction {
 	 * 
 	 * @throws Exception
 	 */
-	public void applyStudentSelectionForEdit() throws Exception{
+	public void applyStudentSelectionForEdit() throws Exception {
 		associateBean.setReadOnlyMode(false);
 		associateBean.applyStudentSelection();
 	}
@@ -139,7 +140,7 @@ public class AssociateAction extends BaseAction {
 	 * 
 	 * @throws Exception
 	 */
-	public void applyStudentSelectionForView() throws Exception{
+	public void applyStudentSelectionForView() throws Exception {
 		associateBean.setReadOnlyMode(true);
 		associateBean.applyStudentSelection();
 	}
@@ -149,7 +150,7 @@ public class AssociateAction extends BaseAction {
 	 * 
 	 * @throws Exception
 	 */
-	public void applyTeacherSelectionForEdit() throws Exception{
+	public void applyTeacherSelectionForEdit() throws Exception {
 		associateBean.setReadOnlyMode(false);
 		associateBean.applyTeacherSelection();
 	}
@@ -159,7 +160,7 @@ public class AssociateAction extends BaseAction {
 	 * 
 	 * @throws Exception
 	 */
-	public void applyTeacherSelectionForView() throws Exception{
+	public void applyTeacherSelectionForView() throws Exception {
 		associateBean.setReadOnlyMode(true);
 		associateBean.applyTeacherSelection();
 	}
