@@ -7,8 +7,10 @@ import com.ish.sms.service.dao.ClassOperationsDAO;
 import com.ish.sms.service.dao.ReferenceOperationsDAO;
 import com.ish.sms.service.ops.util.AssociateOperationsUtil;
 import com.ish.sms.service.ops.util.ClassOperationsUtil;
+import com.ish.sms.service.util.EntityConstants;
+import com.ish.sms.service.util.QueryConstants;
 
-public class BaseOperations {
+public class BaseOperations implements QueryConstants,EntityConstants {
 
 	@Autowired
 	protected ReferenceOperationsDAO referenceOperationsDAO;

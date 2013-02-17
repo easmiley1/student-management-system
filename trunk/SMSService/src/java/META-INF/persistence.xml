@@ -8,6 +8,7 @@
   	<class>com.ish.sms.service.entity.ModeofTransport</class>
   	<class>com.ish.sms.service.entity.State</class>
   	<class>com.ish.sms.service.entity.Teacher</class>
+  	<class>com.ish.sms.service.entity.ClassAttendanceDef</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>    
 	<non-jta-data-source>java:/smsDS</non-jta-data-source>       

@@ -2,6 +2,8 @@ package com.ish.sms.service.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,7 +24,7 @@ import com.ish.sms.service.util.QueryConstants;
 @Table(name = "Teacher_Details")
 public class Teacher {
 
-	@Id
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "teacher_id")
 	private Integer id;
 	@Column(nullable = false, name = "first_name")

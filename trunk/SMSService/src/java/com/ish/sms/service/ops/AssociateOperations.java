@@ -2,7 +2,7 @@ package com.ish.sms.service.ops;
 
 import java.util.List;
 
-import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ish.sms.service.dto.StudentDTO;
@@ -31,8 +31,8 @@ public class AssociateOperations extends BaseOperations {
 	public StudentDTO createOrUpdateStudent(StudentDTO studentDTO) throws Exception {
 
 		Student student = associateOperationsUtil.convertStudentDTOToEntity(studentDTO);
-		student = associateOperationsDAO.createOrUpdateStudent(student);
-		BeanUtils.copyProperties(studentDTO, student);
+		student = (Student) associateOperationsDAO.createOrUpdateEntity(student);
+		PropertyUtils.copyProperties(studentDTO, student);
 		return studentDTO;
 	}
 
@@ -47,8 +47,8 @@ public class AssociateOperations extends BaseOperations {
 	public TeacherDTO createOrUpdateTeacher(TeacherDTO teacherDTO) throws Exception {
 
 		Teacher teacher = associateOperationsUtil.convertTeacherDTOToEntity(teacherDTO);
-		teacher = associateOperationsDAO.createOrUpdateTeacher(teacher);
-		BeanUtils.copyProperties(teacherDTO, teacher);
+		teacher = (Teacher) associateOperationsDAO.createOrUpdateEntity(teacher);
+		PropertyUtils.copyProperties(teacherDTO, teacher);
 		return teacherDTO;
 	}
 
@@ -58,11 +58,12 @@ public class AssociateOperations extends BaseOperations {
 	 * @return teacherList
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
 	public TeacherListDTO retrieveAllTeachers() throws Exception {
 
 		TeacherListDTO teacherListDTO = new TeacherListDTO();
-		List<Teacher> teachersList = associateOperationsDAO.retrieveAllTeachers();
+		List<Teacher> teachersList = (List<Teacher>) associateOperationsDAO.retrieveResultsForquery(FIND_ALL_TEACHERS);
 		for (Teacher teacher : teachersList) {
 			TeacherDTO teacherDTO = associateOperationsUtil.convertTeacherEntityToDTO(teacher);
 			teacherListDTO.getTeacherDTOList().add(teacherDTO);
@@ -76,11 +77,12 @@ public class AssociateOperations extends BaseOperations {
 	 * @return studentList
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
 	public StudentListDTO retrieveAllStudents() throws Exception {
 
 		StudentListDTO studentList = new StudentListDTO();
-		List<Student> studentsList = associateOperationsDAO.retrieveAllStudents();
+		List<Student> studentsList = (List<Student>) associateOperationsDAO.retrieveResultsForquery(FIND_ALL_STUDENTS);
 		for (Student student : studentsList) {
 			StudentDTO studentDTO = associateOperationsUtil.convertStudentEntitytoDTO(student);
 			studentList.getStudentDTOList().add(studentDTO);
