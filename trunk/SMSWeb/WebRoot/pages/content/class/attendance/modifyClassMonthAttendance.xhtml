@@ -10,7 +10,7 @@
 				<ui:define name="content">
 					<h:form id="classAttendanceForm">
 						<p:growl id="attendanceRegisterGrowl" showDetail="true" sticky="false" />
-    					<p:panel header="Class Attendance" styleClass="dialogBodyPanel"	id="classAttendancePanel">
+    					<p:panel header="Attendance Register" styleClass="dialogBodyPanel"	id="classAttendancePanel">
     						<p:remoteCommand name="callRemoteCommandtoMarkDirty" actionListener="#{classAction.markDirty}" process="@all" update="saveBtnIcon"/>
     						<p:blockUI block="classAttendanceForm" trigger="saveBtnIcon,classAttendanceDefList" />
 							<p:toolbar style="height:30px;" id="toolbarId">

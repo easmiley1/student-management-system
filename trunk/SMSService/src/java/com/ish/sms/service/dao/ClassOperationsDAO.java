@@ -26,6 +26,7 @@ public class ClassOperationsDAO extends BaseOperationsDAO {
 	 * @param classAttendanceDefList
 	 * @return updateClassAttendanceDefList
 	 */
+	@SuppressWarnings("unchecked")
 	public List<ClassAttendanceDef> updateClassAttendanceDefList(List<ClassAttendanceDef> classAttendanceDefList) {
 		List<ClassAttendanceDef> updatedClassAttendanceDefList = new ArrayList<ClassAttendanceDef>();
 
@@ -37,6 +38,13 @@ public class ClassOperationsDAO extends BaseOperationsDAO {
 
 				updatedClassAttendanceDefList.add(updatedAttendanceDef);
 			} else if (classAttendanceDef.getModification().equals(CLASS_DEF_MODIFICATION.Deleted.name())) {
+				Map<String, Object> queryParametersMap = new HashMap<String, Object>();
+				queryParametersMap.put(ID, classAttendanceDef.getId());
+				List<AssociateAttendance> associateAttendanceList = (List<AssociateAttendance>) retrieveResultListForQueryWithParameters(
+						FIND_ASSOCIATE_ATTENDANCE_DATA, queryParametersMap);
+				for(AssociateAttendance associateAttendance: associateAttendanceList){
+					removeEntityByID(AssociateAttendance.class, associateAttendance.getId());
+				}
 				removeEntityByID(ClassAttendanceDef.class, classAttendanceDef.getId());
 			}
 		}
@@ -86,13 +94,13 @@ public class ClassOperationsDAO extends BaseOperationsDAO {
 		Map<String, Object> queryParametersMap = new HashMap<String, Object>();
 		queryParametersMap.put(ID, classId);
 		Class classObj = (Class) retrieveSingleResultForQueryWithParameters(FIND_CLASS_BY_ID, Class.class, queryParametersMap);
-		
+
 		ClassAttendanceDef classAttendanceDef = new ClassAttendanceDef();
 		classAttendanceDef.setClassRef(classObj);
 		String monthYear = classOperationsDAOUtil.getCurrentMonthYear();
 		classAttendanceDef.setMonthYear(monthYear);
 		classAttendanceDef.setModification(CLASS_DEF_MODIFICATION.Added.name());
-		
+
 		List<ClassAttendanceDef> newClassAttendanceDefList = new ArrayList<ClassAttendanceDef>();
 		newClassAttendanceDefList.add(classAttendanceDef);
 		return updateClassAttendanceDefList(newClassAttendanceDefList).get(0);
