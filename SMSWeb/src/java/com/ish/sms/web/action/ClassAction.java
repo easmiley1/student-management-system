@@ -100,8 +100,10 @@ public class ClassAction extends BaseAction {
 
 		try {
 			List<ClassAttendanceDefDTO> modifiedClassAttendanceDefDTOList = classBean.getModifiedClassAttedanceDefList();
-
-			if (modifiedClassAttendanceDefDTOList.size() > 0) {
+			if(modifiedClassAttendanceDefDTOList == null){
+				registerMessage(FacesMessage.SEVERITY_WARN, CANNOT_SAVE, REGISTER_DEF_CANNOT_SAVE_DETAIL);
+			}
+			else if (modifiedClassAttendanceDefDTOList.size() > 0) {
 				modifiedClassAttendanceDefDTOList = classBusiness.updateClassAttendanceDefList(modifiedClassAttendanceDefDTOList);
 				classBean.getAttendanceRegisterBean().setClassAttendanceDefDTOList(modifiedClassAttendanceDefDTOList);
 				registerMessage(FacesMessage.SEVERITY_INFO, SAVE_SUCCESSFULL, REGISTER_DEF_SAVED);

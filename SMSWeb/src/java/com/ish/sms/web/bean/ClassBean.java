@@ -186,6 +186,9 @@ public class ClassBean extends BaseBean implements Serializable {
 				}
 			}
 			if (!foundClassAttendanceDef) {
+				if (getAttendanceRegisterBean().getSelectedAttendanceDefDTO().getMonthYear().equals(classAttendanceDefDTO.getMonthYear())){
+					return null;
+				}
 				ClassAttendanceDefDTO delClassAttendanceDefDTO = new ClassAttendanceDefDTO();
 				BeanUtils.copyProperties(delClassAttendanceDefDTO, classAttendanceDefDTO);
 				delClassAttendanceDefDTO.setClassDTO(getCurrentClass());
