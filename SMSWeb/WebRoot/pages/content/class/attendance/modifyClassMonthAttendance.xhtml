@@ -10,33 +10,56 @@
 				<ui:define name="content">
 					<h:form id="classAttendanceForm">
 						<p:growl id="attendanceRegisterGrowl" showDetail="true" sticky="false" />
-    						<p:panel header="Class Attendance" styleClass="dialogBodyPanel"	id="classAttendancePanel">
-							<p:toolbar>
+    					<p:panel header="Class Attendance" styleClass="dialogBodyPanel"	id="classAttendancePanel">
+    						<p:remoteCommand name="callRemoteCommandtoMarkDirty" actionListener="#{classAction.markDirty}" process="@all" update="saveBtnIcon"/>
+    						<p:blockUI block="classAttendanceForm" trigger="saveBtnIcon,classAttendanceDefList" />
+							<p:toolbar style="height:30px;" id="toolbarId">
+								<p:toolbarGroup align="left" >
+									<p:spacer width="20" height="20" />
+									<p:selectOneMenu id="classAttendanceDefList"   converter="#{classAttendanceDefConverter}" 
+									value="#{classBean.attendanceRegisterBean.selectedAttendanceDefDTO}"  ajaxSingle="true" >
+										<f:selectItems value="#{classBean.attendanceRegisterBean.classAttendanceDefDTOList}" var="classAttendanceDefDTO" 
+										itemValue="#{classAttendanceDefDTO}" itemLabel="#{classAttendanceDefDTO.monthYear}" />
+										<p:ajax listener="#{classAction.changeAttendanceMonth}" update="attendanceDataTableId,attendanceRegisterGrowl,saveBtnIcon"/>
+									</p:selectOneMenu>	 
+									<p:spacer width="20" height="20" />									
+ 									<p:commandButton value="Save Register" id="saveBtnIcon" icon="ui-icon-disk" style="vertical-align:top;height:28px;text-align:center;"
+ 									action="#{classAction.saveAttendanceRegister}" disabled="#{classBean.dataSaved}" update="attendanceRegisterGrowl" />	
+								</p:toolbarGroup>
+
 								<p:toolbarGroup align="right" >
-									<p:commandButton value="Register Maintenance" update="attnMainDialogId" oncomplete="attnMainDialog.show()" />  	
+									<p:commandButton value="Register Maintenance" style="vertical-align:top;height:28px;" update="attnMainDialogId"
+									icon="ui-icon-star" oncomplete="attnMainDialog.show()" />
 								</p:toolbarGroup>
 							</p:toolbar>
 						
-							<p:dataTable id="attendanceDataTableId" var="attendance" value="#{classBean.attendanceRegisterBean.attendanceList}"
-							 scrollable="true" paginator="true" rows="15"  
-                 			 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" >
-                 				<p:column headerText="Name" style="width:200px">
-                 					<h:outputText value="#{attendance.name}" />  
+						
+							<p:dataTable id="attendanceDataTableId" var="attendance" value="#{classBean.attendanceRegisterBean.associateAttendanceList}"
+							 scrollable="true" paginator="true" rows="15" rowsPerPageTemplate="10,15,20" 
+                 			 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" >
+                 				<p:column headerText="Name" style="width:100px">
+                 					<h:outputText value="#{attendance.studentDTO.firstName}" />  
                  				</p:column>
-								<p:columns value="#{classBean.attendanceRegisterBean.columnNames}" var="column" columnIndexVar="colIndex" style="width:20px">
+								<p:columns value="#{classBean.attendanceRegisterBean.columnNames}" var="column" columnIndexVar="colIndex" style="width:10px">
 									<f:facet name="header">  
                							 #{column}  
             						</f:facet>  
-						             <p:selectBooleanCheckbox value="#{attendance.attendanceMap[column]}" />  
+						             <p:selectBooleanCheckbox value="#{attendance.attendanceMap[column]}" ajaxSingle="true">
+						             	<p:ajax oncomplete="callRemoteCommandtoMarkDirty()"  />
+						             </p:selectBooleanCheckbox>  
        							 </p:columns>
 							</p:dataTable>
+							
 						</p:panel>
 						<p:dialog header="Maintain Register" widgetVar="attnMainDialog" showEffect="fold" hideEffect="fold" modal="true" id="attnMainDialogId" >  
-							<h:panelGrid id="classAttPickGrid" columns="1" cellpadding="5">
+							<h:panelGrid id="classAttPickGrid1" columns="1" cellpadding="5">
 							  	 <p:pickList id="classAttPickList" value="#{classBean.maintainRegisterMonthBean.classAttendanceDTOModel}" var="classAtt" 
 							  	 effect="slide" itemLabel="#{classAtt}" itemValue="#{classAtt}" showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains"/>  
-								<p:commandButton value="Submit" oncomplete="attnMainDialog.hide()" action="#{classAction.submitMaintainClassAttendanceDef}"
-								 ajax="true" update="attendanceRegisterGrowl"/>  	
+							</h:panelGrid>
+							<h:panelGrid id="classAttPickGrid2" columns="2" cellpadding="5">
+								<p:commandButton value="Submit" action="#{classAction.submitMaintainClassAttendanceDef}"  ajax="true" 
+								update="attendanceRegisterGrowl,classAttendanceDefList"/> 
+								<p:commandButton value="Close" onclick="attnMainDialog.hide()" />							
 							</h:panelGrid>
 						</p:dialog>						
 					</h:form>

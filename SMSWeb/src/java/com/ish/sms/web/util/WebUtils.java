@@ -53,5 +53,18 @@ public class WebUtils {
 		return attendanceDefList;
 	}
 
+	/**
+	 * Utility method for determining the current month-year
+	 * 
+	 * @return monthYear
+	 */
+	public static String getCurrentMonthYear() {
+		Calendar calendar = GregorianCalendar.getInstance();
+		Integer year = calendar.get(Calendar.YEAR);
+		Integer monthInt = calendar.get(Calendar.MONTH);
+		String month = DateFormatSymbols.getInstance().getMonths()[monthInt];
+		String monthYear = month + "-" + year;
+		return monthYear;
+	}
 
 }

@@ -1,20 +1,24 @@
 package com.ish.sms.web.action;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import com.ish.sms.service.dto.AssociateAttendanceDTO;
 import com.ish.sms.service.dto.ClassAttendanceDefDTO;
 import com.ish.sms.service.dto.ClassDTO;
 import com.ish.sms.web.bean.ClassBean;
-import com.ish.sms.web.service.dto.AttendanceMap;
 
+/**
+ * This class performs all the actions related to the class management pages.
+ * 
+ * @author Naren
+ * 
+ */
 @ManagedBean(name = "classAction")
 @RequestScoped
 public class ClassAction extends BaseAction {
@@ -38,41 +42,95 @@ public class ClassAction extends BaseAction {
 		this.classBean = classBean;
 	}
 
-	public String createAttendanceBean(Integer classId) throws Exception {
+	/**
+	 * method to market the attendance register to dirty so that we can enable the save register button
+	 */
+	public void markDirty() {
+		classBean.setDataSaved(false);
+	}
 
-		ClassDTO classDTO = classBusiness.retrieveClassForId(classId);
-		classBean.setCurrentClass(classDTO);
-		List<ClassAttendanceDefDTO> targetClassAttendanceDefDTOList = classBusiness.retrieveClassAttenDefStringList(classBean.getCurrentClass().getId());
-		classBean.initMaintainClassAttendanceDef(targetClassAttendanceDefDTOList);
+	public void changeAttendanceMonth(AjaxBehaviorEvent ajaxBehaviorEvent) {
 
-		String name = "name";
-		classBean.getAttendanceRegisterBean().getAttendanceList().clear();
-		for (int n = 0; n < 30; n++) {
-			AssociateAttendanceDTO attendanceDTO = new AssociateAttendanceDTO();
-			AttendanceMap<String, Boolean> attendanceMap = new AttendanceMap<String, Boolean>();
-			List<String> columnNames = new ArrayList<String>();
-			for (int i = 1; i < 30; i++) {
-				String day = "" + i + "/" + 1;
-				columnNames.add(day);
-				attendanceMap.put(day, i % 2 == 0 ? true : false);
-			}
-			attendanceDTO.setName(name + " " + n);
-			attendanceDTO.setAttendanceMap(attendanceMap);
-			classBean.getAttendanceRegisterBean().setColumnNames(columnNames);
-			classBean.getAttendanceRegisterBean().getAttendanceList().add(attendanceDTO);
+		try {
+			if (!classBean.isDataSaved())
+				saveAttendanceRegister();
+			classBean.getAttendanceRegisterBean().setPreviousClassAttendanceDefDTO(classBean.getAttendanceRegisterBean().getSelectedAttendanceDefDTO());
+			Integer monthId = classBean.getAttendanceRegisterBean().getSelectedAttendanceDefDTO().getId();
+			List<AssociateAttendanceDTO> associateAttendanceDTOList = classBusiness.retrieveClassAttendanceForMonth(monthId);
+			classBean.populateAttendanceRegisterGrid(associateAttendanceDTOList);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			registerErrorMessage();
+		}
+
+	}
+
+	/**
+	 * Method to instantiate the attendance register by getting the class month list and student attendance data
+	 * 
+	 * @param classId
+	 * @return attendancePageNavigation
+	 */
+	public String openAttendanceRegister(Integer classId) {
+
+		try {
+			ClassDTO classDTO = classBusiness.retrieveClassForId(classId);
+			classBean.setCurrentClass(classDTO);
+			List<ClassAttendanceDefDTO> targetClassAttendanceDefDTOList = classBusiness.retrieveClassAttenDefStringList(classBean.getCurrentClass().getId());
+			classBean.initMaintainClassAttendanceDef(targetClassAttendanceDefDTOList);
+
+			/* Get the month id for which we need to retrieve the associate attendance list */
+			Integer monthId = classBean.getAttendanceRegisterBean().getSelectedAttendanceDefDTO().getId();
+			List<AssociateAttendanceDTO> associateAttendanceDTOList = classBusiness.retrieveClassAttendanceForMonth(monthId);
+			classBean.populateAttendanceRegisterGrid(associateAttendanceDTOList);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			registerErrorMessage();
 		}
 
 		return MODIFY_CLASS_ATTENDANCE_PAGE;
 	}
 
-	public void submitMaintainClassAttendanceDef() throws Exception {
+	/**
+	 * Method to save the class attendance definition changes
+	 */
+	public void submitMaintainClassAttendanceDef() {
 
-		List<ClassAttendanceDefDTO> modifiedClassAttendanceDefDTOList = classBean.getModifiedClassAttedanceDefList();
-		if (modifiedClassAttendanceDefDTOList.size() > 0)
-			modifiedClassAttendanceDefDTOList = classBusiness.updateClassAttendanceDefList(modifiedClassAttendanceDefDTOList);
-		classBean.getAttendanceRegisterBean().setClassAttendanceDefDTOList(modifiedClassAttendanceDefDTOList);
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage("Save Successful", "Register changes saved successfully"));
+		try {
+			List<ClassAttendanceDefDTO> modifiedClassAttendanceDefDTOList = classBean.getModifiedClassAttedanceDefList();
+
+			if (modifiedClassAttendanceDefDTOList.size() > 0) {
+				modifiedClassAttendanceDefDTOList = classBusiness.updateClassAttendanceDefList(modifiedClassAttendanceDefDTOList);
+				classBean.getAttendanceRegisterBean().setClassAttendanceDefDTOList(modifiedClassAttendanceDefDTOList);
+				registerMessage(FacesMessage.SEVERITY_INFO, SAVE_SUCCESSFULL, REGISTER_DEF_SAVED);
+			} else {
+				registerMessage(FacesMessage.SEVERITY_INFO, NO_CHANGES, NO_CHANGE_IN_REGISTER);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			registerErrorMessage();
+		}
 	}
 
+	/**
+	 * Method to save the attendance register for the current selected month
+	 */
+	public void saveAttendanceRegister() {
+
+		try {
+			List<AssociateAttendanceDTO> associateAttendanceDTOList = classBean.retrieveAssociateAttendanceList();
+			associateAttendanceDTOList = classBusiness.updateAssociateAttendanceList(associateAttendanceDTOList);
+			classBean.getAttendanceRegisterBean().setAssociateAttendanceList(associateAttendanceDTOList);
+			String monthYear = classBean.getAttendanceRegisterBean().getPreviousClassAttendanceDefDTO().getMonthYear();
+			registerMessage(FacesMessage.SEVERITY_INFO, SAVE_SUCCESSFULL, REGISTER_SAVED + monthYear);
+			classBean.setDataSaved(true);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			registerErrorMessage();
+		}
+	}
 }
