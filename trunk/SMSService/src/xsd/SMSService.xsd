@@ -18,17 +18,26 @@
 	<xs:element name="associateAttendanceDTO" type="associateAttendanceDTO" />
 	<xs:element name="classAttendanceDefDTO" type="classAttendanceDefDTO" />
 	<xs:element name="stringListDTO" type="stringListDTO" />
+	<xs:element name="associateAttendanceListDTO" type="associateAttendanceListDTO" />
 
 	<xs:complexType name="stringListDTO">
 		<xs:sequence>
 			<xs:element name="stringListDTO" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
+
+	<xs:complexType name="associateAttendanceListDTO">
+		<xs:sequence>
+			<xs:element name="associateAttendanceListDTO" type="associateAttendanceDTO" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
 	
 	<xs:complexType name="associateAttendanceDTO">
 	  <xs:sequence>	 
+		<xs:element name="id" type="xs:int" minOccurs="0" />
 		<xs:element name="attendanceMap" type="attendances" minOccurs="0"/>
-		<xs:element name="name" type="xs:string" />
+		<xs:element name="studentDTO" type="studentDTO" />
+		<xs:element name="classAttendanceDefDTO" type="classAttendanceDefDTO"  minOccurs="0"/>	
       </xs:sequence>			
 	</xs:complexType>	
 	   		 

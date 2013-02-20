@@ -4,12 +4,15 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 
+import com.ish.sms.service.dto.AssociateAttendanceDTO;
 import com.ish.sms.service.dto.ClassAttendanceDefDTO;
 import com.ish.sms.service.dto.ClassAttendanceDefListDTO;
 import com.ish.sms.service.dto.ClassDTO;
 import com.ish.sms.service.dto.TeacherDTO;
+import com.ish.sms.service.entity.AssociateAttendance;
 import com.ish.sms.service.entity.Class;
 import com.ish.sms.service.entity.ClassAttendanceDef;
 import com.ish.sms.service.entity.Teacher;
@@ -104,5 +107,40 @@ public class ClassOperationsUtil {
 		classAttendanceDef.setClassRef(classObj);
 
 		return classAttendanceDef;
+	}
+
+	/**
+	 * Utility method to convert the associateAttendanceDTO to JPA entity object
+	 * 
+	 * @param associateAttendanceDTO
+	 *            {@link AssociateAttendanceDTO}
+	 * @return associateAttendance {@link AssociateAttendance}
+	 * @throws Exception
+	 */
+	public AssociateAttendance convertAssociateAttendanceDTOToEntity(AssociateAttendanceDTO associateAttendanceDTO) throws Exception {
+		AssociateAttendance associateAttendance = new AssociateAttendance();
+		BeanUtils.copyProperties(associateAttendance, associateAttendanceDTO);
+		associateAttendance.setStudent(new AssociateOperationsUtil().convertStudentDTOToEntity(associateAttendanceDTO.getStudentDTO()));
+		associateAttendance.setClassAttendanceDef(convertClassAttendanceDTOToEntity(associateAttendanceDTO.getClassAttendanceDefDTO()));
+		return associateAttendance;
+	}
+
+	/**
+	 * Utility method to convert the associateAttendance entity object to DTO
+	 * 
+	 * @param associateAttendance
+	 *            @link {@link AssociateAttendance}
+	 * @return associateAttendanceDTO {@link AssociateAttendanceDTO}
+	 * @throws Exception
+	 */
+	public AssociateAttendanceDTO convertAssociateAttendanceEntityToDTO(AssociateAttendance associateAttendance) throws Exception {
+		AssociateAttendanceDTO associateAttendanceDTO = new AssociateAttendanceDTO();
+		BeanUtils.copyProperties(associateAttendanceDTO, associateAttendance);
+		associateAttendanceDTO.setStudentDTO(new AssociateOperationsUtil().convertStudentEntitytoDTO((associateAttendance.getStudent())));
+		ClassAttendanceDefDTO classAttendanceDefDTO = new ClassAttendanceDefDTO();
+		PropertyUtils.copyProperties(classAttendanceDefDTO, associateAttendance.getClassAttendanceDef());
+		associateAttendanceDTO.setClassAttendanceDefDTO(classAttendanceDefDTO);
+
+		return associateAttendanceDTO;
 	}
 }

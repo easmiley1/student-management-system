@@ -34,15 +34,37 @@ public interface SMSClassServiceInterface {
 	@Path("/retrieveClassForId/{classId}")
 	@Produces("text/xml")
 	public String retrieveClassForId(@PathParam("classId") Integer classId);
-	
+
 	/**
-	 * Method to remove or delete the given ClassAttendanceDefDTO List and return the updated one wrapped in classAttendanceDefListDTO 
+	 * Method to remove or delete the given ClassAttendanceDefDTO List and return the updated one wrapped in classAttendanceDefListDTO
 	 * 
 	 * @return classAttendanceDefListDTOXML
 	 */
 	@POST
 	@Path("/updateClassAttendanceDefList/")
 	@Produces("text/xml")
-	@Consumes("text/xml")	
-	public String updateClassAttendanceDefList(String classAttendanceDefListDTOXML) ;	
+	@Consumes("text/xml")
+	public String updateClassAttendanceDefList(String classAttendanceDefListDTOXML);
+
+	/**
+	 * Method to return the class attendance data for the specified month
+	 * 
+	 * @return associateAttendanceListDTOXML
+	 */
+	@GET
+	@Path("/retrieveClassAttendanceForMonth/{monthId}")
+	@Produces("text/xml")
+	public String retrieveClassAttendanceForMonth(@PathParam("monthId") Integer monthId);
+
+	/**
+	 * Method to persist all the students in the attendance month
+	 * 
+	 * @return associateAttendanceListDTOXML
+	 */
+	@POST
+	@Path("/updateAssociateAttendanceList/")
+	@Produces("text/xml")
+	@Consumes("text/xml")
+	public String updateAssociateAttendanceList(String associateAttendanceListDTOXML);
+
 }

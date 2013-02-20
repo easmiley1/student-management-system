@@ -29,12 +29,32 @@ public class ClassBusinessDelegate extends BaseBusinessDelegate {
 	}
 
 	/**
-	 * Method to remove or delete the given ClassAttendanceDefDTO List and return the updated one wrapped in classAttendanceDefListDTO 
+	 * Method to remove or delete the given ClassAttendanceDefDTO List and return the updated one wrapped in classAttendanceDefListDTO
 	 * 
 	 * @return classAttendanceDefListDTOXML
 	 */
 
-	public String updateClassAttendanceDefList(String classAttendanceDefListDTOXML)  {
+	public String updateClassAttendanceDefList(String classAttendanceDefListDTOXML) {
 		return smsServiceLocator.getSmsClassServiceInterface().updateClassAttendanceDefList(classAttendanceDefListDTOXML);
 	}
+
+	/**
+	 * Method to return the class attendance data for the specified month
+	 * 
+	 * @param monthId
+	 * @return associateAttendanceListDTOXML
+	 */
+	public String retrieveClassAttendanceForMonth(Integer monthId) {
+		return smsServiceLocator.getSmsClassServiceInterface().retrieveClassAttendanceForMonth(monthId);
+	}
+
+	/**
+	 * Method to persist all the students in the attendance month
+	 * 
+	 * @return associateAttendanceListDTOXML
+	 */
+	public String updateAssociateAttendanceList(String associateAttendanceListDTOXML) {
+		return smsServiceLocator.getSmsClassServiceInterface().updateAssociateAttendanceList(associateAttendanceListDTOXML);
+	}
+
 }

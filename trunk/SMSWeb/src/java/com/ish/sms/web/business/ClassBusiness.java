@@ -2,6 +2,8 @@ package com.ish.sms.web.business;
 
 import java.util.List;
 
+import com.ish.sms.service.dto.AssociateAttendanceDTO;
+import com.ish.sms.service.dto.AssociateAttendanceListDTO;
 import com.ish.sms.service.dto.ClassAttendanceDefDTO;
 import com.ish.sms.service.dto.ClassAttendanceDefListDTO;
 import com.ish.sms.service.dto.ClassDTO;
@@ -56,4 +58,30 @@ public class ClassBusiness extends BaseBusiness {
 		return classAttendanceDefListDTO.getClassAttendanceDefDTOList();
 
 	}
+	/**
+	 * Method to return the class attendance data for the specified month
+	 * 
+	 * @param monthId
+	 * @return associateAttendanceList
+	 */
+	public List<AssociateAttendanceDTO> retrieveClassAttendanceForMonth(Integer monthId) throws Exception {
+		String associateAttendanceListDTOXML = classBusinessDelegate.retrieveClassAttendanceForMonth(monthId);
+		AssociateAttendanceListDTO associateAttendanceListDTO = serviceTransformer.parseXml(associateAttendanceListDTOXML);
+		return associateAttendanceListDTO.getAssociateAttendanceListDTO();
+	}
+	/**
+	 * Method to persist all the students in the attendance month.
+	 * 
+	 * @return associateattendanceList
+	 */
+
+	public List<AssociateAttendanceDTO> updateAssociateAttendanceList(List<AssociateAttendanceDTO> associateAttendanceDTOList) throws Exception{
+		AssociateAttendanceListDTO associateAttendanceListDTO = new AssociateAttendanceListDTO();
+		associateAttendanceListDTO.setAssociateAttendanceListDTO(associateAttendanceDTOList);
+		String associateAttendanceListDTOXML = serviceTransformer.transformToXML(associateAttendanceListDTO, ASSOCIATEATTENDANCELIST_DTO);
+		associateAttendanceListDTOXML = classBusinessDelegate.updateAssociateAttendanceList(associateAttendanceListDTOXML);
+		associateAttendanceListDTO =  serviceTransformer.parseXml(associateAttendanceListDTOXML);
+		return associateAttendanceListDTO.getAssociateAttendanceListDTO();
+
+	}	
 }

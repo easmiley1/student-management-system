@@ -7,11 +7,17 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.ish.sms.service.dao.util.ClassOperationsDAOUtil;
 import com.ish.sms.service.util.EntityConstants;
 import com.ish.sms.service.util.QueryConstants;
 
 public class BaseOperationsDAO implements QueryConstants, EntityConstants {
 
+	@Autowired
+	protected ClassOperationsDAOUtil classOperationsDAOUtil;
+	
 	protected EntityManager entityManager;
 
 	/**

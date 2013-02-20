@@ -17,6 +17,43 @@ public class AttendanceRegisterBean {
 	private List<ClassAttendanceDefDTO> classAttendanceDefDTOList = new ArrayList<ClassAttendanceDefDTO>();
 	
 	private ClassAttendanceDefDTO selectedAttendanceDefDTO = null;
+	
+	private ClassAttendanceDefDTO previousClassAttendanceDefDTO = null;
+
+	private List<AssociateAttendanceDTO> associateAttendanceList = new ArrayList<AssociateAttendanceDTO>();
+
+	private List<String> columnNames = new ArrayList<String>();
+	
+	
+
+	/**
+	 * @return the previousClassAttendanceDefDTO
+	 */
+	public ClassAttendanceDefDTO getPreviousClassAttendanceDefDTO() {
+		return previousClassAttendanceDefDTO;
+	}
+
+	/**
+	 * @param previousClassAttendanceDefDTO the previousClassAttendanceDefDTO to set
+	 */
+	public void setPreviousClassAttendanceDefDTO(ClassAttendanceDefDTO previousClassAttendanceDefDTO) {
+		this.previousClassAttendanceDefDTO = previousClassAttendanceDefDTO;
+	}
+
+	/**
+	 * @return the associateAttendanceList
+	 */
+	public List<AssociateAttendanceDTO> getAssociateAttendanceList() {
+		return associateAttendanceList;
+	}
+
+	/**
+	 * @param associateAttendanceList the associateAttendanceList to set
+	 */
+	public void setAssociateAttendanceList(List<AssociateAttendanceDTO> associateAttendanceList) {
+		this.associateAttendanceList = associateAttendanceList;
+	}
+
 	/**
 	 * @return the selectedAttendanceDefDTO
 	 */
@@ -45,7 +82,6 @@ public class AttendanceRegisterBean {
 		this.classAttendanceDefDTOList = classAttendanceDefDTOList;
 	}
 
-	private List<String> columnNames = new ArrayList<String>();
 	/**
 	 * @return the columnNames
 	 */
@@ -60,20 +96,5 @@ public class AttendanceRegisterBean {
 		this.columnNames = columnNames;
 	}
 
-	private List<AssociateAttendanceDTO> attendanceList = new ArrayList<AssociateAttendanceDTO>();
-
-	/**
-	 * @return the attendanceList
-	 */
-	public List<AssociateAttendanceDTO> getAttendanceList() {
-		return attendanceList;
-	}
-
-	/**
-	 * @param attendanceList the attendanceList to set
-	 */
-	public void setAttendanceList(List<AssociateAttendanceDTO> attendanceList) {
-		this.attendanceList = attendanceList;
-	}
 
 }

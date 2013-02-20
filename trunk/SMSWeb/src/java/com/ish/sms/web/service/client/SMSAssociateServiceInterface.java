@@ -15,7 +15,7 @@ public interface SMSAssociateServiceInterface {
 	 * @return studentXML
 	 */
     @POST
-    @Path("/createStudent/")
+    @Path("/saveStudent/")
     @Produces("text/xml")
     @Consumes( "text/xml" )
 	public String saveStudent(String studentXml) ;
@@ -27,7 +27,7 @@ public interface SMSAssociateServiceInterface {
 	 * @return teacherXML
 	 */
     @POST
-    @Path("/createTeacher/")
+    @Path("/saveTeacher/")
     @Produces("text/xml")
     @Consumes( "text/xml" )
 	public String saveTeacher(String teacherXML) ;

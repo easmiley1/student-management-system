@@ -23,6 +23,7 @@
 	<bean id="associateOperationsDAO" class="com.ish.sms.service.dao.AssociateOperationsDAO"/>
 	<bean id="referenceOperationsDAO" class="com.ish.sms.service.dao.ReferenceOperationsDAO"/>
 	<bean id="classOperationsDAO" class="com.ish.sms.service.dao.ClassOperationsDAO"/>
+	<bean id="classOperationsDAOUtil" class="com.ish.sms.service.dao.util.ClassOperationsDAOUtil"/>
 	
 	<!-- Service Business Operations beans declaration -->
 	<bean id="associateOperations" class="com.ish.sms.service.ops.AssociateOperations"/>
