@@ -65,7 +65,6 @@ public class AssociateAction extends BaseAction {
 		try {
 			associateBean.initModifySearchAllStudents(associateBusiness.retrieveAllStudents());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			WebUtils.registerErrorMessage();
 		}
@@ -81,7 +80,6 @@ public class AssociateAction extends BaseAction {
 		try {
 			associateBean.initModifySearchAllStudents(associateBusiness.retrieveAllStudents());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			WebUtils.registerErrorMessage();
 		}
@@ -97,7 +95,6 @@ public class AssociateAction extends BaseAction {
 		try {
 			associateBean.initModifySearchAllTeacers(associateBusiness.retrieveAllTeachers());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			WebUtils.registerErrorMessage();
 		}
@@ -114,7 +111,6 @@ public class AssociateAction extends BaseAction {
 		try {
 			associateBean.initModifySearchAllTeacers(associateBusiness.retrieveAllTeachers());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			WebUtils.registerErrorMessage();
 		}
@@ -159,7 +155,6 @@ public class AssociateAction extends BaseAction {
 		try {
 			associateBean.applyStudentSelection();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			WebUtils.registerErrorMessage();
 		}
@@ -174,7 +169,6 @@ public class AssociateAction extends BaseAction {
 		try {
 			associateBean.applyStudentSelection();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			WebUtils.registerErrorMessage();
 		}
@@ -189,7 +183,6 @@ public class AssociateAction extends BaseAction {
 		try {
 			associateBean.applyTeacherSelection();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			WebUtils.registerErrorMessage();
 		}
@@ -204,7 +197,6 @@ public class AssociateAction extends BaseAction {
 		try {
 			associateBean.applyTeacherSelection();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			WebUtils.registerErrorMessage();
 		}
