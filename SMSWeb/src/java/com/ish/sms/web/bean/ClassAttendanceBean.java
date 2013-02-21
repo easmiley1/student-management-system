@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -23,34 +24,17 @@ import com.ish.sms.web.util.WebUtils;
  * @author Naren 
  *
  */
-@ManagedBean(name = WebConstants.CLASS_BEAN)
+@ManagedBean(name = WebConstants.CLASS_ATTENDANCE_BEAN)
 @SessionScoped
-public class ClassBean extends BaseBean implements Serializable {
+public class ClassAttendanceBean extends BaseBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	private boolean dataSaved = true;
 
 	private ClassDTO currentClass = new ClassDTO();
 
 	private AttendanceRegisterBean attendanceRegisterBean = new AttendanceRegisterBean();
 
 	private MaintainRegisterMonthBean maintainRegisterMonthBean = new MaintainRegisterMonthBean();
-
-	/**
-	 * @return the dataSaved
-	 */
-	public boolean isDataSaved() {
-		return dataSaved;
-	}
-
-	/**
-	 * @param dataSaved
-	 *            the dataSaved to set
-	 */
-	public void setDataSaved(boolean dataSaved) {
-		this.dataSaved = dataSaved;
-	}
 
 	/**
 	 * @return the currentClass
@@ -218,6 +202,19 @@ public class ClassBean extends BaseBean implements Serializable {
 			associateAttendanceDTO.setClassAttendanceDefDTO(classAttendanceDefDTO);
 		}
 		return associateAttendanceDTOList;
+	}
+
+
+	/**
+	 * Method to populate the grid/bean with the persisted data and set the success message in the screen
+	 * 
+	 * @param associateAttendanceDTOList
+	 */
+	public void populatePersistedParamInBeanAndSendMessage(List<AssociateAttendanceDTO> associateAttendanceDTOList) {
+		getAttendanceRegisterBean().setAssociateAttendanceList(associateAttendanceDTOList);
+		String monthYear = getAttendanceRegisterBean().getPreviousClassAttendanceDefDTO().getMonthYear();
+		WebUtils.registerMessage(FacesMessage.SEVERITY_INFO, SAVE_SUCCESSFULL, REGISTER_SAVED + monthYear);
+		getAttendanceRegisterBean().setDataSaved(true);
 	}
 
 }

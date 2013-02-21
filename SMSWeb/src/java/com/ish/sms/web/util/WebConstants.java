@@ -34,7 +34,7 @@ public interface WebConstants {
 	public static final String TREECACHE_MBEAN_SERVICE = "jboss.cache:service=TreeCache";
 
 	/* Bean name related constants */
-	public static final String CLASS_BEAN = "classBean";
+	public static final String CLASS_ATTENDANCE_BEAN = "classAttendanceBean";
 	public static final String REFERENCE_BEAN = "referenceBean";
 	public static final String ASSOCIATE_BUSINESS_BEAN = "associateBusiness";
 	public static final String CLASS_BUSINESS_BEAN = "classBusiness";

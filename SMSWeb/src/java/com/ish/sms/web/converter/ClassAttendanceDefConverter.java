@@ -11,7 +11,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 
 import com.ish.sms.service.dto.ClassAttendanceDefDTO;
-import com.ish.sms.web.bean.ClassBean;
+import com.ish.sms.web.bean.ClassAttendanceBean;
 import com.ish.sms.web.util.WebConstants;
 import com.ish.sms.web.util.WebUtils;
 
@@ -32,7 +32,7 @@ public class ClassAttendanceDefConverter implements Converter, Serializable, Web
 	 */
 	public Object getAsObject(FacesContext context, UIComponent component, String value) throws ConverterException {
 
-		ClassBean classBean = WebUtils.findBean(CLASS_BEAN);
+		ClassAttendanceBean classBean = WebUtils.findBean(CLASS_ATTENDANCE_BEAN);
 		List<ClassAttendanceDefDTO> classAttendanceDefDTOList = classBean.getAttendanceRegisterBean().getClassAttendanceDefDTOList();
 		ClassAttendanceDefDTO selectedClassAttendanceDefDTO = null;
 		for (ClassAttendanceDefDTO classAttendanceDefDTO : classAttendanceDefDTOList) {

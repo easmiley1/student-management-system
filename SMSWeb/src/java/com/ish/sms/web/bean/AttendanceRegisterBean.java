@@ -24,7 +24,22 @@ public class AttendanceRegisterBean {
 
 	private List<String> columnNames = new ArrayList<String>();
 	
-	
+	private boolean dataSaved = true;
+
+	/**
+	 * @return the dataSaved
+	 */
+	public boolean isDataSaved() {
+		return dataSaved;
+	}
+
+	/**
+	 * @param dataSaved
+	 *            the dataSaved to set
+	 */
+	public void setDataSaved(boolean dataSaved) {
+		this.dataSaved = dataSaved;
+	}
 
 	/**
 	 * @return the previousClassAttendanceDefDTO

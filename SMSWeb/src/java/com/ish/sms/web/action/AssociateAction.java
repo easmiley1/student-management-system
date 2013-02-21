@@ -6,6 +6,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import com.ish.sms.web.bean.AssociateBean;
+import com.ish.sms.web.util.WebUtils;
 
 /**
  * Action Bean class which is in request scope for all the associate related actions.
@@ -66,7 +67,7 @@ public class AssociateAction extends BaseAction {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			registerErrorMessage();
+			WebUtils.registerErrorMessage();
 		}
 		return MODIFY_STUDENT_LIST_PAGE;
 	}
@@ -82,7 +83,7 @@ public class AssociateAction extends BaseAction {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			registerErrorMessage();
+			WebUtils.registerErrorMessage();
 		}
 		return VIEW_STUDENT_LIST_PAGE;
 	}
@@ -98,7 +99,7 @@ public class AssociateAction extends BaseAction {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			registerErrorMessage();
+			WebUtils.registerErrorMessage();
 		}
 		return MODIFY_TEACHER_LIST_PAGE;
 	}
@@ -115,7 +116,7 @@ public class AssociateAction extends BaseAction {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			registerErrorMessage();
+			WebUtils.registerErrorMessage();
 		}
 		return VIEW_TEACHER_LIST_PAGE;
 	}
@@ -127,10 +128,10 @@ public class AssociateAction extends BaseAction {
 	public void saveStudent() {
 		try {
 			associateBusiness.saveStudent(associateBean.getStudentDTO(), associateBean.getAssociateDTO());
-			registerMessage(FacesMessage.SEVERITY_INFO, "Success", "Student Succcessfully Saved");
+			WebUtils.registerMessage(FacesMessage.SEVERITY_INFO, "Success", "Student Succcessfully Saved");
 		} catch (Exception e) {
 			e.printStackTrace();
-			registerErrorMessage();
+			WebUtils.registerErrorMessage();
 
 		}
 	}
@@ -142,10 +143,10 @@ public class AssociateAction extends BaseAction {
 	public void saveTeacher()  {
 		try {
 			associateBusiness.saveTeacher(associateBean.getTeacherDTO(), associateBean.getAssociateDTO());
-			registerMessage(FacesMessage.SEVERITY_INFO, "Success", "Teacher Succcessfully Saved");
+			WebUtils.registerMessage(FacesMessage.SEVERITY_INFO, "Success", "Teacher Succcessfully Saved");
 		} catch (Exception e) {
 			e.printStackTrace();			
-			registerErrorMessage();
+			WebUtils.registerErrorMessage();
 		}
 	}
 
@@ -160,7 +161,7 @@ public class AssociateAction extends BaseAction {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			registerErrorMessage();
+			WebUtils.registerErrorMessage();
 		}
 	}
 
@@ -175,7 +176,7 @@ public class AssociateAction extends BaseAction {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			registerErrorMessage();
+			WebUtils.registerErrorMessage();
 		}
 	}
 
@@ -190,7 +191,7 @@ public class AssociateAction extends BaseAction {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			registerErrorMessage();
+			WebUtils.registerErrorMessage();
 		}
 	}
 
@@ -205,7 +206,7 @@ public class AssociateAction extends BaseAction {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			registerErrorMessage();
+			WebUtils.registerErrorMessage();
 		}
 	}
 

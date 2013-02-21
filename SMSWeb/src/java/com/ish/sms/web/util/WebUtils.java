@@ -3,9 +3,12 @@ package com.ish.sms.web.util;
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 
 /**
@@ -14,7 +17,7 @@ import javax.faces.context.FacesContext;
  * @author Naren
  * 
  */
-public class WebUtils {
+public class WebUtils implements WebConstants{
 
 	
 	public static enum CLASS_DEF_MODIFICATION {
@@ -65,6 +68,17 @@ public class WebUtils {
 		String month = DateFormatSymbols.getInstance().getMonths()[monthInt];
 		String monthYear = month + "-" + year;
 		return monthYear;
+	}
+
+	public static void registerErrorMessage() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, SAVE_FAILED + new Date(), CONTACT_TECHNICAL_TEAM));
+	}
+
+	public static void registerMessage(Severity severity, String summary, String detail) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage(severity, summary, detail));
+
 	}
 
 }
