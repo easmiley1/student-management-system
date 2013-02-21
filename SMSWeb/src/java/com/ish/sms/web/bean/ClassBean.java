@@ -102,7 +102,7 @@ public class ClassBean extends BaseBean implements Serializable {
 	 * 
 	 * @param targetClassAttendanceDefDTOList
 	 */
-	public void initMaintainClassAttendanceDef(List<ClassAttendanceDefDTO> targetClassAttendanceDefDTOList) {
+	public void initMaintainClassAttendanceDef(List<ClassAttendanceDefDTO> targetClassAttendanceDefDTOList, boolean initialize) {
 		getAttendanceRegisterBean().setClassAttendanceDefDTOList(targetClassAttendanceDefDTOList);
 		List<String> sourceList = WebUtils.getAttendanceMonthDefinition();
 		List<String> targetList = new ArrayList<String>();
@@ -111,15 +111,20 @@ public class ClassBean extends BaseBean implements Serializable {
 		boolean foundCurrentMonth = false;
 		for (ClassAttendanceDefDTO classAttendanceDefDTO : targetClassAttendanceDefDTOList) {
 			String monthYear = classAttendanceDefDTO.getMonthYear();
-			if (monthYear.equals(currentMonthYear)) {
-				foundCurrentMonth = true;
-				getAttendanceRegisterBean().setSelectedAttendanceDefDTO(classAttendanceDefDTO);
-				getAttendanceRegisterBean().setPreviousClassAttendanceDefDTO(classAttendanceDefDTO);
-			}
 			targetList.add(monthYear);
+			if (initialize) {
+				if (monthYear.equals(currentMonthYear)) {
+					foundCurrentMonth = true;
+					getAttendanceRegisterBean().setSelectedAttendanceDefDTO(classAttendanceDefDTO);
+					getAttendanceRegisterBean().setPreviousClassAttendanceDefDTO(classAttendanceDefDTO);
+				}
+			}
+
 		}
-		if (!foundCurrentMonth)
+		if (initialize && !foundCurrentMonth){
 			getAttendanceRegisterBean().setSelectedAttendanceDefDTO(targetClassAttendanceDefDTOList.get(0));
+			getAttendanceRegisterBean().setPreviousClassAttendanceDefDTO(targetClassAttendanceDefDTOList.get(0));
+		}
 
 		sourceList.removeAll(targetList);
 		getMaintainRegisterMonthBean().getClassAttendanceDTOModel().setSource(sourceList);

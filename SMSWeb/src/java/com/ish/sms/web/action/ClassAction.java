@@ -78,7 +78,7 @@ public class ClassAction extends BaseAction {
 			ClassDTO classDTO = classBusiness.retrieveClassForId(classId);
 			classBean.setCurrentClass(classDTO);
 			List<ClassAttendanceDefDTO> targetClassAttendanceDefDTOList = classBusiness.retrieveClassAttenDefStringList(classBean.getCurrentClass().getId());
-			classBean.initMaintainClassAttendanceDef(targetClassAttendanceDefDTOList);
+			classBean.initMaintainClassAttendanceDef(targetClassAttendanceDefDTOList, true);
 
 			/* Get the month id for which we need to retrieve the associate attendance list */
 			Integer monthId = classBean.getAttendanceRegisterBean().getSelectedAttendanceDefDTO().getId();
@@ -100,10 +100,10 @@ public class ClassAction extends BaseAction {
 
 		try {
 			List<ClassAttendanceDefDTO> modifiedClassAttendanceDefDTOList = classBean.getModifiedClassAttedanceDefList();
-			if(modifiedClassAttendanceDefDTOList == null){
+			if (modifiedClassAttendanceDefDTOList == null) {
 				registerMessage(FacesMessage.SEVERITY_WARN, CANNOT_SAVE, REGISTER_DEF_CANNOT_SAVE_DETAIL);
-			}
-			else if (modifiedClassAttendanceDefDTOList.size() > 0) {
+				classBean.initMaintainClassAttendanceDef(classBean.getAttendanceRegisterBean().getClassAttendanceDefDTOList(), false);
+			} else if (modifiedClassAttendanceDefDTOList.size() > 0) {
 				modifiedClassAttendanceDefDTOList = classBusiness.updateClassAttendanceDefList(modifiedClassAttendanceDefDTOList);
 				classBean.getAttendanceRegisterBean().setClassAttendanceDefDTOList(modifiedClassAttendanceDefDTOList);
 				registerMessage(FacesMessage.SEVERITY_INFO, SAVE_SUCCESSFULL, REGISTER_DEF_SAVED);
