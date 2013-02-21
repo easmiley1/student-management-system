@@ -10,6 +10,7 @@
 				<ui:define name="content">
 					<h:form id="classAttendanceForm">
 						<p:growl id="attendanceRegisterGrowl" showDetail="true" sticky="false" />
+    					
     					<p:panel header="Attendance Register" styleClass="dialogBodyPanel"	id="classAttendancePanel">
     						<p:remoteCommand name="callRemoteCommandtoMarkDirty" actionListener="#{classAction.markDirty}" process="@all" update="saveBtnIcon"/>
     						<p:blockUI block="classAttendanceForm" trigger="saveBtnIcon,classAttendanceDefList" />
@@ -24,7 +25,7 @@
 									</p:selectOneMenu>	 
 									<p:spacer width="20" height="20" />									
  									<p:commandButton value="Save Register" id="saveBtnIcon" icon="ui-icon-disk" style="vertical-align:top;height:28px;text-align:center;"
- 									action="#{classAction.saveAttendanceRegister}" disabled="#{classBean.dataSaved}" update="attendanceRegisterGrowl" />	
+ 									action="#{classAction.saveAttendanceRegister}" disabled="#{classBean.dataSaved}" update="attendanceRegisterGrowl,saveBtnIcon" />	
 								</p:toolbarGroup>
 
 								<p:toolbarGroup align="right" >
@@ -49,19 +50,20 @@
 						             </p:selectBooleanCheckbox>  
        							 </p:columns>
 							</p:dataTable>
-							
 						</p:panel>
+						
 						<p:dialog header="Maintain Register" widgetVar="attnMainDialog" showEffect="fold" hideEffect="fold" modal="true" id="attnMainDialogId" >  
 							<h:panelGrid id="classAttPickGrid1" columns="1" cellpadding="5">
 							  	 <p:pickList id="classAttPickList" value="#{classBean.maintainRegisterMonthBean.classAttendanceDTOModel}" var="classAtt" 
 							  	 effect="slide" itemLabel="#{classAtt}" itemValue="#{classAtt}" showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains"/>  
 							</h:panelGrid>
 							<h:panelGrid id="classAttPickGrid2" columns="2" cellpadding="5">
-								<p:commandButton value="Submit" action="#{classAction.submitMaintainClassAttendanceDef}"  ajax="true" 
-								update="attendanceRegisterGrowl,classAttendanceDefList"/> 
-								<p:commandButton value="Close" onclick="attnMainDialog.hide()" />							
+								<p:commandButton value="Save" action="#{classAction.submitMaintainClassAttendanceDef}"  ajax="true" 
+								update="attendanceRegisterGrowl,classAttendanceDefList,classAttPickList" />
+								<p:commandButton value="Close" onclick="attnMainDialog.hide()"/> 
 							</h:panelGrid>
 						</p:dialog>						
+
 					</h:form>
 				</ui:define>
 			</ui:composition>

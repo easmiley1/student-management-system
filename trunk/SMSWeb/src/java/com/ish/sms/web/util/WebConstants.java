@@ -53,7 +53,7 @@ public interface WebConstants {
 	public static final String REGISTER_SAVED = "Register changes saved successfully saved for : ";
 	public static final String NO_CHANGES = "No changes Found to save";
 	public static final String NO_CHANGE_IN_REGISTER = "Register Months are unmodified.";
-	public static final String CANNOT_SAVE = "Cannot save changes";
+	public static final String CANNOT_SAVE = "Cannot save changes : ";
 	public static final String REGISTER_DEF_CANNOT_SAVE_DETAIL = "You are trying to remove a month, that is currently displayed in Attendance Register, " +
-			"Please change the selected month in the register and then delete the same. ";
+			"Please change the selected month in the register and then delete the month. ";
 }

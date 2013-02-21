@@ -40,7 +40,7 @@
 				</p:menubar>
 			</p:toolbarGroup>
 			<p:toolbarGroup align="Right">
-				<p:themeSwitcher value="#{applicationThemeBean.theme}" style="width:165px" effect="fade" id="statefulSwitcher">  
+				<p:themeSwitcher value="#{applicationThemeBean.theme}" style="width:165px" effect="fade" id="statefulSwitcher" showEffect="slide">  
             		<f:selectItem itemLabel="Choose Theme" itemValue="" />  
             		<f:selectItems value="#{applicationThemeBean.themes}" />  
             		<p:ajax listener="#{applicationThemeBean.saveTheme}" />  
