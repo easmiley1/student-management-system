@@ -18,8 +18,14 @@ public interface QueryConstants {
 	public static final String FIND_ALL_STUDENTS_BY_CLASS_QUERY = "select st from com.ish.sms.service.entity.Student st where st.currentClass.id =:id";
 	
 	/* Reference Data Operations related queries*/
+	public static final String FIND_ALL_REFERENCE_DATA = "FIND_ALL_REFERENCE_DATA";
+	public static final String FIND_ALL_REFERENCE_DATA_QUERY = "select ref from com.ish.sms.service.entity.ReferenceData ref";
 	public static final String FIND_ALL_BLOODGROUPS = "FIND_ALL_BLOODGROUPS";
 	public static final String FIND_ALL_BLOODGROUPS_QUERY = "select bg from com.ish.sms.service.entity.BloodGroup bg";
+	public static final String FIND_ALL_SUBJECTS = "FIND_ALL_SUBJECTS";
+	public static final String FIND_ALL_SUBJECTS_QUERY = "select subject from com.ish.sms.service.entity.Subject subject";
+	public static final String FIND_ALL_DAY_OF_WEEKS = "FIND_ALL_DAY_OF_WEEKS";
+	public static final String FIND_ALL_DAY_OF_WEEKS_QUERY = "select dow from com.ish.sms.service.entity.DayofWeek dow";
 	public static final String FIND_ALL_EXTRACURRICULAR = "FIND_ALL_EXTRACURRICULAR";
 	public static final String FIND_ALL_EXTRACURRICULAR_QUERY = "select ec from com.ish.sms.service.entity.ExtraCurricular ec";
 	public static final String FIND_ALL_MODEOFTRANSPORTS = "FIND_ALL_MODEOFTRANSPORTS";

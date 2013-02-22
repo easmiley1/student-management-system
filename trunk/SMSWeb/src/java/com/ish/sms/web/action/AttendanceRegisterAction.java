@@ -5,7 +5,7 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import com.ish.sms.service.dto.AssociateAttendanceDTO;
@@ -21,7 +21,7 @@ import com.ish.sms.web.util.WebUtils;
  * 
  */
 @ManagedBean(name = "attendanceRegisterAction")
-@RequestScoped
+@ViewScoped
 public class AttendanceRegisterAction extends BaseAction {
 
 	private static final long serialVersionUID = 917148070535856940L;

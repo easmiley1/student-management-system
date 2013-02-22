@@ -47,7 +47,7 @@
 						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Blood Group:" styleClass="labelText"/>
 					</h:panelGroup>
-					<p:selectOneMenu id="bloodGroup"  styleClass="selectStyle" converter="#{bloodGroupConverter}" value="#{associateBean.associateDTO.bloodGroupDTO}" tabindex="16" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" >
+					<p:selectOneMenu id="bloodGroup"  styleClass="selectStyle" converter="#{referenceDataConverter}" value="#{associateBean.associateDTO.bloodGroupDTO}" tabindex="16" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" >
 						<f:selectItems value="#{referenceBean.bloodGroupDTOList}" var="bloodGroupDTO" itemValue="#{bloodGroupDTO}" itemLabel="#{bloodGroupDTO.name}"/>
 					</p:selectOneMenu>
 

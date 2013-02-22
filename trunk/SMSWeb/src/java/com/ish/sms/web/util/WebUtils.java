@@ -23,6 +23,11 @@ public class WebUtils implements WebConstants{
 	public static enum CLASS_DEF_MODIFICATION {
     	Deleted, Added
     };
+    
+	public static enum REFERENCE_TYPE {
+		bloodGroup, dayofWeek, extraCurricularInterest, transportation, stateName, subjectName
+	};
+
 	/**
 	 * @param beanName
 	 * @return Bean

@@ -23,10 +23,10 @@
 						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Experience: " styleClass="labelText"/>
 					</h:panelGroup>
-					<p:inputText id="experience" styleClass="commonInput" tabindex="21" required="true"  maxlength="100" value="#{associateBean.teacherDTO.experience}" requiredMessage="Experience Required" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
+					<p:spinner id="experience" style="ui-spinner-input:80px;" tabindex="21" required="true"  value="#{associateBean.teacherDTO.experience}" stepFactor="1" requiredMessage="Experience Required" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
 					
 					<h:outputText />
-					<p:commandButton value="Save"  id="saveBtn" action="#{associateAction.saveTeacher}" style="width:100px;height:35px;" disabled="#{associateBean.readOnlyMode}"  update="growlAddTeacher"/>
+					<p:commandButton value="Save"  id="saveBtn" icon="ui-icon-disk" action="#{associateAction.saveTeacher}" style="width:100px;height:35px;" disabled="#{associateBean.readOnlyMode}"  update="growlAddTeacher"/>
 					<h:panelGrid id="dummy" columns="1"  cellpadding="0px" cellspacing="0px" style="height:26px" styleClass="errorMsgColumn" columnClasses="errorMsgColumn">
 					</h:panelGrid>
 					<h:outputText />				

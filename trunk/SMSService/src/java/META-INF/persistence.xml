@@ -2,11 +2,8 @@
 
   <persistence-unit name="smsServicePersistenceUnit" transaction-type="RESOURCE_LOCAL">
   	<class>com.ish.sms.service.entity.Student</class>
-  	<class>com.ish.sms.service.entity.BloodGroup</class>
   	<class>com.ish.sms.service.entity.Class</class>
-  	<class>com.ish.sms.service.entity.ExtraCurricular</class>
-  	<class>com.ish.sms.service.entity.ModeofTransport</class>
-  	<class>com.ish.sms.service.entity.State</class>
+  	<class>com.ish.sms.service.entity.ReferenceData</class>
   	<class>com.ish.sms.service.entity.Teacher</class>
   	<class>com.ish.sms.service.entity.ClassAttendanceDef</class>
   	<class>com.ish.sms.service.entity.AssociateAttendance</class>

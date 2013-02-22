@@ -24,9 +24,6 @@ public class Class {
 	@Column(nullable = false, name = "class_name")
 	private String name;
 
-	@Column(nullable = false, name = "class_section")
-	private String section;
-
 	@OneToOne
 	@JoinColumn(name = "class_teacher")
 	private Teacher teacher;
@@ -59,20 +56,6 @@ public class Class {
 	 */
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	/**
-	 * @return the section
-	 */
-	public String getSection() {
-		return section;
-	}
-
-	/**
-	 * @param section the section to set
-	 */
-	public void setSection(String section) {
-		this.section = section;
 	}
 
 	/**

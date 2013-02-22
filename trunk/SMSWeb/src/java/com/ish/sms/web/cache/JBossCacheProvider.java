@@ -15,8 +15,7 @@ import com.ish.sms.web.business.ReferenceBusiness;
 import com.ish.sms.web.util.WebConstants;
 
 /**
- * A JBossCache service provider provides the API to manipulate the cache.
- * Provides ways to access or delete nodes/data from the cache.
+ * A JBossCache service provider provides the API to manipulate the cache. Provides ways to access or delete nodes/data from the cache.
  * 
  * @author Naren
  * 
@@ -25,15 +24,12 @@ import com.ish.sms.web.util.WebConstants;
 public class JBossCacheProvider implements WebConstants {
 
 	private TreeCache tree;
-	private long cacheHitCount = 0L;
-	private long nonCacheHitCount = 0L;
 
 	@Autowired
 	private ReferenceBusiness referenceBusiness;
 
 	/**
-	 * Method to start the tree cache service and call the methods to create the
-	 * cache
+	 * Method to start the tree cache service and call the methods to create the cache
 	 * 
 	 * @throws Exception
 	 */
@@ -57,6 +53,8 @@ public class JBossCacheProvider implements WebConstants {
 		put(MODE_OF_TRANSPORT_FQN, MODE_OF_TRANSPORT_KEY, referenceListDTO.getModeofTransportDTOList());
 		put(EXTRA_CURRICULAR_FQN, EXTRA_CURRICULAR_KEY, referenceListDTO.getExtraCurricularDTOList());
 		put(CLASS_FQN, CLASS_KEY, referenceListDTO.getClassDTOList());
+		put(SUBJECT_FQN, SUBJECT_KEY, referenceListDTO.getSubjectDTOList());
+		put(TEACHER_FQN, TEACHER_KEY, referenceListDTO.getTeacherDTOList());
 	}
 
 	/**
@@ -82,10 +80,6 @@ public class JBossCacheProvider implements WebConstants {
 		if (tree != null) {
 			result = tree.get(fqn, key);
 		}
-		if (result == null)
-			incrementNonCacheHitCount();
-		else
-			incrementCacheHitCount();
 		return result;
 	}
 
@@ -101,26 +95,6 @@ public class JBossCacheProvider implements WebConstants {
 		if (tree != null) {
 			tree.put(fqn, key, results);
 		}
-	}
-
-	public void incrementNonCacheHitCount() {
-		synchronized (this) {
-			nonCacheHitCount++;
-		}
-	}
-
-	public long getNonCacheHitCount() {
-		return nonCacheHitCount;
-	}
-
-	public void incrementCacheHitCount() {
-		synchronized (this) {
-			cacheHitCount++;
-		}
-	}
-
-	public long getCacheHitCount() {
-		return cacheHitCount;
 	}
 
 }

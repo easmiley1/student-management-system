@@ -2,25 +2,23 @@ package com.ish.sms.web.bean;
 
 import java.util.List;
 
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
-import com.ish.sms.service.dto.BloodGroupDTO;
 import com.ish.sms.service.dto.ClassDTO;
-import com.ish.sms.service.dto.ExtraCurricularDTO;
-import com.ish.sms.service.dto.ModeofTransportDTO;
-import com.ish.sms.service.dto.StateDTO;
+import com.ish.sms.service.dto.ReferenceDataDTO;
+import com.ish.sms.service.dto.TeacherDTO;
 import com.ish.sms.web.cache.JBossCacheProvider;
 import com.ish.sms.web.util.SMSSpringFactory;
 
 /**
- * Bean class to hold all reference data. They will be reference once a day.
+ * Bean class to hold all reference data. They will be refreshed once a day or if some reference data is updated
  * 
  * @author Naren
  *
  */
 @ManagedBean(name = "referenceBean")
-@SessionScoped
+@ApplicationScoped
 public class ReferenceBean extends BaseBean {
 
 	private static final long serialVersionUID = 1L;
@@ -31,22 +29,56 @@ public class ReferenceBean extends BaseBean {
 	public ReferenceBean() throws Exception {
 		
 		jbossCacheProvider = (JBossCacheProvider) SMSSpringFactory.getInstance().getBean("jbossCacheProvider");
-		setBloodGroupDTOList((List<BloodGroupDTO>) jbossCacheProvider.get(BLOOD_GROUP_FQN, BLOOD_GROUP_KEY));
-		setModeofTransportDTOList((List<ModeofTransportDTO>) jbossCacheProvider.get(MODE_OF_TRANSPORT_FQN, MODE_OF_TRANSPORT_KEY));
-		setExtraCurricularDTOList((List<ExtraCurricularDTO>) jbossCacheProvider.get(EXTRA_CURRICULAR_FQN, EXTRA_CURRICULAR_KEY));
-		setStateDTOList((List<StateDTO>) jbossCacheProvider.get(STATE_FQN, STATE_KEY));
+		setBloodGroupDTOList((List<ReferenceDataDTO>) jbossCacheProvider.get(BLOOD_GROUP_FQN, BLOOD_GROUP_KEY));
+		setModeofTransportDTOList((List<ReferenceDataDTO>) jbossCacheProvider.get(MODE_OF_TRANSPORT_FQN, MODE_OF_TRANSPORT_KEY));
+		setExtraCurricularDTOList((List<ReferenceDataDTO>) jbossCacheProvider.get(EXTRA_CURRICULAR_FQN, EXTRA_CURRICULAR_KEY));
+		setStateDTOList((List<ReferenceDataDTO>) jbossCacheProvider.get(STATE_FQN, STATE_KEY));
 		setClassDTOList((List<ClassDTO>)jbossCacheProvider.get(CLASS_FQN, CLASS_KEY));
+		setSubjectDTOList((List<ReferenceDataDTO>) jbossCacheProvider.get(SUBJECT_FQN, SUBJECT_KEY));
+		setTeacherDTOList((List<TeacherDTO>) jbossCacheProvider.get(TEACHER_FQN, TEACHER_KEY));
 	}
 
-	private List<BloodGroupDTO> bloodGroupDTOList;
+	private List<ReferenceDataDTO> bloodGroupDTOList;
 
-	private List<ModeofTransportDTO> modeofTransportDTOList;
+	private List<ReferenceDataDTO> modeofTransportDTOList;
 
-	private List<ExtraCurricularDTO> extraCurricularDTOList;
+	private List<ReferenceDataDTO> extraCurricularDTOList;
 
-	private List<StateDTO> stateDTOList;
+	private List<ReferenceDataDTO> stateDTOList;
 	
 	private List<ClassDTO> classDTOList;
+
+	private List<ReferenceDataDTO> subjectDTOList;
+	
+	private List<TeacherDTO> teacherDTOList;
+
+	/**
+	 * @return the teacherDTOList
+	 */
+	public List<TeacherDTO> getTeacherDTOList() {
+		return teacherDTOList;
+	}
+
+	/**
+	 * @param teacherDTOList the teacherDTOList to set
+	 */
+	public void setTeacherDTOList(List<TeacherDTO> teacherDTOList) {
+		this.teacherDTOList = teacherDTOList;
+	}
+
+	/**
+	 * @return the subjectDTOList
+	 */
+	public List<ReferenceDataDTO> getSubjectDTOList() {
+		return subjectDTOList;
+	}
+
+	/**
+	 * @param subjectDTOList the subjectDTOList to set
+	 */
+	public void setSubjectDTOList(List<ReferenceDataDTO> subjectDTOList) {
+		this.subjectDTOList = subjectDTOList;
+	}
 
 	/**
 	 * @return the classDTOList
@@ -65,7 +97,7 @@ public class ReferenceBean extends BaseBean {
 	/**
 	 * @return the bloodGroupDTOList
 	 */
-	public List<BloodGroupDTO> getBloodGroupDTOList() {
+	public List<ReferenceDataDTO> getBloodGroupDTOList() {
 		return bloodGroupDTOList;
 	}
 
@@ -73,14 +105,14 @@ public class ReferenceBean extends BaseBean {
 	 * @param bloodGroupDTOList
 	 *            the bloodGroupDTOList to set
 	 */
-	public void setBloodGroupDTOList(List<BloodGroupDTO> bloodGroupDTOList) {
+	public void setBloodGroupDTOList(List<ReferenceDataDTO> bloodGroupDTOList) {
 		this.bloodGroupDTOList = bloodGroupDTOList;
 	}
 
 	/**
 	 * @return the modeofTransportDTOList
 	 */
-	public List<ModeofTransportDTO> getModeofTransportDTOList() {
+	public List<ReferenceDataDTO> getModeofTransportDTOList() {
 		return modeofTransportDTOList;
 	}
 
@@ -88,14 +120,14 @@ public class ReferenceBean extends BaseBean {
 	 * @param modeofTransportDTOList
 	 *            the modeofTransportDTOList to set
 	 */
-	public void setModeofTransportDTOList(List<ModeofTransportDTO> modeofTransportDTOList) {
+	public void setModeofTransportDTOList(List<ReferenceDataDTO> modeofTransportDTOList) {
 		this.modeofTransportDTOList = modeofTransportDTOList;
 	}
 
 	/**
 	 * @return the extraCurricularDTOList
 	 */
-	public List<ExtraCurricularDTO> getExtraCurricularDTOList() {
+	public List<ReferenceDataDTO> getExtraCurricularDTOList() {
 		return extraCurricularDTOList;
 	}
 
@@ -103,14 +135,14 @@ public class ReferenceBean extends BaseBean {
 	 * @param extraCurricularDTOList
 	 *            the extraCurricularDTOList to set
 	 */
-	public void setExtraCurricularDTOList(List<ExtraCurricularDTO> extraCurricularDTOList) {
+	public void setExtraCurricularDTOList(List<ReferenceDataDTO> extraCurricularDTOList) {
 		this.extraCurricularDTOList = extraCurricularDTOList;
 	}
 
 	/**
 	 * @return the stateDTOList
 	 */
-	public List<StateDTO> getStateDTOList() {
+	public List<ReferenceDataDTO> getStateDTOList() {
 		return stateDTOList;
 	}
 
@@ -118,7 +150,7 @@ public class ReferenceBean extends BaseBean {
 	 * @param stateDTOList
 	 *            the stateDTOList to set
 	 */
-	public void setStateDTOList(List<StateDTO> stateDTOList) {
+	public void setStateDTOList(List<ReferenceDataDTO> stateDTOList) {
 		this.stateDTOList = stateDTOList;
 	}
 
