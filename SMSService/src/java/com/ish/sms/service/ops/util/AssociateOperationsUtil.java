@@ -4,20 +4,14 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.apache.commons.beanutils.PropertyUtils;
 
-import com.ish.sms.service.dto.BloodGroupDTO;
 import com.ish.sms.service.dto.ClassDTO;
-import com.ish.sms.service.dto.ExtraCurricularDTO;
-import com.ish.sms.service.dto.ModeofTransportDTO;
-import com.ish.sms.service.dto.StateDTO;
+import com.ish.sms.service.dto.ReferenceDataDTO;
 import com.ish.sms.service.dto.StudentDTO;
 import com.ish.sms.service.dto.TeacherDTO;
-import com.ish.sms.service.entity.BloodGroup;
-import com.ish.sms.service.entity.ExtraCurricular;
-import com.ish.sms.service.entity.ModeofTransport;
-import com.ish.sms.service.entity.State;
+import com.ish.sms.service.entity.Class;
+import com.ish.sms.service.entity.ReferenceData;
 import com.ish.sms.service.entity.Student;
 import com.ish.sms.service.entity.Teacher;
-
 /**
  * Utility class for all associate related operations
  * 
@@ -37,8 +31,8 @@ public class AssociateOperationsUtil {
 	public TeacherDTO convertTeacherEntityToDTO(Teacher teacher) throws Exception {
 		// Create all the DTO's required to construct the TeacherDTO
 		TeacherDTO teacherDTO = new TeacherDTO();
-		BloodGroupDTO bloodGroupDTO = new BloodGroupDTO();
-		StateDTO stateDTO = new StateDTO();
+		ReferenceDataDTO bloodGroupDTO = new ReferenceDataDTO();
+		ReferenceDataDTO stateDTO = new ReferenceDataDTO();
 
 		// Populate all the attributes in the above created DTO's
 		PropertyUtils.copyProperties(teacherDTO, teacher);
@@ -62,8 +56,8 @@ public class AssociateOperationsUtil {
 	public Teacher convertTeacherDTOToEntity(TeacherDTO teacherDTO) throws Exception {
 		Teacher teacher = new Teacher();
 		PropertyUtils.copyProperties(teacher, teacherDTO);
-		BloodGroup bloodGroup = new BloodGroup();
-		State state = new State();
+		ReferenceData bloodGroup = new ReferenceData();
+		ReferenceData state = new ReferenceData();
 
 		// Populate all the attributes in the above created entities for persisting in the database.
 		PropertyUtils.copyProperties(teacherDTO, teacher);
@@ -87,12 +81,12 @@ public class AssociateOperationsUtil {
 	public StudentDTO convertStudentEntitytoDTO(Student student) throws Exception {
 		// Create all the DTO's required to construct the StudentDTO
 		StudentDTO studentDTO = new StudentDTO();
-		BloodGroupDTO bloodGroupDTO = new BloodGroupDTO();
-		StateDTO stateDTO = new StateDTO();
+		ReferenceDataDTO bloodGroupDTO = new ReferenceDataDTO();
+		ReferenceDataDTO stateDTO = new ReferenceDataDTO();
 		ClassDTO joiningClassDTO = new ClassDTO();
 		ClassDTO currentClassDTO = new ClassDTO();
-		ModeofTransportDTO modeofTransportDTO = new ModeofTransportDTO();
-		ExtraCurricularDTO extraCurricularDTO = new ExtraCurricularDTO();
+		ReferenceDataDTO modeofTransportDTO = new ReferenceDataDTO();
+		ReferenceDataDTO extraCurricularDTO = new ReferenceDataDTO();
 
 		// Populate all the attributes in the above created DTO's
 		PropertyUtils.copyProperties(studentDTO, student);
@@ -124,12 +118,12 @@ public class AssociateOperationsUtil {
 	public Student convertStudentDTOToEntity(StudentDTO studentDTO) throws Exception {
 		Student student = new Student();
 		PropertyUtils.copyProperties(student, studentDTO);
-		BloodGroup bloodGroup = new BloodGroup();
-		State state = new State();
-		com.ish.sms.service.entity.Class joiningClass = new com.ish.sms.service.entity.Class();
-		com.ish.sms.service.entity.Class currentClass = new com.ish.sms.service.entity.Class();
-		ModeofTransport modeofTransport = new ModeofTransport();
-		ExtraCurricular extraCurricular = new ExtraCurricular();
+		ReferenceData bloodGroup = new ReferenceData();
+		ReferenceData state = new ReferenceData();
+		Class joiningClass = new Class();
+		Class currentClass = new Class();
+		ReferenceData modeofTransport = new ReferenceData();
+		ReferenceData extraCurricular = new ReferenceData();
 
 		// Populate all the attributes in the above created entities for persisting in database.
 		PropertyUtils.copyProperties(studentDTO, student);

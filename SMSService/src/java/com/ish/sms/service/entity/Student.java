@@ -41,7 +41,7 @@ public class Student {
 	private String address;
 	@ManyToOne
 	@JoinColumn(nullable = false, name = "state")
-	private State state;
+	private ReferenceData state;
 	@Column(nullable = false, name = "city")
 	private String city;
 	@Column(nullable = false, name = "zip_code")
@@ -56,7 +56,7 @@ public class Student {
 	private String otherContactInfo;
 	@ManyToOne
 	@JoinColumn(nullable = false, name = "blood_group")
-	private BloodGroup bloodGroup;
+	private ReferenceData bloodGroup;
 	@Column(nullable = false, name = "date_of_joining")
 	private String dateofJoining;
 	@Column(nullable = true, name = "comments")
@@ -71,10 +71,10 @@ public class Student {
 	private Class currentClass;
 	@ManyToOne
 	@JoinColumn(name = "extra_curr_interest")
-	private ExtraCurricular extraCurricularInterest;
+	private ReferenceData extraCurricularInterest;
 	@ManyToOne
 	@JoinColumn(name = "mode_of_transport")
-	private ModeofTransport modeOfTransport;
+	private ReferenceData modeOfTransport;
 	@Column(nullable = false, name = "age")
 	private Integer age;
 	@Column(nullable = true, name = "date_of_birth")
@@ -173,7 +173,7 @@ public class Student {
 	/**
 	 * @return the state
 	 */
-	public State getState() {
+	public ReferenceData getState() {
 		return state;
 	}
 
@@ -181,7 +181,7 @@ public class Student {
 	 * @param state
 	 *            the state to set
 	 */
-	public void setState(State state) {
+	public void setState(ReferenceData state) {
 		this.state = state;
 	}
 
@@ -278,7 +278,7 @@ public class Student {
 	/**
 	 * @return the bloodGroup
 	 */
-	public BloodGroup getBloodGroup() {
+	public ReferenceData getBloodGroup() {
 		return bloodGroup;
 	}
 
@@ -286,7 +286,7 @@ public class Student {
 	 * @param bloodGroup
 	 *            the bloodGroup to set
 	 */
-	public void setBloodGroup(BloodGroup bloodGroup) {
+	public void setBloodGroup(ReferenceData bloodGroup) {
 		this.bloodGroup = bloodGroup;
 	}
 
@@ -353,7 +353,7 @@ public class Student {
 	/**
 	 * @return the extraCurricularInterest
 	 */
-	public ExtraCurricular getExtraCurricularInterest() {
+	public ReferenceData getExtraCurricularInterest() {
 		return extraCurricularInterest;
 	}
 
@@ -361,14 +361,14 @@ public class Student {
 	 * @param extraCurricularInterest
 	 *            the extraCurricularInterest to set
 	 */
-	public void setExtraCurricularInterest(ExtraCurricular extraCurricularInterest) {
+	public void setExtraCurricularInterest(ReferenceData extraCurricularInterest) {
 		this.extraCurricularInterest = extraCurricularInterest;
 	}
 
 	/**
 	 * @return the modeOfTransport
 	 */
-	public ModeofTransport getModeOfTransport() {
+	public ReferenceData getModeOfTransport() {
 		return modeOfTransport;
 	}
 
@@ -376,7 +376,7 @@ public class Student {
 	 * @param modeOfTransport
 	 *            the modeOfTransport to set
 	 */
-	public void setModeOfTransport(ModeofTransport modeOfTransport) {
+	public void setModeOfTransport(ReferenceData modeOfTransport) {
 		this.modeOfTransport = modeOfTransport;
 	}
 

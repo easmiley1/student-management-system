@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ish.sms.service.dto.StudentDTO;
 import com.ish.sms.service.dto.StudentListDTO;
 import com.ish.sms.service.dto.TeacherDTO;
-import com.ish.sms.service.dto.TeacherListDTO;
 import com.ish.sms.service.entity.Student;
 import com.ish.sms.service.entity.Teacher;
 
@@ -50,25 +49,6 @@ public class AssociateOperations extends BaseOperations {
 		teacher = (Teacher) associateOperationsDAO.createOrUpdateEntity(teacher);
 		PropertyUtils.copyProperties(teacherDTO, teacher);
 		return teacherDTO;
-	}
-
-	/**
-	 * Method to return the list of all the teachers in the school.
-	 * 
-	 * @return teacherList
-	 * @throws Exception
-	 */
-	@SuppressWarnings("unchecked")
-	@Transactional(readOnly = true)
-	public TeacherListDTO retrieveAllTeachers() throws Exception {
-
-		TeacherListDTO teacherListDTO = new TeacherListDTO();
-		List<Teacher> teachersList = (List<Teacher>) associateOperationsDAO.retrieveResultsForquery(FIND_ALL_TEACHERS);
-		for (Teacher teacher : teachersList) {
-			TeacherDTO teacherDTO = associateOperationsUtil.convertTeacherEntityToDTO(teacher);
-			teacherListDTO.getTeacherDTOList().add(teacherDTO);
-		}
-		return teacherListDTO;
 	}
 
 	/**

@@ -10,22 +10,39 @@ import javax.persistence.Table;
 import com.ish.sms.service.util.QueryConstants;
 
 /**
- * This entity represents the blood group reference table in the database
+ * This entity represents the reference data table in the database
  * 
  * @author Naren
  *
  */
-@NamedQueries( { @NamedQuery(name = QueryConstants.FIND_ALL_BLOODGROUPS, query = QueryConstants.FIND_ALL_BLOODGROUPS_QUERY) })
+@NamedQueries( { @NamedQuery(name = QueryConstants.FIND_ALL_REFERENCE_DATA, query = QueryConstants.FIND_ALL_REFERENCE_DATA_QUERY) })
 @Entity
-@Table(name="blood_group_ref")
-public class BloodGroup extends BaseReference{
+@Table(name="reference_data")
+public class ReferenceData {
 
 	@Id
-	@Column(name="blood_group_id")
+	@Column(name="reference_data_id")
 	private Integer id;
 	
-	@Column(name="blood_group_name")
+	@Column(name="reference_data_name")
 	private String name;
+
+	@Column(name="reference_data_type")
+	private String type;
+	
+	/**
+	 * @return the type
+	 */
+	public String getType() {
+		return type;
+	}
+
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(String type) {
+		this.type = type;
+	}
 
 	/**
 	 * @return the id

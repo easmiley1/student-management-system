@@ -39,7 +39,7 @@ public class Teacher {
 	private String address;
 	@ManyToOne
 	@JoinColumn( name = "state")
-	private State state;
+	private ReferenceData state;
 	@Column(nullable = false, name = "city")
 	private String city;
 	@Column(nullable = false, name = "zip_code")
@@ -54,7 +54,7 @@ public class Teacher {
 	private String otherContactInfo;
 	@ManyToOne
 	@JoinColumn( name = "blood_group")
-	private BloodGroup bloodGroup;
+	private ReferenceData bloodGroup;
 	@Column(nullable = false, name = "date_of_joining")
 	private String dateofJoining;
 	@Column(nullable = true, name = "comments")
@@ -146,13 +146,13 @@ public class Teacher {
 	/**
 	 * @return the state
 	 */
-	public State getState() {
+	public ReferenceData getState() {
 		return state;
 	}
 	/**
 	 * @param state the state to set
 	 */
-	public void setState(State state) {
+	public void setState(ReferenceData state) {
 		this.state = state;
 	}
 	/**
@@ -230,13 +230,13 @@ public class Teacher {
 	/**
 	 * @return the bloodGroup
 	 */
-	public BloodGroup getBloodGroup() {
+	public ReferenceData getBloodGroup() {
 		return bloodGroup;
 	}
 	/**
 	 * @param bloodGroup the bloodGroup to set
 	 */
-	public void setBloodGroup(BloodGroup bloodGroup) {
+	public void setBloodGroup(ReferenceData bloodGroup) {
 		this.bloodGroup = bloodGroup;
 	}
 	/**
