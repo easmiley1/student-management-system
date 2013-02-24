@@ -11,25 +11,32 @@
 					<h:outputText value="*" styleClass="errorValidationText" />
 					<h:outputText value="First Name:" styleClass="labelText"/>
 				</h:panelGroup>
-				<p:inputText id="firstName"	styleClass="commonInput" tabindex="1" required="true"  maxlength="100" value="#{associateBean.associateDTO.firstName}" requiredMessage="First Name Required" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
+				<p:inputText id="firstName"	styleClass="commonInput" tabindex="1" required="true"  maxlength="100" 
+				value="#{associateBean.associateDTO.firstName}" requiredMessage="First Name Required" ajaxSingle="true"
+				 disabled="#{associateBean.readOnlyMode}" />
 				
 				<h:panelGroup>
 					<h:outputText value="*" styleClass="errorValidationText" />
 					<h:outputText value="Father's Name:" styleClass="labelText"/>
 				</h:panelGroup>
-				<p:inputText id="fatherName"	styleClass="commonInput" tabindex="2" required="true"  maxlength="100" value="#{associateBean.associateDTO.fatherName}" requiredMessage="Father's Name Required" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
+				<p:inputText id="fatherName"	styleClass="commonInput" tabindex="2" required="true"  maxlength="100" 
+				value="#{associateBean.associateDTO.fatherName}" requiredMessage="Father's Name Required" ajaxSingle="true" 
+				disabled="#{associateBean.readOnlyMode}" />
 				
 				<h:panelGroup>
 					<h:outputText value="*" styleClass="errorValidationText" />
 					<h:outputText value="Mother's Name:" styleClass="labelText"/>
 				</h:panelGroup>
-				<p:inputText id="motherName"	styleClass="commonInput" tabindex="3" required="true"  maxlength="100" value="#{associateBean.associateDTO.motherName}" requiredMessage="Mother's Name Required" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
+				<p:inputText id="motherName"	styleClass="commonInput" tabindex="3" required="true"  maxlength="100" 
+				value="#{associateBean.associateDTO.motherName}" requiredMessage="Mother's Name Required" ajaxSingle="true" 
+				disabled="#{associateBean.readOnlyMode}" />
 													
 				<h:panelGroup>
 					<h:outputText value="*" styleClass="errorValidationText" />
 					<h:outputText value="Gender" styleClass="labelText"/>
 				</h:panelGroup>
-				<h:selectOneRadio id="gender" styleClass="labelText" value="#{associateBean.associateDTO.gender}" tabindex="4" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" >
+				<h:selectOneRadio id="gender" styleClass="labelText" value="#{associateBean.associateDTO.gender}" tabindex="4" 
+				ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" >
 					<f:selectItem itemValue="Male" itemLabel="Male"/>
 					<f:selectItem itemValue="Female" itemLabel="Female"/>
 				</h:selectOneRadio>
@@ -38,7 +45,9 @@
 					<h:outputText value="*" styleClass="errorValidationText" />
 					<h:outputText value="Contact No:" styleClass="labelText"/>
 				</h:panelGroup>
-				<p:inputText id="contactNo"	styleClass="commonInput" tabindex="5" required="true"  maxlength="15" value="#{associateBean.associateDTO.contactNo}" requiredMessage="Contact No. Required" ajaxSingle="true" converterMessage="Invalid characters" disabled="#{associateBean.readOnlyMode}">
+				<p:inputText id="contactNo"	styleClass="commonInput" tabindex="5" required="true"  maxlength="15" 
+				value="#{associateBean.associateDTO.contactNo}" requiredMessage="Contact No. Required" ajaxSingle="true" 
+				converterMessage="Invalid characters" disabled="#{associateBean.readOnlyMode}">
 					<f:convertNumber integerOnly="true"/>
 				</p:inputText>
 	
@@ -46,25 +55,29 @@
 					<h:outputText value="" styleClass="errorValidationText" />
 					<h:outputText value="Contact Email:" styleClass="labelText"/>
 				</h:panelGroup>
-				<p:inputText id="contactEmail"	styleClass="commonInput" tabindex="6" maxlength="100" value="#{associateBean.associateDTO.contactEmail}"  ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
+				<p:inputText id="contactEmail"	styleClass="commonInput" tabindex="6" maxlength="100" value="#{associateBean.associateDTO.contactEmail}" 
+				 ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
 	
 				<h:panelGroup>
 					<h:outputText value="*" styleClass="errorValidationText" />
 					<h:outputText value="Address:" styleClass="labelText"/>
 				</h:panelGroup>
-				<p:inputText id="address" styleClass="commonInput" tabindex="7" required="true"  maxlength="255" value="#{associateBean.associateDTO.address}" requiredMessage="Address Required" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
+				<p:inputText id="address" styleClass="commonInput" tabindex="7" required="true"  maxlength="255" value="#{associateBean.associateDTO.address}"
+				 requiredMessage="Address Required" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
 
 				<h:panelGroup>
 					<h:outputText value="*" styleClass="errorValidationText" />
 					<h:outputText value="City:" styleClass="labelText"/>
 				</h:panelGroup>
-				<p:inputText id="city" styleClass="commonInput" tabindex="8" required="true"  maxlength="45" value="#{associateBean.associateDTO.city}" requiredMessage="City Required" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
+				<p:inputText id="city" styleClass="commonInput" tabindex="8" required="true"  maxlength="45" value="#{associateBean.associateDTO.city}" 
+				requiredMessage="City Required" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
 	
 				<h:panelGroup>
 					<h:outputText value="*" styleClass="errorValidationText" />
 					<h:outputText value="State:" styleClass="labelText" />
 				</h:panelGroup>
-				<p:selectOneMenu id="stateName"  styleClass="mySelectStyle" converter="#{referenceDataConverter}" value="#{associateBean.associateDTO.stateDTO}" tabindex="9" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" >
+				<p:selectOneMenu id="stateName"  styleClass="mySelectStyle" converter="#{referenceDataConverter}" value="#{associateBean.associateDTO.stateDTO}"
+				 tabindex="9" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" >
 					<f:selectItems value="#{referenceBean.stateDTOList}" var="stateDTO" itemValue="#{stateDTO}" itemLabel="#{stateDTO.name}"/>
 				</p:selectOneMenu>					
 	
@@ -72,7 +85,8 @@
 					<h:outputText value="*" styleClass="errorValidationText" />
 					<h:outputText value="Zip Code:" styleClass="labelText"/>
 				</h:panelGroup>
-				<p:inputText id="zipCode" styleClass="commonInput" tabindex="10" required="true"  maxlength="10" value="#{associateBean.associateDTO.zipCode}" requiredMessage="Zip Code Required" ajaxSingle="true" converterMessage="Invalid characters" disabled="#{associateBean.readOnlyMode}">
+				<p:inputText id="zipCode" styleClass="commonInput" tabindex="10" required="true"  maxlength="10" value="#{associateBean.associateDTO.zipCode}" 
+				requiredMessage="Zip Code Required" ajaxSingle="true" converterMessage="Invalid characters" disabled="#{associateBean.readOnlyMode}">
 					<f:convertNumber integerOnly="true"/>				
 				</p:inputText>
 

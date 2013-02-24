@@ -20,27 +20,17 @@ public interface QueryConstants {
 	/* Reference Data Operations related queries*/
 	public static final String FIND_ALL_REFERENCE_DATA = "FIND_ALL_REFERENCE_DATA";
 	public static final String FIND_ALL_REFERENCE_DATA_QUERY = "select ref from com.ish.sms.service.entity.ReferenceData ref";
-	public static final String FIND_ALL_BLOODGROUPS = "FIND_ALL_BLOODGROUPS";
-	public static final String FIND_ALL_BLOODGROUPS_QUERY = "select bg from com.ish.sms.service.entity.BloodGroup bg";
-	public static final String FIND_ALL_SUBJECTS = "FIND_ALL_SUBJECTS";
-	public static final String FIND_ALL_SUBJECTS_QUERY = "select subject from com.ish.sms.service.entity.Subject subject";
-	public static final String FIND_ALL_DAY_OF_WEEKS = "FIND_ALL_DAY_OF_WEEKS";
-	public static final String FIND_ALL_DAY_OF_WEEKS_QUERY = "select dow from com.ish.sms.service.entity.DayofWeek dow";
-	public static final String FIND_ALL_EXTRACURRICULAR = "FIND_ALL_EXTRACURRICULAR";
-	public static final String FIND_ALL_EXTRACURRICULAR_QUERY = "select ec from com.ish.sms.service.entity.ExtraCurricular ec";
-	public static final String FIND_ALL_MODEOFTRANSPORTS = "FIND_ALL_MODEOFTRANSPORTS";
-	public static final String FIND_ALL_MODEOFTRANSPORTS_QUERY = "select mt from com.ish.sms.service.entity.ModeofTransport mt";
-	public static final String FIND_ALL_STATES = "FIND_ALL_STATES";
-	public static final String FIND_ALL_STATES_QUERY = "select state from com.ish.sms.service.entity.State state";
 
 	/*Class Operations related queries*/
 	public static final String FIND_CLASS_BY_ID = "FIND_CLASS_BY_ID";
 	public static final String FIND_CLASS_BY_ID_QUERY = "select cl from com.ish.sms.service.entity.Class cl where cl.id= :id";
 	public static final String FIND_ALL_CLASSES = "FIND_ALL_CLASSES";
-	public static final String FIND_ALL_CLASSES_QUERY = "select cl from com.ish.sms.service.entity.Class cl";
+	public static final String FIND_ALL_CLASSES_QUERY = "select cl from com.ish.sms.service.entity.Class cl where cl.active='active'";
 	public static final String FIND_CLASS_ATTENDANCE_DEF = "FIND_CLASS_ATTENDANCE_DEF";
 	public static final String FIND_CLASS_ATTENDANCE_DEF_QUERY = "select cad from com.ish.sms.service.entity.ClassAttendanceDef cad where cad.classRef.id=:id";
 	public static final String FIND_ASSOCIATE_ATTENDANCE_DATA = "FIND_ASSOCIATE_ATTENDANCE_DATA";
 	public static final String FIND_ASSOCIATE_ATTENDANCE_DATA_QUERY = "select aa from com.ish.sms.service.entity.AssociateAttendance aa where aa.classAttendanceDef.id=:id";
+	public static final String FIND_CLASS_TIME_TABLE = "FIND_CLASS_TIME_TABLE";
+	public static final String FIND_CLASS_TIME_TABLE_QUERY = "select ctt from com.ish.sms.service.entity.ClassTimeTable ctt where ctt.classRef.id=:id";
 
 }

@@ -3,6 +3,7 @@ package com.ish.sms.web.business;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ish.sms.web.businessdelegate.AssociateBusinessDelegate;
+import com.ish.sms.web.businessdelegate.ClassAttendanceBusinessDelegate;
 import com.ish.sms.web.businessdelegate.ClassBusinessDelegate;
 import com.ish.sms.web.businessdelegate.ReferenceBusinessDelegate;
 import com.ish.sms.web.service.ServiceTransformer;
@@ -27,4 +28,7 @@ public class BaseBusiness implements WebConstants{
 
 	@Autowired
 	protected ClassBusinessDelegate classBusinessDelegate;
+	
+	@Autowired
+	protected ClassAttendanceBusinessDelegate classAttendanceBusinessDelegate;
 }

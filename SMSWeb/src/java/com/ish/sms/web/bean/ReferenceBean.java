@@ -2,8 +2,8 @@ package com.ish.sms.web.bean;
 
 import java.util.List;
 
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 import com.ish.sms.service.dto.ClassDTO;
 import com.ish.sms.service.dto.ReferenceDataDTO;
@@ -18,7 +18,7 @@ import com.ish.sms.web.util.SMSSpringFactory;
  *
  */
 @ManagedBean(name = "referenceBean")
-@ApplicationScoped
+@SessionScoped
 public class ReferenceBean extends BaseBean {
 
 	private static final long serialVersionUID = 1L;
@@ -36,6 +36,7 @@ public class ReferenceBean extends BaseBean {
 		setClassDTOList((List<ClassDTO>)jbossCacheProvider.get(CLASS_FQN, CLASS_KEY));
 		setSubjectDTOList((List<ReferenceDataDTO>) jbossCacheProvider.get(SUBJECT_FQN, SUBJECT_KEY));
 		setTeacherDTOList((List<TeacherDTO>) jbossCacheProvider.get(TEACHER_FQN, TEACHER_KEY));
+		setDaysOfWeekDTOList((List<ReferenceDataDTO>) jbossCacheProvider.get(DAYS_OF_WEEK_FQN, DAYS_OF_WEEK_KEY));
 	}
 
 	private List<ReferenceDataDTO> bloodGroupDTOList;
@@ -51,6 +52,23 @@ public class ReferenceBean extends BaseBean {
 	private List<ReferenceDataDTO> subjectDTOList;
 	
 	private List<TeacherDTO> teacherDTOList;
+	
+	private List<ReferenceDataDTO> daysOfWeekDTOList;
+ 
+
+	/**
+	 * @return the daysOfWeekDTOList
+	 */
+	public List<ReferenceDataDTO> getDaysOfWeekDTOList() {
+		return daysOfWeekDTOList;
+	}
+
+	/**
+	 * @param daysOfWeekDTOList the daysOfWeekDTOList to set
+	 */
+	public void setDaysOfWeekDTOList(List<ReferenceDataDTO> daysOfWeekDTOList) {
+		this.daysOfWeekDTOList = daysOfWeekDTOList;
+	}
 
 	/**
 	 * @return the teacherDTOList

@@ -21,16 +21,19 @@
 	<bean id="associateBusiness" class="com.ish.sms.web.business.AssociateBusiness"/>
 	<bean id="referenceBusiness" class="com.ish.sms.web.business.ReferenceBusiness"/>
 	<bean id="classBusiness" class="com.ish.sms.web.business.ClassBusiness"/>
+	<bean id="classAttendanceBusiness" class="com.ish.sms.web.business.ClassAttendanceBusiness"/>
 	
 	<!--Business Delegate beans declaration -->
 	<bean id="associateBusinessDelegate" class="com.ish.sms.web.businessdelegate.AssociateBusinessDelegate" />
 	<bean id="referenceBusinessDelegate" class="com.ish.sms.web.businessdelegate.ReferenceBusinessDelegate" />
 	<bean id="classBusinessDelegate" class="com.ish.sms.web.businessdelegate.ClassBusinessDelegate" />
+	<bean id="classAttendanceBusinessDelegate" class="com.ish.sms.web.businessdelegate.ClassAttendanceBusinessDelegate" />
 
 	<bean id="smsServiceLocator" class="com.ish.sms.web.service.SMSServiceLocator">
 		<constructor-arg value="http://localhost:8080/SMSService/websvc/smsAssociateService" />
 		<constructor-arg value="http://localhost:8080/SMSService/websvc/smsReferenceService" />
 		<constructor-arg value="http://localhost:8080/SMSService/websvc/smsClassService" />
+		<constructor-arg value="http://localhost:8080/SMSService/websvc/smsClassAttendanceService" />
 	</bean>	
 	
  	<bean id="referenceDataTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">

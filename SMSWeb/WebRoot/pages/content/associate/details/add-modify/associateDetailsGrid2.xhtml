@@ -11,7 +11,9 @@
 						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Date of Birth:" styleClass="labelText"/>
 					</h:panelGroup>
-					<p:calendar  id="dateofBirth" pattern="MM/dd/yyyy" cellWidth="24px" required="true" cellHeight="22px" style="width:200px" value="#{associateBean.associateDTO.dateofBirth}" requiredMessage="Date of Birth Required" ajaxSingle="true" tabindex="11" disabled="#{associateBean.readOnlyMode}" effect="explode">
+					<p:calendar  id="dateofBirth" pattern="MM/dd/yyyy" cellWidth="24px" required="true" cellHeight="22px" style="width:200px" 
+						value="#{associateBean.associateDTO.dateofBirth}" requiredMessage="Date of Birth Required" ajaxSingle="true" tabindex="11"
+					 	disabled="#{associateBean.readOnlyMode}" effect="explode">
 						<f:converter converterId="DateStrConveter"/>
 					</p:calendar>
 
@@ -19,7 +21,8 @@
 						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Age:" styleClass="labelText"/>
 					</h:panelGroup>
-					<p:inputText id="age" styleClass="commonInput" tabindex="12" required="true"  maxlength="3" value="#{associateBean.associateDTO.age}" requiredMessage="Age Required" ajaxSingle="true" converterMessage="Invalid characters" disabled="#{associateBean.readOnlyMode}">
+					<p:inputText id="age" styleClass="commonInput" tabindex="12" required="true"  maxlength="3" value="#{associateBean.associateDTO.age}" 
+						requiredMessage="Age Required" ajaxSingle="true" converterMessage="Invalid characters" disabled="#{associateBean.readOnlyMode}">
 						<f:convertNumber integerOnly="true"/>
 					</p:inputText>
 
@@ -27,7 +30,9 @@
 						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Emergency Contact No:" styleClass="labelText"/>
 					</h:panelGroup>
-					<p:inputText id="emergencyContactNo" styleClass="commonInput" tabindex="13" required="true"  maxlength="15" value="#{associateBean.associateDTO.emergencyContactNo}" requiredMessage="Emergency Contact Required" ajaxSingle="true" converterMessage="Invalid characters" disabled="#{associateBean.readOnlyMode}" >
+					<p:inputText id="emergencyContactNo" styleClass="commonInput" tabindex="13" required="true"  maxlength="15" 
+						value="#{associateBean.associateDTO.emergencyContactNo}" requiredMessage="Emergency Contact Required" ajaxSingle="true" 
+						converterMessage="Invalid characters" disabled="#{associateBean.readOnlyMode}" >
 						<f:convertNumber integerOnly="true"/>
 					</p:inputText>
 					
@@ -35,27 +40,33 @@
 						<h:outputText value="" styleClass="errorValidationText" />
 						<h:outputText value="Other Contact Info:" styleClass="labelText"/>
 					</h:panelGroup>
-					<p:inputTextarea id="otherContactInfo" styleClass="commonInput" tabindex="14" style="width:170px;height:60px;resize:none;" value="#{associateBean.associateDTO.otherContactInfo}" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
+					<p:inputTextarea id="otherContactInfo" styleClass="commonInput" tabindex="14" style="width:170px;height:60px;resize:none;" 
+					value="#{associateBean.associateDTO.otherContactInfo}" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
 
 					<h:panelGroup>
 						<h:outputText value="" styleClass="errorValidationText" />
 						<h:outputText value="Previous School:" styleClass="labelText"/>
 					</h:panelGroup>
-					<p:inputText id="previousSchool" styleClass="commonInput" tabindex="15"  maxlength="100" value="#{associateBean.associateDTO.previousSchool}" requiredMessage="Previous School Required" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
+					<p:inputText id="previousSchool" styleClass="commonInput" tabindex="15"  maxlength="100" value="#{associateBean.associateDTO.previousSchool}"
+					 requiredMessage="Previous School Required" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
 
 					<h:panelGroup>
 						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Blood Group:" styleClass="labelText"/>
 					</h:panelGroup>
-					<p:selectOneMenu id="bloodGroup"  styleClass="selectStyle" converter="#{referenceDataConverter}" value="#{associateBean.associateDTO.bloodGroupDTO}" tabindex="16" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" >
-						<f:selectItems value="#{referenceBean.bloodGroupDTOList}" var="bloodGroupDTO" itemValue="#{bloodGroupDTO}" itemLabel="#{bloodGroupDTO.name}"/>
+					<p:selectOneMenu id="bloodGroup"  styleClass="selectStyle" converter="#{referenceDataConverter}" 
+					value="#{associateBean.associateDTO.bloodGroupDTO}" tabindex="16" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" >
+						<f:selectItems value="#{referenceBean.bloodGroupDTOList}" var="bloodGroupDTO" itemValue="#{bloodGroupDTO}" 
+						itemLabel="#{bloodGroupDTO.name}"/>
 					</p:selectOneMenu>
 
 					<h:panelGroup>
 						<h:outputText value="*" styleClass="errorValidationText" />
 						<h:outputText value="Date of Joining:" styleClass="labelText"/>
 					</h:panelGroup>
-					<p:calendar  id="dateofJoining" pattern="MM/dd/yyyy" cellWidth="54px" tabindex="17" required="true" cellHeight="22px" style="width:200px" value="#{associateBean.associateDTO.dateofJoining}" requiredMessage="Joining Date Required" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" effect="explode">
+					<p:calendar  id="dateofJoining" pattern="MM/dd/yyyy" cellWidth="54px" tabindex="17" required="true" cellHeight="22px" style="width:200px"
+					 value="#{associateBean.associateDTO.dateofJoining}" requiredMessage="Joining Date Required" ajaxSingle="true" 
+					 disabled="#{associateBean.readOnlyMode}" effect="explode">
 						<f:converter converterId="DateStrConveter"/>
 					</p:calendar>
 
@@ -63,7 +74,8 @@
 						<h:outputText value="" styleClass="errorValidationText" />
 						<h:outputText value="Comments:" styleClass="labelText"/>
 					</h:panelGroup>
-					<p:inputTextarea id="comments" styleClass="commonInput" tabindex="18" style="width:170px;height:100px;resize:none;" value="#{associateBean.associateDTO.comments}" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
+					<p:inputTextarea id="comments" styleClass="commonInput" tabindex="18" style="width:170px;height:100px;resize:none;" 
+						value="#{associateBean.associateDTO.comments}" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" />
 					
 				</h:panelGrid>
 		</h:panelGrid>

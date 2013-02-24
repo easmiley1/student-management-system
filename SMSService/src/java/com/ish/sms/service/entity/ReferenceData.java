@@ -13,23 +13,42 @@ import com.ish.sms.service.util.QueryConstants;
  * This entity represents the reference data table in the database
  * 
  * @author Naren
- *
+ * 
  */
-@NamedQueries( { @NamedQuery(name = QueryConstants.FIND_ALL_REFERENCE_DATA, query = QueryConstants.FIND_ALL_REFERENCE_DATA_QUERY) })
+@NamedQueries({ @NamedQuery(name = QueryConstants.FIND_ALL_REFERENCE_DATA, query = QueryConstants.FIND_ALL_REFERENCE_DATA_QUERY) })
 @Entity
-@Table(name="reference_data")
+@Table(name = "reference_data")
 public class ReferenceData {
 
 	@Id
-	@Column(name="reference_data_id")
+	@Column(name = "reference_data_id")
 	private Integer id;
-	
-	@Column(name="reference_data_name")
+
+	@Column(name = "reference_data_name", nullable = false)
 	private String name;
 
-	@Column(name="reference_data_type")
+	@Column(name = "reference_data_type", nullable = false)
 	private String type;
+
+	@Column(name = "reference_additional_data", nullable = true)
+	private String additionalData;
 	
+	
+
+	/**
+	 * @return the additionalData
+	 */
+	public String getAdditionalData() {
+		return additionalData;
+	}
+
+	/**
+	 * @param additionalData the additionalData to set
+	 */
+	public void setAdditionalData(String additionalData) {
+		this.additionalData = additionalData;
+	}
+
 	/**
 	 * @return the type
 	 */
@@ -38,7 +57,8 @@ public class ReferenceData {
 	}
 
 	/**
-	 * @param type the type to set
+	 * @param type
+	 *            the type to set
 	 */
 	public void setType(String type) {
 		this.type = type;
@@ -52,7 +72,8 @@ public class ReferenceData {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(Integer id) {
 		this.id = id;
@@ -66,7 +87,8 @@ public class ReferenceData {
 	}
 
 	/**
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
