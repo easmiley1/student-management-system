@@ -18,16 +18,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for classAttendanceDefListDTO complex type.
+ * <p>Java class for classTimeTableListDTO complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="classAttendanceDefListDTO">
+ * &lt;complexType name="classTimeTableListDTO">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="classAttendanceDefDTOList" type="{http://www.ish.com/soa/sms}classAttendanceDefDTO" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="classTimeTableDTOList" type="{http://www.ish.com/soa/sms}classTimeTableDTO" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,56 +37,56 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "classAttendanceDefListDTO", propOrder = {
-    "classAttendanceDefDTOList"
+@XmlType(name = "classTimeTableListDTO", propOrder = {
+    "classTimeTableDTOList"
 })
-public class ClassAttendanceDefListDTO
+public class ClassTimeTableListDTO
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
     @XmlElement(namespace = "http://www.ish.com/soa/sms", required = true)
-    protected List<ClassAttendanceDefDTO> classAttendanceDefDTOList;
+    protected List<ClassTimeTableDTO> classTimeTableDTOList;
 
     /**
-     * Gets the value of the classAttendanceDefDTOList property.
+     * Gets the value of the classTimeTableDTOList property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the classAttendanceDefDTOList property.
+     * This is why there is not a <CODE>set</CODE> method for the classTimeTableDTOList property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getClassAttendanceDefDTOList().add(newItem);
+     *    getClassTimeTableDTOList().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link ClassAttendanceDefDTO }
+     * {@link ClassTimeTableDTO }
      * 
      * 
      */
-    public List<ClassAttendanceDefDTO> getClassAttendanceDefDTOList() {
-        if (classAttendanceDefDTOList == null) {
-            classAttendanceDefDTOList = new ArrayList<ClassAttendanceDefDTO>();
+    public List<ClassTimeTableDTO> getClassTimeTableDTOList() {
+        if (classTimeTableDTOList == null) {
+            classTimeTableDTOList = new ArrayList<ClassTimeTableDTO>();
         }
-        return this.classAttendanceDefDTOList;
+        return this.classTimeTableDTOList;
     }
 
     /**
-     * Sets the value of the classAttendanceDefDTOList property.
+     * Sets the value of the classTimeTableDTOList property.
      * 
-     * @param classAttendanceDefDTOList
+     * @param classTimeTableDTOList
      *     allowed object is
-     *     {@link ClassAttendanceDefDTO }
+     *     {@link ClassTimeTableDTO }
      *     
      */
-    public void setClassAttendanceDefDTOList(List<ClassAttendanceDefDTO> classAttendanceDefDTOList) {
-        this.classAttendanceDefDTOList = classAttendanceDefDTOList;
+    public void setClassTimeTableDTOList(List<ClassTimeTableDTO> classTimeTableDTOList) {
+        this.classTimeTableDTOList = classTimeTableDTOList;
     }
 
 }
