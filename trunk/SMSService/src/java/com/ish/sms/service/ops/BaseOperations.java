@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ish.sms.service.dao.AssociateOperationsDAO;
+import com.ish.sms.service.dao.ClassAttendanceOperationsDAO;
 import com.ish.sms.service.dao.ClassOperationsDAO;
 import com.ish.sms.service.dao.ReferenceOperationsDAO;
 import com.ish.sms.service.dto.TeacherDTO;
@@ -16,7 +17,7 @@ import com.ish.sms.service.ops.util.ClassOperationsUtil;
 import com.ish.sms.service.util.EntityConstants;
 import com.ish.sms.service.util.QueryConstants;
 
-public class BaseOperations implements QueryConstants,EntityConstants {
+public class BaseOperations implements QueryConstants, EntityConstants {
 
 	@Autowired
 	protected ReferenceOperationsDAO referenceOperationsDAO;
@@ -28,10 +29,14 @@ public class BaseOperations implements QueryConstants,EntityConstants {
 	protected ClassOperationsDAO classOperationsDAO;
 	
 	@Autowired
+	protected ClassAttendanceOperationsDAO classAttendanceOperationsDAO;
+
+	@Autowired
 	protected AssociateOperationsUtil associateOperationsUtil;
 
 	@Autowired
 	protected ClassOperationsUtil classOperationsUtil;
+
 	/**
 	 * Method to return the list of all the teachers in the school.
 	 * 
@@ -52,3 +57,4 @@ public class BaseOperations implements QueryConstants,EntityConstants {
 	}
 
 }
+

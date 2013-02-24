@@ -9,8 +9,6 @@ import javax.ws.rs.Produces;
 
 import org.springframework.stereotype.Service;
 
-import com.ish.sms.service.dto.AssociateAttendanceListDTO;
-import com.ish.sms.service.dto.ClassAttendanceDefListDTO;
 import com.ish.sms.service.dto.ClassDTO;
 
 /**
@@ -22,48 +20,6 @@ import com.ish.sms.service.dto.ClassDTO;
 @Service
 @Path("/smsClassService")
 public class SMSClassService extends SMSBaseService {
-
-	/**
-	 * Method to get all the classAttendanceDefintion for a particular class by wrapping them in the ClassAttendanceDefListDTO.
-	 * 
-	 * @return classAttendanceDefListDTOXML
-	 */
-	@GET
-	@Path("/retrieveClassAttendanceDefList/{classId}")
-	@Produces("text/xml")
-	public String retrieveClassAttendanceDefList(@PathParam("classId") Integer classId) {
-
-		String classAttendanceDefListDTOXML = null;
-		try {
-			ClassAttendanceDefListDTO classAttendanceDefListDTO = classOperations.retrieveClassAttendanceDefList(classId);
-			classAttendanceDefListDTOXML = serviceTransformer.transformToXML(classAttendanceDefListDTO, "classAttendanceDefListDTO");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return classAttendanceDefListDTOXML;
-	}
-
-	/**
-	 * Method to remove or delete the given ClassAttendanceDefDTO List and return the updated one wrapped in classAttendanceDefListDTO
-	 * 
-	 * @return classAttendanceDefListDTOXML
-	 */
-	@POST
-	@Path("/updateClassAttendanceDefList/")
-	@Produces("text/xml")
-	@Consumes("text/xml")
-	public String updateClassAttendanceDefList(String classAttendanceDefListDTOXML) {
-
-		ClassAttendanceDefListDTO classAttendanceDefListDTO = null;
-		try {
-			classAttendanceDefListDTO = serviceTransformer.tryParseXml(classAttendanceDefListDTOXML);
-			classAttendanceDefListDTO = classOperations.updateClassAttendanceDefList(classAttendanceDefListDTO);
-			classAttendanceDefListDTOXML = serviceTransformer.transformToXML(classAttendanceDefListDTO, "classAttendanceDefListDTO");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return classAttendanceDefListDTOXML;
-	}
 
 	/**
 	 * Method to get the Class Entity for the given classid.
@@ -84,47 +40,28 @@ public class SMSClassService extends SMSBaseService {
 		}
 		return classDTOXML;
 	}
-
+	
 	/**
-	 * Method to return the class attendance data for the specified month
+	 * Method to create or update a class and return the persisted classXML.
 	 * 
-	 * @return associateAttendanceListDTOXML
-	 */
-	@GET
-	@Path("/retrieveClassAttendanceForMonth/{monthId}")
-	@Produces("text/xml")
-	public String retrieveClassAttendanceForMonth(@PathParam("monthId") Integer monthId) {
-
-		String associateAttendanceListDTOXML = null;
-		try {
-			AssociateAttendanceListDTO associateAttendanceListDTO = classOperations.retrieveClassAttendanceForMonth(monthId);
-			associateAttendanceListDTOXML = serviceTransformer.transformToXML(associateAttendanceListDTO, "associateAttendanceListDTO");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return associateAttendanceListDTOXML;
-	}
-
-	/**
-	 * Method to persist all the students in the attendance month
-	 * 
-	 * @return associateAttendanceListDTOXML
+	 * @param classXML
+	 * @return persistedClassXML
 	 */
 	@POST
-	@Path("/updateAssociateAttendanceList/")
+	@Path("/saveClass/")
 	@Produces("text/xml")
 	@Consumes("text/xml")
-	public String updateAssociateAttendanceList(String associateAttendanceListDTOXML) {
+	public String saveClass(String xml) {
 
-		AssociateAttendanceListDTO associateAttendanceListDTO = null;
+		ClassDTO classDTO = null;
+		String classXML = null;
 		try {
-			associateAttendanceListDTO = serviceTransformer.tryParseXml(associateAttendanceListDTOXML);
-			associateAttendanceListDTO = classOperations.updateAssociateAttendanceList(associateAttendanceListDTO);
-			associateAttendanceListDTOXML = serviceTransformer.transformToXML(associateAttendanceListDTO, "associateAttendanceListDTO");
+			classDTO = serviceTransformer.tryParseXml(xml);
+			classDTO = classOperations.saveClassDetails(classDTO);
+			classXML = serviceTransformer.transformToXML(classDTO, "classDTO");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return associateAttendanceListDTOXML;
-	}
-
+		return classXML;
+	}	
 }

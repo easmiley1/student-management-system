@@ -1,5 +1,6 @@
 package com.ish.sms.service.dao;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
@@ -17,7 +18,7 @@ public class BaseOperationsDAO implements QueryConstants, EntityConstants {
 
 	@Autowired
 	protected ClassOperationsDAOUtil classOperationsDAOUtil;
-	
+
 	protected EntityManager entityManager;
 
 	/**
@@ -48,6 +49,7 @@ public class BaseOperationsDAO implements QueryConstants, EntityConstants {
 		Object object = entityManager.find(classType, id);
 		entityManager.remove(object);
 	}
+
 	/**
 	 * Method to return the list of entities for the given select query.
 	 * 
@@ -65,14 +67,14 @@ public class BaseOperationsDAO implements QueryConstants, EntityConstants {
 	 * @param queryParametersMap
 	 * @return singleResult
 	 */
-	public Object retrieveSingleResultForQueryWithParameters(String query, Class<?> classArg, Map<String,Object> queryParametersMap){
-		
+	public Object retrieveSingleResultForQueryWithParameters(String query, Class<?> classArg, Map<String, Object> queryParametersMap) {
+
 		TypedQuery<?> namedQuery = entityManager.createNamedQuery(query, classArg);
 		namedQuery = createTypedQueryForParameters(namedQuery, queryParametersMap);
 		return namedQuery.getSingleResult();
-		
+
 	}
-	
+
 	/**
 	 * Method to return resultList for the given query and namedParameters
 	 * 
@@ -81,13 +83,13 @@ public class BaseOperationsDAO implements QueryConstants, EntityConstants {
 	 * @param queryParametersMap
 	 * @return singleResult
 	 */
-	public Object retrieveResultListForQueryWithParameters(String query, Map<String,Object> queryParametersMap){
-		
+	public Object retrieveResultListForQueryWithParameters(String query, Map<String, Object> queryParametersMap) {
+
 		Query namedQuery = entityManager.createNamedQuery(query);
 		namedQuery = createQueryForParameters(namedQuery, queryParametersMap);
 		return namedQuery.getResultList();
-		
-	}	
+
+	}
 
 	/**
 	 * Utility method to set the namedParameters in the given typedQuery
@@ -97,13 +99,12 @@ public class BaseOperationsDAO implements QueryConstants, EntityConstants {
 	 * @return namedQuery
 	 */
 	private TypedQuery<?> createTypedQueryForParameters(TypedQuery<?> namedQuery, Map<String, Object> queryParametersMap) {
-		
-		for(String queryParametersKey : queryParametersMap.keySet()){
+
+		for (String queryParametersKey : queryParametersMap.keySet()) {
 			namedQuery = namedQuery.setParameter(queryParametersKey, queryParametersMap.get(queryParametersKey));
 		}
 		return namedQuery;
 	}
-
 
 	/**
 	 * Utility method to set the namedParameters in the given typedQuery
@@ -113,11 +114,24 @@ public class BaseOperationsDAO implements QueryConstants, EntityConstants {
 	 * @return namedQuery
 	 */
 	private Query createQueryForParameters(Query namedQuery, Map<String, Object> queryParametersMap) {
-		
-		for(String queryParametersKey : queryParametersMap.keySet()){
+
+		for (String queryParametersKey : queryParametersMap.keySet()) {
 			namedQuery = namedQuery.setParameter(queryParametersKey, queryParametersMap.get(queryParametersKey));
 		}
 		return namedQuery;
 	}
 
+	/**
+	 * Utility method to return the class entity for the given classid
+	 * 
+	 * @param classId
+	 * @return Class {@link Class}
+	 */
+	public com.ish.sms.service.entity.Class retrieveClassForId(Integer classId) {
+		Map<String, Object> queryParametersMap = new HashMap<String, Object>();
+		queryParametersMap.put(ID, classId);
+		com.ish.sms.service.entity.Class classObj = (com.ish.sms.service.entity.Class) retrieveSingleResultForQueryWithParameters(FIND_CLASS_BY_ID,
+				com.ish.sms.service.entity.Class.class, queryParametersMap);
+		return classObj;
+	}
 }

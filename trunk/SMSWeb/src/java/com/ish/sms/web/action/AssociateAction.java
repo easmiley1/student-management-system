@@ -10,7 +10,7 @@ import com.ish.sms.web.util.WebUtils;
 
 /**
  * Action Bean class which is in request scope for all the associate related actions.
- *
+ * 
  * @author Naren
  */
 @ManagedBean(name = "associateAction")
@@ -51,7 +51,7 @@ public class AssociateAction extends BaseAction {
 	 * 
 	 * @return student.xhtml
 	 */
-	public String initAddTeacherPersonalDetails()  {
+	public String initAddTeacherPersonalDetails() {
 		associateBean.initAddTeacherPersonalDetails();
 		return SAVE_TEACHER_PAGE;
 	}
@@ -76,7 +76,7 @@ public class AssociateAction extends BaseAction {
 	 * 
 	 * @return viewStudentDetailsGridPage.xhtml
 	 */
-	public String initViewSearchAllStudents()  {
+	public String initViewSearchAllStudents() {
 		try {
 			associateBean.initModifySearchAllStudents(associateBusiness.retrieveAllStudents());
 		} catch (Exception e) {
@@ -91,7 +91,7 @@ public class AssociateAction extends BaseAction {
 	 * 
 	 * @return modifyTeacherDetailsGridPage.xhtml
 	 */
-	public String initModifySearchAllTeachers()  {
+	public String initModifySearchAllTeachers() {
 		try {
 			associateBean.initModifySearchAllTeacers(associateBusiness.retrieveAllTeachers());
 		} catch (Exception e) {
@@ -107,7 +107,7 @@ public class AssociateAction extends BaseAction {
 	 * @return
 	 * @throws Exception
 	 */
-	public String initViewSearchAllTeachers()  {
+	public String initViewSearchAllTeachers() {
 		try {
 			associateBean.initModifySearchAllTeacers(associateBusiness.retrieveAllTeachers());
 		} catch (Exception e) {
@@ -124,7 +124,7 @@ public class AssociateAction extends BaseAction {
 	public void saveStudent() {
 		try {
 			associateBusiness.saveStudent(associateBean.getStudentDTO(), associateBean.getAssociateDTO());
-			WebUtils.registerMessage(FacesMessage.SEVERITY_INFO, "Success", "Student Succcessfully Saved");
+			WebUtils.registerMessage(FacesMessage.SEVERITY_INFO, SAVE_SUCCESSFULL, STUDENT_SAVED_SUCCESSFULLY);
 		} catch (Exception e) {
 			e.printStackTrace();
 			WebUtils.registerErrorMessage();
@@ -136,12 +136,12 @@ public class AssociateAction extends BaseAction {
 	 * Method to save the student object
 	 * 
 	 */
-	public void saveTeacher()  {
+	public void saveTeacher() {
 		try {
 			associateBusiness.saveTeacher(associateBean.getTeacherDTO(), associateBean.getAssociateDTO());
-			WebUtils.registerMessage(FacesMessage.SEVERITY_INFO, "Success", "Teacher Succcessfully Saved");
+			WebUtils.registerMessage(FacesMessage.SEVERITY_INFO, SAVE_SUCCESSFULL, TEACHER_SAVED_SUCCESSFULLY);
 		} catch (Exception e) {
-			e.printStackTrace();			
+			e.printStackTrace();
 			WebUtils.registerErrorMessage();
 		}
 	}
@@ -150,7 +150,7 @@ public class AssociateAction extends BaseAction {
 	 * Set the selected student in the grid to the selection model for editing by setting readonlymode to false
 	 * 
 	 */
-	public void applyStudentSelectionForEdit()  {
+	public void applyStudentSelectionForEdit() {
 		associateBean.setReadOnlyMode(false);
 		try {
 			associateBean.applyStudentSelection();
@@ -178,7 +178,7 @@ public class AssociateAction extends BaseAction {
 	 * Set the selected teacher in the grid to the selection model for editing by setting readonlymode to false
 	 * 
 	 */
-	public void applyTeacherSelectionForEdit()  {
+	public void applyTeacherSelectionForEdit() {
 		associateBean.setReadOnlyMode(false);
 		try {
 			associateBean.applyTeacherSelection();

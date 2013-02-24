@@ -8,22 +8,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
- * Restful service class to handle all Reference data related operations.
+ * Restful service class to handle all Class related operations.
  * 
  * @author Naren
  * 
  */
-public interface SMSClassServiceInterface {
 
-	/**
-	 * Method to get all the classAttendanceDefintion for a particular class by wrapping them in the ClassAttendanceDefListDTO.
-	 * 
-	 * @return classAttendanceDefListDTOXML
-	 */
-	@GET
-	@Path("/retrieveClassAttendanceDefList/{classId}")
-	@Produces("text/xml")
-	public String retrieveClassAttendanceDefList(@PathParam("classId") Integer classId);
+public interface SMSClassServiceInterface {
 
 	/**
 	 * Method to get the Class Entity for the given classid.
@@ -34,37 +25,16 @@ public interface SMSClassServiceInterface {
 	@Path("/retrieveClassForId/{classId}")
 	@Produces("text/xml")
 	public String retrieveClassForId(@PathParam("classId") Integer classId);
-
+	
 	/**
-	 * Method to remove or delete the given ClassAttendanceDefDTO List and return the updated one wrapped in classAttendanceDefListDTO
+	 * Method to create or update a class and return the persisted classXML.
 	 * 
-	 * @return classAttendanceDefListDTOXML
+	 * @param classXML
+	 * @return persistedClassXML
 	 */
 	@POST
-	@Path("/updateClassAttendanceDefList/")
+	@Path("/saveClass/")
 	@Produces("text/xml")
 	@Consumes("text/xml")
-	public String updateClassAttendanceDefList(String classAttendanceDefListDTOXML);
-
-	/**
-	 * Method to return the class attendance data for the specified month
-	 * 
-	 * @return associateAttendanceListDTOXML
-	 */
-	@GET
-	@Path("/retrieveClassAttendanceForMonth/{monthId}")
-	@Produces("text/xml")
-	public String retrieveClassAttendanceForMonth(@PathParam("monthId") Integer monthId);
-
-	/**
-	 * Method to persist all the students in the attendance month
-	 * 
-	 * @return associateAttendanceListDTOXML
-	 */
-	@POST
-	@Path("/updateAssociateAttendanceList/")
-	@Produces("text/xml")
-	@Consumes("text/xml")
-	public String updateAssociateAttendanceList(String associateAttendanceListDTOXML);
-
+	public String saveClass(String xml) ;
 }

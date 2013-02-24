@@ -5,6 +5,7 @@ import org.jboss.resteasy.plugins.providers.RegisterBuiltin;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
 import com.ish.sms.web.service.client.SMSAssociateServiceInterface;
+import com.ish.sms.web.service.client.SMSClassAttendanceServiceInterface;
 import com.ish.sms.web.service.client.SMSClassServiceInterface;
 import com.ish.sms.web.service.client.SMSReferenceServiceInterface;
 
@@ -12,16 +13,24 @@ import com.ish.sms.web.service.client.SMSReferenceServiceInterface;
  * Service locator class which initializes the restful service interfaces and provides the look up for the same.
  * 
  * @author Naren
- *
+ * 
  */
 public class SMSServiceLocator {
 
 	private SMSAssociateServiceInterface smsAssociateServiceInterface;
-	
+
 	private SMSReferenceServiceInterface smsReferenceServiceInterface;
-	
+
 	private SMSClassServiceInterface smsClassServiceInterface;
 
+	private SMSClassAttendanceServiceInterface smsClassAttendanceServiceInterface;
+
+	/**
+	 * @return the smsClassAttendanceServiceInterface
+	 */
+	public SMSClassAttendanceServiceInterface getSmsClassAttendanceServiceInterface() {
+		return smsClassAttendanceServiceInterface;
+	}
 
 	/**
 	 * @return smsAssociateServiceInterface
@@ -29,7 +38,6 @@ public class SMSServiceLocator {
 	public SMSAssociateServiceInterface getSmsAssociateServiceInterface() {
 		return smsAssociateServiceInterface;
 	}
-
 
 	/**
 	 * @return the smsReferenceServiceInterface
@@ -45,22 +53,22 @@ public class SMSServiceLocator {
 		return smsClassServiceInterface;
 	}
 
-
 	/**
 	 * Constructor initializes the restful service interfaces
 	 */
-	public SMSServiceLocator(String associateServiceURL, String referenceServiceURL, String classServiceURL) {
+	public SMSServiceLocator(String associateServiceURL, String referenceServiceURL, String classServiceURL, String classAttendanceServiceURL) {
 		RegisterBuiltin.register(ResteasyProviderFactory.getInstance());
 		smsAssociateServiceInterface = ProxyFactory.create(SMSAssociateServiceInterface.class, associateServiceURL);
 		smsReferenceServiceInterface = ProxyFactory.create(SMSReferenceServiceInterface.class, referenceServiceURL);
 		smsClassServiceInterface = ProxyFactory.create(SMSClassServiceInterface.class, classServiceURL);
+		smsClassAttendanceServiceInterface = ProxyFactory.create(SMSClassAttendanceServiceInterface.class, classAttendanceServiceURL);
 	}
-	
-	public static void main(String args[]){
-		
-		SMSServiceLocator smsServiceLocator = new SMSServiceLocator("", "","http://localhost:8080/SMSService/websvc/smsClassService");
+
+	public static void main(String args[]) {
+
+		SMSServiceLocator smsServiceLocator = new SMSServiceLocator("", "", "http://localhost:8080/SMSService/websvc/smsClassService", "");
 		String classxml = smsServiceLocator.getSmsClassServiceInterface().retrieveClassForId(1);
 		System.out.println("class xml " + classxml);
 	}
-	
+
 }

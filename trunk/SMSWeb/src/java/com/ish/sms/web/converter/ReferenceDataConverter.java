@@ -45,6 +45,8 @@ public class ReferenceDataConverter implements Converter, Serializable, WebConst
 			referenceDataDTOList = referenceBean.getStateDTOList();
 		} else if (component.getId().equals(WebUtils.REFERENCE_TYPE.transportation.name())) {
 			referenceDataDTOList = referenceBean.getModeofTransportDTOList();
+		}else if (component.getId().equals(WebUtils.REFERENCE_TYPE.subjectName.name())) {
+			referenceDataDTOList = referenceBean.getSubjectDTOList();
 		}
 
 		ReferenceDataDTO selectedReferenceDataDTO = null;

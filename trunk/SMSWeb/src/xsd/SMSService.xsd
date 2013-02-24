@@ -15,7 +15,9 @@
 	<xs:element name="stringListDTO" type="stringListDTO" />
 	<xs:element name="associateAttendanceListDTO" type="associateAttendanceListDTO" />
 	<xs:element name="referenceDataDTO" type="referenceDataDTO" />
-
+	<xs:element name="classTimeTableDTO" type="classTimeTableDTO"/>
+	<xs:element name="classTimeTableListDTO" type="classTimeTableListDTO"/>
+		
 	<xs:complexType name="stringListDTO">
 		<xs:sequence>
 			<xs:element name="stringListDTO" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
@@ -30,6 +32,34 @@
 			<xs:element name="monthYear" type="xs:string" />
 			<xs:element name="classDTO" type="classDTO" minOccurs="0"/>
 			<xs:element name="modification" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="classDTO">
+		<xs:sequence>
+			<xs:element name="id" type="xs:int" minOccurs="0" />
+			<xs:element name="name" type="xs:string" />
+			<xs:element name="teacherDTO" type="teacherDTO" minOccurs="0" />
+			<xs:element name="studentCount" type="xs:int" minOccurs="0" />
+			<xs:element name="startYear" type="xs:int" minOccurs="0" />
+			<xs:element name="endYear" type="xs:int" minOccurs="0" />
+			<xs:element name="active" type="xs:string" minOccurs="0" />
+			<xs:element name="classTimeTableDTOList" type="classTimeTableDTO" minOccurs="0" maxOccurs="unbounded" />			
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="classTimeTableDTO">
+		<xs:sequence>
+			<xs:element name="id" type="xs:int" minOccurs="0" />
+			<xs:element name="teacherDTO" type="teacherDTO" />
+			<xs:element name="dayOfWeekDTO" type="referenceDataDTO" />
+			<xs:element name="subjectDTO" type="referenceDataDTO" />
+			<xs:element name="startTime" type="xs:string" minOccurs="0"/>
+			<xs:element name="endTime" type="xs:string"  minOccurs="0"/>
+			<xs:element name="periodName" type="xs:string"  minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>	
+	<xs:complexType name="classTimeTableListDTO">
+		<xs:sequence>
+			<xs:element name="classTimeTableDTOList" type="classTimeTableDTO"	minOccurs="0" maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="classAttendanceDefListDTO">
@@ -84,16 +114,10 @@
 			<xs:element name="id" type="xs:int" minOccurs="0" />
 			<xs:element name="name" type="xs:string" />
 			<xs:element name="type" type="xs:string" />
+			<xs:element name="additionalData" type="xs:string" minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="classDTO">
-		<xs:sequence>
-			<xs:element name="id" type="xs:int" minOccurs="0" />
-			<xs:element name="name" type="xs:string" />
-			<xs:element name="teacherDTO" type="teacherDTO" minOccurs="0" />
-			<xs:element name="studentCount" type="xs:int" minOccurs="0" />			
-		</xs:sequence>
-	</xs:complexType>
+
 	<!-- dto definitions corresponding to reference data definitions  - end-->
 
 	<!-- dto definitions corresponding to associate definitions  - start-->

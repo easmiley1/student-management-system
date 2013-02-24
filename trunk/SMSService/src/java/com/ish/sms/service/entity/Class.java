@@ -1,11 +1,18 @@
 package com.ish.sms.service.entity;
 
+import java.io.Serializable;
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -15,9 +22,12 @@ import com.ish.sms.service.util.QueryConstants;
 	 @NamedQuery(name = QueryConstants.FIND_CLASS_BY_ID, query = QueryConstants.FIND_CLASS_BY_ID_QUERY) })
 @Entity
 @Table(name = "class_details")
-public class Class {
+public class Class implements Serializable{
 
-	@Id
+	private static final long serialVersionUID = 1L;
+
+	@Id 
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "class_id")
 	private Integer id;
 
@@ -30,6 +40,76 @@ public class Class {
 
 	@Column(nullable=true, name="student_count")
 	private Integer studentCount;
+
+	@Column(nullable=true, name="class_start")
+	private Integer startYear;
+	
+	@Column(nullable=true, name="class_end")
+	private Integer endYear;
+
+	@Column(nullable = false, name = "active")
+	private String active;
+
+	
+	/**
+	 * @return the startYear
+	 */
+	public Integer getStartYear() {
+		return startYear;
+	}
+
+	/**
+	 * @param startYear the startYear to set
+	 */
+	public void setStartYear(Integer startYear) {
+		this.startYear = startYear;
+	}
+
+	/**
+	 * @return the endYear
+	 */
+	public Integer getEndYear() {
+		return endYear;
+	}
+
+	/**
+	 * @param endYear the endYear to set
+	 */
+	public void setEndYear(Integer endYear) {
+		this.endYear = endYear;
+	}
+
+	/**
+	 * @return the active
+	 */
+	public String getActive() {
+		return active;
+	}
+
+	/**
+	 * @param active the active to set
+	 */
+	public void setActive(String active) {
+		this.active = active;
+	}
+
+	@OneToMany(mappedBy="classRef", cascade={CascadeType.PERSIST})
+	private Collection<ClassTimeTable> classTimeTable;
+	
+	/**
+	 * @return the classTimeTable
+	 */
+	public Collection<ClassTimeTable> getClassTimeTable() {
+		return classTimeTable;
+	}
+
+	/**
+	 * @param classTimeTable the classTimeTable to set
+	 */
+	public void setClassTimeTable(Collection<ClassTimeTable> classTimeTable) {
+		this.classTimeTable = classTimeTable;
+	}
+
 	/**
 	 * @return the id
 	 */

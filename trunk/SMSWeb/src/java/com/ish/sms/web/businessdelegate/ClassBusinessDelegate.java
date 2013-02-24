@@ -1,6 +1,5 @@
 package com.ish.sms.web.businessdelegate;
 
-
 /**
  * Class Business Delegate which is used to lookup the class rest service and call the same.
  * 
@@ -19,42 +18,14 @@ public class ClassBusinessDelegate extends BaseBusinessDelegate {
 	}
 
 	/**
-	 * Method to get all the classAttendanceDefintion list for a particular class .
+	 * Method to create or update a class and return the persisted classXML.
 	 * 
-	 * @param classId
-	 * @return classAttendanceDefListDTOXML
-	 */
-	public String retrieveClassAttendanceDefList(Integer classId) {
-		return smsServiceLocator.getSmsClassServiceInterface().retrieveClassAttendanceDefList(classId);
-	}
-
-	/**
-	 * Method to remove or delete the given ClassAttendanceDefDTO List and return the updated one wrapped in classAttendanceDefListDTO
-	 * 
-	 * @return classAttendanceDefListDTOXML
+	 * @param classXML
+	 * @return persistedClassXML
 	 */
 
-	public String updateClassAttendanceDefList(String classAttendanceDefListDTOXML) {
-		return smsServiceLocator.getSmsClassServiceInterface().updateClassAttendanceDefList(classAttendanceDefListDTOXML);
-	}
+	public String saveClass(String classXml) {
+		return smsServiceLocator.getSmsClassServiceInterface().saveClass(classXml);
 
-	/**
-	 * Method to return the class attendance data for the specified month
-	 * 
-	 * @param monthId
-	 * @return associateAttendanceListDTOXML
-	 */
-	public String retrieveClassAttendanceForMonth(Integer monthId) {
-		return smsServiceLocator.getSmsClassServiceInterface().retrieveClassAttendanceForMonth(monthId);
 	}
-
-	/**
-	 * Method to persist all the students in the attendance month
-	 * 
-	 * @return associateAttendanceListDTOXML
-	 */
-	public String updateAssociateAttendanceList(String associateAttendanceListDTOXML) {
-		return smsServiceLocator.getSmsClassServiceInterface().updateAssociateAttendanceList(associateAttendanceListDTOXML);
-	}
-
 }
