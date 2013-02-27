@@ -97,5 +97,20 @@ public class ClassReferenceDataDTO
     public void setReferenceDataDTO(ReferenceDataDTO value) {
         this.referenceDataDTO = value;
     }
+    
+	public int hashCode() {
 
+		return id.hashCode()  + referenceDataDTO.getName().hashCode();
+	}
+
+	public boolean equals(Object object) {
+		if (object == null)
+			return false;
+		ClassReferenceDataDTO otherClassDTO = (ClassReferenceDataDTO) object;
+		if (otherClassDTO.getId().equals(this.getId())) {
+			return true;
+		}
+		return false;
+	}
+    
 }
