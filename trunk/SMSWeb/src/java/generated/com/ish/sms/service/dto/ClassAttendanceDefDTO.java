@@ -154,4 +154,19 @@ public class ClassAttendanceDefDTO
         this.modification = value;
     }
 
+	public int hashCode() {
+
+		return id.hashCode()  + monthYear.hashCode();
+	}
+
+	public boolean equals(Object object) {
+		if (object == null)
+			return false;
+		ClassAttendanceDefDTO otherClassDTO = (ClassAttendanceDefDTO) object;
+		if (otherClassDTO.getId().equals(this.getId())) {
+			return true;
+		}
+		return false;
+	}
+
 }
