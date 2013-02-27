@@ -32,7 +32,7 @@ public class ClassAttendanceDefConverter implements Converter, Serializable, Web
 	 */
 	public Object getAsObject(FacesContext context, UIComponent component, String value) throws ConverterException {
 
-		ClassAttendanceBean classBean = WebUtils.findBean(CLASS_ATTENDANCE_BEAN);
+		ClassAttendanceBean classBean = new WebUtils().findBean(CLASS_ATTENDANCE_BEAN);
 		List<ClassAttendanceDefDTO> classAttendanceDefDTOList = classBean.getAttendanceRegisterBean().getClassAttendanceDefDTOList();
 		ClassAttendanceDefDTO selectedClassAttendanceDefDTO = null;
 		for (ClassAttendanceDefDTO classAttendanceDefDTO : classAttendanceDefDTOList) {

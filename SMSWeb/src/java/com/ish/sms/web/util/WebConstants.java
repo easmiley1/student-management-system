@@ -4,6 +4,7 @@ public interface WebConstants {
 
 	public final static String DEFAULT_GENDER = "Male";
 	public final static String PERIOD = "Period ";
+	public final static String ACTIVE = "active";
 	
 	/* DTO Name related constants */
 	public final static String STUDENT_DTO = "studentDTO";
@@ -12,7 +13,7 @@ public interface WebConstants {
 	public final static String CLASSATTENDANCEDEFLIST_DTO = "classAttendanceDefListDTO";
 	public final static String ASSOCIATEATTENDANCELIST_DTO = "associateAttendanceListDTO";
 
-	/* XHTML page navigation related contants */
+	/* XHTML page navigation related constants */
 	public final static String SAVE_STUDENT_PAGE = "/pages/content/associate/details/add-modify/addStudentDetails.xhtml";
 	public final static String SAVE_TEACHER_PAGE = "/pages/content/associate/details/add-modify/addTeacherDetails.xhtml";
 	public final static String MODIFY_STUDENT_LIST_PAGE = "/pages/content/associate/details/search/modifyStudentDetailsGridPage.xhtml";
@@ -20,7 +21,7 @@ public interface WebConstants {
 	public final static String MODIFY_TEACHER_LIST_PAGE = "/pages/content/associate/details/search/modifyTeacherDetailsGridPage.xhtml";
 	public final static String VIEW_TEACHER_LIST_PAGE = "/pages/content/associate/details/search/viewTeacherDetailsGridPage.xhtml";
 	public final static String MODIFY_CLASS_ATTENDANCE_PAGE = "/pages/content/class/attendance/modifyClassMonthAttendance.xhtml";
-	public final static String SAVE_CLASS_PAGE = "/pages/content/class/details/add-modify/addClassDetails.xhtml";
+	public final static String SAVE_CLASS_PAGE = "/pages/content/class/details/add-modify/saveClassDetails.xhtml";
 
 	/* Jboss cache related constants */
 	public static final String BLOOD_GROUP_KEY = "BLOOD_GROUP_KEY";
@@ -31,6 +32,7 @@ public interface WebConstants {
 	public static final String MODE_OF_TRANSPORT_KEY = "MODE_OF_TRANSPORT_KEY";
 	public static final String TEACHER_KEY = "TEACHER_KEY";
 	public static final String DAYS_OF_WEEK_KEY = "DAYS_OF_WEEK_KEY";
+	public static final String EXAM_KEY = "EXAM_KEY";
 	public static final String BLOOD_GROUP_FQN = "cache/reference/bloodgroup";
 	public static final String STATE_FQN = "cache/reference/state";
 	public static final String MODE_OF_TRANSPORT_FQN = "cache/reference/modeoftranport";
@@ -39,6 +41,7 @@ public interface WebConstants {
 	public static final String SUBJECT_FQN = "cache/reference/subject";
 	public static final String TEACHER_FQN = "cache/reference/teacher";
 	public static final String DAYS_OF_WEEK_FQN = "cache/reference/daysOfWeek";
+	public static final String EXAM_FQN = "cache/reference/exam";
 	public static final String REPL_SYNC_FILE = "replSync-eviction-service.xml";
 	public static final String TREECACHE_MBEAN_SERVICE = "jboss.cache:service=TreeCache";
 

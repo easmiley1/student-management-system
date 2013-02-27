@@ -9,33 +9,36 @@
 				<p:menubar style="padding:0px;">
 					<p:submenu label="Student Management" >
 						<p:menuitem value="Add Student Details" action="#{associateAction.initAddStudentPersonalDetails}" ajax="false" />
-						<p:submenu label="Modify Student" >
-							<p:menuitem value="Search All" action="#{associateAction.initModifySearchAllStudents}" ajax="false"/>
-						</p:submenu>						
-						<p:submenu label="View Student" >
-							<p:menuitem value="Search All" action="#{associateAction.initViewSearchAllStudents}" ajax="false"/>
-						</p:submenu>
+						<p:menuitem value="Modify Student" action="#{associateAction.initModifySearchAllStudents}" ajax="false"/>
+						<p:menuitem value="View Student" action="#{associateAction.initViewSearchAllStudents}" ajax="false"/>
 					</p:submenu>
 					
 					<p:submenu label="Teacher Management" >
 						<p:menuitem value="Add Teacher Details"  action="#{associateAction.initAddTeacherPersonalDetails}" ajax="false" />
-						<p:submenu label="Modify Teacher" >
-							<p:menuitem value="Search All" action="#{associateAction.initModifySearchAllTeachers}" ajax="false"/>
-						</p:submenu>						
-						<p:submenu label="View Teacher" >
-							<p:menuitem value="Search All" action="#{associateAction.initViewSearchAllTeachers}" ajax="false"/>
-						</p:submenu>
+						<p:menuitem value="Modify Teacher" action="#{associateAction.initModifySearchAllTeachers}" ajax="false"/>
+						<p:menuitem value="View Teacher" action="#{associateAction.initViewSearchAllTeachers}" ajax="false"/>
 					</p:submenu>
 
 					<p:submenu label="Class Management" >
 						<p:menuitem value="Add Class Details"  action="#{classAction.initAddClassDetails()}" ajax="false" />
-						<p:submenu label="Attendance Register" >
+						<p:submenu label="Modify Class" >
+							<p:menuitem value="2 B" action="#{classAction.openClassDetails(29)}" ajax="false"/>
+						</p:submenu>						
+						<p:submenu label="View Class" >
+							<p:menuitem value="2 B"  />
+						</p:submenu>
+						<p:submenu label="Edit Att. Register" >
+							<p:menuitem value="Search All" />
 							<p:menuitem value="LKG A" action="#{attendanceRegisterAction.openAttendanceRegister(1)}" ajax="false" />
 						</p:submenu>
+						<p:submenu label="View Att. Register" >
+							<p:menuitem value="Search All" />
+							<p:menuitem value="LKG A" ajax="false" />
+						</p:submenu>
 					</p:submenu>
-					
 				</p:menubar>
 			</p:toolbarGroup>
+			
 			<p:toolbarGroup align="Right">
 				<p:themeSwitcher value="#{applicationThemeBean.theme}" style="width:165px" effect="fade" id="statefulSwitcher" showEffect="slide">  
             		<f:selectItem itemLabel="Choose Theme" itemValue="" />  

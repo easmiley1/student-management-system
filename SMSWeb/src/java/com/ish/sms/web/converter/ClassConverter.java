@@ -36,7 +36,7 @@ public class ClassConverter implements Converter, Serializable, WebConstants {
 	 */
 	public Object getAsObject(FacesContext context, UIComponent component, String value) throws ConverterException {
 
-		ReferenceBean referenceBean = WebUtils.findBean(REFERENCE_BEAN);
+		ReferenceBean referenceBean = new WebUtils().findBean(REFERENCE_BEAN);
 		List<ClassDTO> ClassDTOList = referenceBean.getClassDTOList();
 		ClassDTO selectedClassDTO = null;
 		for (ClassDTO classDTO : ClassDTOList) {

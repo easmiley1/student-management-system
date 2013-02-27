@@ -8,6 +8,8 @@
   	<class>com.ish.sms.service.entity.ClassAttendanceDef</class>
   	<class>com.ish.sms.service.entity.AssociateAttendance</class>
   	<class>com.ish.sms.service.entity.ClassTimeTable</class>
+  	<class>com.ish.sms.service.entity.ClassExamReferenceData</class>
+  	<class>com.ish.sms.service.entity.ClassSubjectReferenceData</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>    
 	<non-jta-data-source>java:/smsDS</non-jta-data-source>       

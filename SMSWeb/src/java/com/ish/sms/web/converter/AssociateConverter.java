@@ -36,7 +36,7 @@ public class AssociateConverter implements Converter, Serializable, WebConstants
 	 */
 	public Object getAsObject(FacesContext context, UIComponent component, String value) throws ConverterException {
 
-		ReferenceBean referenceBean = WebUtils.findBean(REFERENCE_BEAN);
+		ReferenceBean referenceBean = new WebUtils().findBean(REFERENCE_BEAN);
 		List<TeacherDTO> teacherDTOList = referenceBean.getTeacherDTOList();
 		TeacherDTO selectedTeacherDTO = null;
 		for (TeacherDTO teacherDTO : teacherDTOList) {

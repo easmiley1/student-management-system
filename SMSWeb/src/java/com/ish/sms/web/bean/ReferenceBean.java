@@ -15,7 +15,7 @@ import com.ish.sms.web.util.SMSSpringFactory;
  * Bean class to hold all reference data. They will be refreshed once a day or if some reference data is updated
  * 
  * @author Naren
- *
+ * 
  */
 @ManagedBean(name = "referenceBean")
 @SessionScoped
@@ -27,16 +27,17 @@ public class ReferenceBean extends BaseBean {
 
 	@SuppressWarnings("unchecked")
 	public ReferenceBean() throws Exception {
-		
+
 		jbossCacheProvider = (JBossCacheProvider) SMSSpringFactory.getInstance().getBean("jbossCacheProvider");
 		setBloodGroupDTOList((List<ReferenceDataDTO>) jbossCacheProvider.get(BLOOD_GROUP_FQN, BLOOD_GROUP_KEY));
 		setModeofTransportDTOList((List<ReferenceDataDTO>) jbossCacheProvider.get(MODE_OF_TRANSPORT_FQN, MODE_OF_TRANSPORT_KEY));
 		setExtraCurricularDTOList((List<ReferenceDataDTO>) jbossCacheProvider.get(EXTRA_CURRICULAR_FQN, EXTRA_CURRICULAR_KEY));
 		setStateDTOList((List<ReferenceDataDTO>) jbossCacheProvider.get(STATE_FQN, STATE_KEY));
-		setClassDTOList((List<ClassDTO>)jbossCacheProvider.get(CLASS_FQN, CLASS_KEY));
+		setClassDTOList((List<ClassDTO>) jbossCacheProvider.get(CLASS_FQN, CLASS_KEY));
 		setSubjectDTOList((List<ReferenceDataDTO>) jbossCacheProvider.get(SUBJECT_FQN, SUBJECT_KEY));
 		setTeacherDTOList((List<TeacherDTO>) jbossCacheProvider.get(TEACHER_FQN, TEACHER_KEY));
 		setDaysOfWeekDTOList((List<ReferenceDataDTO>) jbossCacheProvider.get(DAYS_OF_WEEK_FQN, DAYS_OF_WEEK_KEY));
+		setExamDataDTOList((List<ReferenceDataDTO>) jbossCacheProvider.get(EXAM_FQN, EXAM_KEY));
 	}
 
 	private List<ReferenceDataDTO> bloodGroupDTOList;
@@ -46,15 +47,31 @@ public class ReferenceBean extends BaseBean {
 	private List<ReferenceDataDTO> extraCurricularDTOList;
 
 	private List<ReferenceDataDTO> stateDTOList;
-	
+
 	private List<ClassDTO> classDTOList;
 
 	private List<ReferenceDataDTO> subjectDTOList;
-	
+
 	private List<TeacherDTO> teacherDTOList;
-	
+
 	private List<ReferenceDataDTO> daysOfWeekDTOList;
- 
+
+	private List<ReferenceDataDTO> examDataDTOList;
+
+	/**
+	 * @return the examDataDTOList
+	 */
+	public List<ReferenceDataDTO> getExamDataDTOList() {
+		return examDataDTOList;
+	}
+
+	/**
+	 * @param examDataDTOList
+	 *            the examDataDTOList to set
+	 */
+	public void setExamDataDTOList(List<ReferenceDataDTO> examDataDTOList) {
+		this.examDataDTOList = examDataDTOList;
+	}
 
 	/**
 	 * @return the daysOfWeekDTOList
@@ -64,7 +81,8 @@ public class ReferenceBean extends BaseBean {
 	}
 
 	/**
-	 * @param daysOfWeekDTOList the daysOfWeekDTOList to set
+	 * @param daysOfWeekDTOList
+	 *            the daysOfWeekDTOList to set
 	 */
 	public void setDaysOfWeekDTOList(List<ReferenceDataDTO> daysOfWeekDTOList) {
 		this.daysOfWeekDTOList = daysOfWeekDTOList;
@@ -78,7 +96,8 @@ public class ReferenceBean extends BaseBean {
 	}
 
 	/**
-	 * @param teacherDTOList the teacherDTOList to set
+	 * @param teacherDTOList
+	 *            the teacherDTOList to set
 	 */
 	public void setTeacherDTOList(List<TeacherDTO> teacherDTOList) {
 		this.teacherDTOList = teacherDTOList;
@@ -92,7 +111,8 @@ public class ReferenceBean extends BaseBean {
 	}
 
 	/**
-	 * @param subjectDTOList the subjectDTOList to set
+	 * @param subjectDTOList
+	 *            the subjectDTOList to set
 	 */
 	public void setSubjectDTOList(List<ReferenceDataDTO> subjectDTOList) {
 		this.subjectDTOList = subjectDTOList;
@@ -106,7 +126,8 @@ public class ReferenceBean extends BaseBean {
 	}
 
 	/**
-	 * @param classDTOList the classDTOList to set
+	 * @param classDTOList
+	 *            the classDTOList to set
 	 */
 	public void setClassDTOList(List<ClassDTO> classDTOList) {
 		this.classDTOList = classDTOList;
