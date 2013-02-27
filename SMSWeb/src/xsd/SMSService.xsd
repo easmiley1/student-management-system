@@ -55,7 +55,6 @@
 		<xs:sequence>
 			<xs:element name="id" type="xs:int" minOccurs="0" />
 			<xs:element name="referenceDataDTO" type="referenceDataDTO" />
-			<xs:element name="modification" type="xs:string" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>	
 	
