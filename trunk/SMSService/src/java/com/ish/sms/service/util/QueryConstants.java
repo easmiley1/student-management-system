@@ -28,6 +28,10 @@ public interface QueryConstants {
 	public static final String FIND_ALL_CLASSES_QUERY = "select cl from com.ish.sms.service.entity.Class cl where cl.active='active'";
 	public static final String FIND_CLASS_ATTENDANCE_DEF = "FIND_CLASS_ATTENDANCE_DEF";
 	public static final String FIND_CLASS_ATTENDANCE_DEF_QUERY = "select cad from com.ish.sms.service.entity.ClassAttendanceDef cad where cad.classRef.id=:id";
+	public static final String FIND_CLASS_EXAM_REFERENCE_DATA = "FIND_CLASS_EXAM_REFERENCE_DATA";
+	public static final String FIND_CLASS_EXAM_REFERENCE_DATA_QUERY = "select cerd from com.ish.sms.service.entity.ClassExamReferenceData cerd where cerd.classRef.id=:id";
+	public static final String FIND_CLASS_SUBJECT_REFERENCE_DATA = "FIND_CLASS_SUBJECT_REFERENCE_DATA";
+	public static final String FIND_CLASS_SUBJECT_REFERENCE_DATA_QUERY = "select csrd from com.ish.sms.service.entity.ClassSubjectReferenceData csrd where csrd.classRef.id=:id";
 	public static final String FIND_ASSOCIATE_ATTENDANCE_DATA = "FIND_ASSOCIATE_ATTENDANCE_DATA";
 	public static final String FIND_ASSOCIATE_ATTENDANCE_DATA_QUERY = "select aa from com.ish.sms.service.entity.AssociateAttendance aa where aa.classAttendanceDef.id=:id";
 	public static final String FIND_CLASS_TIME_TABLE = "FIND_CLASS_TIME_TABLE";

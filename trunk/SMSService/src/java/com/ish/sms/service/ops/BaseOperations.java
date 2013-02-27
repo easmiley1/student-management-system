@@ -13,6 +13,7 @@ import com.ish.sms.service.dto.TeacherDTO;
 import com.ish.sms.service.dto.TeacherListDTO;
 import com.ish.sms.service.entity.Teacher;
 import com.ish.sms.service.ops.util.AssociateOperationsUtil;
+import com.ish.sms.service.ops.util.ClassAttendanceOperationsUtil;
 import com.ish.sms.service.ops.util.ClassOperationsUtil;
 import com.ish.sms.service.util.EntityConstants;
 import com.ish.sms.service.util.QueryConstants;
@@ -37,6 +38,8 @@ public class BaseOperations implements QueryConstants, EntityConstants {
 	@Autowired
 	protected ClassOperationsUtil classOperationsUtil;
 
+	@Autowired
+	protected ClassAttendanceOperationsUtil classAttendanceOperationsUtil;
 	/**
 	 * Method to return the list of all the teachers in the school.
 	 * 

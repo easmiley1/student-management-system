@@ -1,5 +1,8 @@
 package com.ish.sms.web.action;
 
+import com.ish.sms.service.dto.StudentDTO;
+import com.ish.sms.service.dto.TeacherDTO;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -123,7 +126,8 @@ public class AssociateAction extends BaseAction {
 	 */
 	public void saveStudent() {
 		try {
-			associateBusiness.saveStudent(associateBean.getStudentDTO(), associateBean.getAssociateDTO());
+			StudentDTO studentDTO = associateBusiness.saveStudent(associateBean.getStudentDTO(), associateBean.getAssociateDTO());
+			associateBean.setStudentDTO(studentDTO);
 			WebUtils.registerMessage(FacesMessage.SEVERITY_INFO, SAVE_SUCCESSFULL, STUDENT_SAVED_SUCCESSFULLY);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -138,7 +142,8 @@ public class AssociateAction extends BaseAction {
 	 */
 	public void saveTeacher() {
 		try {
-			associateBusiness.saveTeacher(associateBean.getTeacherDTO(), associateBean.getAssociateDTO());
+			TeacherDTO teacherDTO = associateBusiness.saveTeacher(associateBean.getTeacherDTO(), associateBean.getAssociateDTO());
+			associateBean.setTeacherDTO(teacherDTO);
 			WebUtils.registerMessage(FacesMessage.SEVERITY_INFO, SAVE_SUCCESSFULL, TEACHER_SAVED_SUCCESSFULLY);
 		} catch (Exception e) {
 			e.printStackTrace();

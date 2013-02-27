@@ -50,52 +50,44 @@ public class Class implements Serializable{
 	@Column(nullable = false, name = "active")
 	private String active;
 
+	@OneToMany(mappedBy="classRef", cascade={CascadeType.ALL}, orphanRemoval=true)
+	private Collection<ClassExamReferenceData> classExamReferenceData;
 	
-	/**
-	 * @return the startYear
-	 */
-	public Integer getStartYear() {
-		return startYear;
-	}
+	@OneToMany(mappedBy="classRef", cascade={CascadeType.ALL}, orphanRemoval=true)
+	private Collection<ClassSubjectReferenceData> classSubjectReferenceData;
 
-	/**
-	 * @param startYear the startYear to set
-	 */
-	public void setStartYear(Integer startYear) {
-		this.startYear = startYear;
-	}
-
-	/**
-	 * @return the endYear
-	 */
-	public Integer getEndYear() {
-		return endYear;
-	}
-
-	/**
-	 * @param endYear the endYear to set
-	 */
-	public void setEndYear(Integer endYear) {
-		this.endYear = endYear;
-	}
-
-	/**
-	 * @return the active
-	 */
-	public String getActive() {
-		return active;
-	}
-
-	/**
-	 * @param active the active to set
-	 */
-	public void setActive(String active) {
-		this.active = active;
-	}
-
-	@OneToMany(mappedBy="classRef", cascade={CascadeType.PERSIST})
+	@OneToMany(mappedBy="classRef", cascade={CascadeType.ALL})
 	private Collection<ClassTimeTable> classTimeTable;
-	
+
+
+	/**
+	 * @return the classExamReferenceData
+	 */
+	public Collection<ClassExamReferenceData> getClassExamReferenceData() {
+		return classExamReferenceData;
+	}
+
+	/**
+	 * @param classExamReferenceData the classExamReferenceData to set
+	 */
+	public void setClassExamReferenceData(Collection<ClassExamReferenceData> classExamReferenceData) {
+		this.classExamReferenceData = classExamReferenceData;
+	}
+
+	/**
+	 * @return the classSubjectReferenceData
+	 */
+	public Collection<ClassSubjectReferenceData> getClassSubjectReferenceData() {
+		return classSubjectReferenceData;
+	}
+
+	/**
+	 * @param classSubjectReferenceData the classSubjectReferenceData to set
+	 */
+	public void setClassSubjectReferenceData(Collection<ClassSubjectReferenceData> classSubjectReferenceData) {
+		this.classSubjectReferenceData = classSubjectReferenceData;
+	}
+
 	/**
 	 * @return the classTimeTable
 	 */
@@ -165,4 +157,49 @@ public class Class implements Serializable{
 	public void setStudentCount(Integer studentCount) {
 		this.studentCount = studentCount;
 	}
+	
+
+	
+	/**
+	 * @return the startYear
+	 */
+	public Integer getStartYear() {
+		return startYear;
+	}
+
+	/**
+	 * @param startYear the startYear to set
+	 */
+	public void setStartYear(Integer startYear) {
+		this.startYear = startYear;
+	}
+
+	/**
+	 * @return the endYear
+	 */
+	public Integer getEndYear() {
+		return endYear;
+	}
+
+	/**
+	 * @param endYear the endYear to set
+	 */
+	public void setEndYear(Integer endYear) {
+		this.endYear = endYear;
+	}
+
+	/**
+	 * @return the active
+	 */
+	public String getActive() {
+		return active;
+	}
+
+	/**
+	 * @param active the active to set
+	 */
+	public void setActive(String active) {
+		this.active = active;
+	}
+	
 }

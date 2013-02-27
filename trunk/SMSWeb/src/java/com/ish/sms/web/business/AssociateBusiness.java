@@ -30,7 +30,9 @@ public class AssociateBusiness extends BaseBusiness  {
 	 */
 	public StudentDTO saveStudent(StudentDTO studentDTO, AssociateDTO associateDTO) throws Exception {
 
+		Integer studentId = studentDTO.getId();
 		BeanUtils.copyProperties(studentDTO, associateDTO);
+		studentDTO.setId(studentId);
 		String studentXml = serviceTransformer.transformToXML(studentDTO, STUDENT_DTO);
 		studentXml = associateBusinessDelegate.saveStudent(studentXml);
 		return serviceTransformer.parseXml(studentXml);
@@ -46,7 +48,9 @@ public class AssociateBusiness extends BaseBusiness  {
 	 */
 	public TeacherDTO saveTeacher(TeacherDTO teacherDTO, AssociateDTO associateDTO) throws Exception {
 
+		Integer teacherId = teacherDTO.getId();
 		BeanUtils.copyProperties(teacherDTO, associateDTO);
+		teacherDTO.setId(teacherId);
 		String teacherXML = serviceTransformer.transformToXML(teacherDTO, TEACHER_DTO);
 		teacherXML = associateBusinessDelegate.saveTeacher(teacherXML);
 		return serviceTransformer.parseXml(teacherXML);

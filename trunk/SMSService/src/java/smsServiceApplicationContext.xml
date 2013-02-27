@@ -33,6 +33,7 @@
 	<bean id="classAttendanceOperations" class="com.ish.sms.service.ops.ClassAttendanceOperations"/>
 	<bean id="associateOperationsUtil" class="com.ish.sms.service.ops.util.AssociateOperationsUtil"/>
 	<bean id="classOperationsUtil" class="com.ish.sms.service.ops.util.ClassOperationsUtil"/>
+	<bean id="classAttendanceOperationsUtil" class="com.ish.sms.service.ops.util.ClassAttendanceOperationsUtil"/>
 	
 	<!--Restful Webservices bean declaration -->
 	<bean id="smsAssociateService" class="com.ish.sms.service.rest.SMSAssociateService"/>

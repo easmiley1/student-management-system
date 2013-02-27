@@ -49,7 +49,7 @@ public class ClassAttendanceOperations extends BaseOperations {
 		queryParametersMap.put(ID, classId);
 		List<ClassAttendanceDef> classAttendanceList = (List<ClassAttendanceDef>) classAttendanceOperationsDAO.retrieveResultListForQueryWithParameters(
 				FIND_CLASS_ATTENDANCE_DEF, queryParametersMap);
-		return classOperationsUtil.convertClassAttendanceListToDTO(classAttendanceList);
+		return classAttendanceOperationsUtil.convertClassAttendanceListToDTO(classAttendanceList);
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class ClassAttendanceOperations extends BaseOperations {
 	@Transactional(propagation = Propagation.REQUIRED)
 	public ClassAttendanceDefListDTO updateClassAttendanceDefList(ClassAttendanceDefListDTO classAttendanceDefListDTO) throws Exception {
 
-		List<ClassAttendanceDef> classAttendanceDefList = classOperationsUtil.convertClassAttendanceDefListDTOToEntity(classAttendanceDefListDTO);
+		List<ClassAttendanceDef> classAttendanceDefList = classAttendanceOperationsUtil.convertClassAttendanceDefListDTOToEntity(classAttendanceDefListDTO);
 		classAttendanceOperationsDAO.updateClassAttendanceDefList(classAttendanceDefList);
 		return retrieveClassAttendanceDefListForClass(classAttendanceDefList.get(0).getClassRef().getId());
 	}
@@ -107,9 +107,9 @@ public class ClassAttendanceOperations extends BaseOperations {
 		AssociateAttendanceListDTO updatedAssociateAttendanceListDTO = new AssociateAttendanceListDTO();
 
 		for (AssociateAttendanceDTO associateAttendanceDTO : associateAttendanceListDTO.getAssociateAttendanceListDTO()) {
-			AssociateAttendance associateAttendance = classOperationsUtil.convertAssociateAttendanceDTOToEntity(associateAttendanceDTO);
+			AssociateAttendance associateAttendance = classAttendanceOperationsUtil.convertAssociateAttendanceDTOToEntity(associateAttendanceDTO);
 			associateAttendance = (AssociateAttendance) classAttendanceOperationsDAO.createOrUpdateEntity(associateAttendance);
-			AssociateAttendanceDTO updatedAssociateAttendanceDTO = classOperationsUtil.convertAssociateAttendanceEntityToDTO(associateAttendance);
+			AssociateAttendanceDTO updatedAssociateAttendanceDTO = classAttendanceOperationsUtil.convertAssociateAttendanceEntityToDTO(associateAttendance);
 			updatedAssociateAttendanceListDTO.getAssociateAttendanceListDTO().add(updatedAssociateAttendanceDTO);
 		}
 		return updatedAssociateAttendanceListDTO;

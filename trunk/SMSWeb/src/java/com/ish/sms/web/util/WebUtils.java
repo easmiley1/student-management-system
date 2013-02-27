@@ -28,7 +28,7 @@ public class WebUtils implements WebConstants {
 	};
 
 	public static enum REFERENCE_TYPE {
-		bloodGroup, dayofWeek, extraCurricularInterest, transportation, stateName, subjectName, NoOfPeriods
+		bloodGroup, dayofWeek, extraCurricularInterest, transportation, stateName, subjectName, NoOfPeriods, exam
 	};
 
 	/**
@@ -36,7 +36,7 @@ public class WebUtils implements WebConstants {
 	 * @return Bean
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T> T findBean(String beanName) {
+	public <T> T findBean(String beanName) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		return (T) context.getApplication().evaluateExpressionGet(context, "#{" + beanName + "}", Object.class);
 	}

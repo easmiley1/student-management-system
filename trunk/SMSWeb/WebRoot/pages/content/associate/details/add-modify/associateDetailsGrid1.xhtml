@@ -76,7 +76,7 @@
 					<h:outputText value="*" styleClass="errorValidationText" />
 					<h:outputText value="State:" styleClass="labelText" />
 				</h:panelGroup>
-				<p:selectOneMenu id="stateName"  styleClass="mySelectStyle" converter="#{referenceDataConverter}" value="#{associateBean.associateDTO.stateDTO}"
+				<p:selectOneMenu id="stateName"  styleClass="mySelectStyle" converter="referenceDataConverter" value="#{associateBean.associateDTO.stateDTO}"
 				 tabindex="9" ajaxSingle="true" disabled="#{associateBean.readOnlyMode}" >
 					<f:selectItems value="#{referenceBean.stateDTOList}" var="stateDTO" itemValue="#{stateDTO}" itemLabel="#{stateDTO.name}"/>
 				</p:selectOneMenu>					

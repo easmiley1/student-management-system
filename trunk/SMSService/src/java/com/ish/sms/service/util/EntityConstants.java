@@ -9,7 +9,7 @@ public interface EntityConstants {
 	};
 
 	public static enum REFERENCE_TYPE {
-		BloodGroup, DayofWeek, ExtraCurricularInterest, Transportation, StateName, SubjectName
+		BloodGroup, DayofWeek, ExtraCurricularInterest, Transportation, StateName, SubjectName, Exam
 	};
 
 }

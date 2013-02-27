@@ -21,8 +21,8 @@ import com.ish.sms.web.util.WebUtils;
 /**
  * Bean class to hold all class related entities at session scope
  * 
- * @author Naren 
- *
+ * @author Naren
+ * 
  */
 @ManagedBean(name = WebConstants.CLASS_ATTENDANCE_BEAN)
 @SessionScoped
@@ -96,6 +96,10 @@ public class ClassAttendanceBean extends BaseBean implements Serializable {
 		for (ClassAttendanceDefDTO classAttendanceDefDTO : targetClassAttendanceDefDTOList) {
 			String monthYear = classAttendanceDefDTO.getMonthYear();
 			targetList.add(monthYear);
+			/*
+			 * This is called while reverting back the changes because of some errors, So the below operation of setting the current month
+			 * as default need not be performed. Hence using the flag to skip
+			 */
 			if (initialize) {
 				if (monthYear.equals(currentMonthYear)) {
 					foundCurrentMonth = true;
@@ -105,7 +109,7 @@ public class ClassAttendanceBean extends BaseBean implements Serializable {
 			}
 
 		}
-		if (initialize && !foundCurrentMonth){
+		if (initialize && !foundCurrentMonth) {
 			getAttendanceRegisterBean().setSelectedAttendanceDefDTO(targetClassAttendanceDefDTOList.get(0));
 			getAttendanceRegisterBean().setPreviousClassAttendanceDefDTO(targetClassAttendanceDefDTOList.get(0));
 		}
@@ -175,7 +179,7 @@ public class ClassAttendanceBean extends BaseBean implements Serializable {
 				}
 			}
 			if (!foundClassAttendanceDef) {
-				if (getAttendanceRegisterBean().getSelectedAttendanceDefDTO().getMonthYear().equals(classAttendanceDefDTO.getMonthYear())){
+				if (getAttendanceRegisterBean().getSelectedAttendanceDefDTO().getMonthYear().equals(classAttendanceDefDTO.getMonthYear())) {
 					return null;
 				}
 				ClassAttendanceDefDTO delClassAttendanceDefDTO = new ClassAttendanceDefDTO();
@@ -203,7 +207,6 @@ public class ClassAttendanceBean extends BaseBean implements Serializable {
 		}
 		return associateAttendanceDTOList;
 	}
-
 
 	/**
 	 * Method to populate the grid/bean with the persisted data and set the success message in the screen
