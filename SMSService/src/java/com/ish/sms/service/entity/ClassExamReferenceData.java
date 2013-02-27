@@ -12,10 +12,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import com.ish.sms.service.util.QueryConstants;
 
+/**
+ * Entity class for mapping to the class exam data table
+ * 
+ * @author Naren
+ *
+ */
 @NamedQueries({ @NamedQuery(name = QueryConstants.FIND_CLASS_EXAM_REFERENCE_DATA, query = QueryConstants.FIND_CLASS_EXAM_REFERENCE_DATA_QUERY) })
 @Entity
 @Table(name = "class_exam_details")
@@ -36,10 +41,6 @@ public class ClassExamReferenceData implements Serializable {
 	@JoinColumn(name = "exam_reference_data_id")
 	private ReferenceData examReferenceData;
 
-	@Transient
-	private String modification;
-
-
 	/**
 	 * @return the examReferenceData
 	 */
@@ -54,22 +55,6 @@ public class ClassExamReferenceData implements Serializable {
 	public void setExamReferenceData(ReferenceData examReferenceData) {
 		this.examReferenceData = examReferenceData;
 	}
-
-	/**
-	 * @return the modification
-	 */
-	public String getModification() {
-		return modification;
-	}
-
-	/**
-	 * @param modification
-	 *            the modification to set
-	 */
-	public void setModification(String modification) {
-		this.modification = modification;
-	}
-
 	/**
 	 * @return the id
 	 */
