@@ -100,14 +100,14 @@ public class ClassReferenceDataDTO
     
 	public int hashCode() {
 
-		return id.hashCode()  + referenceDataDTO.getName().hashCode();
+		return referenceDataDTO.getName().hashCode();
 	}
 
 	public boolean equals(Object object) {
 		if (object == null)
 			return false;
 		ClassReferenceDataDTO otherClassDTO = (ClassReferenceDataDTO) object;
-		if (otherClassDTO.getId().equals(this.getId())) {
+		if (otherClassDTO.getReferenceDataDTO().getName().equals(this.getReferenceDataDTO().getName())) {
 			return true;
 		}
 		return false;
