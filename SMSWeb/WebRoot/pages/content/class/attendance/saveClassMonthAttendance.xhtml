@@ -17,7 +17,7 @@
 							<p:toolbar style="height:30px;" id="toolbarId">
 								<p:toolbarGroup align="left" >
 									<p:spacer width="20" height="20" />
-									<p:selectOneMenu id="classAttendanceDefList"   converter="#{classAttendanceDefConverter}" 
+									<p:selectOneMenu id="classAttendanceDefList"   converter="classAttendanceDefConverter" 
 									value="#{classAttendanceBean.attendanceRegisterBean.selectedAttendanceDefDTO}"  ajaxSingle="true" >
 										<f:selectItems value="#{classAttendanceBean.attendanceRegisterBean.classAttendanceDefDTOList}" var="classAttendanceDefDTO" 
 										itemValue="#{classAttendanceDefDTO}" itemLabel="#{classAttendanceDefDTO.monthYear}" />
@@ -25,7 +25,8 @@
 									</p:selectOneMenu>	 
 									<p:spacer width="20" height="20" />									
  									<p:commandButton value="Save Register" id="saveBtnIcon" icon="ui-icon-disk" style="vertical-align:top;height:28px;text-align:center;"
- 									action="#{attendanceRegisterAction.saveAttendanceRegister}" disabled="#{classAttendanceBean.attendanceRegisterBean.dataSaved}" update="attendanceRegisterGrowl,saveBtnIcon" />	
+ 									action="#{attendanceRegisterAction.saveAttendanceRegister}" disabled="#{classAttendanceBean.attendanceRegisterBean.dataSaved}" 
+ 									update="attendanceRegisterGrowl,saveBtnIcon" />	
 								</p:toolbarGroup>
 
 								<p:toolbarGroup align="right" >
@@ -48,14 +49,18 @@
 						             <p:selectBooleanCheckbox value="#{attendance.attendanceMap[column]}" ajaxSingle="true">
 						             	<p:ajax oncomplete="callRemoteCommandtoMarkDirty()"  />
 						             </p:selectBooleanCheckbox>  
-       							 </p:columns>
+       							</p:columns>
 							</p:dataTable>
 						</p:panel>
 						
 						<p:dialog header="Maintain Register" widgetVar="attnMainDialog" showEffect="fold" hideEffect="fold" modal="true" id="attnMainDialogId" >  
 							<h:panelGrid id="classAttPickGrid1" columns="1" cellpadding="5">
 							  	 <p:pickList id="classAttPickList" value="#{classAttendanceBean.maintainRegisterMonthBean.classAttendanceDTOModel}" var="classAtt" 
-							  	 effect="slide" itemLabel="#{classAtt}" itemValue="#{classAtt}" showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains"/>  
+							  	 effect="slide" itemLabel="#{classAtt}" itemValue="#{classAtt}" showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains"
+							  	 requiredMessage="Attendance register should have atleast one month" required="true">
+							  	   	<f:facet name="sourceCaption">Available</f:facet>  
+       								<f:facet name="targetCaption">Selected</f:facet>
+       							</p:pickList>	 							  	 	
 							</h:panelGrid>
 							<h:panelGrid id="classAttPickGrid2" columns="2" cellpadding="5">
 								<p:commandButton value="Save" action="#{attendanceRegisterAction.submitMaintainClassAttendanceDef}"  ajax="true" 

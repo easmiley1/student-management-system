@@ -1,0 +1,62 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<f:view>
+		<h:body>
+			<ui:include src="/pages/layout/applicationStyles.xhtml"/>
+			<ui:composition template="/pages/layout/commonLayout.xhtml">
+				<ui:define name="content">
+			
+					<h:form id="classTimetableForm">
+						<p:growl id="classTimeTableDetailsGrowl" showDetail="true" />
+						<p:panel header="Class Details" styleClass="dialogBodyPanel" id="classDetailPanel" >
+							<p:blockUI block="classTimetableForm" trigger="saveBtn" />
+							<p:carousel id="basicCarousel"	value="#{classBean.timeTableBeanList}" var="dayTable" rows="1" >
+		  							<f:facet name="header" style="height:40px;">  
+		          						Define Class Timetable 
+		  							</f:facet>  							
+								<p:panel header="#{dayTable.dayOfWeek.name}" id="timetablePanel">
+									<p:dataTable var="timeTable" value="#{dayTable.periodList}" width="100%" paginator="true" rows="10"  
+									rowsPerPageTemplate="5,10,15" 
+		             			 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} 
+		             			 				{LastPageLink} {RowsPerPageDropdown}" id="perioddatatable"> 
+										
+										<p:column headerText="Period Name" style="width:120px">
+											 <h:outputText value="#{timeTable.periodName}" />
+										</p:column>										
+										<p:column headerText="Subject" style="width:150px">
+											<p:selectOneMenu id="subjectName"  styleClass="mySelectStyle" converter="classDetailsReferenceDataConverter" 
+											value="#{timeTable.classSubjectReferenceDataDTO}" ajaxSingle="true"  >
+												<f:selectItems value="#{classBean.selectedClassSubjectReferenceDataDTOList}" var="subjectDTO" 
+												itemValue="#{subjectDTO}" itemLabel="#{subjectDTO.referenceDataDTO.name}"/>
+											</p:selectOneMenu>			
+										</p:column>
+										<p:column headerText="Start Time" style="width:220px" ajaxSingle="true">
+											<p:calendar value="#{timeTable.startTime}" id="startTime" pattern="HH:mm" timeOnly="true" 
+											converter="TimeConverter" />
+										</p:column>
+										<p:column headerText="End Time" style="width:220px">
+											<p:calendar value="#{timeTable.endTime}"  id= "endTime" pattern="HH:mm" timeOnly="true" ajaxSingle="true"
+											converter="TimeConverter" />
+										</p:column>
+									</p:dataTable>
+								</p:panel>	
+							</p:carousel>
+
+							<h:panelGrid columns="1"  border="0">
+									
+								<h:panelGrid columns="2"  border="0" cellpadding="10px" cellspacing="10px" >
+									<p:commandButton value="Save"  id="saveBtn"  icon="ui-icon-disk" style="width:100px;height:35px;"  
+									update="classTimeTableDetailsGrowl" 	action="#{classAction.saveClassDetails}"		/>
+								</h:panelGrid>	
+							</h:panelGrid>
+																
+						</p:panel>
+					</h:form>
+				</ui:define>
+			</ui:composition>		
+		</h:body>
+	</f:view>
+</ui:composition>

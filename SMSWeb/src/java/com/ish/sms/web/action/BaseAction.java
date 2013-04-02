@@ -10,6 +10,7 @@ import com.ish.sms.web.business.ClassAttendanceBusiness;
 import com.ish.sms.web.business.ClassBusiness;
 import com.ish.sms.web.util.SMSSpringFactory;
 import com.ish.sms.web.util.WebConstants;
+import com.ish.sms.web.util.WebUtils;
 
 public class BaseAction implements WebConstants, Serializable {
 
@@ -21,6 +22,7 @@ public class BaseAction implements WebConstants, Serializable {
 	protected ClassBusiness classBusiness;
 	@Autowired
 	protected ClassAttendanceBusiness classAttendanceBusiness;
+	protected WebUtils webutils = new WebUtils();
 
 	public BaseAction() {
 		associateBusiness = (AssociateBusiness) SMSSpringFactory.getInstance().getBean(ASSOCIATE_BUSINESS_BEAN);

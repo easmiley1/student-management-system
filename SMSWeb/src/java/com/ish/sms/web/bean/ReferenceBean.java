@@ -2,6 +2,7 @@ package com.ish.sms.web.bean;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -26,9 +27,10 @@ public class ReferenceBean extends BaseBean {
 	private JBossCacheProvider jbossCacheProvider;
 
 	@SuppressWarnings("unchecked")
-	public ReferenceBean() throws Exception {
+	@PostConstruct
+	public void initReferenceBean()  throws Exception{
 
-		jbossCacheProvider = (JBossCacheProvider) SMSSpringFactory.getInstance().getBean("jbossCacheProvider");
+		jbossCacheProvider = (JBossCacheProvider) SMSSpringFactory.getInstance().getBean(JBOSS_CACHE_PROVIDER);
 		setBloodGroupDTOList((List<ReferenceDataDTO>) jbossCacheProvider.get(BLOOD_GROUP_FQN, BLOOD_GROUP_KEY));
 		setModeofTransportDTOList((List<ReferenceDataDTO>) jbossCacheProvider.get(MODE_OF_TRANSPORT_FQN, MODE_OF_TRANSPORT_KEY));
 		setExtraCurricularDTOList((List<ReferenceDataDTO>) jbossCacheProvider.get(EXTRA_CURRICULAR_FQN, EXTRA_CURRICULAR_KEY));

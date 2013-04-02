@@ -39,6 +39,16 @@ public class AssociateBusinessDelegate extends BaseBusinessDelegate {
 	}
 
 	/**
+	 * Method to return the list of all the students for the given classIds.
+	 * 
+	 * @return studentList
+	 */
+	public String retrieveStudentsForClass(String classIdXML) {
+
+		return smsServiceLocator.getSmsAssociateServiceInterface().retrieveStudentsForClass(classIdXML);
+	}
+
+	/**
 	 * Method to return the list of all the teachers in the school.
 	 * 
 	 * @return studentList

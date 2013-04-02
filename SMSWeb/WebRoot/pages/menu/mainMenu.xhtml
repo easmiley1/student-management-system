@@ -21,20 +21,16 @@
 
 					<p:submenu label="Class Management" >
 						<p:menuitem value="Add Class Details"  action="#{classAction.initAddClassDetails()}" ajax="false" />
-						<p:submenu label="Modify Class" >
-							<p:menuitem value="2 B" action="#{classAction.openClassDetails(29)}" ajax="false"/>
-						</p:submenu>						
-						<p:submenu label="View Class" >
-							<p:menuitem value="2 B"  />
-						</p:submenu>
-						<p:submenu label="Edit Att. Register" >
-							<p:menuitem value="Search All" />
+						<p:menuitem value="Modify Class Details" action="#{classAction.initEditSearchClass()}" ajax="false"/>
+						<p:submenu label="Attendance Register" >
 							<p:menuitem value="LKG A" action="#{attendanceRegisterAction.openAttendanceRegister(1)}" ajax="false" />
 						</p:submenu>
-						<p:submenu label="View Att. Register" >
-							<p:menuitem value="Search All" />
-							<p:menuitem value="LKG A" ajax="false" />
+						<p:submenu label="Time Table" >
+							<p:menuitem value="LKG A" action="#{classAction.openClassTimeTable(39)}" ajax="false" />
 						</p:submenu>
+						<p:submenu label="Grade Book" >
+							<p:menuitem value="LKG A" action="#{classGradeAction.openClassGradePage(39)}" ajax="false" />
+						</p:submenu>					
 					</p:submenu>
 				</p:menubar>
 			</p:toolbarGroup>
@@ -47,7 +43,5 @@
         		</p:themeSwitcher>  
 			</p:toolbarGroup>
 		</p:toolbar>
-
-
 	</f:view>
 </ui:composition>

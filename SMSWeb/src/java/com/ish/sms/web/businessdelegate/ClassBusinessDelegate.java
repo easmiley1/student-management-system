@@ -1,5 +1,6 @@
 package com.ish.sms.web.businessdelegate;
 
+
 /**
  * Class Business Delegate which is used to lookup the class rest service and call the same.
  * 
@@ -27,5 +28,15 @@ public class ClassBusinessDelegate extends BaseBusinessDelegate {
 	public String saveClass(String classXml) {
 		return smsServiceLocator.getSmsClassServiceInterface().saveClass(classXml);
 
+	}
+
+	/**
+	 * Method to return the list of all active classes
+	 * 
+	 * @return classListXML
+	 */
+
+	public String retrieveAllClasses() {
+		return smsServiceLocator.getSmsClassServiceInterface().retrieveAllClasses();
 	}
 }

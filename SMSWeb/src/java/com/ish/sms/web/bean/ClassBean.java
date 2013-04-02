@@ -10,7 +10,9 @@ import javax.faces.context.FacesContext;
 import org.primefaces.model.DualListModel;
 
 import com.ish.sms.service.dto.ClassDTO;
+import com.ish.sms.service.dto.ClassExamReferenceDataDTO;
 import com.ish.sms.service.dto.ClassReferenceDataDTO;
+import com.ish.sms.service.dto.ClassSubjectReferenceDataDTO;
 import com.ish.sms.service.dto.ClassTimeTableDTO;
 import com.ish.sms.service.dto.ReferenceDataDTO;
 import com.ish.sms.web.util.WebUtils;
@@ -28,14 +30,54 @@ public class ClassBean extends BaseBean {
 	private static final long serialVersionUID = 1L;
 
 	private List<TimeTableBean> timeTableBeanList = new ArrayList<TimeTableBean>();
-
+	private List<ClassDTO> classDTOList = new ArrayList<ClassDTO>();
 	private ClassDTO classDTO = new ClassDTO();
-
 	private List<Integer> classYearList = new ArrayList<Integer>();
-
-	private DualListModel<ReferenceDataDTO> subjectDTODualListModel = new DualListModel<ReferenceDataDTO>();
-
+	private List<ClassSubjectReferenceDataDTO> selectedClassSubjectReferenceDataDTOList  = new ArrayList<ClassSubjectReferenceDataDTO>();
 	private DualListModel<ReferenceDataDTO> examDTODualListModel = new DualListModel<ReferenceDataDTO>();
+	private SubjectDataModel subjectDataModel = new SubjectDataModel();
+
+	/**
+	 * @return the classDTOList
+	 */
+	public List<ClassDTO> getClassDTOList() {
+		return classDTOList;
+	}
+
+	/**
+	 * @param classDTOList the classDTOList to set
+	 */
+	public void setClassDTOList(List<ClassDTO> classDTOList) {
+		this.classDTOList = classDTOList;
+	}
+
+	/**
+	 * @return the subjectDataModel
+	 */
+	public SubjectDataModel getSubjectDataModel() {
+		return subjectDataModel;
+	}
+
+	/**
+	 * @param subjectDataModel the subjectDataModel to set
+	 */
+	public void setSubjectDataModel(SubjectDataModel subjectDataModel) {
+		this.subjectDataModel = subjectDataModel;
+	}
+
+	/**
+	 * @return the selectedClassSubjectReferenceDataDTOList
+	 */
+	public List<ClassSubjectReferenceDataDTO> getSelectedClassSubjectReferenceDataDTOList() {
+		return selectedClassSubjectReferenceDataDTOList;
+	}
+
+	/**
+	 * @param selectedClassSubjectReferenceDataDTOList the selectedClassSubjectReferenceDataDTOList to set
+	 */
+	public void setSelectedClassSubjectReferenceDataDTOList(List<ClassSubjectReferenceDataDTO> selectedClassSubjectReferenceDataDTOList) {
+		this.selectedClassSubjectReferenceDataDTOList = selectedClassSubjectReferenceDataDTOList;
+	}
 
 	/**
 	 * @return the examDTODualListModel
@@ -52,20 +94,6 @@ public class ClassBean extends BaseBean {
 		this.examDTODualListModel = examDTODualListModel;
 	}
 
-	/**
-	 * @return the subjectDTODualListModel
-	 */
-	public DualListModel<ReferenceDataDTO> getSubjectDTODualListModel() {
-		return subjectDTODualListModel;
-	}
-
-	/**
-	 * @param subjectDTODualListModel
-	 *            the subjectDTODualListModel to set
-	 */
-	public void setSubjectDTODualListModel(DualListModel<ReferenceDataDTO> subjectDTODualListModel) {
-		this.subjectDTODualListModel = subjectDTODualListModel;
-	}
 
 	/**
 	 * @return the classYearList
@@ -122,26 +150,24 @@ public class ClassBean extends BaseBean {
 
 		setClassDTO(objfactory.createClassDTO());
 		classDTO.setActive(ACTIVE);
-		createDefaultTimeTable();
 		populateSubjectAndExamPickList();
 	}
 
 	/**
 	 * Method to create the default timetable list based on the no of periods for given day and set in the ClassDTO
 	 */
-	private void createDefaultTimeTable() {
+	public void createDefaultTimeTable() {
 		List<ClassTimeTableDTO> newClasstimeTableList = new ArrayList<ClassTimeTableDTO>();
 		FacesContext context = FacesContext.getCurrentInstance();
 		ReferenceBean referenceBean = (ReferenceBean) context.getApplication().evaluateExpressionGet(context, "#{" + REFERENCE_BEAN + "}", Object.class);
 		List<ReferenceDataDTO> dayOfWeekDTOList = referenceBean.getDaysOfWeekDTOList();
-		List<ReferenceDataDTO> subjectDTOList = referenceBean.getSubjectDTOList();
 		for (ReferenceDataDTO dayOfWeekDTO : dayOfWeekDTOList) {
 			Integer noOfPeriods = new Integer(dayOfWeekDTO.getAdditionalData());
 			if (noOfPeriods > 0) {
 				for (int noOfPeriodsCount = 1; noOfPeriodsCount <= noOfPeriods; noOfPeriodsCount++) {
 					ClassTimeTableDTO classTimeTableDTO = new ClassTimeTableDTO();
 					classTimeTableDTO.setDayOfWeekDTO(dayOfWeekDTO);
-					classTimeTableDTO.setSubjectDTO(subjectDTOList.get(0));
+					classTimeTableDTO.setClassSubjectReferenceDataDTO(selectedClassSubjectReferenceDataDTOList.get(0));
 					classTimeTableDTO.setPeriodName(PERIOD + noOfPeriodsCount);
 					newClasstimeTableList.add(classTimeTableDTO);
 				}
@@ -156,7 +182,6 @@ public class ClassBean extends BaseBean {
 	 */
 
 	public void populateClassDetailGrids() {
-		populateTimeTableGrid();
 		populateSubjectAndExamPickList();
 	}
 
@@ -164,25 +189,40 @@ public class ClassBean extends BaseBean {
 	 * Method to populate the exam and subject pick list based on the reference data and selected data in the ClassDTO
 	 */
 	private void populateSubjectAndExamPickList() {
-
+		setClassYearList(WebUtils.getYearListForClass());
 		/* Get the default source for subject from the reference bean and remove the selected values */
-		List<ReferenceDataDTO> classSubjectSourceList = new ArrayList<ReferenceDataDTO>();
-		List<ReferenceDataDTO> classSubjectTargetList = new ArrayList<ReferenceDataDTO>();
+		List<ClassSubjectReferenceDataDTO> classSubjectSourceList = new ArrayList<ClassSubjectReferenceDataDTO>();
+		List<ClassSubjectReferenceDataDTO> classSubjectTargetList = new ArrayList<ClassSubjectReferenceDataDTO>();
 		List<ReferenceDataDTO> classExamSourceList = new ArrayList<ReferenceDataDTO>();
 		List<ReferenceDataDTO> classExamTargetList = new ArrayList<ReferenceDataDTO>();
 		FacesContext context = FacesContext.getCurrentInstance();
 		ReferenceBean referenceBean = (ReferenceBean) context.getApplication().evaluateExpressionGet(context, "#{" + REFERENCE_BEAN + "}", Object.class);
 
-		/* Master source data for subjects without filtering targets */
-		classSubjectSourceList.addAll(referenceBean.getSubjectDTOList());
-
+		
 		/* Target list which is also used to filter the source */
-		for (ClassReferenceDataDTO classSubjectReferenceDataDTO : classDTO.getClassSubjectReferenceDataDTOList()) {
-			classSubjectTargetList.add(classSubjectReferenceDataDTO.getReferenceDataDTO());
+		for (ClassSubjectReferenceDataDTO classSubjectReferenceDataDTO : classDTO.getClassSubjectReferenceDataDTOList()) {
+			classSubjectTargetList.add(classSubjectReferenceDataDTO);
 		}
-		classSubjectSourceList.removeAll(classSubjectTargetList);
-		getSubjectDTODualListModel().setSource(classSubjectSourceList);
-		getSubjectDTODualListModel().setTarget(classSubjectTargetList);
+		/* Master source data for subjects without filtering targets */
+		for(ReferenceDataDTO referenceDataDTO: referenceBean.getSubjectDTOList()){
+			boolean subjectExistinDB = false;
+			for (ClassSubjectReferenceDataDTO classSubjectReferenceDataDTO : classDTO.getClassSubjectReferenceDataDTOList()) {
+				if(classSubjectReferenceDataDTO.getReferenceDataDTO().getName().equals(referenceDataDTO.getName())){
+					classSubjectSourceList.add(classSubjectReferenceDataDTO);
+					subjectExistinDB = true;
+					break;
+				}
+				
+			}
+			if(!subjectExistinDB){
+				ClassSubjectReferenceDataDTO classSubjectReferenceDataDTO = new ClassSubjectReferenceDataDTO();
+				classSubjectReferenceDataDTO.setReferenceDataDTO(referenceDataDTO);
+				classSubjectSourceList.add(classSubjectReferenceDataDTO);
+			}
+		}
+
+		subjectDataModel = new SubjectDataModel(classSubjectSourceList);
+		setSelectedClassSubjectReferenceDataDTOList(classSubjectTargetList);
 
 		/* Master source data for subjects without filtering targets */
 		classExamSourceList.addAll(referenceBean.getExamDataDTOList());
@@ -200,8 +240,7 @@ public class ClassBean extends BaseBean {
 	 * Method to populate the time table grid based on the values set in the classDTO, this is required because the data model for the
 	 * timetable is different between ClassDTO and the grid
 	 */
-	private void populateTimeTableGrid() {
-
+	public void populateTimeTableGrid() {
 		getTimeTableBeanList().clear();
 		for (ClassTimeTableDTO classTimeTableDTO : classDTO.getClassTimeTableDTOList()) {
 			List<TimeTableBean> timeTableBeanList = getTimeTableBeanList();
@@ -221,7 +260,7 @@ public class ClassBean extends BaseBean {
 				createNewDay(classTimeTableDTO);
 			}
 		}
-		setClassYearList(WebUtils.getYearListForClass());
+		
 	}
 
 	/**
@@ -244,29 +283,28 @@ public class ClassBean extends BaseBean {
 	 * @return modifiedClassReferenceDataDTOList
 	 * @throws Exception
 	 */
-	public List<ClassReferenceDataDTO> getModifiedClassReferenceDataList(DualListModel<ReferenceDataDTO> referenceDataList,
-			List<ClassReferenceDataDTO> classReferenceDataDTOList) throws Exception {
+	public List<ClassExamReferenceDataDTO> getModifiedClassExamReferenceDataList(DualListModel<ReferenceDataDTO> referenceDataList,
+			List<ClassExamReferenceDataDTO> classReferenceDataDTOList) throws Exception {
 
-		List<ClassReferenceDataDTO> modifiedClassReferenceDataDTOList = new ArrayList<ClassReferenceDataDTO>();
+		List<ClassExamReferenceDataDTO> modifiedClassExamReferenceDataDTOList = new ArrayList<ClassExamReferenceDataDTO>();
 		for (ReferenceDataDTO referenceDataDTO : referenceDataList.getTarget()) {
   
 			boolean foundReferenceData = false;
-			for (ClassReferenceDataDTO classReferenceDataDTO : classReferenceDataDTOList) {
-				if (referenceDataDTO.equals(classReferenceDataDTO.getReferenceDataDTO())) {
-					modifiedClassReferenceDataDTOList.add(classReferenceDataDTO);
+			for (ClassExamReferenceDataDTO classExamReferenceDataDTO : classReferenceDataDTOList) {
+				if (referenceDataDTO.equals(classExamReferenceDataDTO.getReferenceDataDTO())) {
+					modifiedClassExamReferenceDataDTOList.add(classExamReferenceDataDTO);
 					foundReferenceData = true;
 					break;
 				}
 			}
 			if (!foundReferenceData) {
-				ClassReferenceDataDTO classReferenceDataDTO = new ClassReferenceDataDTO();
-				classReferenceDataDTO.setModification(WebUtils.CLASS_DEF_MODIFICATION.Added.name());
-				classReferenceDataDTO.setReferenceDataDTO(referenceDataDTO);
-				modifiedClassReferenceDataDTOList.add(classReferenceDataDTO);
+				ClassExamReferenceDataDTO classExamReferenceDataDTO = new ClassExamReferenceDataDTO();
+				classExamReferenceDataDTO.setReferenceDataDTO(referenceDataDTO);
+				modifiedClassExamReferenceDataDTOList.add(classExamReferenceDataDTO);
 			}
 		}
 
-		return modifiedClassReferenceDataDTOList;
+		return modifiedClassExamReferenceDataDTOList;
 	}
 
 }

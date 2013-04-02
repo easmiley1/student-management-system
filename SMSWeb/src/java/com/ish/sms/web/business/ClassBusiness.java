@@ -1,9 +1,12 @@
 package com.ish.sms.web.business;
 
+import java.util.List;
+
 import com.ish.sms.service.dto.ClassDTO;
+import com.ish.sms.service.dto.ClassListDTO;
 
 /**
- * Business class for all class  related actions. This is called from the Action bean/class. The methods in the class also converts the DTO
+ * Business class for all class related actions. This is called from the Action bean/class. The methods in the class also converts the DTO
  * to xml and vice-versa the response from the rest service.
  * 
  * @author Naren
@@ -26,7 +29,8 @@ public class ClassBusiness extends BaseBusiness {
 	/**
 	 * Method to update/insert class.
 	 * 
-	 * @param classDTO {@link classDTO}
+	 * @param classDTO
+	 *            {@link classDTO}
 	 * @return persistedClassDTO {@link classDTO}
 	 * @throws Exception
 	 */
@@ -35,5 +39,19 @@ public class ClassBusiness extends BaseBusiness {
 		String classXML = serviceTransformer.transformToXML(classDTO, CLASS_DTO);
 		classXML = classBusinessDelegate.saveClass(classXML);
 		return serviceTransformer.parseXml(classXML);
+	}
+
+	/**
+	 * Method to return the list of all active classes
+	 * 
+	 * @return classDTOList {@link ClassDTO}
+	 * @throws Exception
+	 * 
+	 */
+
+	public List<ClassDTO> retrieveAllClasses() throws Exception {
+		String classDTOXML = classBusinessDelegate.retrieveAllClasses();
+		ClassListDTO classListDTO = serviceTransformer.parseXml(classDTOXML);
+		return classListDTO.getClassDTOList();
 	}
 }

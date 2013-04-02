@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<f:view>
+		<h:body>
+			<ui:composition template="/pages/layout/commonLayout.xhtml">
+				<ui:define name="content">
+					<p:panel header="Class List" styleClass="dialogBodyPanel" id="modifyClassGridPanel">
+						<h:form id="classListForm">
+					        <p:dataTable value="#{classBean.classDTOList}" var="classObj" id="classListGridID" rowKey="#{classObj.id}"
+					         selectionMode="single" selection="#{classBean.classDTO}" widgetVar="classListGrid"   
+            				 emptyMessage="No Class found with given criteria" 
+            				 scrollable="true" paginator="true" rows="15" resizableColumns="true"   rowsPerPageTemplate="10,15,20"
+                 			 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+								<ui:include src="classDetailsGridColumns.xhtml"/>
+				                <f:facet name="footer">
+									<p:commandButton value="Edit Details"  id="editClassBtn" action="#{classAction.applySelectedClassDetails}" 
+									oncomplete="document.getElementById('editClassPanelFrame').src='/SMSWeb/pages/content/class/details/add-modify/saveClassDetails.xhtml';
+									editClassDialog.show();" /> 													                    
+				                </f:facet>					            					            
+        					</p:dataTable>
+							<p:dialog header="Edit Class" widgetVar="editClassDialog" resizable="false" id="editClassDialogid" moveable="false"  
+                			showEffect="fade" hideEffect="fade" modal="true">  
+									<iframe src="" id="editClassPanelFrame" style="width:1200px;height:700px" frameborder="0" scrolling="no"/>
+					        </p:dialog>    
+						</h:form>	
+					</p:panel>
+				</ui:define>
+			</ui:composition>
+		</h:body>
+	</f:view>
+</ui:composition>
