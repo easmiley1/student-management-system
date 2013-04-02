@@ -1,6 +1,9 @@
 package com.ish.sms.service.ops;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.springframework.transaction.annotation.Transactional;
@@ -63,6 +66,32 @@ public class AssociateOperations extends BaseOperations {
 
 		StudentListDTO studentList = new StudentListDTO();
 		List<Student> studentsList = (List<Student>) associateOperationsDAO.retrieveResultsForquery(FIND_ALL_STUDENTS);
+		for (Student student : studentsList) {
+			StudentDTO studentDTO = associateOperationsUtil.convertStudentEntitytoDTO(student);
+			studentList.getStudentDTOList().add(studentDTO);
+		}
+		return studentList;
+	}
+	
+	/**
+	 * Method to return the list of all the students for the given classIds.
+	 * 
+	 * @return studentList
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly = true)
+	public StudentListDTO retrieveStudentsForClass(List<String> classIdList) throws Exception {
+
+		Map<String, Object> queryParametersMap = new HashMap<String, Object>();
+		List<Integer> classIdIntList = new ArrayList<Integer>();
+		for(String classId :classIdList){
+			classIdIntList.add(new Integer(classId));
+		}
+		queryParametersMap.put(ID_LIST, classIdIntList);
+		StudentListDTO studentList = new StudentListDTO();
+		List<Student> studentsList = (List<Student>) associateOperationsDAO.retrieveResultListForQueryWithParameters(
+				FIND_ALL_STUDENTS_BY_CLASS_LIST, queryParametersMap);;
 		for (Student student : studentsList) {
 			StudentDTO studentDTO = associateOperationsUtil.convertStudentEntitytoDTO(student);
 			studentList.getStudentDTOList().add(studentDTO);

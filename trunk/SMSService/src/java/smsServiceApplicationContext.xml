@@ -23,6 +23,7 @@
 	<bean id="associateOperationsDAO" class="com.ish.sms.service.dao.AssociateOperationsDAO"/>
 	<bean id="referenceOperationsDAO" class="com.ish.sms.service.dao.ReferenceOperationsDAO"/>
 	<bean id="classOperationsDAO" class="com.ish.sms.service.dao.ClassOperationsDAO"/>
+	<bean id="userOperationsDAO" class="com.ish.sms.service.dao.UserOperationsDAO"/>
 	<bean id="classAttendanceOperationsDAO" class="com.ish.sms.service.dao.ClassAttendanceOperationsDAO"/>
 	<bean id="classOperationsDAOUtil" class="com.ish.sms.service.dao.util.ClassOperationsDAOUtil"/>
 	
@@ -30,16 +31,21 @@
 	<bean id="associateOperations" class="com.ish.sms.service.ops.AssociateOperations"/>
 	<bean id="referenceOperations" class="com.ish.sms.service.ops.ReferenceOperations"/>
 	<bean id="classOperations" class="com.ish.sms.service.ops.ClassOperations"/>
+	<bean id="userOperations" class="com.ish.sms.service.ops.UserOperations"/>
 	<bean id="classAttendanceOperations" class="com.ish.sms.service.ops.ClassAttendanceOperations"/>
+	
 	<bean id="associateOperationsUtil" class="com.ish.sms.service.ops.util.AssociateOperationsUtil"/>
 	<bean id="classOperationsUtil" class="com.ish.sms.service.ops.util.ClassOperationsUtil"/>
 	<bean id="classAttendanceOperationsUtil" class="com.ish.sms.service.ops.util.ClassAttendanceOperationsUtil"/>
+	<bean id="userOperationsUtil" class="com.ish.sms.service.ops.util.UserOperationsUtil"/>
+
 	
 	<!--Restful Webservices bean declaration -->
 	<bean id="smsAssociateService" class="com.ish.sms.service.rest.SMSAssociateService"/>
 	<bean id="smsReferenceService" class="com.ish.sms.service.rest.SMSReferenceService"/>
 	<bean id="smsClassService" class="com.ish.sms.service.rest.SMSClassService"/>
 	<bean id="smsClassAttendanceService" class="com.ish.sms.service.rest.SMSClassAttendanceService"/>
+	<bean id="smsUserService" class="com.ish.sms.service.rest.SMSUserService"/>
 
 	<bean id="entityManagerFactory"	class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="smsServicePersistenceUnit" />

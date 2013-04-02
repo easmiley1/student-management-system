@@ -16,12 +16,16 @@ public interface QueryConstants {
 	public static final String FIND_ALL_TEACHERS_QUERY = "select teacher from com.ish.sms.service.entity.Teacher teacher";
 	public static final String FIND_ALL_STUDENTS_BY_CLASS = "FIND_ALL_STUDENTS_BY_CLASS";
 	public static final String FIND_ALL_STUDENTS_BY_CLASS_QUERY = "select st from com.ish.sms.service.entity.Student st where st.currentClass.id =:id";
-	
+	public static final String FIND_ALL_STUDENTS_BY_CLASS_LIST = "FIND_ALL_STUDENTS_BY_CLASS_LIST";
+	public static final String FIND_ALL_STUDENTS_BY_CLASS_LIST_QUERY = "select st from com.ish.sms.service.entity.Student st where st.currentClass.id in :idList";
+
 	/* Reference Data Operations related queries*/
 	public static final String FIND_ALL_REFERENCE_DATA = "FIND_ALL_REFERENCE_DATA";
 	public static final String FIND_ALL_REFERENCE_DATA_QUERY = "select ref from com.ish.sms.service.entity.ReferenceData ref";
 
 	/*Class Operations related queries*/
+	public static final String FIND_ALL_CLASS_FOR_ID_LIST = "FIND_ALL_CLASS_FOR_ID_LIST";
+	public static final String FIND_ALL_CLASS_FOR_ID_LIST_QUERY = "select cl from com.ish.sms.service.entity.Class cl where cl.id in :idList";
 	public static final String FIND_CLASS_BY_ID = "FIND_CLASS_BY_ID";
 	public static final String FIND_CLASS_BY_ID_QUERY = "select cl from com.ish.sms.service.entity.Class cl where cl.id= :id";
 	public static final String FIND_ALL_CLASSES = "FIND_ALL_CLASSES";
@@ -36,5 +40,14 @@ public interface QueryConstants {
 	public static final String FIND_ASSOCIATE_ATTENDANCE_DATA_QUERY = "select aa from com.ish.sms.service.entity.AssociateAttendance aa where aa.classAttendanceDef.id=:id";
 	public static final String FIND_CLASS_TIME_TABLE = "FIND_CLASS_TIME_TABLE";
 	public static final String FIND_CLASS_TIME_TABLE_QUERY = "select ctt from com.ish.sms.service.entity.ClassTimeTable ctt where ctt.classRef.id=:id";
+
+	/*User Details related queries*/
+	public static final String FIND_ALL_ROLES_QUERY = "select ur from com.ish.sms.service.entity.UserRole ur";
+	public static final String FIND_ALL_ROLES = "FIND_ALL_ROLES";	
+	public static final String FIND_ALL_USERS_QUERY = "select user from com.ish.sms.service.entity.User user";
+	public static final String FIND_ALL_USERS = "FIND_ALL_USERS";	
+	public static final String FIND_USER_FOR_NAME = "FIND_USER_FOR_NAME";
+	public static final String FIND_USER_FOR_NAME_QUERY = "select user from com.ish.sms.service.entity.User user where user.name=:name";
+	
 
 }

@@ -6,6 +6,7 @@ import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,18 +17,28 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.ish.sms.service.util.QueryConstants;
 
-@NamedQueries( { @NamedQuery(name = QueryConstants.FIND_ALL_CLASSES, query = QueryConstants.FIND_ALL_CLASSES_QUERY),
-	 @NamedQuery(name = QueryConstants.FIND_CLASS_BY_ID, query = QueryConstants.FIND_CLASS_BY_ID_QUERY) })
+/**
+ * Entity class that represents the class details table in the database
+ * 
+ * @author Naren
+ * 
+ */
+@NamedQueries({ @NamedQuery(name = QueryConstants.FIND_ALL_CLASSES, query = QueryConstants.FIND_ALL_CLASSES_QUERY),
+		@NamedQuery(name = QueryConstants.FIND_CLASS_BY_ID, query = QueryConstants.FIND_CLASS_BY_ID_QUERY),
+		@NamedQuery(name=QueryConstants.FIND_ALL_CLASS_FOR_ID_LIST, query = QueryConstants.FIND_ALL_CLASS_FOR_ID_LIST_QUERY)})
 @Entity
 @Table(name = "class_details")
-public class Class implements Serializable{
+public class Class implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id 
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "class_id")
 	private Integer id;
 
@@ -38,27 +49,28 @@ public class Class implements Serializable{
 	@JoinColumn(name = "class_teacher")
 	private Teacher teacher;
 
-	@Column(nullable=true, name="student_count")
+	@Column(nullable = true, name = "student_count")
 	private Integer studentCount;
 
-	@Column(nullable=true, name="class_start")
+	@Column(nullable = true, name = "class_start")
 	private Integer startYear;
-	
-	@Column(nullable=true, name="class_end")
+
+	@Column(nullable = true, name = "class_end")
 	private Integer endYear;
 
 	@Column(nullable = false, name = "active")
 	private String active;
 
-	@OneToMany(mappedBy="classRef", cascade={CascadeType.ALL}, orphanRemoval=true)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(mappedBy = "classRef", cascade = { CascadeType.ALL }, orphanRemoval = true)
 	private Collection<ClassExamReferenceData> classExamReferenceData;
-	
-	@OneToMany(mappedBy="classRef", cascade={CascadeType.ALL}, orphanRemoval=true)
+
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(mappedBy = "classRef", cascade = { CascadeType.ALL }, orphanRemoval = true)
 	private Collection<ClassSubjectReferenceData> classSubjectReferenceData;
 
-	@OneToMany(mappedBy="classRef", cascade={CascadeType.ALL})
+	@OneToMany(mappedBy = "classRef", cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
 	private Collection<ClassTimeTable> classTimeTable;
-
 
 	/**
 	 * @return the classExamReferenceData
@@ -68,7 +80,8 @@ public class Class implements Serializable{
 	}
 
 	/**
-	 * @param classExamReferenceData the classExamReferenceData to set
+	 * @param classExamReferenceData
+	 *            the classExamReferenceData to set
 	 */
 	public void setClassExamReferenceData(Collection<ClassExamReferenceData> classExamReferenceData) {
 		this.classExamReferenceData = classExamReferenceData;
@@ -82,7 +95,8 @@ public class Class implements Serializable{
 	}
 
 	/**
-	 * @param classSubjectReferenceData the classSubjectReferenceData to set
+	 * @param classSubjectReferenceData
+	 *            the classSubjectReferenceData to set
 	 */
 	public void setClassSubjectReferenceData(Collection<ClassSubjectReferenceData> classSubjectReferenceData) {
 		this.classSubjectReferenceData = classSubjectReferenceData;
@@ -96,7 +110,8 @@ public class Class implements Serializable{
 	}
 
 	/**
-	 * @param classTimeTable the classTimeTable to set
+	 * @param classTimeTable
+	 *            the classTimeTable to set
 	 */
 	public void setClassTimeTable(Collection<ClassTimeTable> classTimeTable) {
 		this.classTimeTable = classTimeTable;
@@ -110,7 +125,8 @@ public class Class implements Serializable{
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(Integer id) {
 		this.id = id;
@@ -124,7 +140,8 @@ public class Class implements Serializable{
 	}
 
 	/**
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -138,7 +155,8 @@ public class Class implements Serializable{
 	}
 
 	/**
-	 * @param teacher the teacher to set
+	 * @param teacher
+	 *            the teacher to set
 	 */
 	public void setTeacher(Teacher teacher) {
 		this.teacher = teacher;
@@ -152,14 +170,13 @@ public class Class implements Serializable{
 	}
 
 	/**
-	 * @param studentCount the studentCount to set
+	 * @param studentCount
+	 *            the studentCount to set
 	 */
 	public void setStudentCount(Integer studentCount) {
 		this.studentCount = studentCount;
 	}
-	
 
-	
 	/**
 	 * @return the startYear
 	 */
@@ -168,7 +185,8 @@ public class Class implements Serializable{
 	}
 
 	/**
-	 * @param startYear the startYear to set
+	 * @param startYear
+	 *            the startYear to set
 	 */
 	public void setStartYear(Integer startYear) {
 		this.startYear = startYear;
@@ -182,7 +200,8 @@ public class Class implements Serializable{
 	}
 
 	/**
-	 * @param endYear the endYear to set
+	 * @param endYear
+	 *            the endYear to set
 	 */
 	public void setEndYear(Integer endYear) {
 		this.endYear = endYear;
@@ -196,10 +215,11 @@ public class Class implements Serializable{
 	}
 
 	/**
-	 * @param active the active to set
+	 * @param active
+	 *            the active to set
 	 */
 	public void setActive(String active) {
 		this.active = active;
 	}
-	
+
 }

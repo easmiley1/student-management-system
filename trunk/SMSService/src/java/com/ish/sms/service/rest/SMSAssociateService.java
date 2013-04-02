@@ -4,9 +4,11 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import org.springframework.stereotype.Service;
 
+import com.ish.sms.service.dto.StringListDTO;
 import com.ish.sms.service.dto.StudentDTO;
 import com.ish.sms.service.dto.StudentListDTO;
 import com.ish.sms.service.dto.TeacherDTO;
@@ -30,8 +32,8 @@ public class SMSAssociateService extends SMSBaseService{
 	 */
 	@POST
 	@Path("/saveStudent/")
-	@Produces("text/xml")
-	@Consumes("text/xml")
+	@Produces(MediaType.TEXT_XML)
+	@Consumes(MediaType.TEXT_XML)
 	public String saveStudent(String xml) {
 
 		StudentDTO studentDTO = null;
@@ -54,8 +56,8 @@ public class SMSAssociateService extends SMSBaseService{
 	 */
 	@POST
 	@Path("/saveTeacher/")
-	@Produces("text/xml")
-	@Consumes("text/xml")
+	@Produces(MediaType.TEXT_XML)
+	@Consumes(MediaType.TEXT_XML)
 	public String saveTeacher(String xml) {
 
 		TeacherDTO teacherDTO = null;
@@ -76,12 +78,34 @@ public class SMSAssociateService extends SMSBaseService{
 	 */
 	@POST
 	@Path("/retrieveAllStudents/")
-	@Produces("text/xml")
+	@Produces(MediaType.TEXT_XML)
 	public String retrieveAllStudents() {
 
 		String studentListXML = null;
 		try {
 			StudentListDTO studentList = associateOperations.retrieveAllStudents();
+			studentListXML = serviceTransformer.transformToXML(studentList, "studentListDTO");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return studentListXML;
+	}
+
+	/**
+	 * Method to return the list of all the students for the given classIds.
+	 * 
+	 * @return studentListXML
+	 */
+	@POST
+	@Path("/retrieveStudentsForClass/")
+	@Produces(MediaType.TEXT_XML)
+	@Consumes(MediaType.TEXT_XML)
+	public String retrieveStudentsForClass(String classIdXML) {
+
+		String studentListXML = null;
+		try {
+			StringListDTO stringListDTO = serviceTransformer.tryParseXml(classIdXML);
+			StudentListDTO studentList = associateOperations.retrieveStudentsForClass(stringListDTO.getStringListDTO());
 			studentListXML = serviceTransformer.transformToXML(studentList, "studentListDTO");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -96,7 +120,7 @@ public class SMSAssociateService extends SMSBaseService{
 	 */
 	@POST
 	@Path("/retrieveAllTeachers/")
-	@Produces("text/xml")
+	@Produces(MediaType.TEXT_XML)
 	public String retrieveAllTeachers() {
 
 		String teacherListXML = null;

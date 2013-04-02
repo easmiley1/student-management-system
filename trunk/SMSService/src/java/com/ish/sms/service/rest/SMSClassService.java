@@ -10,6 +10,7 @@ import javax.ws.rs.Produces;
 import org.springframework.stereotype.Service;
 
 import com.ish.sms.service.dto.ClassDTO;
+import com.ish.sms.service.dto.ClassListDTO;
 
 /**
  * Restful service class to handle all Class related operations.
@@ -63,5 +64,25 @@ public class SMSClassService extends SMSBaseService {
 			e.printStackTrace();
 		}
 		return classXML;
+	}
+	
+	/**
+	 * Method to return the list of all active classes
+	 * 
+	 * @return classListXML
+	 */
+	@POST
+	@Path("/retrieveAllClasses/")
+	@Produces("text/xml")
+	public String retrieveAllClasses() {
+
+		String classListXML = null;
+		try {
+			ClassListDTO classListDTO = classOperations.retrieveAllClasses();
+			classListXML = serviceTransformer.transformToXML(classListDTO, "classListDTO");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return classListXML;
 	}	
 }
