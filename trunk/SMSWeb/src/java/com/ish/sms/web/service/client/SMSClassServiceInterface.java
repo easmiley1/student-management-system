@@ -37,4 +37,14 @@ public interface SMSClassServiceInterface {
 	@Produces("text/xml")
 	@Consumes("text/xml")
 	public String saveClass(String xml) ;
+	
+	/**
+	 * Method to return the list of all active classes
+	 * 
+	 * @return classListXML
+	 */
+	@POST
+	@Path("/retrieveAllClasses/")
+	@Produces("text/xml")
+	public String retrieveAllClasses();	
 }

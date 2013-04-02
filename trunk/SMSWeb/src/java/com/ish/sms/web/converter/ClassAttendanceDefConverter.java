@@ -3,12 +3,11 @@ package com.ish.sms.web.converter;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
+import javax.faces.convert.FacesConverter;
 
 import com.ish.sms.service.dto.ClassAttendanceDefDTO;
 import com.ish.sms.web.bean.ClassAttendanceBean;
@@ -21,8 +20,7 @@ import com.ish.sms.web.util.WebUtils;
  * @author Naren
  *
  */
-@ManagedBean(name = WebConstants.CLASS_ATTENDANCE_DEF_CONVERTER)
-@ViewScoped
+@FacesConverter(value = WebConstants.CLASS_ATTENDANCE_DEF_CONVERTER)
 public class ClassAttendanceDefConverter implements Converter, Serializable, WebConstants {
 
 	private static final long serialVersionUID = 1L;

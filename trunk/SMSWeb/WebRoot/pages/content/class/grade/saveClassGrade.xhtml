@@ -1,0 +1,56 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<f:view>
+		<h:body>
+			<ui:include src="applicationStyles.xhtml" />
+			<ui:composition template="/pages/layout/commonLayout.xhtml">
+				<ui:define name="content">
+					<h:form id="classGradeForm">
+						<p:growl id="classGradeGrowl" showDetail="true" sticky="false" />
+    					
+    					<p:panel header="ClassGrade" styleClass="dialogBodyPanel" id="classGradePanel">
+       						<p:remoteCommand name="callRemoteCommandtoMarkDirty" actionListener="#{classGradeAction.markDirty}" process="@all" 
+       							update="saveBtnIcon"/>
+							<p:toolbar style="height:30px;" id="toolbarId">
+								<p:toolbarGroup align="left" >
+									<p:spacer width="20" height="20" />
+									<p:spacer width="20" height="20" />
+									<p:selectOneMenu id="classExamList" converter="classGradeReferenceDataConverter" value="#{classGradeBean.selectedClassExamReferenceDataDTO}" 
+											ajaxSingle="true" >
+										<f:selectItems value="#{classGradeBean.classExamReferenceDataDTOList}" var="classExamReferenceDataDTO" 
+										itemValue="#{classExamReferenceDataDTO}" itemLabel="#{classExamReferenceDataDTO.referenceDataDTO.name}" />
+										<p:ajax listener="#{classGradeAction.changeExam}" />
+									</p:selectOneMenu>	 
+									<p:spacer width="20" height="20" />									
+ 									<p:commandButton value="Save" id="saveBtnIcon" icon="ui-icon-disk" style="vertical-align:top;height:28px;"
+ 									action="#{classGradeAction.saveGradeBook}" disabled="#{classGradeBean.dataSaved}"/>	
+								</p:toolbarGroup>
+							</p:toolbar>
+							
+							<p:dataTable id="classGradeDataTableId" var="studentGrade" value="#{classGradeBean.studentGradeList}"
+							 scrollable="true" paginator="true" rows="15" rowsPerPageTemplate="10,15,20" 
+                 			 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" >
+                 				<p:column headerText="Name" style="width:100px">
+                 					<h:outputText value="#{studentGrade.studentDTO.firstName}" />  
+                 				</p:column>
+								<p:columns value="#{classGradeBean.columnNames}" var="column" columnIndexVar="colIndex" style="width:100px">
+									<f:facet name="header">  
+               							 #{column}  
+            						</f:facet>  
+						             <h:inputText value="#{studentGrade.studentGradeMap[column]}"  ajaxSingle="true" 
+											converterMessage="Invalid characters" style="width:40px;horizontal-align:center;">
+						             	<p:ajax oncomplete="callRemoteCommandtoMarkDirty()"  />
+						             </h:inputText>  
+       							</p:columns>
+							</p:dataTable>							
+							
+						</p:panel>
+					</h:form>
+				</ui:define>
+			</ui:composition>
+		</h:body>
+	</f:view>
+</ui:composition>

@@ -5,121 +5,102 @@
 	xmlns:p="http://primefaces.org/ui">
 	<f:view>
 		<h:body>
-			<ui:include src="applicationStyles.xhtml" />
-			<ui:composition template="/pages/layout/commonLayout.xhtml">
-				<ui:define name="content">
-					<h:form id="classForm">
-						<p:growl id="classDetailsGrowl" showDetail="true" />
-						<p:panel header="Class Details" styleClass="dialogBodyPanel" id="classDetailPanel" >
+			<ui:include src="/pages/layout/applicationStyles.xhtml"/>
+			<h:form id="classForm">
+				<p:growl id="classDetailsGrowl" showDetail="true" />
+				<p:panel header="Class Details" styleClass="dialogBodyPanel" id="classDetailPanel" >
+					<p:blockUI block="classForm" trigger="saveBtn" />
+				
+					<h:panelGrid columns="5"  border="0">
+						<h:panelGrid columns="2"  border="0" cellpadding="2px" cellspacing="2px" >
+							<h:panelGroup>
+								<h:outputText value="*" styleClass="errorValidationText" />
+								<h:outputText value="Name and Section:" styleClass="labelText"/>
+							</h:panelGroup>
+							<h:inputText value="#{classBean.classDTO.name}" styleClass="commonInput" style="width:120px; !important" ajaxSingle="true"
+							required="true" requiredMessage="Class Name is required"/>
+						</h:panelGrid>
 						
-							<h:panelGrid columns="5"  border="0">
-								<h:panelGrid columns="2"  border="0" cellpadding="2px" cellspacing="2px" >
-									<h:panelGroup>
-										<h:outputText value="*" styleClass="errorValidationText" />
-										<h:outputText value="Name and Section:" styleClass="labelText"/>
-									</h:panelGroup>
-									<h:inputText value="#{classBean.classDTO.name}" styleClass="commonInput" style="width:120px; !important" ajaxSingle="true"
-									required="true"/>
-								</h:panelGrid>
-								
-								<h:panelGrid columns="2"  border="0" cellpadding="2px" cellspacing="2px" >
-									<h:panelGroup>
-										<h:outputText value="*" styleClass="errorValidationText" />
-										<h:outputText value="Class Teacher:" styleClass="labelText"/>
-									</h:panelGroup>
-									<p:selectOneMenu  styleClass="mySelectStyle" converter="#{associateConverter}"	value="#{classBean.classDTO.teacherDTO}" ajaxSingle="true"  >
-										<f:selectItems value="#{referenceBean.teacherDTOList}" var="teacherDTO" itemValue="#{teacherDTO}"
-										itemLabel="#{teacherDTO.firstName}"/>
-									</p:selectOneMenu>	
-								</h:panelGrid>
-								
-								<h:panelGrid columns="2"  border="0" cellpadding="2px" cellspacing="2px" >
-									<h:panelGroup>
-										<h:outputText value="*" styleClass="errorValidationText" />
-										<h:outputText value="Start Year:" styleClass="labelText"/>
-									</h:panelGroup>
-									<p:selectOneMenu  styleClass="mySelectStyle" value="#{classBean.classDTO.startYear}" ajaxSingle="true"  >
-										<f:selectItems value="#{classBean.classYearList}" />
-									</p:selectOneMenu>	
-								</h:panelGrid>							
-								
-								<h:panelGrid columns="2"  border="0" cellpadding="10px" cellspacing="10px" >
-									<h:panelGroup>
-										<h:outputText value="*" styleClass="errorValidationText" />
-										<h:outputText value="End Year:" styleClass="labelText"/>
-									</h:panelGroup>
-									<p:selectOneMenu  styleClass="mySelectStyle" value="#{classBean.classDTO.endYear}" ajaxSingle="true"  >
-										<f:selectItems value="#{classBean.classYearList}" />
-									</p:selectOneMenu>	
-								</h:panelGrid>	
-							
-							
-								<h:panelGrid columns="2"  border="0" cellpadding="10px" cellspacing="10px" >
-									<h:outputText/>
-									<p:commandButton value="Save"  id="saveBtn"  icon="ui-icon-disk" style="width:100px;height:35px;"  
-									update="classDetailsGrowl" 	action="#{classAction.saveClassDetails}"		/>
-								</h:panelGrid>	
-							</h:panelGrid>
-							
-							<p:accordionPanel  cache="true" >
-								
-								<p:tab title="Class Time Table" >
-									<p:carousel id="basicCarousel"	value="#{classBean.timeTableBeanList}" var="dayTable" rows="1" >
-		    							<f:facet name="header">  
-		            						Time Table  
-		    							</f:facet>  							
-										<p:panel header="#{dayTable.dayOfWeek.name}">
-											<p:dataTable var="timeTable" value="#{dayTable.periodList}" width="100%">
-												
-												<p:column headerText="Period Name" style="width:120px">
-													 <h:outputText value="#{timeTable.periodName}" />
-												</p:column>										
-												<p:column headerText="Subject" style="width:150px">
-													<p:selectOneMenu id="subjectName"  styleClass="mySelectStyle" converter="referenceDataConverter" 
-													value="#{timeTable.subjectDTO}" ajaxSingle="true"  >
-														<f:selectItems value="#{referenceBean.subjectDTOList}" var="subjectDTO" itemValue="#{subjectDTO}" 
-														itemLabel="#{subjectDTO.name}"/>
-													</p:selectOneMenu>			
-												</p:column>
-												<p:column headerText="Teacher" style="width:150px">
-													<p:selectOneMenu  styleClass="mySelectStyle" converter="#{associateConverter}" 
-													value="#{timeTable.teacherDTO}" ajaxSingle="true"  >
-														<f:selectItems value="#{referenceBean.teacherDTOList}" var="teacherDTO" itemValue="#{teacherDTO}" 
-														itemLabel="#{teacherDTO.firstName}"/>
-													</p:selectOneMenu>	
-												</p:column>
-												<p:column headerText="Start Time" style="width:220px" ajaxSingle="true">
-													<p:calendar value="#{timeTable.startTime}" id="startTime" pattern="HH:mm" timeOnly="true" 
-													converter="TimeConverter" />
-												</p:column>
-												<p:column headerText="End Time" style="width:220px">
-													<p:calendar value="#{timeTable.endTime}"  id= "endTime" pattern="HH:mm" timeOnly="true" ajaxSingle="true"
-													converter="TimeConverter" />
-												</p:column>
-											</p:dataTable>
-										</p:panel>	
-									</p:carousel>
-								</p:tab>
-								
-								<p:tab title="Class Subject List">  
-									<h:panelGrid id="classSubjectGrid" columns="1" cellpadding="5">
-							  	 		<p:pickList id="subjectNameList" value="#{classBean.subjectDTODualListModel}" converter="referenceDataConverter" 
-							  	 		var="subject" effect="slide" itemLabel="#{subject.name}" itemValue="#{subject}" ajaxSingle="true" />  
-									</h:panelGrid>
-								</p:tab>
+						<h:panelGrid columns="2"  border="0" cellpadding="2px" cellspacing="2px" >
+							<h:panelGroup>
+								<h:outputText value="*" styleClass="errorValidationText" />
+								<h:outputText value="Class Teacher:" styleClass="labelText"/>
+							</h:panelGroup>
+							<p:selectOneMenu  styleClass="mySelectStyle" converter="#{associateConverter}"	value="#{classBean.classDTO.teacherDTO}" ajaxSingle="true"  >
+								<f:selectItems value="#{referenceBean.teacherDTOList}" var="teacherDTO" itemValue="#{teacherDTO}"
+								itemLabel="#{teacherDTO.firstName}"/>
+							</p:selectOneMenu>	
+						</h:panelGrid>
+						
+						<h:panelGrid columns="2"  border="0" cellpadding="2px" cellspacing="2px" >
+							<h:panelGroup>
+								<h:outputText value="*" styleClass="errorValidationText" />
+								<h:outputText value="Start Year:" styleClass="labelText"/>
+							</h:panelGroup>
+							<p:selectOneMenu  styleClass="mySelectStyle" value="#{classBean.classDTO.startYear}" ajaxSingle="true"  >
+								<f:selectItems value="#{classBean.classYearList}" />
+							</p:selectOneMenu>	
+						</h:panelGrid>							
+						
+						<h:panelGrid columns="2"  border="0" cellpadding="10px" cellspacing="10px" >
+							<h:panelGroup>
+								<h:outputText value="*" styleClass="errorValidationText" />
+								<h:outputText value="End Year:" styleClass="labelText"/>
+							</h:panelGroup>
+							<p:selectOneMenu  styleClass="mySelectStyle" value="#{classBean.classDTO.endYear}" ajaxSingle="true"  >
+								<f:selectItems value="#{classBean.classYearList}" />
+							</p:selectOneMenu>	
+						</h:panelGrid>	
+					
+					
+						<h:panelGrid columns="2"  border="0" cellpadding="10px" cellspacing="10px" >
+							<p:commandButton value="Save"  id="saveBtn"  icon="ui-icon-disk" style="width:100px;height:35px;"  
+							update="classDetailsGrowl" 	action="#{classAction.saveClassDetails}"		/>
+						</h:panelGrid>	
+					</h:panelGrid>
+					
+					<p:tabView  id="classDetailsPanel" >
+						<p:tab title="Class Subject List" id="subjectTab">  
+							<h:panelGrid id="classSubjectGrid" columns="1" cellpadding="5">
+								<p:dataTable value="#{classBean.subjectDataModel}" var="subject" id="subjectListGridID" 
+									selection="#{classBean.selectedClassSubjectReferenceDataDTOList}" 
+									widgetVar="subjectListGrid"	resizableColumns="true"  paginator="true" rows="8"  rowsPerPageTemplate="5,8,12"
+               			 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} 
+               			 				{LastPageLink} {RowsPerPageDropdown}" scrollable="true">
 
-								<p:tab title="Class Exam List">  
-									<h:panelGrid id="classExamGrid" columns="1" cellpadding="5">
-							  	 		<p:pickList id="examName" value="#{classBean.examDTODualListModel}" converter="referenceDataConverter" 
-							  	 		var="exam" effect="slide" itemLabel="#{exam.name}" itemValue="#{exam}" ajaxSingle="true"/>  
-									</h:panelGrid>
-								</p:tab>								
-								
-							</p:accordionPanel>									
-						</p:panel>
-					</h:form>
-				</ui:define>
-			</ui:composition>
+									 <f:facet name="header">  
+          									Select Subjects for the Class and the corresponding Teacher  
+      									</f:facet> 
+									<p:column selectionMode="multiple" style="width:3%" headerText=""/>  
+									
+									<p:column style="width:47%" headerText="Subject Name">
+     											#{subject.referenceDataDTO.name}
+     										</p:column>
+     										<p:column style="width:47%" headerText="Teacher Name">
+     											<p:selectOneMenu  styleClass="mySelectStyle" converter="#{associateConverter}" 
+											value="#{subject.teacherDTO}" ajaxSingle="true"  >
+												<f:selectItems value="#{referenceBean.teacherDTOList}" var="teacherDTO" itemValue="#{teacherDTO}" 
+												itemLabel="#{teacherDTO.firstName}"/>
+										</p:selectOneMenu>
+     										</p:column>
+									
+								</p:dataTable>										 							  	 		  
+							</h:panelGrid>
+						</p:tab>
+
+						<p:tab title="Class Exam List">  
+							<h:panelGrid id="classExamGrid" columns="1" cellpadding="5">
+					  	 		<p:pickList id="examName" value="#{classBean.examDTODualListModel}" converter="referenceDataConverter" 
+					  	 		var="exam" effect="slide" itemLabel="#{exam.name}" itemValue="#{exam}" ajaxSingle="true"
+					  	 		required="true" requiredMessage="Please select atleast one Exam in Class Exam List Tab">  
+      									<f:facet name="sourceCaption">Available</f:facet>  
+     										<f:facet name="targetCaption">Selected</f:facet>
+     									</p:pickList>	 							  	 		  
+							</h:panelGrid>
+						</p:tab>								
+					</p:tabView >									
+				</p:panel>
+			</h:form>
 		</h:body>
 	</f:view>
 </ui:composition>

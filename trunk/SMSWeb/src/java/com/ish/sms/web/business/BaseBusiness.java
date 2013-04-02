@@ -6,6 +6,7 @@ import com.ish.sms.web.businessdelegate.AssociateBusinessDelegate;
 import com.ish.sms.web.businessdelegate.ClassAttendanceBusinessDelegate;
 import com.ish.sms.web.businessdelegate.ClassBusinessDelegate;
 import com.ish.sms.web.businessdelegate.ReferenceBusinessDelegate;
+import com.ish.sms.web.businessdelegate.UserBusinessDelegate;
 import com.ish.sms.web.service.ServiceTransformer;
 import com.ish.sms.web.util.WebConstants;
 
@@ -31,4 +32,7 @@ public class BaseBusiness implements WebConstants{
 	
 	@Autowired
 	protected ClassAttendanceBusinessDelegate classAttendanceBusinessDelegate;
+	
+	@Autowired
+	protected UserBusinessDelegate userBusinessDelegate;
 }

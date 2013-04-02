@@ -58,10 +58,24 @@
             <role-name>ADMIN_ROLE</role-name>
         </auth-constraint>
     </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Teacher Role</web-resource-name>
+            <url-pattern>/pages/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>TEACHER_ROLE</role-name>
+        </auth-constraint>
+    </security-constraint>
     
     <security-role>
         <role-name>ADMIN_ROLE</role-name>
     </security-role>
+    
+ 	<security-role>
+        <role-name>TEACHER_ROLE</role-name>
+    </security-role>    
     
     <filter>
         <filter-name>LoginFilter</filter-name>

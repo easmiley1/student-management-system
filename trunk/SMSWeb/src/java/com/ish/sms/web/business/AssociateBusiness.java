@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.commons.beanutils.BeanUtils;
 
 import com.ish.sms.service.dto.AssociateDTO;
+import com.ish.sms.service.dto.StringListDTO;
 import com.ish.sms.service.dto.StudentDTO;
 import com.ish.sms.service.dto.StudentListDTO;
 import com.ish.sms.service.dto.TeacherDTO;
@@ -17,8 +18,7 @@ import com.ish.sms.service.dto.TeacherListDTO;
  * @author Naren
  * 
  */
-public class AssociateBusiness extends BaseBusiness  {
-
+public class AssociateBusiness extends BaseBusiness {
 
 	/**
 	 * Method to update/insert Students.
@@ -37,7 +37,7 @@ public class AssociateBusiness extends BaseBusiness  {
 		studentXml = associateBusinessDelegate.saveStudent(studentXml);
 		return serviceTransformer.parseXml(studentXml);
 	}
-	
+
 	/**
 	 * Method to update/insert Teachers.
 	 * 
@@ -54,7 +54,7 @@ public class AssociateBusiness extends BaseBusiness  {
 		String teacherXML = serviceTransformer.transformToXML(teacherDTO, TEACHER_DTO);
 		teacherXML = associateBusinessDelegate.saveTeacher(teacherXML);
 		return serviceTransformer.parseXml(teacherXML);
-	}	
+	}
 
 	/**
 	 * Method to return the list of all the students in the school.
@@ -65,6 +65,22 @@ public class AssociateBusiness extends BaseBusiness  {
 	public List<StudentDTO> retrieveAllStudents() throws Exception {
 
 		String studentListXML = associateBusinessDelegate.retrieveAllStudents();
+		StudentListDTO studentList = serviceTransformer.parseXml(studentListXML);
+		return studentList.getStudentDTOList();
+	}
+
+	/**
+	 * Method to return the list of all the students in the school.
+	 * 
+	 * @return studentList
+	 * @throws Exception
+	 */
+	public List<StudentDTO> retrieveAllStudents(List<String> classIdList) throws Exception {
+
+		StringListDTO stringListDTO = new StringListDTO();
+		stringListDTO.setStringListDTO(classIdList);
+		String classIdXML = serviceTransformer.transformToXML(stringListDTO, STRING_LIST_DTO);
+		String studentListXML = associateBusinessDelegate.retrieveStudentsForClass(classIdXML);
 		StudentListDTO studentList = serviceTransformer.parseXml(studentListXML);
 		return studentList.getStudentDTOList();
 	}

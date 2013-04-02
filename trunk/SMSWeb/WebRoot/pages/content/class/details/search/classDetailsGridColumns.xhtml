@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<f:view>
+	
+		<p:column id="classNameColumn" headerText="Class Name"  style="width:80px">  
+            <h:outputText value="#{classObj.name}" />  
+        </p:column> 
+	
+		<p:column id="teacherNameColumn" headerText="Teacher Name" style="width:100px">  
+            <h:outputText value="#{classObj.teacherDTO.firstName}" />  
+        </p:column> 
+
+		<p:column id="startYearColumn" headerText="Start Year" style="width:100px">  
+            <h:outputText value="#{classObj.startYear}" />  
+        </p:column> 
+
+		<p:column id="endYearColumn" headerText="End Year" style="width:100px">  
+            <h:outputText value="#{classObj.endYear}" />  
+        </p:column> 
+
+		<p:column id="studentCountColumn" headerText="Student Count" style="width:100px">  
+            <h:outputText value="#{classObj.studentCount}" />  
+        </p:column> 
+
+	</f:view>
+</ui:composition>	
