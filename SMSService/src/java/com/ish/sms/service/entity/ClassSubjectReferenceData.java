@@ -40,6 +40,24 @@ public class ClassSubjectReferenceData implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "subject_reference_data_id")
 	private ReferenceData subjectReferenceData;
+	
+	@ManyToOne
+	@JoinColumn(name = "teacher_id")
+	private Teacher teacherRef;
+
+	/**
+	 * @return the teacherRef
+	 */
+	public Teacher getTeacherRef() {
+		return teacherRef;
+	}
+
+	/**
+	 * @param teacherRef the teacherRef to set
+	 */
+	public void setTeacherRef(Teacher teacherRef) {
+		this.teacherRef = teacherRef;
+	}
 
 	/**
 	 * @return the subjectReferenceData

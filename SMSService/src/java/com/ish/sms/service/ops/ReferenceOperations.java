@@ -57,8 +57,7 @@ public class ReferenceOperations extends BaseOperations {
 		List<ClassDTO> classDTOList = new ArrayList<ClassDTO>();
 		List<Class> classList = (List<Class>) referenceOperationsDAO.retrieveResultsForquery(FIND_ALL_CLASSES);
 		for (Class classEntity : classList) {
-			ClassDTO classDTO = new ClassDTO();
-			PropertyUtils.copyProperties(classDTO, classEntity);
+			ClassDTO classDTO = classOperationsUtil.convertClassEntityToDTO(classEntity);
 			classDTOList.add(classDTO);
 		}
 		TeacherListDTO teacherListDTO = retrieveAllTeachers();

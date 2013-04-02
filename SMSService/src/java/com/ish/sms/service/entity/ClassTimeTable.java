@@ -38,16 +38,12 @@ public class ClassTimeTable implements Serializable {
 	private Class classRef;
 
 	@ManyToOne
-	@JoinColumn(name = "teacher_id")
-	private Teacher teacher;
-
-	@ManyToOne
 	@JoinColumn(name = "day_id")
 	private ReferenceData dayofWeek;
 
 	@ManyToOne
 	@JoinColumn(name = "subject_id")
-	private ReferenceData subject;
+	private ClassSubjectReferenceData classSubjectReferenceData;
 
 	@Column(name = "class_start_time")
 	private String startTime;
@@ -58,6 +54,19 @@ public class ClassTimeTable implements Serializable {
 	@Column(name="period_seq")
 	private String periodName;
 	
+	/**
+	 * @return the classSubjectReferenceData
+	 */
+	public ClassSubjectReferenceData getClassSubjectReferenceData() {
+		return classSubjectReferenceData;
+	}
+
+	/**
+	 * @param classSubjectReferenceData the classSubjectReferenceData to set
+	 */
+	public void setClassSubjectReferenceData(ClassSubjectReferenceData classSubjectReferenceData) {
+		this.classSubjectReferenceData = classSubjectReferenceData;
+	}
 
 	/**
 	 * @return the periodName
@@ -104,21 +113,6 @@ public class ClassTimeTable implements Serializable {
 	}
 
 	/**
-	 * @return the teacher
-	 */
-	public Teacher getTeacher() {
-		return teacher;
-	}
-
-	/**
-	 * @param teacher
-	 *            the teacher to set
-	 */
-	public void setTeacher(Teacher teacher) {
-		this.teacher = teacher;
-	}
-
-	/**
 	 * @return the dayofWeek
 	 */
 	public ReferenceData getDayofWeek() {
@@ -131,21 +125,6 @@ public class ClassTimeTable implements Serializable {
 	 */
 	public void setDayofWeek(ReferenceData dayofWeek) {
 		this.dayofWeek = dayofWeek;
-	}
-
-	/**
-	 * @return the subject
-	 */
-	public ReferenceData getSubject() {
-		return subject;
-	}
-
-	/**
-	 * @param subject
-	 *            the subject to set
-	 */
-	public void setSubject(ReferenceData subject) {
-		this.subject = subject;
 	}
 
 	/**

@@ -8,7 +8,8 @@ import java.util.List;
 import org.apache.commons.beanutils.PropertyUtils;
 
 import com.ish.sms.service.dto.ClassDTO;
-import com.ish.sms.service.dto.ClassReferenceDataDTO;
+import com.ish.sms.service.dto.ClassExamReferenceDataDTO;
+import com.ish.sms.service.dto.ClassSubjectReferenceDataDTO;
 import com.ish.sms.service.dto.ClassTimeTableDTO;
 import com.ish.sms.service.dto.ClassTimeTableListDTO;
 import com.ish.sms.service.dto.ReferenceDataDTO;
@@ -47,12 +48,12 @@ public class ClassOperationsUtil extends BaseCommonOperationsUtil {
 		}
 		Collection<ClassSubjectReferenceData> classSubjectReferenceDataList = classObj.getClassSubjectReferenceData();
 		if (classSubjectReferenceDataList != null && classSubjectReferenceDataList.size() > 0) {
-			List<ClassReferenceDataDTO> classSubjectClassReferenceDataDTOList = convertClassSubjectReferenceDataEntityToDTO(classSubjectReferenceDataList);
+			List<ClassSubjectReferenceDataDTO> classSubjectClassReferenceDataDTOList = convertClassSubjectReferenceDataEntityToDTO(classSubjectReferenceDataList);
 			classDTO.setClassSubjectReferenceDataDTOList(classSubjectClassReferenceDataDTOList);
 		}
 		Collection<ClassExamReferenceData> classExamReferenceDataList = classObj.getClassExamReferenceData();
 		if (classExamReferenceDataList != null && classExamReferenceDataList.size() > 0) {
-			List<ClassReferenceDataDTO> classExamClassReferenceDataDTOList = convertClassExamReferenceDataEntityToDTO(classExamReferenceDataList);
+			List<ClassExamReferenceDataDTO> classExamClassReferenceDataDTOList = convertClassExamReferenceDataEntityToDTO(classExamReferenceDataList);
 			classDTO.setClassExamReferenceDataDTOList(classExamClassReferenceDataDTOList);
 		}
 		classDTO.setTeacherDTO(teacherDTO);
@@ -77,22 +78,21 @@ public class ClassOperationsUtil extends BaseCommonOperationsUtil {
 		if (classTimeTableDTOList != null && classTimeTableDTOList.size() > 0) {
 			classTimeTableList = convertClassTimeTableListDTOToEntity(classDTO.getClassTimeTableDTOList(), classObj);
 		}
-		List<ClassReferenceDataDTO> classExamReferenceDataDTOList = classDTO.getClassExamReferenceDataDTOList();
+		List<ClassExamReferenceDataDTO> classExamReferenceDataDTOList = classDTO.getClassExamReferenceDataDTOList();
 		List<ClassExamReferenceData> classExamReferenceDataList = null;
 		if (classExamReferenceDataDTOList != null && classExamReferenceDataDTOList.size() > 0) {
 			classExamReferenceDataList = convertClassExamReferenceDataDTOtoEntity(classExamReferenceDataDTOList, classObj);
 		}
-		List<ClassReferenceDataDTO> classSubjectReferenceDataDTOList = classDTO.getClassSubjectReferenceDataDTOList();
+		List<ClassSubjectReferenceDataDTO> classSubjectReferenceDataDTOList = classDTO.getClassSubjectReferenceDataDTOList();
 		List<ClassSubjectReferenceData> classSubjectReferenceDataList = null;
 		if (classSubjectReferenceDataDTOList != null && classSubjectReferenceDataDTOList.size() > 0) {
-			classSubjectReferenceDataList = convertClassSubjectReferenceDataDTOtoEntity(classSubjectReferenceDataDTOList,
-					classObj);
+			classSubjectReferenceDataList = convertClassSubjectReferenceDataDTOtoEntity(classSubjectReferenceDataDTOList, classObj);
 		}
 
 		classObj.setClassExamReferenceData(classExamReferenceDataList);
 		classObj.setClassSubjectReferenceData(classSubjectReferenceDataList);
 		classObj.setClassTimeTable(classTimeTableList);
-	
+
 		return classObj;
 	}
 
@@ -110,11 +110,9 @@ public class ClassOperationsUtil extends BaseCommonOperationsUtil {
 		for (ClassTimeTable classTimeTable : classTimeTableList) {
 
 			ClassTimeTableDTO classTimeTableDTO = new ClassTimeTableDTO();
-			TeacherDTO teacherDTO = convertTeacherEntityToDTO(classTimeTable.getTeacher());
-			classTimeTableDTO.setTeacherDTO(teacherDTO);
-			ReferenceDataDTO subjectDTO = new ReferenceDataDTO();
-			PropertyUtils.copyProperties(subjectDTO, classTimeTable.getSubject());
-			classTimeTableDTO.setSubjectDTO(subjectDTO);
+			ClassSubjectReferenceDataDTO classSubjectReferenceDataDTO = convertClassSubjectReferenceDataEntitytoDTO(classTimeTable
+					.getClassSubjectReferenceData());
+			classTimeTableDTO.setClassSubjectReferenceDataDTO(classSubjectReferenceDataDTO);
 			ReferenceDataDTO dayOfWeekDTO = new ReferenceDataDTO();
 			PropertyUtils.copyProperties(dayOfWeekDTO, classTimeTable.getDayofWeek());
 			classTimeTableDTO.setDayOfWeekDTO(dayOfWeekDTO);
@@ -139,12 +137,10 @@ public class ClassOperationsUtil extends BaseCommonOperationsUtil {
 		for (ClassTimeTableDTO classTimeTableDTO : classTimeTableDTOList) {
 
 			ClassTimeTable classTimeTable = new ClassTimeTable();
-			Teacher teacher = convertTeacherDTOToEntity(classTimeTableDTO.getTeacherDTO());
 			classTimeTable.setClassRef(classObj);
-			classTimeTable.setTeacher(teacher);
-			ReferenceData subject = new ReferenceData();
-			PropertyUtils.copyProperties(subject, classTimeTableDTO.getSubjectDTO());
-			classTimeTable.setSubject(subject);
+			ClassSubjectReferenceData classSubjectReferenceData = convertClassSubjectReferenceDataDTOtoEntity(classObj,
+					classTimeTableDTO.getClassSubjectReferenceDataDTO());
+			classTimeTable.setClassSubjectReferenceData(classSubjectReferenceData);
 			ReferenceData dayOfWeek = new ReferenceData();
 			PropertyUtils.copyProperties(dayOfWeek, classTimeTableDTO.getDayOfWeekDTO());
 			classTimeTable.setDayofWeek(dayOfWeek);
@@ -165,14 +161,15 @@ public class ClassOperationsUtil extends BaseCommonOperationsUtil {
 	 * @return classExamReferenceDataList
 	 * @throws Exception
 	 */
-	public List<ClassExamReferenceData> convertClassExamReferenceDataDTOtoEntity(List<ClassReferenceDataDTO> classExamReferenceDataDTOList,
+	public List<ClassExamReferenceData> convertClassExamReferenceDataDTOtoEntity(List<ClassExamReferenceDataDTO> classExamReferenceDataDTOList,
 			Class classObj) throws Exception {
 
 		List<ClassExamReferenceData> classExamReferenceDataList = new ArrayList<ClassExamReferenceData>();
 
-		for (ClassReferenceDataDTO classExamReferenceDataDTO : classExamReferenceDataDTOList) {
+		for (ClassExamReferenceDataDTO classExamReferenceDataDTO : classExamReferenceDataDTOList) {
 			ClassExamReferenceData classExamReferenceData = new ClassExamReferenceData();
 			classExamReferenceData.setClassRef(classObj);
+			classExamReferenceData.setId(classExamReferenceDataDTO.getId());
 			ReferenceData examReferenceData = new ReferenceData();
 			PropertyUtils.copyProperties(examReferenceData, classExamReferenceDataDTO.getReferenceDataDTO());
 			classExamReferenceData.setExamReferenceData(examReferenceData);
@@ -189,20 +186,38 @@ public class ClassOperationsUtil extends BaseCommonOperationsUtil {
 	 * @return classSubjectReferenceDataList
 	 * @throws Exception
 	 */
-	public List<ClassSubjectReferenceData> convertClassSubjectReferenceDataDTOtoEntity(List<ClassReferenceDataDTO> classSubjectReferenceDataDTOList,
-			Class classObj) throws Exception {
+	public List<ClassSubjectReferenceData> convertClassSubjectReferenceDataDTOtoEntity(
+			List<ClassSubjectReferenceDataDTO> classSubjectReferenceDataDTOList, Class classObj) throws Exception {
 
 		List<ClassSubjectReferenceData> classSubjectReferenceDataList = new ArrayList<ClassSubjectReferenceData>();
 
-		for (ClassReferenceDataDTO classSubjectReferenceDataDTO : classSubjectReferenceDataDTOList) {
-			ClassSubjectReferenceData classSubjectReferenceData = new ClassSubjectReferenceData();
-			classSubjectReferenceData.setClassRef(classObj);
-			ReferenceData subjectReferenceData = new ReferenceData();
-			PropertyUtils.copyProperties(subjectReferenceData, classSubjectReferenceDataDTO.getReferenceDataDTO());
-			classSubjectReferenceData.setSubjectReferenceData(subjectReferenceData);
+		for (ClassSubjectReferenceDataDTO classSubjectReferenceDataDTO : classSubjectReferenceDataDTOList) {
+			ClassSubjectReferenceData classSubjectReferenceData = convertClassSubjectReferenceDataDTOtoEntity(classObj, classSubjectReferenceDataDTO);
 			classSubjectReferenceDataList.add(classSubjectReferenceData);
 		}
 		return classSubjectReferenceDataList;
+	}
+
+	/**
+	 * @param classObj
+	 * @param classSubjectReferenceDataDTO
+	 * @return ClassSubjectReferenceData
+	 * @throws IllegalAccessException
+	 * @throws InvocationTargetException
+	 * @throws NoSuchMethodException
+	 */
+	private ClassSubjectReferenceData convertClassSubjectReferenceDataDTOtoEntity(Class classObj,
+			ClassSubjectReferenceDataDTO classSubjectReferenceDataDTO) throws Exception {
+
+		ClassSubjectReferenceData classSubjectReferenceData = new ClassSubjectReferenceData();
+		classSubjectReferenceData.setClassRef(classObj);
+		Teacher teacher = convertTeacherDTOToEntity(classSubjectReferenceDataDTO.getTeacherDTO());
+		ReferenceData subjectReferenceData = new ReferenceData();
+		PropertyUtils.copyProperties(subjectReferenceData, classSubjectReferenceDataDTO.getReferenceDataDTO());
+		classSubjectReferenceData.setSubjectReferenceData(subjectReferenceData);
+		classSubjectReferenceData.setId(classSubjectReferenceDataDTO.getId());
+		classSubjectReferenceData.setTeacherRef(teacher);
+		return classSubjectReferenceData;
 	}
 
 	/**
@@ -213,19 +228,38 @@ public class ClassOperationsUtil extends BaseCommonOperationsUtil {
 	 * @return classReferenceDataDTOList
 	 * @throws Exception
 	 */
-	public List<ClassReferenceDataDTO> convertClassSubjectReferenceDataEntityToDTO(Collection<ClassSubjectReferenceData> classSubjectReferenceDataList)
-			throws Exception {
+	public List<ClassSubjectReferenceDataDTO> convertClassSubjectReferenceDataEntityToDTO(
+			Collection<ClassSubjectReferenceData> classSubjectReferenceDataList) throws Exception {
 
-		List<ClassReferenceDataDTO> classReferenceDataDTOList = new ArrayList<ClassReferenceDataDTO>();
+		List<ClassSubjectReferenceDataDTO> classReferenceDataDTOList = new ArrayList<ClassSubjectReferenceDataDTO>();
 
 		for (ClassSubjectReferenceData classSubjectReferenceData : classSubjectReferenceDataList) {
-			ClassReferenceDataDTO classReferenceDataDTO = new ClassReferenceDataDTO();
-			ReferenceDataDTO subjectReferenceDataDTO = new ReferenceDataDTO();
-			PropertyUtils.copyProperties(subjectReferenceDataDTO, classSubjectReferenceData.getSubjectReferenceData());
-			classReferenceDataDTO.setReferenceDataDTO(subjectReferenceDataDTO);
-			classReferenceDataDTOList.add(classReferenceDataDTO);
+			ClassSubjectReferenceDataDTO classSubjectReferenceDataDTO = convertClassSubjectReferenceDataEntitytoDTO(classSubjectReferenceData);
+			classReferenceDataDTOList.add(classSubjectReferenceDataDTO);
 		}
 		return classReferenceDataDTOList;
+	}
+
+	/**
+	 * Utility method to convert class subject reference data Entity to DTO
+	 * 
+	 * @param classSubjectReferenceData
+	 * @return ClassSubjectReferenceDataDTO
+	 * @throws IllegalAccessException
+	 * @throws InvocationTargetException
+	 * @throws NoSuchMethodException
+	 * @throws Exception
+	 */
+	private ClassSubjectReferenceDataDTO convertClassSubjectReferenceDataEntitytoDTO(ClassSubjectReferenceData classSubjectReferenceData)
+			throws Exception {
+		ClassSubjectReferenceDataDTO classSubjectReferenceDataDTO = new ClassSubjectReferenceDataDTO();
+		ReferenceDataDTO subjectReferenceDataDTO = new ReferenceDataDTO();
+		PropertyUtils.copyProperties(subjectReferenceDataDTO, classSubjectReferenceData.getSubjectReferenceData());
+		TeacherDTO teacherDTO = convertTeacherEntityToDTO(classSubjectReferenceData.getTeacherRef());
+		classSubjectReferenceDataDTO.setTeacherDTO(teacherDTO);
+		classSubjectReferenceDataDTO.setReferenceDataDTO(subjectReferenceDataDTO);
+		classSubjectReferenceDataDTO.setId(classSubjectReferenceData.getId());
+		return classSubjectReferenceDataDTO;
 	}
 
 	/**
@@ -236,17 +270,18 @@ public class ClassOperationsUtil extends BaseCommonOperationsUtil {
 	 * @return classReferenceDataDTOList
 	 * @throws Exception
 	 */
-	public List<ClassReferenceDataDTO> convertClassExamReferenceDataEntityToDTO(Collection<ClassExamReferenceData> classExamReferenceDataList)
+	public List<ClassExamReferenceDataDTO> convertClassExamReferenceDataEntityToDTO(Collection<ClassExamReferenceData> classExamReferenceDataList)
 			throws Exception {
 
-		List<ClassReferenceDataDTO> classReferenceDataDTOList = new ArrayList<ClassReferenceDataDTO>();
+		List<ClassExamReferenceDataDTO> classReferenceDataDTOList = new ArrayList<ClassExamReferenceDataDTO>();
 
 		for (ClassExamReferenceData classExamReferenceData : classExamReferenceDataList) {
-			ClassReferenceDataDTO classReferenceDataDTO = new ClassReferenceDataDTO();
+			ClassExamReferenceDataDTO classExamReferenceDataDTO = new ClassExamReferenceDataDTO();
 			ReferenceDataDTO examReferenceDataDTO = new ReferenceDataDTO();
 			PropertyUtils.copyProperties(examReferenceDataDTO, classExamReferenceData.getExamReferenceData());
-			classReferenceDataDTO.setReferenceDataDTO(examReferenceDataDTO);
-			classReferenceDataDTOList.add(classReferenceDataDTO);
+			classExamReferenceDataDTO.setReferenceDataDTO(examReferenceDataDTO);
+			classExamReferenceDataDTO.setId(classExamReferenceData.getId());
+			classReferenceDataDTOList.add(classExamReferenceDataDTO);
 		}
 		return classReferenceDataDTOList;
 	}
