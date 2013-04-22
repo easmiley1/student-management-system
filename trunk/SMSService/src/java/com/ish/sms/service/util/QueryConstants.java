@@ -40,6 +40,8 @@ public interface QueryConstants {
 	public static final String FIND_ASSOCIATE_ATTENDANCE_DATA_QUERY = "select aa from com.ish.sms.service.entity.AssociateAttendance aa where aa.classAttendanceDef.id=:id";
 	public static final String FIND_CLASS_TIME_TABLE = "FIND_CLASS_TIME_TABLE";
 	public static final String FIND_CLASS_TIME_TABLE_QUERY = "select ctt from com.ish.sms.service.entity.ClassTimeTable ctt where ctt.classRef.id=:id";
+	public static final String FIND_CLASS_GRADE_DETAILS = "FIND_CLASS_GRADE_DETAILS";
+	public static final String FIND_CLASS_GRADE_DETAILS_QUERY = "select sg from com.ish.sms.service.entity.StudentGrade sg where sg.classRef.id=:id and sg.classExamReferenceData.id=:examId";
 
 	/*User Details related queries*/
 	public static final String FIND_ALL_ROLES_QUERY = "select ur from com.ish.sms.service.entity.UserRole ur";

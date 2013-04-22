@@ -12,6 +12,7 @@
   	<class>com.ish.sms.service.entity.ClassSubjectReferenceData</class>
   	<class>com.ish.sms.service.entity.User</class>
   	<class>com.ish.sms.service.entity.UserRole</class>
+  	<class>com.ish.sms.service.entity.StudentGrade</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>    
 	<non-jta-data-source>java:/smsDS</non-jta-data-source>       
