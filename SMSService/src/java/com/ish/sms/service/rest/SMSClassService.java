@@ -10,7 +10,9 @@ import javax.ws.rs.Produces;
 import org.springframework.stereotype.Service;
 
 import com.ish.sms.service.dto.ClassDTO;
+import com.ish.sms.service.dto.ClassGradeDetailsDTO;
 import com.ish.sms.service.dto.ClassListDTO;
+import com.ish.sms.service.dto.StudentGradeListDTO;
 
 /**
  * Restful service class to handle all Class related operations.
@@ -41,7 +43,7 @@ public class SMSClassService extends SMSBaseService {
 		}
 		return classDTOXML;
 	}
-	
+
 	/**
 	 * Method to create or update a class and return the persisted classXML.
 	 * 
@@ -65,7 +67,7 @@ public class SMSClassService extends SMSBaseService {
 		}
 		return classXML;
 	}
-	
+
 	/**
 	 * Method to return the list of all active classes
 	 * 
@@ -84,5 +86,52 @@ public class SMSClassService extends SMSBaseService {
 			e.printStackTrace();
 		}
 		return classListXML;
-	}	
+	}
+
+	/**
+	 * Method to retrieve the student grade details for a particular class id and classExamId
+	 * 
+	 * @param classId
+	 * @param classExamId
+	 * @return studentGradeListDTOXml
+	 */
+	@GET
+	@Path("/retrieveClassGradeDetails/{classId}/{classExamId}")
+	@Produces("text/xml")
+	public String retrieveClassGradeDetails(@PathParam("classId") Integer classId, @PathParam("classExamId") Integer classExamId) {
+
+		String studentGradeListDTOXml = null;
+		try {
+			StudentGradeListDTO studentGradeListDTO = classOperations.retrieveClassGradeDetails(classId,classExamId);
+			studentGradeListDTOXml = serviceTransformer.transformToXML(studentGradeListDTO, "studentGradeListDTO");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return studentGradeListDTOXml;
+	}
+
+	/**
+	 * Method to create or update a class grade details and return the persisted XML.
+	 * 
+	 * @param saveClassGradeDetailsXML
+	 * @return persistedsaveClassGradeDetailsXML
+	 */
+	@POST
+	@Path("/saveClassGradeDetails/")
+	@Produces("text/xml")
+	@Consumes("text/xml")
+	public String saveClassGradeDetails(String xml) {
+
+		StudentGradeListDTO studentGradeListDTO = null;
+		ClassGradeDetailsDTO classGradeDetailsDTO = null;
+		String studentGradeListDTOXML = null;
+		try {
+			classGradeDetailsDTO = serviceTransformer.tryParseXml(xml);
+			studentGradeListDTO = classOperations.saveClassGradeDetails(classGradeDetailsDTO);
+			studentGradeListDTOXML = serviceTransformer.transformToXML(studentGradeListDTO, "studentGradeListDTO");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return studentGradeListDTOXML;
+	}
 }

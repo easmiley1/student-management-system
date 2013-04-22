@@ -4,6 +4,7 @@ public interface EntityConstants {
 
 	public static final String ID = "id";
 	public static final String ID_LIST = "idList";
+	public static final String EXAM_ID = "examId";
 	public static final String NAME = "name";
 	public static final String SEMI_COLON = ";";
 
