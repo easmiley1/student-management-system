@@ -15,7 +15,7 @@ public class ApplicationThemeBean extends BaseBean {
 
 	private Map<String, String> themes;
 
-	private String theme = "swanky-purse";
+	private String theme = "hot-sneaks";
 
 	public Map<String, String> getThemes() {
 		return themes;

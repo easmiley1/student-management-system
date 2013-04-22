@@ -1,20 +1,20 @@
 package com.ish.sms.web.action;
 
-import com.ish.sms.service.dto.ClassSubjectReferenceDataDTO;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import com.ish.sms.service.dto.ClassDTO;
-import com.ish.sms.service.dto.ClassReferenceDataDTO;
+import com.ish.sms.service.dto.ClassGradeDetailsDTO;
 import com.ish.sms.service.dto.StudentDTO;
+import com.ish.sms.service.dto.StudentGradeDTO;
+import com.ish.sms.service.dto.StudentGradeListDTO;
 import com.ish.sms.web.bean.ClassGradeBean;
-import com.ish.sms.web.bean.StudentGradeBean;
 import com.ish.sms.web.util.WebUtils;
 
 /**
@@ -22,6 +22,7 @@ import com.ish.sms.web.util.WebUtils;
  * 
  * @author Naren
  */
+
 @ManagedBean(name = "classGradeAction")
 @ViewScoped
 public class ClassGradeAction extends BaseAction {
@@ -46,42 +47,28 @@ public class ClassGradeAction extends BaseAction {
 	}
 
 	/**
-	 * method to market the grade book to dirty so that we can enable the save register button
+	 * method to market the attendance register to dirty so that we can enable the save register button
 	 */
 	public void markDirty() {
 		classGradeBean.setDataSaved(false);
 	}
 
+	/**
+	 * Method to populate the student Grade details grid from database and if it is empty create
+	 * 
+	 * @param classId
+	 * @return saveClassGrade.xhtml
+	 */
 	public String openClassGradePage(Integer classId) {
 
 		try {
+			classGradeBean.setDataSaved(true);
 			ClassDTO classDTO = classBusiness.retrieveClassForId(classId);
-			classGradeBean.setSelectedClassDTO(classDTO);
-			classGradeBean.setClassExamReferenceDataDTOList(classDTO.getClassExamReferenceDataDTOList());
-			classGradeBean.setSelectedClassExamReferenceDataDTO(classDTO.getClassExamReferenceDataDTOList().get(0));
-			
-			
-			List<String> classIdList = new ArrayList<String>();
-			classIdList.add("" + classGradeBean.getSelectedClassDTO().getId());
-			List<StudentDTO> studentDTOList = associateBusiness.retrieveAllStudents(classIdList);
-			List<StudentGradeBean> studentGradeList = new ArrayList<StudentGradeBean>();
-
-			for (StudentDTO studentDTO : studentDTOList) {
-				StudentGradeBean studentGradeBean = new StudentGradeBean();
-				studentGradeBean.setStudentDTO(studentDTO);
-				for (ClassSubjectReferenceDataDTO classSubjectReferenceDTO : classGradeBean.getSelectedClassDTO().getClassSubjectReferenceDataDTOList()) {
-					studentGradeBean.getStudentGradeMap().put(classSubjectReferenceDTO, null);
-				}
-				studentGradeList.add(studentGradeBean);
+			if (!classGradeBean.setExamAndSubjectClassDetails(classDTO)) {
+				return SAVE_CLASS_GRADE_PAGE;
+			} else {
+				getClassGradeDetails();
 			}
-
-			classGradeBean.setStudentGradeList(studentGradeList);
-			classGradeBean.getColumnNames().clear();
-
-			for (ClassReferenceDataDTO classSubjectReferenceDTO : classGradeBean.getStudentGradeList().get(0).getStudentGradeMap().keySet()) {
-				classGradeBean.getColumnNames().add(classSubjectReferenceDTO.getReferenceDataDTO().getName());
-			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			WebUtils.registerErrorMessage();
@@ -89,11 +76,70 @@ public class ClassGradeAction extends BaseAction {
 		return SAVE_CLASS_GRADE_PAGE;
 	}
 
-	public void saveGradeBook() {
-		System.out.println("save grade book");
+	/**
+	 * Method to call the smsclass Service get the class grade details else create default grade details
+	 * 
+	 * @param classId
+	 * @throws Exception
+	 */
+	private void getClassGradeDetails() throws Exception {
+		
+		List<StudentGradeDTO> studentGradeDTOList = classBusiness.retrieveClassGradeDetails(classGradeBean.getSelectedClassDTO().getId(), classGradeBean
+				.getSelectedClassExamReferenceDataDTO().getId());
+		/* If the student grade list is null for the selected exam that means there is no data for the exam, create default data */
+		if (studentGradeDTOList == null || studentGradeDTOList.size() == 0)
+			populateDefaultClassGradeDetailsGrid();
+		else
+			classGradeBean.setStudentGradeDTOList(studentGradeDTOList);
 	}
 
+	/**
+	 * Save the grade details and update the persisted data in the grid
+	 */
+	public void saveGradeBook() {
+
+		StudentGradeListDTO studentGradeListDTO;
+		ClassGradeDetailsDTO classGradeDetailsDTO = classGradeBean.prepareToSaveGradeBook();
+		try {
+			studentGradeListDTO = classBusiness.saveClassGradeDetails(classGradeDetailsDTO);
+			classGradeBean.setStudentGradeDTOList(studentGradeListDTO.getStudentGradeDTOList());
+			WebUtils.registerMessage(FacesMessage.SEVERITY_INFO, SAVE_SUCCESSFULL, GRADE_DETAILS_SAVED
+					+ classGradeBean.getPreviousClassExamReferenceDataDTO().getReferenceDataDTO().getName());
+			classGradeBean.setPreviousClassExamReferenceDataDTO(classGradeBean.getSelectedClassExamReferenceDataDTO());
+			classGradeBean.setDataSaved(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+			WebUtils.registerErrorMessage();
+		}
+
+	}
+
+	/**
+	 * Method to listen the exam change event and set the appropriate student grade list.
+	 * 
+	 * @param ajaxBehaviorEvent
+	 */
 	public void changeExam(AjaxBehaviorEvent ajaxBehaviorEvent) {
-		System.out.println("change Exam");
+		try {
+			if (!classGradeBean.isDataSaved())
+				saveGradeBook();
+			getClassGradeDetails();
+		} catch (Exception e) {
+			e.printStackTrace();
+			WebUtils.registerErrorMessage();
+		}
+	}
+
+	/**
+	 * Method to get the appropriate student list for the selected exam and if student list is empty, create default student grade list
+	 * 
+	 * @throws Exception
+	 */
+	private void populateDefaultClassGradeDetailsGrid() throws Exception {
+
+		List<String> classIdList = new ArrayList<String>();
+		classIdList.add("" + classGradeBean.getSelectedClassDTO().getId());
+		List<StudentDTO> studentDTOList = associateBusiness.retrieveAllStudents(classIdList);
+		classGradeBean.populateDefaultClassGradeDetailsGrid(studentDTOList);
 	}
 }
