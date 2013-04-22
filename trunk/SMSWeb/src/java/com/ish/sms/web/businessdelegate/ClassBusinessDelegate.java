@@ -1,6 +1,5 @@
 package com.ish.sms.web.businessdelegate;
 
-
 /**
  * Class Business Delegate which is used to lookup the class rest service and call the same.
  * 
@@ -27,7 +26,6 @@ public class ClassBusinessDelegate extends BaseBusinessDelegate {
 
 	public String saveClass(String classXml) {
 		return smsServiceLocator.getSmsClassServiceInterface().saveClass(classXml);
-
 	}
 
 	/**
@@ -39,4 +37,28 @@ public class ClassBusinessDelegate extends BaseBusinessDelegate {
 	public String retrieveAllClasses() {
 		return smsServiceLocator.getSmsClassServiceInterface().retrieveAllClasses();
 	}
+
+	/**
+	 * Method to retrieve the student grade details for a particular class id.
+	 * 
+	 * @param classId
+	 * @param classExamId
+	 * 
+	 * @return studentGradeListDTOXml
+	 */
+	public String retrieveClassGradeDetails(Integer classId, Integer classExamId) {
+		return smsServiceLocator.getSmsClassServiceInterface().retrieveClassGradeDetails(classId, classExamId);
+	}
+
+	/**
+	 * Method to create or update a class grade details and return the persisted XML.
+	 * 
+	 * @param saveClassGradeDetailsXML
+	 * @return persistedsaveClassGradeDetailsXML
+	 */
+
+	public String saveClassGradeDetails(String xml) {
+		return smsServiceLocator.getSmsClassServiceInterface().saveClassGradeDetails(xml);
+	}
+
 }

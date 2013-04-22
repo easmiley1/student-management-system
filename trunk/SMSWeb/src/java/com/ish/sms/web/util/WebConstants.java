@@ -10,6 +10,8 @@ public interface WebConstants {
 	public final static String STUDENT_DTO = "studentDTO";
 	public final static String TEACHER_DTO = "teacherDTO";
 	public final static String CLASS_DTO = "classDTO";
+	public final static String STUDENTGRADEDETAILS_DTO = "studentGradeListDTO";
+	public final static String CLASSGRADEDETAILS_DTO = "classGradeDetailsDTO";
 	public final static String STRING_LIST_DTO = "stringListDTO";
 	public final static String CLASSATTENDANCEDEFLIST_DTO = "classAttendanceDefListDTO";
 	public final static String ASSOCIATEATTENDANCELIST_DTO = "associateAttendanceListDTO";
@@ -72,10 +74,14 @@ public interface WebConstants {
 	public static final String CLASS_SAVED_SUCCESSFULLY = "Class Succcessfully Saved";
 	public static final String REGISTER_DEF_SAVED = "Register definition changes saved successfully";
 	public static final String REGISTER_SAVED = "Register changes saved successfully for : ";
+	public static final String GRADE_DETAILS_SAVED = "Grade Details saved successfully for exam : ";
 	public static final String NO_CHANGES = "No changes Found to save";
 	public static final String NO_CHANGE_IN_REGISTER = "Register Months are unmodified.";
 	public static final String CANNOT_SAVE = "Cannot save changes : ";
 	public static final String REGISTER_DEF_CANNOT_SAVE_DETAIL = "You are trying to remove a month, that is currently displayed in Attendance Register, "
 			+ "Please change the selected month in the register and then delete the month. ";
+	public static final String CANNOT_MODIFY_GRADE_DETAILS = "Cannot modify grade details : ";
+	public static final String EXAM_DETAIL_NOT_FOUND = "No exams are associated to this class and hence create/modify grade details for this class ";
+	public static final String SUBJECT_DETAIL_NOT_FOUND = "No subjects are associated to this class and hence create/modify grade details for this class ";
 
 }

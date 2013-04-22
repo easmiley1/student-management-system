@@ -16,7 +16,22 @@ public class StudentGradeBean {
 
 	private StudentDTO studentDTO = new StudentDTO();
 
-	private Map<ClassSubjectReferenceDataDTO, Integer> studentGradeMap = new HashMap<ClassSubjectReferenceDataDTO, Integer>();
+	private Map<ClassSubjectReferenceDataDTO, GradeDetailsBean> studentGradeMap = new HashMap<ClassSubjectReferenceDataDTO, GradeDetailsBean>();
+
+	/**
+	 * @return the studentGradeMap
+	 */
+	public Map<ClassSubjectReferenceDataDTO, GradeDetailsBean> getStudentGradeMap() {
+		return studentGradeMap;
+	}
+
+	/**
+	 * @param studentGradeMap
+	 *            the studentGradeMap to set
+	 */
+	public void setStudentGradeMap(Map<ClassSubjectReferenceDataDTO, GradeDetailsBean> studentGradeMap) {
+		this.studentGradeMap = studentGradeMap;
+	}
 
 	/**
 	 * @return the studentDTO
@@ -33,19 +48,19 @@ public class StudentGradeBean {
 		this.studentDTO = studentDTO;
 	}
 
-	/**
-	 * @return the studentGradeMap
-	 */
-	public Map<ClassSubjectReferenceDataDTO, Integer> getStudentGradeMap() {
-		return studentGradeMap;
+	public int hashCode() {
+		return studentDTO.getId().hashCode() + studentDTO.getFirstName().hashCode() + studentDTO.getFatherName().hashCode();
 	}
 
-	/**
-	 * @param studentGradeMap
-	 *            the studentGradeMap to set
-	 */
-	public void setStudentGradeMap(Map<ClassSubjectReferenceDataDTO, Integer> studentGradeMap) {
-		this.studentGradeMap = studentGradeMap;
-	}
+	public boolean equals(Object other) {
 
+		StudentGradeBean otherStudentGradeBean = (StudentGradeBean) other;
+		if (studentDTO != null && studentDTO.getId() != null && otherStudentGradeBean.getStudentDTO() != null
+				&& otherStudentGradeBean.getStudentDTO().getId() != null) {
+			if (studentDTO.getId().equals(otherStudentGradeBean.getStudentDTO().getId())) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

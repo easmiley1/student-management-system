@@ -9,7 +9,7 @@ import com.ish.sms.service.dto.Attendances;
 import com.ish.sms.web.service.dto.AttendanceMap;
 
 /**
- * The XmlAdapter that does the important conversion from list type to map:
+ * The XmlAdapter that does the  conversion from list type to map for attendance details
  * 
  * @author Naren
  * 

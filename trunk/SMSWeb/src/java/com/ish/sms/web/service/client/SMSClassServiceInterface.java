@@ -25,7 +25,7 @@ public interface SMSClassServiceInterface {
 	@Path("/retrieveClassForId/{classId}")
 	@Produces("text/xml")
 	public String retrieveClassForId(@PathParam("classId") Integer classId);
-	
+
 	/**
 	 * Method to create or update a class and return the persisted classXML.
 	 * 
@@ -36,8 +36,8 @@ public interface SMSClassServiceInterface {
 	@Path("/saveClass/")
 	@Produces("text/xml")
 	@Consumes("text/xml")
-	public String saveClass(String xml) ;
-	
+	public String saveClass(String xml);
+
 	/**
 	 * Method to return the list of all active classes
 	 * 
@@ -46,5 +46,29 @@ public interface SMSClassServiceInterface {
 	@POST
 	@Path("/retrieveAllClasses/")
 	@Produces("text/xml")
-	public String retrieveAllClasses();	
+	public String retrieveAllClasses();
+
+	/**
+	 * Method to retrieve the student grade details for a particular class id and classExamId
+	 * 
+	 * @param classId
+	 * @param classExamId
+	 * @return studentGradeListDTOXml
+	 */
+	@GET
+	@Path("/retrieveClassGradeDetails/{classId}/{classExamId}")
+	@Produces("text/xml")
+	public String retrieveClassGradeDetails(@PathParam("classId") Integer classId, @PathParam("classExamId") Integer classExamId);
+
+	/**
+	 * Method to create or update a class grade details and return the persisted XML.
+	 * 
+	 * @param saveClassGradeDetailsXML
+	 * @return persistedsaveClassGradeDetailsXML
+	 */
+	@POST
+	@Path("/saveClassGradeDetails/")
+	@Produces("text/xml")
+	@Consumes("text/xml")
+	public String saveClassGradeDetails(String xml);
 }
