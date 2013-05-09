@@ -154,5 +154,20 @@ public class StudentDTO
     public void setModeofTransportDTO(ReferenceDataDTO value) {
         this.modeofTransportDTO = value;
     }
+    
+    public int hashCode() {
+
+		return id.hashCode()  + firstName.hashCode() + fatherName.hashCode();
+	}
+
+	public boolean equals(Object object) {
+		if (object == null)
+			return false;
+		AssociateDTO otherAssociateDTO = (AssociateDTO) object;
+		if (otherAssociateDTO.getId().equals(this.getId())) {
+			return true;
+		}
+		return false;
+	}
 
 }
