@@ -1,5 +1,11 @@
 package com.ish.sms.service.util;
 
+/**
+ * Interface that contain all the entity related constants.
+ * 
+ * @author Naren
+ *
+ */
 public interface EntityConstants {
 
 	public static final String ID = "id";
@@ -7,6 +13,8 @@ public interface EntityConstants {
 	public static final String EXAM_ID = "examId";
 	public static final String NAME = "name";
 	public static final String SEMI_COLON = ";";
+	public static final String STUDENT_ID = "studentid";
+	public static final String CLASS_ID = "classid";
 
 	public static enum CLASS_DEF_MODIFICATION {
 		Deleted, Added

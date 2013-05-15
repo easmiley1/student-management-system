@@ -8,6 +8,7 @@ import com.ish.sms.web.service.client.SMSAssociateServiceInterface;
 import com.ish.sms.web.service.client.SMSClassAttendanceServiceInterface;
 import com.ish.sms.web.service.client.SMSClassServiceInterface;
 import com.ish.sms.web.service.client.SMSReferenceServiceInterface;
+import com.ish.sms.web.service.client.SMSReportServiceInterface;
 import com.ish.sms.web.service.client.SMSUserServiceInterface;
 
 /**
@@ -27,6 +28,8 @@ public class SMSServiceLocator {
 	private SMSClassAttendanceServiceInterface smsClassAttendanceServiceInterface;
 
 	private SMSUserServiceInterface smsUserServiceInterface;
+
+	private SMSReportServiceInterface smsReportServiceInterface;
 
 	/**
 	 * @return the smsClassAttendanceServiceInterface
@@ -64,21 +67,30 @@ public class SMSServiceLocator {
 	}
 
 	/**
+	 * @return the smsReportServiceInterface
+	 */
+	public SMSReportServiceInterface getSmsReportServiceInterface() {
+		return smsReportServiceInterface;
+	}
+
+	/**
 	 * Constructor initializes the restful service interfaces
 	 */
 	public SMSServiceLocator(String associateServiceURL, String referenceServiceURL, String classServiceURL, String classAttendanceServiceURL,
-			String userServiceURL) {
+			String userServiceURL, String reportServiceURL) {
+		
 		RegisterBuiltin.register(ResteasyProviderFactory.getInstance());
 		smsAssociateServiceInterface = ProxyFactory.create(SMSAssociateServiceInterface.class, associateServiceURL);
 		smsReferenceServiceInterface = ProxyFactory.create(SMSReferenceServiceInterface.class, referenceServiceURL);
 		smsClassServiceInterface = ProxyFactory.create(SMSClassServiceInterface.class, classServiceURL);
 		smsClassAttendanceServiceInterface = ProxyFactory.create(SMSClassAttendanceServiceInterface.class, classAttendanceServiceURL);
 		smsUserServiceInterface = ProxyFactory.create(SMSUserServiceInterface.class, userServiceURL);
+		smsReportServiceInterface = ProxyFactory.create(SMSReportServiceInterface.class, reportServiceURL);
 	}
 
 	public static void main(String args[]) {
 
-		SMSServiceLocator smsServiceLocator = new SMSServiceLocator("", "", "http://localhost:8080/SMSService/websvc/smsClassService", "","");
+		SMSServiceLocator smsServiceLocator = new SMSServiceLocator("", "", "http://localhost:8080/SMSService/websvc/smsClassService", "", "", "");
 		String classxml = smsServiceLocator.getSmsClassServiceInterface().retrieveClassForId(1);
 		System.out.println("class xml " + classxml);
 	}

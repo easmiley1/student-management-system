@@ -6,6 +6,7 @@ import com.ish.sms.service.ops.AssociateOperations;
 import com.ish.sms.service.ops.ClassAttendanceOperations;
 import com.ish.sms.service.ops.ClassOperations;
 import com.ish.sms.service.ops.ReferenceOperations;
+import com.ish.sms.service.ops.ReportOperations;
 import com.ish.sms.service.ops.UserOperations;
 import com.ish.sms.service.util.ServiceTransformer;
 
@@ -34,5 +35,8 @@ public class SMSBaseService {
 	
 	@Autowired
 	protected UserOperations userOperations;
+	
+	@Autowired
+	protected ReportOperations reportOperations;
 	 
 }

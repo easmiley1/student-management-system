@@ -70,7 +70,7 @@ public class AssociateBusiness extends BaseBusiness {
 	}
 
 	/**
-	 * Method to return the list of all the students in the school.
+	 * Method to return the list of all the students in the given class list
 	 * 
 	 * @return studentList
 	 * @throws Exception

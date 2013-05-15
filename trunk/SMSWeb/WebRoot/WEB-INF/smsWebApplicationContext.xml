@@ -23,6 +23,7 @@
 	<bean id="classBusiness" class="com.ish.sms.web.business.ClassBusiness"/>
 	<bean id="classAttendanceBusiness" class="com.ish.sms.web.business.ClassAttendanceBusiness"/>
 	<bean id="userBusiness" class="com.ish.sms.web.business.UserBusiness"/>
+	<bean id="reportBusiness" class="com.ish.sms.web.business.ReportBusiness" />
 	
 	<!--Business Delegate beans declaration -->
 	<bean id="associateBusinessDelegate" class="com.ish.sms.web.businessdelegate.AssociateBusinessDelegate" />
@@ -30,6 +31,7 @@
 	<bean id="classBusinessDelegate" class="com.ish.sms.web.businessdelegate.ClassBusinessDelegate" />
 	<bean id="classAttendanceBusinessDelegate" class="com.ish.sms.web.businessdelegate.ClassAttendanceBusinessDelegate" />
 	<bean id="userBusinessDelegate" class="com.ish.sms.web.businessdelegate.UserBusinessDelegate" />
+	<bean id="reportBusinessDelegate" class="com.ish.sms.web.businessdelegate.ReportBusinessDelegate" />
 
 	<bean id="smsServiceLocator" class="com.ish.sms.web.service.SMSServiceLocator">
 		<constructor-arg value="http://localhost:8080/SMSService/websvc/smsAssociateService" />
@@ -37,6 +39,7 @@
 		<constructor-arg value="http://localhost:8080/SMSService/websvc/smsClassService" />
 		<constructor-arg value="http://localhost:8080/SMSService/websvc/smsClassAttendanceService" />
 		<constructor-arg value="http://localhost:8080/SMSService/websvc/smsUserService" />
+		<constructor-arg value="http://localhost:8080/SMSService/websvc/smsReportService" />		
 	</bean>	
 	
  	<bean id="referenceDataTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">

@@ -10,7 +10,7 @@
 				<ui:define name="content">
 			
 					<h:form id="classTimetableForm">
-						<p:growl id="classTimeTableDetailsGrowl" showDetail="true" />
+						<p:growl id="classTimeTableDetailsGrowl" showDetail="true" sticky="false"/>
 						<p:panel header="Class Details" styleClass="dialogBodyPanel" id="classDetailPanel" >
 							<p:blockUI block="classTimetableForm" trigger="saveBtn" />
 							<p:carousel id="basicCarousel"	value="#{classBean.timeTableBeanList}" var="dayTable" rows="1" >

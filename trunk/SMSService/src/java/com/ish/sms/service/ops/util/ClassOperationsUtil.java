@@ -29,14 +29,10 @@ import com.ish.sms.service.entity.StudentGrade;
 import com.ish.sms.service.entity.Teacher;
 
 /**
- * Utility class for all class related operations
+ * Utility class for performing DTO/Entity conversions for Class related entities
  * 
- * @author Naren
- * 
- */
-/**
  * @author enselv
- * 
+ *
  */
 public class ClassOperationsUtil extends BaseCommonOperationsUtil {
 	/**

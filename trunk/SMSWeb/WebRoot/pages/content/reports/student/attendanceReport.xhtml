@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<f:view>
+		<h:body>
+			<ui:include src="/pages/layout/applicationStyles.xhtml"/>
+			
+			<ui:composition template="/pages/layout/commonLayout.xhtml">
+				<ui:define name="content">
+			
+					<h:form id="attendanceReportForm">
+						<p:growl id="attendanceReportGrowl" showDetail="true" sticky="false"/>
+						<p:panel header="Attendance Reports" styleClass="dialogBodyPanel" id="attendanceReportPanel" >
+							<p:blockUI block="attendanceReportForm" trigger="runReportBtn" />
+			
+							<h:panelGrid columns="5"  border="0">
+			
+								<h:panelGrid columns="2"  border="0" cellpadding="2px" cellspacing="2px" >
+									<h:panelGroup>
+										<h:outputText value="*" styleClass="errorValidationText" />
+										<h:outputText value="Class :" styleClass="labelText"/>
+									</h:panelGroup>
+									<p:selectOneMenu styleClass="mySelectStyle" converter="#{classConverter}" value="#{attendanceReportBean.selectedClassDTO}" 
+										ajaxSingle="true"  >
+										<f:selectItems value="#{attendanceReportBean.classDTOList}" var="classDTO" itemValue="#{classDTO}"
+											itemLabel="#{classDTO.name}"/>
+										<p:ajax listener="#{attendanceReportAction.changeClass}" update="@all"/>	
+									</p:selectOneMenu>	
+								</h:panelGrid>
+
+								<h:panelGrid columns="2"  border="0" cellpadding="2px" cellspacing="2px" >
+									<h:panelGroup>
+										<h:outputText value="*" styleClass="errorValidationText" />
+										<h:outputText value="Student :" styleClass="labelText"/>
+									</h:panelGroup>
+									<p:selectOneMenu id="studentselectid" styleClass="mySelectStyle" 
+										converter="#{studentConverter}" value="#{attendanceReportBean.selectedStudentDTO}" ajaxSingle="true"  >
+										<f:selectItems value="#{attendanceReportBean.studentDTOList}" var="studentDTO" itemValue="#{studentDTO}"
+											itemLabel="#{studentDTO.firstName}"/>
+									</p:selectOneMenu>	
+								</h:panelGrid>
+
+								<h:panelGrid columns="2"  border="0" cellpadding="10px" cellspacing="10px" >
+									<p:commandButton value="Generate Report"  id="runReportBtn"  style="width:160px;height:30px;"  
+									 	action="#{attendanceReportAction.generateAttendanceReport}"	update="currYearReport"/>
+								</h:panelGrid>	
+
+							</h:panelGrid>
+							
+							<p:barChart id="currYearReport" value="#{attendanceReportBean.categoryModel}" legendPosition="ne" title="Bar Chart" 
+								min="0" max="30" style="height:300px"/>  
+  							
+						</p:panel>
+					</h:form>
+				</ui:define>
+			</ui:composition>	
+		</h:body>
+	</f:view>
+</ui:composition>

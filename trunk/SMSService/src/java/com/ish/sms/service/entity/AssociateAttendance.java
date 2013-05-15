@@ -23,9 +23,10 @@ import com.ish.sms.service.util.QueryConstants;
  * 
  */
 
-@NamedQueries( { @NamedQuery(name = QueryConstants.FIND_ASSOCIATE_ATTENDANCE_DATA, query = QueryConstants.FIND_ASSOCIATE_ATTENDANCE_DATA_QUERY) })
+@NamedQueries({ @NamedQuery(name = QueryConstants.FIND_ASSOCIATE_ATTENDANCE_DATA, query = QueryConstants.FIND_ASSOCIATE_ATTENDANCE_DATA_QUERY),
+		@NamedQuery(name = QueryConstants.FIND_ASSOCIATE_CURR_YEAR_ATT_DATA, query = QueryConstants.FIND_ASSOCIATE_CURR_YEAR_ATT_DATA_QUERY) })
 @Entity
-@Table(name = "student_attendance_data")
+@Table(name = "student_attendance_details")
 public class AssociateAttendance implements Serializable {
 
 	private final static long serialVersionUID = 1L;
@@ -34,7 +35,7 @@ public class AssociateAttendance implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "attendance_data_id")
 	protected Integer id;
-	@Column(name = "attendance_data", nullable=true)
+	@Column(name = "attendance_data", nullable = true)
 	protected AttendanceMap<String, Boolean> attendanceMap;
 	@ManyToOne
 	@JoinColumn(name = "student_id")
