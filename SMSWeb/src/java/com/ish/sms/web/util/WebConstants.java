@@ -28,7 +28,9 @@ public interface WebConstants {
 	public final static String SAVE_CLASS_GRADE_PAGE = "/pages/content/class/grade/saveClassGrade.xhtml";
 	public final static String MODIFY_CLASS_LIST_PAGE = "/pages/content/class/details/search/modifyClassDetailsGridPage.xhtml";
 	public final static String MODIFY_CLASS_TIME_TABLE = "/pages/content/class/details/timetable/saveClassTimeTable.xhtml";
+	public final static String ATTENDANCE_REPORT_PAGE = "/pages/content/reports/student/attendanceReport.xhtml";
 
+	
 	/* Jboss cache related constants */
 	public static final String BLOOD_GROUP_KEY = "BLOOD_GROUP_KEY";
 	public static final String EXTRA_CURRICULAR_KEY = "EXTRA_CURRICULAR_KEY";
@@ -56,14 +58,17 @@ public interface WebConstants {
 	public static final String CLASS_ATTENDANCE_BEAN = "classAttendanceBean";
 	public static final String REFERENCE_BEAN = "referenceBean";
 	public static final String CLASS_GRADE_BEAN = "classGradeBean";
+	public static final String ATTENDANCE_REPORT_BEAN = "attendanceReportBean";
 	public static final String ASSOCIATE_BUSINESS_BEAN = "associateBusiness";
 	public static final String CLASS_ATTENDANCE_BUSINESS_BEAN = "classAttendanceBusiness";
 	public static final String CLASS_BUSINESS_BEAN = "classBusiness";
+	public static final String REPORT_BUSINESS_BEAN = "reportBusiness";
 	public static final String CLASS_BEAN = "classBean";
 	public static final String REFERENCE_DATA_CONVERTER = "referenceDataConverter";
 	public static final String CLASS_ATTENDANCE_DEF_CONVERTER = "classAttendanceDefConverter";
 	public static final String CLASS_CONVERTER = "classConverter";
 	public static final String ASSOCIATE_CONVERTER = "associateConverter";
+	public static final String STUDENT_CONVERTER = "studentConverter";
 
 	/* Message related constants */
 	public static final String SAVE_FAILED = "Save Failed @ ";
@@ -81,7 +86,9 @@ public interface WebConstants {
 	public static final String REGISTER_DEF_CANNOT_SAVE_DETAIL = "You are trying to remove a month, that is currently displayed in Attendance Register, "
 			+ "Please change the selected month in the register and then delete the month. ";
 	public static final String CANNOT_MODIFY_GRADE_DETAILS = "Cannot modify grade details : ";
-	public static final String EXAM_DETAIL_NOT_FOUND = "No exams are associated to this class and hence create/modify grade details for this class ";
+	public static final String EXAM_DETAIL_NOT_FOUND = "No exams are associated to this class, hence create/modify grade details for this class ";
+	public static final String CANNOT_RUN_REPORTS = "Cannot run attendance reports  : ";
+	public static final String CLASS_DETAILS_NOT_FOUND = "No class associated to this user, hence cannot run reports";
 	public static final String SUBJECT_DETAIL_NOT_FOUND = "No subjects are associated to this class and hence create/modify grade details for this class ";
 
 }

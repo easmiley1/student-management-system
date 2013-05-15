@@ -26,12 +26,40 @@
 	<xs:element name="studentGradeDTO" type="studentGradeDTO"/>	
 	<xs:element name="studentGradeListDTO" type="studentGradeListDTO" />
 	<xs:element name="classGradeDetailsDTO" type="classGradeDetailsDTO" />
+	<xs:element name="chartValueDTO" type="chartValueDTO" />
+	<xs:element name="chartSeriesDTO" type="chartSeriesDTO" />
+	<xs:element name="chartSeriesListDTO" type="chartSeriesListDTO" />
+
 			
 	<xs:complexType name="stringListDTO">
 		<xs:sequence>
 			<xs:element name="stringListDTO" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
+
+	<!-- dto definitions corresponding to report definitions  - start-->
+	<xs:complexType name="chartValueDTO">
+		<xs:sequence>
+			<xs:element name="xLabel" type="xs:string" />
+			<xs:element name="yValue" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="chartSeriesDTO">
+		<xs:sequence>
+			<xs:element name="chartValueListDTO" type="chartValueDTO" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="seriesLabel" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="chartSeriesListDTO">
+		<xs:sequence>
+			<xs:element name="chartSeriesListDTO" type="chartSeriesDTO" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	
+	<!-- dto definitions corresponding to report definitions  - end-->
 
 	<!-- dto definitions corresponding to user definitions  - start-->
 	<xs:complexType name="userRoleDTO">

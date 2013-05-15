@@ -13,6 +13,12 @@ import com.ish.sms.service.entity.AssociateAttendance;
 import com.ish.sms.service.entity.Class;
 import com.ish.sms.service.entity.ClassAttendanceDef;
 
+/**
+ * Utility class for performing DTO/Entity conversions for ClassAttendance related entities
+ * 
+ * @author enselv
+ *
+ */
 public class ClassAttendanceOperationsUtil extends ClassOperationsUtil{
 
 	/**

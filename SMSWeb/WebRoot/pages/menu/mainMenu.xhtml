@@ -32,6 +32,12 @@
 							<p:menuitem value="LKG A" action="#{classGradeAction.openClassGradePage(39)}" ajax="false" />
 						</p:submenu>					
 					</p:submenu>
+
+					<p:submenu label="Reports" >
+						<p:submenu label="Attendance Reports" >
+							<p:menuitem value="Student Reports" action="#{attendanceReportAction.initAttendanceReport()}" ajax="false" />
+						</p:submenu>						
+					</p:submenu>
 				</p:menubar>
 			</p:toolbarGroup>
 			

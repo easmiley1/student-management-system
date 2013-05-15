@@ -28,7 +28,7 @@ public class ClassAction extends BaseAction {
 	private static final long serialVersionUID = 1L;
 	@ManagedProperty(value = "#{classBean}")
 	private ClassBean classBean;
-	
+
 	@ManagedProperty(value = "#{userBean}")
 	private UserBean userBean;
 
@@ -40,7 +40,8 @@ public class ClassAction extends BaseAction {
 	}
 
 	/**
-	 * @param userBean the userBean to set
+	 * @param userBean
+	 *            the userBean to set
 	 */
 	public void setUserBean(UserBean userBean) {
 		this.userBean = userBean;
@@ -69,23 +70,18 @@ public class ClassAction extends BaseAction {
 	/**
 	 * Method to get the list of all classes to be displayed in the grid
 	 * 
-	 * @return 
+	 * @return
 	 */
 	public String initEditSearchClass() {
-		try {
-			List<ClassDTO> classDTOList = userBean.getUserDetailsDTO().getClassListDTO().getClassDTOList();
-			classBean.setClassDTOList(classDTOList);
-		} catch (Exception e) {
-			e.printStackTrace();
-			WebUtils.registerErrorMessage();
-		}
+		List<ClassDTO> classDTOList = userBean.getUserDetailsDTO().getClassListDTO().getClassDTOList();
+		classBean.setClassDTOList(classDTOList);
 		return MODIFY_CLASS_LIST_PAGE;
 	}
-	
+
 	/**
 	 * Method to apply the selected class details in the grids
 	 */
-	public void applySelectedClassDetails(){
+	public void applySelectedClassDetails() {
 		classBean.populateClassDetailGrids();
 	}
 
@@ -117,8 +113,8 @@ public class ClassAction extends BaseAction {
 		try {
 			ClassDTO classDTO = classBusiness.retrieveClassForId(classId);
 			classBean.setClassDTO(classDTO);
-			classBean.populateClassDetailGrids();			
-			if(classDTO.getClassTimeTableDTOList() == null || classDTO.getClassTimeTableDTOList().size() == 0 ){
+			classBean.populateClassDetailGrids();
+			if (classDTO.getClassTimeTableDTOList() == null || classDTO.getClassTimeTableDTOList().size() == 0) {
 				classBean.createDefaultTimeTable();
 			} else {
 				classBean.populateTimeTableGrid();
@@ -129,6 +125,7 @@ public class ClassAction extends BaseAction {
 		}
 		return MODIFY_CLASS_TIME_TABLE;
 	}
+
 	/**
 	 * Save the class details
 	 */

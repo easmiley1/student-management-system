@@ -43,15 +43,6 @@ public class ClassAttendanceOperations extends BaseOperations {
 		return classAttendanceDefListDTO;
 	}
 
-	@SuppressWarnings("unchecked")
-	private ClassAttendanceDefListDTO retrieveClassAttendanceDefListForClass(Integer classId) throws Exception {
-		Map<String, Object> queryParametersMap = new HashMap<String, Object>();
-		queryParametersMap.put(ID, classId);
-		List<ClassAttendanceDef> classAttendanceList = (List<ClassAttendanceDef>) classAttendanceOperationsDAO.retrieveResultListForQueryWithParameters(
-				FIND_CLASS_ATTENDANCE_DEF, queryParametersMap);
-		return classAttendanceOperationsUtil.convertClassAttendanceListToDTO(classAttendanceList);
-	}
-
 	/**
 	 * Method to remove and delete the classAttendanceDefListDTO and return the updated one
 	 * 
@@ -95,9 +86,8 @@ public class ClassAttendanceOperations extends BaseOperations {
 	/**
 	 * Method to persist all the students in the attendance month
 	 * 
-	 * @param associateAttendanceListDTO
-	 *            {@link AssociateAttendanceDTO}
-	 * @return updatedAssociateAttendanceListDTO {@link AssociateAttendanceDTO}
+	 * @param {@link AssociateAttendanceDTO}
+	 * @return {@link AssociateAttendanceDTO}
 	 * @throws Exception
 	 * 
 	 */

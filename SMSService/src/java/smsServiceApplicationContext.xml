@@ -26,10 +26,12 @@
 	<bean id="userOperationsDAO" class="com.ish.sms.service.dao.UserOperationsDAO"/>
 	<bean id="classAttendanceOperationsDAO" class="com.ish.sms.service.dao.ClassAttendanceOperationsDAO"/>
 	<bean id="classOperationsDAOUtil" class="com.ish.sms.service.dao.util.ClassOperationsDAOUtil"/>
+	<bean id="reportOperationsDAO" class="com.ish.sms.service.dao.ReportOperationsDAO"/>
 	
 	<!-- Service Business Operations beans declaration -->
 	<bean id="associateOperations" class="com.ish.sms.service.ops.AssociateOperations"/>
 	<bean id="referenceOperations" class="com.ish.sms.service.ops.ReferenceOperations"/>
+	<bean id="reportOperations" class="com.ish.sms.service.ops.ReportOperations"/>
 	<bean id="classOperations" class="com.ish.sms.service.ops.ClassOperations"/>
 	<bean id="userOperations" class="com.ish.sms.service.ops.UserOperations"/>
 	<bean id="classAttendanceOperations" class="com.ish.sms.service.ops.ClassAttendanceOperations"/>
@@ -38,6 +40,7 @@
 	<bean id="classOperationsUtil" class="com.ish.sms.service.ops.util.ClassOperationsUtil"/>
 	<bean id="classAttendanceOperationsUtil" class="com.ish.sms.service.ops.util.ClassAttendanceOperationsUtil"/>
 	<bean id="userOperationsUtil" class="com.ish.sms.service.ops.util.UserOperationsUtil"/>
+	<bean id="reportOperationsUtil" class="com.ish.sms.service.ops.util.ReportOperationsUtil"/>
 
 	
 	<!--Restful Webservices bean declaration -->
@@ -46,6 +49,7 @@
 	<bean id="smsClassService" class="com.ish.sms.service.rest.SMSClassService"/>
 	<bean id="smsClassAttendanceService" class="com.ish.sms.service.rest.SMSClassAttendanceService"/>
 	<bean id="smsUserService" class="com.ish.sms.service.rest.SMSUserService"/>
+	<bean id="smsReportService" class="com.ish.sms.service.rest.SMSReportService"/>
 
 	<bean id="entityManagerFactory"	class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="smsServicePersistenceUnit" />

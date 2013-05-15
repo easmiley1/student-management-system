@@ -11,16 +11,20 @@ import com.ish.sms.service.dao.AssociateOperationsDAO;
 import com.ish.sms.service.dao.ClassAttendanceOperationsDAO;
 import com.ish.sms.service.dao.ClassOperationsDAO;
 import com.ish.sms.service.dao.ReferenceOperationsDAO;
+import com.ish.sms.service.dao.ReportOperationsDAO;
 import com.ish.sms.service.dao.UserOperationsDAO;
+import com.ish.sms.service.dto.ClassAttendanceDefListDTO;
 import com.ish.sms.service.dto.ClassDTO;
 import com.ish.sms.service.dto.ClassListDTO;
 import com.ish.sms.service.dto.TeacherDTO;
 import com.ish.sms.service.dto.TeacherListDTO;
 import com.ish.sms.service.entity.Class;
+import com.ish.sms.service.entity.ClassAttendanceDef;
 import com.ish.sms.service.entity.Teacher;
 import com.ish.sms.service.ops.util.AssociateOperationsUtil;
 import com.ish.sms.service.ops.util.ClassAttendanceOperationsUtil;
 import com.ish.sms.service.ops.util.ClassOperationsUtil;
+import com.ish.sms.service.ops.util.ReportOperationsUtil;
 import com.ish.sms.service.ops.util.UserOperationsUtil;
 import com.ish.sms.service.util.EntityConstants;
 import com.ish.sms.service.util.QueryConstants;
@@ -41,6 +45,9 @@ public class BaseOperations implements QueryConstants, EntityConstants {
 
 	@Autowired
 	protected UserOperationsDAO userOperationsDAO;
+	
+	@Autowired
+	protected ReportOperationsDAO reportOperationsDAO;
 
 	@Autowired
 	protected AssociateOperationsUtil associateOperationsUtil;
@@ -53,6 +60,9 @@ public class BaseOperations implements QueryConstants, EntityConstants {
 	
 	@Autowired
 	protected UserOperationsUtil userOperationsUtil;
+
+	@Autowired
+	protected ReportOperationsUtil reportOperationsUtil;
 
 	/**
 	 * Method to return the list of all the teachers in the school.
@@ -93,6 +103,23 @@ public class BaseOperations implements QueryConstants, EntityConstants {
 			classListDTO.getClassDTOList().add(classDTO);
 		}
 		return classListDTO;
+	}
+
+
+	/**
+	 * Method to return the list of months in the attendance register
+	 * 
+	 * @param classId
+	 * @return {@link ClassAttendanceDefListDTO}
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	public ClassAttendanceDefListDTO retrieveClassAttendanceDefListForClass(Integer classId) throws Exception {
+		Map<String, Object> queryParametersMap = new HashMap<String, Object>();
+		queryParametersMap.put(ID, classId);
+		List<ClassAttendanceDef> classAttendanceList = (List<ClassAttendanceDef>) classAttendanceOperationsDAO.retrieveResultListForQueryWithParameters(
+				FIND_CLASS_ATTENDANCE_DEF, queryParametersMap);
+		return classAttendanceOperationsUtil.convertClassAttendanceListToDTO(classAttendanceList);
 	}
 
 }

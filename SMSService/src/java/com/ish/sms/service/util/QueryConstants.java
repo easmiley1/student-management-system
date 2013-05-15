@@ -31,6 +31,9 @@ public interface QueryConstants {
 	public static final String FIND_ALL_CLASSES = "FIND_ALL_CLASSES";
 	public static final String FIND_ALL_CLASSES_QUERY = "select cl from com.ish.sms.service.entity.Class cl where cl.active='active'";
 	public static final String FIND_CLASS_ATTENDANCE_DEF = "FIND_CLASS_ATTENDANCE_DEF";
+	public static final String FIND_ASSOCIATE_CURR_YEAR_ATT_DATA = "FIND_ASSOCIATE_CURR_YEAR_ATT_DATA";
+	public static final String FIND_ASSOCIATE_CURR_YEAR_ATT_DATA_QUERY = "select aa from com.ish.sms.service.entity.ClassAttendanceDef cad," +
+			" com.ish.sms.service.entity.AssociateAttendance aa where cad.id = aa.classAttendanceDef.id and cad.classRef.id = :classid and aa.student.id = :studentid";	
 	public static final String FIND_CLASS_ATTENDANCE_DEF_QUERY = "select cad from com.ish.sms.service.entity.ClassAttendanceDef cad where cad.classRef.id=:id";
 	public static final String FIND_CLASS_EXAM_REFERENCE_DATA = "FIND_CLASS_EXAM_REFERENCE_DATA";
 	public static final String FIND_CLASS_EXAM_REFERENCE_DATA_QUERY = "select cerd from com.ish.sms.service.entity.ClassExamReferenceData cerd where cerd.classRef.id=:id";

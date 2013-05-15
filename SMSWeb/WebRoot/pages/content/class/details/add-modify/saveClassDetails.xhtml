@@ -7,7 +7,7 @@
 		<h:body>
 			<ui:include src="/pages/layout/applicationStyles.xhtml"/>
 			<h:form id="classForm">
-				<p:growl id="classDetailsGrowl" showDetail="true" />
+				<p:growl id="classDetailsGrowl" showDetail="true" sticky="false"/>
 				<p:panel header="Class Details" styleClass="dialogBodyPanel" id="classDetailPanel" >
 					<p:blockUI block="classForm" trigger="saveBtn" />
 				

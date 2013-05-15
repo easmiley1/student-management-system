@@ -14,7 +14,7 @@
     					<p:panel header="ClassGrade" styleClass="dialogBodyPanel" id="classGradePanel">
     						<p:blockUI block="classGradeForm" trigger="saveBtnIcon,classExamList" />    					
     						<p:remoteCommand name="callRemoteCommandtoUpdateModel" actionListener="#{classGradeAction.markDirty}" process="@all" 
-    						update="saveBtnIcon,classExamList"/>
+    							update="saveBtnIcon,classExamList"/>
 							<p:toolbar style="height:30px;" id="toolbarId">
 								<p:toolbarGroup align="left" >
 									<p:spacer width="20" height="20" />
@@ -26,7 +26,7 @@
 									</p:selectOneMenu>	 
 									<p:spacer width="20" height="20" />									
  									<p:commandButton value="Save" id="saveBtnIcon" icon="ui-icon-disk" style="vertical-align:top;height:28px;"
- 									action="#{classGradeAction.saveGradeBook}" disabled="#{classGradeBean.dataSaved}" update="classGradeGrowl,saveBtnIcon" />	 
+ 										action="#{classGradeAction.saveGradeBook}" disabled="#{classGradeBean.dataSaved}" update="classGradeGrowl,saveBtnIcon" />	 
  									
 								</p:toolbarGroup>
 							</p:toolbar>
@@ -42,7 +42,7 @@
                							 #{column.referenceDataDTO.name}  
             						</f:facet>  
 						             <h:inputText value="#{studentGrade.gradeDetailsMap[column].mark}"  ajaxSingle="true"  
-											style="width:40px;horizontal-align:center;">
+											style="width:40px;horizontal-align:center;vertical-align:center;">
 										<f:convertNumber integerOnly="true"/>
 						             	<p:ajax oncomplete="callRemoteCommandtoUpdateModel()"  />											
 						             </h:inputText>  
