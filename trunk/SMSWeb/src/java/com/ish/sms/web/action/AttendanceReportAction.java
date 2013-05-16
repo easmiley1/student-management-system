@@ -8,9 +8,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.AjaxBehaviorEvent;
 
-import org.primefaces.model.chart.CartesianChartModel;
-import org.primefaces.model.chart.ChartSeries;
-
 import com.ish.sms.service.dto.ChartSeriesListDTO;
 import com.ish.sms.service.dto.StudentDTO;
 import com.ish.sms.web.bean.AttendanceReportBean;
@@ -77,14 +74,7 @@ public class AttendanceReportAction extends BaseAction {
 				return ATTENDANCE_REPORT_PAGE;
 			} else {
 				setStudentDetails();
-
-				CartesianChartModel categoryModel = new CartesianChartModel();  
-		        ChartSeries chartSeries = new ChartSeries();  
-		        chartSeries.setLabel("Leave Attendance Report");  
-		        chartSeries.set("Month", 0);  
-		        categoryModel.addSeries(chartSeries);  
-		        attendanceReportBean.setCategoryModel(categoryModel);
-
+				attendanceReportBean.createDefaultChart();
 			}
 
 		} catch (Exception e) {
@@ -95,6 +85,7 @@ public class AttendanceReportAction extends BaseAction {
 		return ATTENDANCE_REPORT_PAGE;
 	}
 
+	
 	/**
 	 * Method to retrieve the student details for the specified class and set them in the bean
 	 * 
