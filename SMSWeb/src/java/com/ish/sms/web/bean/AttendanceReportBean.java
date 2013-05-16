@@ -26,7 +26,7 @@ import com.ish.sms.web.util.WebUtils;
  */
 /**
  * @author enselv
- *
+ * 
  */
 @ManagedBean(name = WebConstants.ATTENDANCE_REPORT_BEAN)
 @SessionScoped
@@ -47,7 +47,8 @@ public class AttendanceReportBean extends BaseBean {
 	}
 
 	/**
-	 * @param studentDTOList the studentDTOList to set
+	 * @param studentDTOList
+	 *            the studentDTOList to set
 	 */
 	public void setStudentDTOList(List<StudentDTO> studentDTOList) {
 		this.studentDTOList = studentDTOList;
@@ -61,7 +62,8 @@ public class AttendanceReportBean extends BaseBean {
 	}
 
 	/**
-	 * @param selectedStudentDTO the selectedStudentDTO to set
+	 * @param selectedStudentDTO
+	 *            the selectedStudentDTO to set
 	 */
 	public void setSelectedStudentDTO(StudentDTO selectedStudentDTO) {
 		this.selectedStudentDTO = selectedStudentDTO;
@@ -131,14 +133,13 @@ public class AttendanceReportBean extends BaseBean {
 		}
 	}
 
-	
 	/**
 	 * Method to populate the chartModel for the student attendance leave report
 	 * 
 	 * @param chartSeriesListDTO
 	 */
 	public void populateChartModel(ChartSeriesListDTO chartSeriesListDTO) {
-		
+
 		CartesianChartModel categoryModel = new CartesianChartModel();
 		List<ChartSeriesDTO> chartSeriesDTOList = chartSeriesListDTO.getChartSeriesListDTO();
 		if (chartSeriesDTOList != null & chartSeriesDTOList.size() > 0) {
@@ -150,7 +151,21 @@ public class AttendanceReportBean extends BaseBean {
 				chartSeries.set(chartValueDTO.getXLabel(), new Integer(chartValueDTO.getYValue()).intValue());
 			}
 			categoryModel.addSeries(chartSeries);
-			setCategoryModel(categoryModel);
+			if (chartSeriesDTO.getChartValueListDTO() != null & chartSeriesDTO.getChartValueListDTO().size() > 0)
+				setCategoryModel(categoryModel);
 		}
 	}
+	
+	/**
+	 * Method to create the default attendance report chart
+	 */
+	public void createDefaultChart() {
+		CartesianChartModel categoryModel = new CartesianChartModel();  
+		ChartSeries chartSeries = new ChartSeries();  
+		chartSeries.setLabel("Leave Attendance Report");  
+		chartSeries.set("Month", 0);  
+		categoryModel.addSeries(chartSeries);  
+		setCategoryModel(categoryModel);
+	}
+	
 }
