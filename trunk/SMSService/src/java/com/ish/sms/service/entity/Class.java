@@ -55,9 +55,6 @@ public class Class implements Serializable {
 	@Column(nullable = true, name = "class_start")
 	private Integer startYear;
 
-	@Column(nullable = true, name = "class_end")
-	private Integer endYear;
-
 	@Column(nullable = false, name = "active")
 	private String active;
 
@@ -192,20 +189,6 @@ public class Class implements Serializable {
 		this.startYear = startYear;
 	}
 
-	/**
-	 * @return the endYear
-	 */
-	public Integer getEndYear() {
-		return endYear;
-	}
-
-	/**
-	 * @param endYear
-	 *            the endYear to set
-	 */
-	public void setEndYear(Integer endYear) {
-		this.endYear = endYear;
-	}
 
 	/**
 	 * @return the active

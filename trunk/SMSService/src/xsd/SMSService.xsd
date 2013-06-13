@@ -135,7 +135,6 @@
 			<xs:element name="teacherDTO" type="teacherDTO" minOccurs="0" />
 			<xs:element name="studentCount" type="xs:int" minOccurs="0" />
 			<xs:element name="startYear" type="xs:int" minOccurs="0" />
-			<xs:element name="endYear" type="xs:int" minOccurs="0" />
 			<xs:element name="active" type="xs:string" minOccurs="0" />
 			<xs:element name="classTimeTableDTOList" type="classTimeTableDTO" minOccurs="0" maxOccurs="unbounded" />
 			<xs:element name="classSubjectReferenceDataDTOList" type="classSubjectReferenceDataDTO" minOccurs="0" maxOccurs="unbounded" />
@@ -245,7 +244,8 @@
 			<xs:element name="subjectDTOList" type="referenceDataDTO"	minOccurs="0" maxOccurs="unbounded" />
 			<xs:element name="teacherDTOList" type="teacherDTO"	minOccurs="0" maxOccurs="unbounded" />
 			<xs:element name="dayOfWeekDTOList" type="referenceDataDTO"	minOccurs="0" maxOccurs="unbounded" />
-			<xs:element name="examDTOList" type="referenceDataDTO"	minOccurs="0" maxOccurs="unbounded" />			
+			<xs:element name="examDTOList" type="referenceDataDTO"	minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="classNameList" type="xs:string"	minOccurs="0" maxOccurs="unbounded" />									
 		</xs:sequence>
 	</xs:complexType>
 
