@@ -1,0 +1,76 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<f:view>
+		<h:body>
+			<ui:include src="/pages/layout/applicationStyles.xhtml"/>
+			
+			<ui:composition template="/pages/layout/commonLayout.xhtml">
+				<ui:define name="content">
+			
+					<h:form id="classPromotionForm">
+						<p:growl id="classPromotionGrowl" showDetail="true" sticky="false"/>
+						<p:panel header="Class Promotions" styleClass="dialogBodyPanel" id="classPromotionPanel" >
+							<p:blockUI block="classPromotionForm" trigger="runReportBtn,classSelect" />
+			
+							<h:panelGrid columns="5"  border="0">
+								<h:panelGrid columns="2"  border="0" cellpadding="2px" cellspacing="2px" >
+									<h:panelGroup>
+										<h:outputText value="*" styleClass="errorValidationText" />
+										<h:outputText value="From Class :" styleClass="labelText"/>
+									</h:panelGroup>
+									<p:selectOneMenu styleClass="mySelectStyle" converter="#{classConverter}" value="#{classPromotionBean.selectedClassDTO}" 
+										ajaxSingle="true"  id="classSelect">
+										<f:selectItems value="#{classPromotionBean.classDTOList}" var="classDTO" itemValue="#{classDTO}"
+											itemLabel="#{classDTO.name}"/>
+										<p:ajax listener="#{classPromotionAction.changeClass}" update="@all"/>	
+									</p:selectOneMenu>	
+								</h:panelGrid>
+
+								<h:panelGrid columns="2"  border="0" cellpadding="2px" cellspacing="2px" >
+									<h:panelGroup>
+										<h:outputText value="*" styleClass="errorValidationText" />
+										<h:outputText value="To Class:" styleClass="labelText"/>
+									</h:panelGroup>
+									<p:selectOneMenu id="className"  styleClass="mySelectStyle" converter="referenceDataConverter" value="#{classPromotionBean.toClass}"
+				 						ajaxSingle="true" >
+										<f:selectItems value="#{referenceBean.classNameDTOList}" var="classNameDTO" itemValue="#{classNameDTO}" itemLabel="#{classNameDTO.name}"/>
+									</p:selectOneMenu>							
+								</h:panelGrid>
+
+								<h:panelGrid columns="2"  border="0" cellpadding="10px" cellspacing="10px" >
+									<p:commandButton value="Promote"  id="runReportBtn"  style="width:160px;height:30px;"  
+									 	action="#{attendanceReportAction.generateAttendanceReport}"	/>
+								</h:panelGrid>	
+							</h:panelGrid>
+							
+							<h:panelGrid id="classSstudentGrid" columns="1" cellpadding="5">
+								<p:dataTable value="#{classPromotionBean.studentDataModel}" var="student" id="studentListGridID" 
+									selection="#{classPromotionBean.selectedstudentDTOList}" 
+									widgetVar="studentListGrid"	resizableColumns="true"  paginator="true" rows="10"  rowsPerPageTemplate="5,10,15"
+               			 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} 
+               			 				{LastPageLink} {RowsPerPageDropdown}" scrollable="true">
+
+									 <f:facet name="header">  
+          									Select students eligible for Promotion, unselected students will be demoted. Current class will become inactive. 
+      									</f:facet> 
+									<p:column selectionMode="multiple" style="width:3%" headerText=""/>  
+									
+									<p:column style="width:47%" headerText="Id">
+     											#{student.id}
+     								</p:column>
+									<p:column style="width:47%" headerText="Student Name">
+     											#{student.firstName} 
+     								</p:column>	
+								</p:dataTable>										 							  	 		  
+							</h:panelGrid>  	
+													
+						</p:panel>
+					</h:form>
+				</ui:define>
+			</ui:composition>	
+		</h:body>
+	</f:view>
+</ui:composition>

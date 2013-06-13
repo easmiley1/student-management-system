@@ -41,18 +41,7 @@
 								<f:selectItems value="#{classBean.classYearList}" />
 							</p:selectOneMenu>	
 						</h:panelGrid>							
-						
-						<h:panelGrid columns="2"  border="0" cellpadding="10px" cellspacing="10px" >
-							<h:panelGroup>
-								<h:outputText value="*" styleClass="errorValidationText" />
-								<h:outputText value="End Year:" styleClass="labelText"/>
-							</h:panelGroup>
-							<p:selectOneMenu  styleClass="mySelectStyle" value="#{classBean.classDTO.endYear}" ajaxSingle="true"  >
-								<f:selectItems value="#{classBean.classYearList}" />
-							</p:selectOneMenu>	
-						</h:panelGrid>	
-					
-					
+											
 						<h:panelGrid columns="2"  border="0" cellpadding="10px" cellspacing="10px" >
 							<p:commandButton value="Save"  id="saveBtn"  icon="ui-icon-disk" style="width:100px;height:35px;"  
 							update="classDetailsGrowl" 	action="#{classAction.saveClassDetails}"		/>

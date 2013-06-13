@@ -135,7 +135,6 @@
 			<xs:element name="teacherDTO" type="teacherDTO" minOccurs="0" />
 			<xs:element name="studentCount" type="xs:int" minOccurs="0" />
 			<xs:element name="startYear" type="xs:int" minOccurs="0" />
-			<xs:element name="endYear" type="xs:int" minOccurs="0" />
 			<xs:element name="active" type="xs:string" minOccurs="0" />
 			<xs:element name="classTimeTableDTOList" type="classTimeTableDTO" minOccurs="0" maxOccurs="unbounded" />
 			<xs:element name="classSubjectReferenceDataDTOList" type="classSubjectReferenceDataDTO" minOccurs="0" maxOccurs="unbounded" />

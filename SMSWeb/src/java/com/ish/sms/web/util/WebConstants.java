@@ -29,12 +29,14 @@ public interface WebConstants {
 	public final static String MODIFY_CLASS_LIST_PAGE = "/pages/content/class/details/search/modifyClassDetailsGridPage.xhtml";
 	public final static String MODIFY_CLASS_TIME_TABLE = "/pages/content/class/details/timetable/saveClassTimeTable.xhtml";
 	public final static String ATTENDANCE_REPORT_PAGE = "/pages/content/reports/student/attendanceReport.xhtml";
+	public final static String CLASS_PROMOTION_PAGE = "/pages/content/class/promotion/classPromotionPage.xhtml";
 
 	
 	/* Jboss cache related constants */
 	public static final String BLOOD_GROUP_KEY = "BLOOD_GROUP_KEY";
 	public static final String EXTRA_CURRICULAR_KEY = "EXTRA_CURRICULAR_KEY";
 	public static final String CLASS_KEY = "CLASS_CURRICULAR_KEY";
+	public static final String CLASS_NAME_KEY = "CLASS_NAME_CURRICULAR_KEY";
 	public static final String STATE_KEY = "STATE_KEY";
 	public static final String SUBJECT_KEY = "SUBJECT_KEY";
 	public static final String MODE_OF_TRANSPORT_KEY = "MODE_OF_TRANSPORT_KEY";
@@ -50,6 +52,7 @@ public interface WebConstants {
 	public static final String TEACHER_FQN = "cache/reference/teacher";
 	public static final String DAYS_OF_WEEK_FQN = "cache/reference/daysOfWeek";
 	public static final String EXAM_FQN = "cache/reference/exam";
+	public static final String CLASS_NAME_FQN = "cache/reference/className";
 	public static final String REPL_SYNC_FILE = "replSync-eviction-service.xml";
 	public static final String TREECACHE_MBEAN_SERVICE = "jboss.cache:service=TreeCache";
 
@@ -60,6 +63,7 @@ public interface WebConstants {
 	public static final String CLASS_GRADE_BEAN = "classGradeBean";
 	public static final String ATTENDANCE_REPORT_BEAN = "attendanceReportBean";
 	public static final String ASSOCIATE_BUSINESS_BEAN = "associateBusiness";
+	public static final String CLASS_PROMOTION_BEAN = "classPromotionBean";	
 	public static final String CLASS_ATTENDANCE_BUSINESS_BEAN = "classAttendanceBusiness";
 	public static final String CLASS_BUSINESS_BEAN = "classBusiness";
 	public static final String REPORT_BUSINESS_BEAN = "reportBusiness";
@@ -87,8 +91,8 @@ public interface WebConstants {
 			+ "Please change the selected month in the register and then delete the month. ";
 	public static final String CANNOT_MODIFY_GRADE_DETAILS = "Cannot modify grade details : ";
 	public static final String EXAM_DETAIL_NOT_FOUND = "No exams are associated to this class, hence create/modify grade details for this class ";
-	public static final String CANNOT_RUN_REPORTS = "Cannot run attendance reports  : ";
-	public static final String CLASS_DETAILS_NOT_FOUND = "No class associated to this user, hence cannot run reports";
+	public static final String AUTH_ERROR = "Authorization error : ";
+	public static final String CLASS_DETAILS_NOT_FOUND = "No class associated to this user";
 	public static final String SUBJECT_DETAIL_NOT_FOUND = "No subjects are associated to this class and hence create/modify grade details for this class ";
 
 }

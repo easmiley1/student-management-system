@@ -33,6 +33,9 @@ public class ApplicationThemeBean extends BaseBean {
 	public void init() {
 
 		themes = new TreeMap<String, String>();
+		themes.put("AfterDark", "afterdark");
+		themes.put("AfterNoon", "afternoon");
+		themes.put("AfterWork", "afterwork");
 		themes.put("Aristo", "aristo");
 		themes.put("Black-Tie", "black-tie");
 		themes.put("Blitzer", "blitzer");

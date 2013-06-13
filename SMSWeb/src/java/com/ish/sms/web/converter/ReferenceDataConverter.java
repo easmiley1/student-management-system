@@ -48,6 +48,8 @@ public class ReferenceDataConverter implements Converter, Serializable, WebConst
 			referenceDataDTOList = referenceBean.getSubjectDTOList();
 		} else if (component.getId().startsWith(WebUtils.REFERENCE_TYPE.exam.name())) {
 			referenceDataDTOList = referenceBean.getExamDataDTOList();
+		} else if (component.getId().startsWith(WebUtils.REFERENCE_TYPE.className.name())) {
+			referenceDataDTOList = referenceBean.getExamDataDTOList();
 		}
 
 		ReferenceDataDTO selectedReferenceDataDTO = null;

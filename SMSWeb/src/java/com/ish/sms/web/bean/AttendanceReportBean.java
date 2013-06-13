@@ -124,7 +124,7 @@ public class AttendanceReportBean extends BaseBean {
 
 		List<ClassDTO> classDTOList = userBean.getUserDetailsDTO().getClassListDTO().getClassDTOList();
 		if (classDTOList == null || classDTOList.size() == 0) {
-			WebUtils.registerMessage(FacesMessage.SEVERITY_WARN, CANNOT_RUN_REPORTS, CLASS_DETAILS_NOT_FOUND);
+			WebUtils.registerMessage(FacesMessage.SEVERITY_WARN, AUTH_ERROR, CLASS_DETAILS_NOT_FOUND);
 			return false;
 		} else {
 			setClassDTOList(classDTOList);
