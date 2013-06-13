@@ -28,7 +28,7 @@ public class WebUtils implements WebConstants {
 	};
 
 	public static enum REFERENCE_TYPE {
-		bloodGroup, dayofWeek, extraCurricularInterest, transportation, stateName, subjectName, NoOfPeriods, exam
+		bloodGroup, dayofWeek, extraCurricularInterest, transportation, stateName, subjectName, NoOfPeriods, exam, className
 	};
 
 	/**
