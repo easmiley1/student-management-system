@@ -57,6 +57,7 @@ public class JBossCacheProvider implements WebConstants {
 		put(TEACHER_FQN, TEACHER_KEY, referenceListDTO.getTeacherDTOList());
 		put(DAYS_OF_WEEK_FQN, DAYS_OF_WEEK_KEY, referenceListDTO.getDayOfWeekDTOList());
 		put(EXAM_FQN, EXAM_KEY, referenceListDTO.getExamDTOList());
+		put(CLASS_NAME_FQN, CLASS_NAME_KEY, referenceListDTO.getClassNameList());
 
 	}
 

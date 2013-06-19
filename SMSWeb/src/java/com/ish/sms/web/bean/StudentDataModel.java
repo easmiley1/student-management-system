@@ -33,7 +33,7 @@ public class StudentDataModel extends ListDataModel<StudentDTO> implements Selec
 		List<StudentDTO> studentDTOList = (List<StudentDTO>) getWrappedData();
 
 		for (StudentDTO studentDTO : studentDTOList) {
-			if (studentDTO.getFirstName().equals(rowKey))
+			if (studentDTO.getId().equals(rowKey))
 				return studentDTO;
 		}
 
@@ -42,7 +42,7 @@ public class StudentDataModel extends ListDataModel<StudentDTO> implements Selec
 
 	@Override
 	public Object getRowKey(StudentDTO studentDTO) {
-		return studentDTO.getFirstName();
+		return studentDTO.getId();
 	}
 
 }

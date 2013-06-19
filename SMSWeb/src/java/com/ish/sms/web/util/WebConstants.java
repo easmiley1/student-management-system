@@ -9,6 +9,7 @@ public interface WebConstants {
 	/* DTO Name related constants */
 	public final static String STUDENT_DTO = "studentDTO";
 	public final static String TEACHER_DTO = "teacherDTO";
+	public final static String STUDENTLIST_DTO = "studentListDTO";
 	public final static String CLASS_DTO = "classDTO";
 	public final static String STUDENTGRADEDETAILS_DTO = "studentGradeListDTO";
 	public final static String CLASSGRADEDETAILS_DTO = "classGradeDetailsDTO";
