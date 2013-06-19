@@ -29,6 +29,8 @@ import com.ish.sms.service.util.QueryConstants;
  * 
  */
 @NamedQueries({ @NamedQuery(name = QueryConstants.FIND_ALL_CLASSES, query = QueryConstants.FIND_ALL_CLASSES_QUERY),
+		@NamedQuery(name = QueryConstants.FIND_NEW_CLASS, query = QueryConstants.FIND_NEW_CLASS_QUERY),
+		@NamedQuery(name = QueryConstants.FIND_ALL_CLASSES_FOR_PRMTN, query = QueryConstants.FIND_ALL_CLASSES_FOR_PRMTN_QUERY),
 		@NamedQuery(name = QueryConstants.FIND_CLASS_BY_ID, query = QueryConstants.FIND_CLASS_BY_ID_QUERY),
 		@NamedQuery(name=QueryConstants.FIND_ALL_CLASS_FOR_ID_LIST, query = QueryConstants.FIND_ALL_CLASS_FOR_ID_LIST_QUERY)})
 @Entity
