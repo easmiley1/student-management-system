@@ -26,10 +26,15 @@ public interface QueryConstants {
 	/*Class Operations related queries*/
 	public static final String FIND_ALL_CLASS_FOR_ID_LIST = "FIND_ALL_CLASS_FOR_ID_LIST";
 	public static final String FIND_ALL_CLASS_FOR_ID_LIST_QUERY = "select cl from com.ish.sms.service.entity.Class cl where cl.id in :idList";
+	public static final String FIND_NEW_CLASS = "FIND_NEW_CLASS";
+	public static final String FIND_NEW_CLASS_QUERY = "select cl from com.ish.sms.service.entity.Class cl where cl.id = :name and cl.startYear = :startYear" +
+			" and cl.active='active'";
 	public static final String FIND_CLASS_BY_ID = "FIND_CLASS_BY_ID";
 	public static final String FIND_CLASS_BY_ID_QUERY = "select cl from com.ish.sms.service.entity.Class cl where cl.id= :id";
 	public static final String FIND_ALL_CLASSES = "FIND_ALL_CLASSES";
 	public static final String FIND_ALL_CLASSES_QUERY = "select cl from com.ish.sms.service.entity.Class cl where cl.active='active'";
+	public static final String FIND_ALL_CLASSES_FOR_PRMTN = "FIND_ALL_CLASSES_FOR_PRMTN";
+	public static final String FIND_ALL_CLASSES_FOR_PRMTN_QUERY = "select cl from com.ish.sms.service.entity.Class cl where cl.active='active' and cl.startYear=:startYear";
 	public static final String FIND_CLASS_ATTENDANCE_DEF = "FIND_CLASS_ATTENDANCE_DEF";
 	public static final String FIND_ASSOCIATE_CURR_YEAR_ATT_DATA = "FIND_ASSOCIATE_CURR_YEAR_ATT_DATA";
 	public static final String FIND_ASSOCIATE_CURR_YEAR_ATT_DATA_QUERY = "select aa from com.ish.sms.service.entity.ClassAttendanceDef cad," +

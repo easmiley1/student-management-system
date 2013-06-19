@@ -51,6 +51,8 @@ public class ReferenceOperations extends BaseOperations {
 				referenceListDTO.getModeofTransportDTOList().add(referenceDataDTO);
 			} else if (referenceData.getType().equals(REFERENCE_TYPE.Exam.name())) {
 				referenceListDTO.getExamDTOList().add(referenceDataDTO);
+			} else if (referenceData.getType().equals(REFERENCE_TYPE.ClassName.name())) {
+				referenceListDTO.getClassNameList().add(referenceData.getName());
 			}
 		}
 

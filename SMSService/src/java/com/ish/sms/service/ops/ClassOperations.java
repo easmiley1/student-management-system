@@ -1,6 +1,7 @@
 package com.ish.sms.service.ops;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,13 +13,16 @@ import com.ish.sms.service.dto.ClassGradeDetailsDTO;
 import com.ish.sms.service.dto.ClassListDTO;
 import com.ish.sms.service.dto.ClassSubjectReferenceDataDTO;
 import com.ish.sms.service.dto.GradeDetailsDTO;
+import com.ish.sms.service.dto.StudentDTO;
 import com.ish.sms.service.dto.StudentGradeDTO;
 import com.ish.sms.service.dto.StudentGradeListDTO;
+import com.ish.sms.service.dto.StudentListDTO;
 import com.ish.sms.service.entity.Class;
 import com.ish.sms.service.entity.ClassExamReferenceData;
 import com.ish.sms.service.entity.ClassSubjectReferenceData;
 import com.ish.sms.service.entity.Student;
 import com.ish.sms.service.entity.StudentGrade;
+import com.ish.sms.service.entity.User;
 
 /**
  * Class to handle all business logic for class related database operations
@@ -49,12 +53,31 @@ public class ClassOperations extends BaseOperations {
 	 * @throws Exception
 	 */
 	@SuppressWarnings("unchecked")
-	public ClassListDTO retrieveAllClasses() throws Exception {
-		List<Class> classList = (List<Class>) classOperationsDAO.retrieveResultsForquery(FIND_ALL_CLASSES);
+	public ClassListDTO retrieveAllClassesForPromotion(String userName) throws Exception {
+
+		/* Get list of active class for the previous year eligible for promotion */
+		Map<String, Object> queryParametersMap = new HashMap<String, Object>();
+		Integer promotionYear = Calendar.getInstance().get(Calendar.YEAR) - 1;
+		queryParametersMap.put(START_YEAR, promotionYear);
+		List<Class> classList = (List<Class>) classOperationsDAO.retrieveResultListForQueryWithParameters(FIND_ALL_CLASSES_FOR_PRMTN, queryParametersMap);
+
+		/* Get list of classes that the user has access to. */
+		queryParametersMap.clear();
+		queryParametersMap.put(NAME, userName);
+		User user = (User) userOperationsDAO.retrieveSingleResultForQueryWithParameters(FIND_USER_FOR_NAME, User.class, queryParametersMap);
+		String[] classIdArray = user.getAssociateAccess().split(SEMI_COLON);
+		List<Integer> classIdList = new ArrayList<Integer>();
+		for (String classStr : classIdArray) {
+			classIdList.add(new Integer(classStr));
+		}
+
+		/* Return only the intersection of the above two list */
 		ClassListDTO classListDTO = new ClassListDTO();
 		for (Class classObj : classList) {
-			ClassDTO classDTO = classOperationsUtil.convertClassEntityToDTO(classObj);
-			classListDTO.getClassDTOList().add(classDTO);
+			if (classIdList.contains(classObj.getId())) {
+				ClassDTO classDTO = classOperationsUtil.convertClassEntityToDTO(classObj);
+				classListDTO.getClassDTOList().add(classDTO);
+			}
 		}
 		return classListDTO;
 	}
@@ -98,7 +121,7 @@ public class ClassOperations extends BaseOperations {
 	/**
 	 * Method to update the student grade list and return the persisted list
 	 * 
-	 * @param  {@link ClassGradeDetailsDTO}
+	 * @param {@link ClassGradeDetailsDTO}
 	 * @return {@link StudentGradeListDTO}
 	 * @throws Exception
 	 */
@@ -143,4 +166,45 @@ public class ClassOperations extends BaseOperations {
 		StudentGradeListDTO studentGradeListDTO = classOperationsUtil.convertStudentGradeListtoDTO(studentGradeList);
 		return studentGradeListDTO;
 	}
+
+	/**
+	 * Method to promote/demote students and also create new classes if required
+	 * 
+	 * @param fromClassId
+	 * @param toClass
+	 * @param promotestudentListDTO
+	 * @param demoteStudentListDTO
+	 * @return promotionEligibleClassList
+	 * @throws Exception
+	 */
+	@Transactional
+	public ClassListDTO promoteClass(String fromClass, String toClass, StudentListDTO promotestudentListDTO, StudentListDTO demoteStudentListDTO,
+			String userName) throws Exception {
+
+		Integer newStartYear = Calendar.getInstance().get(Calendar.YEAR);
+
+		Class toClassObj = classOperationsDAO.getClassToPromoteDemote(toClass, newStartYear);
+		promoteDemoteStudents(promotestudentListDTO, toClassObj);
+
+		Class fromClassObj = classOperationsDAO.getClassToPromoteDemote(fromClass, newStartYear);
+		promoteDemoteStudents(demoteStudentListDTO, fromClassObj);
+		
+		return retrieveAllClassesForPromotion(userName);
+	}
+
+	/**
+	 * Method to update student's new class current class details
+	 * 
+	 * @param studentListDTO
+	 * @param classObj
+	 * @throws Exception
+	 */
+	private void promoteDemoteStudents(StudentListDTO studentListDTO, Class classObj) throws Exception {
+		for (StudentDTO studentDTO : studentListDTO.getStudentDTOList()) {
+			Student student = classAttendanceOperationsUtil.convertStudentDTOToEntity(studentDTO);
+			student.setCurrentClass(classObj);
+			classOperationsDAO.createOrUpdateEntity(student);
+		}
+	}
+
 }

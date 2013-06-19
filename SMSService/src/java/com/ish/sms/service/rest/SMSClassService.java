@@ -13,6 +13,7 @@ import com.ish.sms.service.dto.ClassDTO;
 import com.ish.sms.service.dto.ClassGradeDetailsDTO;
 import com.ish.sms.service.dto.ClassListDTO;
 import com.ish.sms.service.dto.StudentGradeListDTO;
+import com.ish.sms.service.dto.StudentListDTO;
 
 /**
  * Restful service class to handle all Class related operations.
@@ -73,14 +74,14 @@ public class SMSClassService extends SMSBaseService {
 	 * 
 	 * @return classListXML
 	 */
-	@POST
-	@Path("/retrieveAllClasses/")
+	@GET
+	@Path("/retrieveAllClassesForPromotion/{userName}")
 	@Produces("text/xml")
-	public String retrieveAllClasses() {
+	public String retrieveAllClassesForPromotion(@PathParam("userName") String userName) {
 
 		String classListXML = null;
 		try {
-			ClassListDTO classListDTO = classOperations.retrieveAllClasses();
+			ClassListDTO classListDTO = classOperations.retrieveAllClassesForPromotion(userName);
 			classListXML = serviceTransformer.transformToXML(classListDTO, "classListDTO");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -102,7 +103,7 @@ public class SMSClassService extends SMSBaseService {
 
 		String studentGradeListDTOXml = null;
 		try {
-			StudentGradeListDTO studentGradeListDTO = classOperations.retrieveClassGradeDetails(classId,classExamId);
+			StudentGradeListDTO studentGradeListDTO = classOperations.retrieveClassGradeDetails(classId, classExamId);
 			studentGradeListDTOXml = serviceTransformer.transformToXML(studentGradeListDTO, "studentGradeListDTO");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -133,5 +134,34 @@ public class SMSClassService extends SMSBaseService {
 			e.printStackTrace();
 		}
 		return studentGradeListDTOXML;
+	}
+
+	/**
+	 * Method to promote/demote students and also create new classes if required.
+	 * 
+	 * @param fromClass
+	 * @param toClass
+	 * @param userName
+	 * @param promoteStudentListXML
+	 * @param demoteStudentListXML
+	 * @return promotionEligibleClassList
+	 */
+	@POST
+	@Path("/promoteClass/{fromClass}/{toclass}/{userName}")
+	@Produces("text/xml")
+	@Consumes("text/xml")
+	public String promoteClass(@PathParam("fromClass") String fromClass, @PathParam("toclass") String toClass, @PathParam("userName") String userName,
+			String promoteStudentListXML, String demoteStudentListXML) {
+
+		String classListXML = null;
+		try {
+			StudentListDTO promoteStudentListDTO = serviceTransformer.tryParseXml(promoteStudentListXML);
+			StudentListDTO demoteStudentListDTO = serviceTransformer.tryParseXml(demoteStudentListXML);
+			ClassListDTO classListDTO = classOperations.promoteClass(fromClass, toClass, promoteStudentListDTO, demoteStudentListDTO, userName);
+			classListXML = serviceTransformer.transformToXML(classListDTO, "classListDTO");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return classListXML;
 	}
 }
