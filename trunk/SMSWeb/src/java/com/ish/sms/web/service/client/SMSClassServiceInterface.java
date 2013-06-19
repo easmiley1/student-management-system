@@ -39,14 +39,14 @@ public interface SMSClassServiceInterface {
 	public String saveClass(String xml);
 
 	/**
-	 * Method to return the list of all active classes
+	 * Method to return the list of all active classes for the previous year for promotion
 	 * 
 	 * @return classListXML
 	 */
-	@POST
-	@Path("/retrieveAllClasses/")
+	@GET
+	@Path("/retrieveAllClassesForPromotion/{userName}")
 	@Produces("text/xml")
-	public String retrieveAllClasses();
+	public String retrieveAllClassesForPromotion(@PathParam("userName") String userName );
 
 	/**
 	 * Method to retrieve the student grade details for a particular class id and classExamId
@@ -71,4 +71,21 @@ public interface SMSClassServiceInterface {
 	@Produces("text/xml")
 	@Consumes("text/xml")
 	public String saveClassGradeDetails(String xml);
+	
+	/**
+	 * Method to promote/demote students and also create new classes if required.
+	 * 
+	 * @param fromClass
+	 * @param toClass
+	 * @param userName
+	 * @param promoteStudentListXML
+	 * @param demoteStudentListXML
+	 * @return promotionEligibleClassList
+	 */
+	@POST
+	@Path("/promoteClass/{fromClass}/{toclass}/{userName}")
+	@Produces("text/xml")
+	@Consumes("text/xml")
+	public String promoteClass(@PathParam("fromClass") String fromClass, @PathParam("toclass") String toClass, @PathParam("userName") String userName,
+			String promoteStudentListXML, String demoteStudentListXML) ;	
 }

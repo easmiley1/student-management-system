@@ -17,8 +17,9 @@
 								<h:outputText value="*" styleClass="errorValidationText" />
 								<h:outputText value="Name and Section:" styleClass="labelText"/>
 							</h:panelGroup>
-							<h:inputText value="#{classBean.classDTO.name}" styleClass="commonInput" style="width:120px; !important" ajaxSingle="true"
-							required="true" requiredMessage="Class Name is required"/>
+							<p:selectOneMenu  styleClass="mySelectStyle" value="#{classBean.classDTO.name}" ajaxSingle="true"  >
+								<f:selectItems value="#{referenceBean.classNameList}" />
+							</p:selectOneMenu>							
 						</h:panelGrid>
 						
 						<h:panelGrid columns="2"  border="0" cellpadding="2px" cellspacing="2px" >

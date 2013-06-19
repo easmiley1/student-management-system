@@ -40,6 +40,7 @@ public class ReferenceBean extends BaseBean {
 		setTeacherDTOList((List<TeacherDTO>) jbossCacheProvider.get(TEACHER_FQN, TEACHER_KEY));
 		setDaysOfWeekDTOList((List<ReferenceDataDTO>) jbossCacheProvider.get(DAYS_OF_WEEK_FQN, DAYS_OF_WEEK_KEY));
 		setExamDataDTOList((List<ReferenceDataDTO>) jbossCacheProvider.get(EXAM_FQN, EXAM_KEY));
+		setClassNameList((List<String>) jbossCacheProvider.get(CLASS_NAME_FQN, CLASS_NAME_KEY));
 	}
 
 	private List<ReferenceDataDTO> bloodGroupDTOList;
@@ -59,6 +60,22 @@ public class ReferenceBean extends BaseBean {
 	private List<ReferenceDataDTO> daysOfWeekDTOList;
 
 	private List<ReferenceDataDTO> examDataDTOList;
+	
+	private List<String> classNameList;
+
+	/**
+	 * @return the classNameList
+	 */
+	public List<String> getClassNameList() {
+		return classNameList;
+	}
+
+	/**
+	 * @param classNameList the classNameList to set
+	 */
+	public void setClassNameList(List<String> classNameList) {
+		this.classNameList = classNameList;
+	}
 
 	/**
 	 * @return the examDataDTOList

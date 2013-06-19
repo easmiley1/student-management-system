@@ -1,5 +1,7 @@
 package com.ish.sms.web.business;
 
+import com.ish.sms.service.dto.StudentDTO;
+
 import java.util.List;
 
 import com.ish.sms.service.dto.ClassDTO;
@@ -7,6 +9,7 @@ import com.ish.sms.service.dto.ClassGradeDetailsDTO;
 import com.ish.sms.service.dto.ClassListDTO;
 import com.ish.sms.service.dto.StudentGradeDTO;
 import com.ish.sms.service.dto.StudentGradeListDTO;
+import com.ish.sms.service.dto.StudentListDTO;
 
 /**
  * Business class for all class related actions. This is called from the Action bean/class. The methods in the class also converts the DTO
@@ -44,15 +47,14 @@ public class ClassBusiness extends BaseBusiness {
 	}
 
 	/**
-	 * Method to return the list of all active classes
+	 * Method to return the list of all active classes for the previous year for promotion
 	 * 
-	 * @return classDTOList 
+	 * @return classDTOList
 	 * @throws Exception
 	 * 
 	 */
-
-	public List<ClassDTO> retrieveAllClasses() throws Exception {
-		String classDTOXML = classBusinessDelegate.retrieveAllClasses();
+	public List<ClassDTO> retrieveAllClassesForPromotion(String userName) throws Exception {
+		String classDTOXML = classBusinessDelegate.retrieveAllClassesForPromotion(userName);
 		ClassListDTO classListDTO = serviceTransformer.parseXml(classDTOXML);
 		return classListDTO.getClassDTOList();
 	}
@@ -83,6 +85,32 @@ public class ClassBusiness extends BaseBusiness {
 		String classGradeDetailsDTOXML = serviceTransformer.transformToXML(classGradeDetailsDTO, CLASSGRADEDETAILS_DTO);
 		classGradeDetailsDTOXML = classBusinessDelegate.saveClassGradeDetails(classGradeDetailsDTOXML);
 		return serviceTransformer.parseXml(classGradeDetailsDTOXML);
+	}
+
+	/**
+	 * Method to promote/demote students and also create new classes if required.
+	 * 
+	 * @param fromClass
+	 * @param toClass
+	 * @param userName
+	 * @param promoteStudentListXML
+	 * @param demoteStudentListXML
+	 * @return promotionEligibleClassList
+	 * @throws Exception
+	 */
+	public String promoteClass(String fromClass, String toClass, String userName, List<StudentDTO> promoteStudentList, List<StudentDTO> demoteStudentList)
+			throws Exception {
+
+		StudentListDTO promoteStudentListDTO = new StudentListDTO();
+		StudentListDTO demoteStudentListDTO = new StudentListDTO();
+		promoteStudentListDTO.setStudentDTOList(promoteStudentList);
+		demoteStudentListDTO.setStudentDTOList(demoteStudentList);
+
+		String promoteStudentListXML = serviceTransformer.transformToXML(promoteStudentListDTO, STUDENTLIST_DTO);
+		String demoteStudentListXML = serviceTransformer.transformToXML(demoteStudentListDTO, STUDENTLIST_DTO);
+
+		classBusinessDelegate.promoteClass(fromClass, toClass, userName, promoteStudentListXML, demoteStudentListXML);
+		return null;
 	}
 
 }

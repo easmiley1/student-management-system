@@ -1,6 +1,9 @@
 package com.ish.sms.web.action;
 
+import com.ish.sms.service.dto.ClassDTO;
+
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -54,7 +57,8 @@ public class ClassPromotionAction extends BaseAction {
 	}
 
 	/**
-	 * @param classPromotionBean the classPromotionBean to set
+	 * @param classPromotionBean
+	 *            the classPromotionBean to set
 	 */
 	public void setClassPromotionBean(ClassPromotionBean classPromotionBean) {
 		this.classPromotionBean = classPromotionBean;
@@ -67,9 +71,12 @@ public class ClassPromotionAction extends BaseAction {
 	 */
 	public String initClassPromotion() {
 
-		try {
+		Integer promotionYear = Calendar.getInstance().get(Calendar.YEAR) - 1;
+		classPromotionBean.setPromotionYear(promotionYear.toString());
 
-			if (!classPromotionBean.setClassDetails(userBean)) {
+		try {
+			List<ClassDTO> classDTOList = classBusiness.retrieveAllClassesForPromotion(userBean.getUserDetailsDTO().getName());
+			if (!classPromotionBean.setClassDetails(classDTOList)) {
 				return CLASS_PROMOTION_PAGE;
 			} else {
 				setStudentDetails();
@@ -83,7 +90,6 @@ public class ClassPromotionAction extends BaseAction {
 		return CLASS_PROMOTION_PAGE;
 	}
 
-	
 	/**
 	 * Method to retrieve the student details for the specified class and set them in the bean
 	 * 
@@ -114,4 +120,21 @@ public class ClassPromotionAction extends BaseAction {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
+	public void promoteClass() {
+
+		try {
+			String fromClass = classPromotionBean.getSelectedClassDTO().getName();
+			String toClass = classPromotionBean.getToClass();
+			String userName = userBean.getUserDetailsDTO().getName();
+			List<StudentDTO> demoteStudentList = new ArrayList<StudentDTO>();
+			demoteStudentList.addAll((List<StudentDTO>) classPromotionBean.getStudentDataModel().getWrappedData());
+			List<StudentDTO> promoteStudentList = classPromotionBean.getSelectedstudentDTOList();
+			demoteStudentList.removeAll(promoteStudentList);
+			classBusiness.promoteClass(fromClass, toClass, userName, promoteStudentList, demoteStudentList);
+		} catch (Exception e) {
+			e.printStackTrace();
+			WebUtils.registerErrorMessage();
+		}
+	}
 }

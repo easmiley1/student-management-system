@@ -28,8 +28,38 @@ public class ClassPromotionBean extends BaseBean {
 	private StudentDataModel studentDataModel = new StudentDataModel();
 	private List<ClassDTO> classDTOList = new ArrayList<ClassDTO>();
 	private ClassDTO selectedClassDTO = new ClassDTO();
+	private String toClass = new String();
+	private String promotionYear = new String();
 	
 	
+	/**
+	 * @return the promotionYear
+	 */
+	public String getPromotionYear() {
+		return promotionYear;
+	}
+
+	/**
+	 * @param promotionYear the promotionYear to set
+	 */
+	public void setPromotionYear(String promotionYear) {
+		this.promotionYear = promotionYear;
+	}
+
+	/**
+	 * @return the toClass
+	 */
+	public String getToClass() {
+		return toClass;
+	}
+
+	/**
+	 * @param toClass the toClass to set
+	 */
+	public void setToClass(String toClass) {
+		this.toClass = toClass;
+	}
+
 	/**
 	 * @param classDTOList
 	 *            the classDTOList to set
@@ -94,9 +124,8 @@ public class ClassPromotionBean extends BaseBean {
 	 * @param userBean
 	 * @return validation
 	 */
-	public boolean setClassDetails(UserBean userBean) {
+	public boolean setClassDetails(List<ClassDTO> classDTOList) {
 
-		List<ClassDTO> classDTOList = userBean.getUserDetailsDTO().getClassListDTO().getClassDTOList();
 		if (classDTOList == null || classDTOList.size() == 0) {
 			WebUtils.registerMessage(FacesMessage.SEVERITY_WARN, AUTH_ERROR, CLASS_DETAILS_NOT_FOUND);
 			return false;
