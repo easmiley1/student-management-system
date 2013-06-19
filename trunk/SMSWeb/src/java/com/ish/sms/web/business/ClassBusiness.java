@@ -1,15 +1,13 @@
 package com.ish.sms.web.business;
 
-import com.ish.sms.service.dto.StudentDTO;
-
 import java.util.List;
 
 import com.ish.sms.service.dto.ClassDTO;
 import com.ish.sms.service.dto.ClassGradeDetailsDTO;
 import com.ish.sms.service.dto.ClassListDTO;
+import com.ish.sms.service.dto.ClassPromotionDTO;
 import com.ish.sms.service.dto.StudentGradeDTO;
 import com.ish.sms.service.dto.StudentGradeListDTO;
-import com.ish.sms.service.dto.StudentListDTO;
 
 /**
  * Business class for all class related actions. This is called from the Action bean/class. The methods in the class also converts the DTO
@@ -90,27 +88,16 @@ public class ClassBusiness extends BaseBusiness {
 	/**
 	 * Method to promote/demote students and also create new classes if required.
 	 * 
-	 * @param fromClass
-	 * @param toClass
-	 * @param userName
-	 * @param promoteStudentListXML
-	 * @param demoteStudentListXML
+	 * @param classPromotionDTO
 	 * @return promotionEligibleClassList
 	 * @throws Exception
 	 */
-	public String promoteClass(String fromClass, String toClass, String userName, List<StudentDTO> promoteStudentList, List<StudentDTO> demoteStudentList)
-			throws Exception {
+	public List<ClassDTO> promoteClass(ClassPromotionDTO classPromotionDTO) throws Exception {
 
-		StudentListDTO promoteStudentListDTO = new StudentListDTO();
-		StudentListDTO demoteStudentListDTO = new StudentListDTO();
-		promoteStudentListDTO.setStudentDTOList(promoteStudentList);
-		demoteStudentListDTO.setStudentDTOList(demoteStudentList);
-
-		String promoteStudentListXML = serviceTransformer.transformToXML(promoteStudentListDTO, STUDENTLIST_DTO);
-		String demoteStudentListXML = serviceTransformer.transformToXML(demoteStudentListDTO, STUDENTLIST_DTO);
-
-		classBusinessDelegate.promoteClass(fromClass, toClass, userName, promoteStudentListXML, demoteStudentListXML);
-		return null;
+		String classPromotionDTOXML = serviceTransformer.transformToXML(classPromotionDTO, CLASS_PROMOTION_DTO);
+		String classListDTOXML = classBusinessDelegate.promoteClass(classPromotionDTOXML);
+		ClassListDTO classListDTO = serviceTransformer.parseXml(classListDTOXML);
+		return classListDTO.getClassDTOList();
 	}
 
 }

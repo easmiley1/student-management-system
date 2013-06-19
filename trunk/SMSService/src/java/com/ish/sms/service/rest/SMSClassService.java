@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import com.ish.sms.service.dto.ClassDTO;
 import com.ish.sms.service.dto.ClassGradeDetailsDTO;
 import com.ish.sms.service.dto.ClassListDTO;
+import com.ish.sms.service.dto.ClassPromotionDTO;
 import com.ish.sms.service.dto.StudentGradeListDTO;
-import com.ish.sms.service.dto.StudentListDTO;
 
 /**
  * Restful service class to handle all Class related operations.
@@ -139,25 +139,19 @@ public class SMSClassService extends SMSBaseService {
 	/**
 	 * Method to promote/demote students and also create new classes if required.
 	 * 
-	 * @param fromClass
-	 * @param toClass
-	 * @param userName
-	 * @param promoteStudentListXML
-	 * @param demoteStudentListXML
+	 * @param classPromotionDTOXML
 	 * @return promotionEligibleClassList
 	 */
 	@POST
-	@Path("/promoteClass/{fromClass}/{toclass}/{userName}")
+	@Path("/promoteClass/")
 	@Produces("text/xml")
 	@Consumes("text/xml")
-	public String promoteClass(@PathParam("fromClass") String fromClass, @PathParam("toclass") String toClass, @PathParam("userName") String userName,
-			String promoteStudentListXML, String demoteStudentListXML) {
+	public String promoteClass(String classPromotionDTOXML) {
 
 		String classListXML = null;
 		try {
-			StudentListDTO promoteStudentListDTO = serviceTransformer.tryParseXml(promoteStudentListXML);
-			StudentListDTO demoteStudentListDTO = serviceTransformer.tryParseXml(demoteStudentListXML);
-			ClassListDTO classListDTO = classOperations.promoteClass(fromClass, toClass, promoteStudentListDTO, demoteStudentListDTO, userName);
+			ClassPromotionDTO classPromotionDTO = serviceTransformer.tryParseXml(classPromotionDTOXML);
+			ClassListDTO classListDTO = classOperations.promoteClass(classPromotionDTO);
 			classListXML = serviceTransformer.transformToXML(classListDTO, "classListDTO");
 		} catch (Exception e) {
 			e.printStackTrace();

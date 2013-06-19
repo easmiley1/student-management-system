@@ -1,16 +1,17 @@
 package com.ish.sms.web.action;
 
-import com.ish.sms.service.dto.ClassDTO;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.AjaxBehaviorEvent;
 
+import com.ish.sms.service.dto.ClassDTO;
+import com.ish.sms.service.dto.ClassPromotionDTO;
 import com.ish.sms.service.dto.StudentDTO;
 import com.ish.sms.web.bean.ClassPromotionBean;
 import com.ish.sms.web.bean.StudentDataModel;
@@ -76,9 +77,7 @@ public class ClassPromotionAction extends BaseAction {
 
 		try {
 			List<ClassDTO> classDTOList = classBusiness.retrieveAllClassesForPromotion(userBean.getUserDetailsDTO().getName());
-			if (!classPromotionBean.setClassDetails(classDTOList)) {
-				return CLASS_PROMOTION_PAGE;
-			} else {
+			if (classPromotionBean.setClassDetails(classDTOList)) {
 				setStudentDetails();
 			}
 
@@ -120,21 +119,30 @@ public class ClassPromotionAction extends BaseAction {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	/**
+	 * Method to perform the action of promoting/demoting students.
+	 */
 	public void promoteClass() {
 
 		try {
-			String fromClass = classPromotionBean.getSelectedClassDTO().getName();
-			String toClass = classPromotionBean.getToClass();
-			String userName = userBean.getUserDetailsDTO().getName();
-			List<StudentDTO> demoteStudentList = new ArrayList<StudentDTO>();
-			demoteStudentList.addAll((List<StudentDTO>) classPromotionBean.getStudentDataModel().getWrappedData());
-			List<StudentDTO> promoteStudentList = classPromotionBean.getSelectedstudentDTOList();
-			demoteStudentList.removeAll(promoteStudentList);
-			classBusiness.promoteClass(fromClass, toClass, userName, promoteStudentList, demoteStudentList);
+			ClassPromotionDTO classPromotionDTO = classPromotionBean.createClassPromotionDetails(userBean);
+
+			List<ClassDTO> classDTOList = classBusiness.promoteClass(classPromotionDTO);
+			if (classPromotionBean.setClassDetails(classDTOList)) {
+				setStudentDetails();
+			} else {
+				return;
+			}
+
+			/* Message to display after promotion */
+			String classPromotionMessage = CLASS_PROMOTION_DETAILS.replaceAll( FROM_CLASS, classPromotionDTO.getFromClassName());
+			classPromotionMessage = classPromotionMessage.replaceAll(TO_CLASS, classPromotionDTO.getToClassName());
+			WebUtils.registerMessage(FacesMessage.SEVERITY_INFO, CLASS_PROMOTION, classPromotionMessage);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			WebUtils.registerErrorMessage();
 		}
 	}
+
 }

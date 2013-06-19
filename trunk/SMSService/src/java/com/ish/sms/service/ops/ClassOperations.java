@@ -11,12 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ish.sms.service.dto.ClassDTO;
 import com.ish.sms.service.dto.ClassGradeDetailsDTO;
 import com.ish.sms.service.dto.ClassListDTO;
+import com.ish.sms.service.dto.ClassPromotionDTO;
 import com.ish.sms.service.dto.ClassSubjectReferenceDataDTO;
 import com.ish.sms.service.dto.GradeDetailsDTO;
 import com.ish.sms.service.dto.StudentDTO;
 import com.ish.sms.service.dto.StudentGradeDTO;
 import com.ish.sms.service.dto.StudentGradeListDTO;
-import com.ish.sms.service.dto.StudentListDTO;
 import com.ish.sms.service.entity.Class;
 import com.ish.sms.service.entity.ClassExamReferenceData;
 import com.ish.sms.service.entity.ClassSubjectReferenceData;
@@ -178,18 +178,22 @@ public class ClassOperations extends BaseOperations {
 	 * @throws Exception
 	 */
 	@Transactional
-	public ClassListDTO promoteClass(String fromClass, String toClass, StudentListDTO promotestudentListDTO, StudentListDTO demoteStudentListDTO,
-			String userName) throws Exception {
+	public ClassListDTO promoteClass(ClassPromotionDTO classPromotionDTO) throws Exception {
 
 		Integer newStartYear = Calendar.getInstance().get(Calendar.YEAR);
+		Integer promotionYear = newStartYear - 1;
 
-		Class toClassObj = classOperationsDAO.getClassToPromoteDemote(toClass, newStartYear);
-		promoteDemoteStudents(promotestudentListDTO, toClassObj);
+		Class toClassObj = classOperationsDAO.getClassToPromoteDemote(classPromotionDTO.getToClassName(), newStartYear);
+		promoteDemoteStudents(classPromotionDTO.getPromoteStudentDTOList(), toClassObj);
 
-		Class fromClassObj = classOperationsDAO.getClassToPromoteDemote(fromClass, newStartYear);
-		promoteDemoteStudents(demoteStudentListDTO, fromClassObj);
-		
-		return retrieveAllClassesForPromotion(userName);
+		Class fromClassObj = classOperationsDAO.getClassToPromoteDemote(classPromotionDTO.getFromClassName(), newStartYear);
+		promoteDemoteStudents(classPromotionDTO.getDemoteStudentDTOList(), fromClassObj);
+
+		Class promotionClass = classOperationsDAO.getClassForNameAndYear(classPromotionDTO.getFromClassName(), promotionYear);
+		promotionClass.setActive(INACTIVE);
+		classOperationsDAO.createOrUpdateEntity(promotionClass);
+
+		return retrieveAllClassesForPromotion(classPromotionDTO.getUserName());
 	}
 
 	/**
@@ -199,8 +203,8 @@ public class ClassOperations extends BaseOperations {
 	 * @param classObj
 	 * @throws Exception
 	 */
-	private void promoteDemoteStudents(StudentListDTO studentListDTO, Class classObj) throws Exception {
-		for (StudentDTO studentDTO : studentListDTO.getStudentDTOList()) {
+	private void promoteDemoteStudents(List<StudentDTO> studentDTOList, Class classObj) throws Exception {
+		for (StudentDTO studentDTO : studentDTOList) {
 			Student student = classAttendanceOperationsUtil.convertStudentDTOToEntity(studentDTO);
 			student.setCurrentClass(classObj);
 			classOperationsDAO.createOrUpdateEntity(student);

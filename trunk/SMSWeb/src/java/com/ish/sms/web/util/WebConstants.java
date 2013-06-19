@@ -1,15 +1,24 @@
 package com.ish.sms.web.util;
 
+/**
+ * Interface that contains all the web constants.
+ * 
+ * @author Naren
+ *
+ */
 public interface WebConstants {
 
 	public final static String DEFAULT_GENDER = "Male";
 	public final static String PERIOD = "Period ";
 	public final static String ACTIVE = "active";
+	public final static String FROM_CLASS = "#fromClass";
+	public final static String TO_CLASS = "#toClass";
 
 	/* DTO Name related constants */
 	public final static String STUDENT_DTO = "studentDTO";
 	public final static String TEACHER_DTO = "teacherDTO";
 	public final static String STUDENTLIST_DTO = "studentListDTO";
+	public final static String CLASS_PROMOTION_DTO = "classPromotionDTO";
 	public final static String CLASS_DTO = "classDTO";
 	public final static String STUDENTGRADEDETAILS_DTO = "studentGradeListDTO";
 	public final static String CLASSGRADEDETAILS_DTO = "classGradeDetailsDTO";
@@ -95,5 +104,6 @@ public interface WebConstants {
 	public static final String AUTH_ERROR = "Authorization error : ";
 	public static final String CLASS_DETAILS_NOT_FOUND = "No class associated to this user";
 	public static final String SUBJECT_DETAIL_NOT_FOUND = "No subjects are associated to this class and hence create/modify grade details for this class ";
-
+	public static final String CLASS_PROMOTION = "Class Promoted Successfully";
+	public static final String CLASS_PROMOTION_DETAILS = "Class #fromClass is successfuly promoted to #toClass";
 }

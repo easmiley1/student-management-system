@@ -29,7 +29,7 @@
 	<xs:element name="chartValueDTO" type="chartValueDTO" />
 	<xs:element name="chartSeriesDTO" type="chartSeriesDTO" />
 	<xs:element name="chartSeriesListDTO" type="chartSeriesListDTO" />
-
+	<xs:element name="classPromotionDTO" type="classPromotionDTO" />
 			
 	<xs:complexType name="stringListDTO">
 		<xs:sequence>
@@ -127,6 +127,16 @@
 	<!-- dto definitions corresponding to class grade definitions  - end-->
 	
 	<!-- dto definitions corresponding to class definitions  - start-->
+	
+	<xs:complexType name="classPromotionDTO">
+		<xs:sequence>
+			<xs:element name="userName" type="xs:string" />
+			<xs:element name="fromClassName" type="xs:string" />
+			<xs:element name="toClassName" type="xs:string" />
+			<xs:element name="promoteStudentDTOList" type="studentDTO"	minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="demoteStudentDTOList" type="studentDTO"	minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
 	
 	<xs:complexType name="classDTO">
 		<xs:sequence>
