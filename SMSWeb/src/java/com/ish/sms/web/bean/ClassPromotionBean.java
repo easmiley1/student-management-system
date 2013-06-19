@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import com.ish.sms.service.dto.ClassDTO;
+import com.ish.sms.service.dto.ClassPromotionDTO;
 import com.ish.sms.service.dto.StudentDTO;
 import com.ish.sms.web.util.WebConstants;
 import com.ish.sms.web.util.WebUtils;
@@ -30,8 +31,7 @@ public class ClassPromotionBean extends BaseBean {
 	private ClassDTO selectedClassDTO = new ClassDTO();
 	private String toClass = new String();
 	private String promotionYear = new String();
-	
-	
+
 	/**
 	 * @return the promotionYear
 	 */
@@ -40,7 +40,8 @@ public class ClassPromotionBean extends BaseBean {
 	}
 
 	/**
-	 * @param promotionYear the promotionYear to set
+	 * @param promotionYear
+	 *            the promotionYear to set
 	 */
 	public void setPromotionYear(String promotionYear) {
 		this.promotionYear = promotionYear;
@@ -54,7 +55,8 @@ public class ClassPromotionBean extends BaseBean {
 	}
 
 	/**
-	 * @param toClass the toClass to set
+	 * @param toClass
+	 *            the toClass to set
 	 */
 	public void setToClass(String toClass) {
 		this.toClass = toClass;
@@ -74,6 +76,7 @@ public class ClassPromotionBean extends BaseBean {
 	public ClassDTO getSelectedClassDTO() {
 		return selectedClassDTO;
 	}
+
 	/**
 	 * @return the classDTOList
 	 */
@@ -81,14 +84,13 @@ public class ClassPromotionBean extends BaseBean {
 		return classDTOList;
 	}
 
-
 	/**
 	 * @param selectedClassDTO
 	 *            the selectedClassDTO to set
 	 */
 	public void setSelectedClassDTO(ClassDTO selectedClassDTO) {
 		this.selectedClassDTO = selectedClassDTO;
-	}	
+	}
 
 	/**
 	 * @return the studentDataModel
@@ -98,7 +100,8 @@ public class ClassPromotionBean extends BaseBean {
 	}
 
 	/**
-	 * @param studentDataModel the studentDataModel to set
+	 * @param studentDataModel
+	 *            the studentDataModel to set
 	 */
 	public void setStudentDataModel(StudentDataModel studentDataModel) {
 		this.studentDataModel = studentDataModel;
@@ -112,12 +115,13 @@ public class ClassPromotionBean extends BaseBean {
 	}
 
 	/**
-	 * @param selectedstudentDTOList the selectedstudentDTOList to set
+	 * @param selectedstudentDTOList
+	 *            the selectedstudentDTOList to set
 	 */
 	public void setSelectedstudentDTOList(List<StudentDTO> selectedstudentDTOList) {
 		this.selectedstudentDTOList = selectedstudentDTOList;
 	}
-	
+
 	/**
 	 * Method to set the selected class details
 	 * 
@@ -134,5 +138,30 @@ public class ClassPromotionBean extends BaseBean {
 			setSelectedClassDTO(classDTOList.get(0));
 			return true;
 		}
-	}	
+	}
+
+	/**
+	 * Method to get the student/class details to promote/demote
+	 * 
+	 * @param userBean
+	 * @return classPromotionDTO
+	 */
+	@SuppressWarnings("unchecked")
+	public ClassPromotionDTO createClassPromotionDetails(UserBean userBean) {
+		
+		/* Get the list of students to promote and demote based on the selections */
+		List<StudentDTO> demoteStudentDTOList = new ArrayList<StudentDTO>();
+		demoteStudentDTOList.addAll((List<StudentDTO>) getStudentDataModel().getWrappedData());
+		List<StudentDTO> promoteStudentDTOList = getSelectedstudentDTOList();
+		demoteStudentDTOList.removeAll(promoteStudentDTOList);
+
+		/* Construct the classPromotionDTO to process the class promotion */
+		ClassPromotionDTO classPromotionDTO = new ClassPromotionDTO();
+		classPromotionDTO.setDemoteStudentDTOList(demoteStudentDTOList);
+		classPromotionDTO.setPromoteStudentDTOList(promoteStudentDTOList);
+		classPromotionDTO.setUserName(userBean.getUserDetailsDTO().getName());
+		classPromotionDTO.setFromClassName(getSelectedClassDTO().getName());
+		classPromotionDTO.setToClassName(getToClass());
+		return classPromotionDTO;
+	}
 }

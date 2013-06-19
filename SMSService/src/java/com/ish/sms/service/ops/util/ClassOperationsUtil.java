@@ -32,7 +32,7 @@ import com.ish.sms.service.entity.Teacher;
  * Utility class for performing DTO/Entity conversions for Class related entities
  * 
  * @author enselv
- *
+ * 
  */
 public class ClassOperationsUtil extends BaseCommonOperationsUtil {
 	/**
@@ -46,7 +46,9 @@ public class ClassOperationsUtil extends BaseCommonOperationsUtil {
 	public ClassDTO convertClassEntityToDTO(Class classObj) throws Exception {
 		ClassDTO classDTO = new ClassDTO();
 		PropertyUtils.copyProperties(classDTO, classObj);
-		TeacherDTO teacherDTO = convertTeacherEntityToDTO(classObj.getTeacher());
+		TeacherDTO teacherDTO = null;
+		if (classObj.getTeacher() != null)
+			teacherDTO = convertTeacherEntityToDTO(classObj.getTeacher());
 		Collection<ClassTimeTable> classTimeTables = classObj.getClassTimeTable();
 		if (classTimeTables != null && classTimeTables.size() > 0) {
 			List<ClassTimeTableDTO> classTimeTableDTOList = convertClassTimeTableListEntitytoDTO(classTimeTables).getClassTimeTableDTOList();
@@ -77,7 +79,9 @@ public class ClassOperationsUtil extends BaseCommonOperationsUtil {
 	public Class convertClassDTOToEntity(ClassDTO classDTO) throws Exception {
 		Class classObj = new Class();
 		PropertyUtils.copyProperties(classObj, classDTO);
-		Teacher teacher = convertTeacherDTOToEntity(classDTO.getTeacherDTO());
+		Teacher teacher = null;
+		if (classDTO.getTeacherDTO() != null)
+			teacher = convertTeacherDTOToEntity(classDTO.getTeacherDTO());
 		classObj.setTeacher(teacher);
 		List<ClassTimeTableDTO> classTimeTableDTOList = classDTO.getClassTimeTableDTOList();
 		List<ClassTimeTable> classTimeTableList = null;
@@ -356,7 +360,7 @@ public class ClassOperationsUtil extends BaseCommonOperationsUtil {
 		gradeDetailsDTO.setGrade(studentGrade.getGrade());
 		gradeDetailsDTO.setMark(studentGrade.getMark());
 		gradeDetailsDTO.setGradeDetailsId(studentGrade.getId());
-		if(studentGradeDTO.getGradeDetailsMap() == null)
+		if (studentGradeDTO.getGradeDetailsMap() == null)
 			studentGradeDTO.setGradeDetailsMap(new GradeDetailsMap<ClassSubjectReferenceDataDTO, GradeDetailsDTO>());
 		studentGradeDTO.getGradeDetailsMap().put(classSubjectReferenceDataDTO, gradeDetailsDTO);
 	}

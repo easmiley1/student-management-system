@@ -1,6 +1,7 @@
 package com.ish.sms.web.businessdelegate;
 
 
+
 /**
  * Class Business Delegate which is used to lookup the class rest service and call the same.
  * 
@@ -64,15 +65,11 @@ public class ClassBusinessDelegate extends BaseBusinessDelegate {
 	/**
 	 * Method to promote/demote students and also create new classes if required.
 	 * 
-	 * @param fromClass
-	 * @param toClass
-	 * @param userName
-	 * @param promoteStudentListXML
-	 * @param demoteStudentListXML
+	 * @param classPromotionDTOXML
 	 * @return promotionEligibleClassList
 	 */
-	public String promoteClass(String fromClass, String toClass, String userName, String promoteStudentListXML, String demoteStudentListXML) {
-		return smsServiceLocator.getSmsClassServiceInterface().promoteClass(fromClass, toClass, userName, promoteStudentListXML, demoteStudentListXML);
+	public String promoteClass(String classPromotionDTOXML) {
+		return smsServiceLocator.getSmsClassServiceInterface().promoteClass(classPromotionDTOXML);
 	}
 
 }

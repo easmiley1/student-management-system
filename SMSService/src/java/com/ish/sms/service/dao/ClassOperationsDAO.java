@@ -3,6 +3,8 @@ package com.ish.sms.service.dao;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.persistence.NoResultException;
+
 import com.ish.sms.service.entity.Class;
 
 /**
@@ -20,11 +22,16 @@ public class ClassOperationsDAO extends BaseOperationsDAO {
 	 * @param newStartYear
 	 * @return classToPromoteDemote
 	 */
-	private Class getClassForNameAndYear(String toClass, Integer newStartYear) {
+	public Class getClassForNameAndYear(String toClass, Integer startYear) {
 		Map<String, Object> queryParametersMap = new HashMap<String, Object>();
 		queryParametersMap.put(NAME, toClass);
-		queryParametersMap.put(START_YEAR, newStartYear);
-		Class classObj = (Class) retrieveSingleResultForQueryWithParameters(FIND_NEW_CLASS, com.ish.sms.service.entity.Class.class, queryParametersMap);
+		queryParametersMap.put(START_YEAR, startYear);
+		Class classObj = null;
+		try {
+			classObj = (Class) retrieveSingleResultForQueryWithParameters(FIND_NEW_CLASS, com.ish.sms.service.entity.Class.class, queryParametersMap);
+		} catch (NoResultException nre) {
+			classObj = null;
+		}
 		return classObj;
 	}
 
@@ -35,10 +42,10 @@ public class ClassOperationsDAO extends BaseOperationsDAO {
 	 * @param newStartYear
 	 * @return newClassToPromoteDemote
 	 */
-	private Class createNewClass(String toClass, Integer newStartYear) {
+	private Class createNewClass(String toClass, Integer startYear) {
 		Class classObj = new Class();
 		classObj.setName(toClass);
-		classObj.setStartYear(newStartYear);
+		classObj.setStartYear(startYear);
 		classObj.setActive(ACTIVE);
 		classObj = (Class) createOrUpdateEntity(classObj);
 		return classObj;
@@ -49,11 +56,11 @@ public class ClassOperationsDAO extends BaseOperationsDAO {
 	 * @param newStartYear
 	 * @return classToPromoteDemote
 	 */
-	public Class getClassToPromoteDemote(String toClass, Integer newStartYear) {
-		Class classObj = getClassForNameAndYear(toClass, newStartYear);
+	public Class getClassToPromoteDemote(String toClass, Integer startYear) {
+		Class classObj = getClassForNameAndYear(toClass, startYear);
 
 		if (classObj == null) {
-			classObj = createNewClass(toClass, newStartYear);
+			classObj = createNewClass(toClass, startYear);
 		}
 		return classObj;
 	}

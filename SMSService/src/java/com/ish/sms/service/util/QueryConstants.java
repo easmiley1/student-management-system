@@ -27,7 +27,7 @@ public interface QueryConstants {
 	public static final String FIND_ALL_CLASS_FOR_ID_LIST = "FIND_ALL_CLASS_FOR_ID_LIST";
 	public static final String FIND_ALL_CLASS_FOR_ID_LIST_QUERY = "select cl from com.ish.sms.service.entity.Class cl where cl.id in :idList";
 	public static final String FIND_NEW_CLASS = "FIND_NEW_CLASS";
-	public static final String FIND_NEW_CLASS_QUERY = "select cl from com.ish.sms.service.entity.Class cl where cl.id = :name and cl.startYear = :startYear" +
+	public static final String FIND_NEW_CLASS_QUERY = "select cl from com.ish.sms.service.entity.Class cl where cl.name = :name and cl.startYear = :startYear" +
 			" and cl.active='active'";
 	public static final String FIND_CLASS_BY_ID = "FIND_CLASS_BY_ID";
 	public static final String FIND_CLASS_BY_ID_QUERY = "select cl from com.ish.sms.service.entity.Class cl where cl.id= :id";

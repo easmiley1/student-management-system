@@ -75,17 +75,12 @@ public interface SMSClassServiceInterface {
 	/**
 	 * Method to promote/demote students and also create new classes if required.
 	 * 
-	 * @param fromClass
-	 * @param toClass
-	 * @param userName
-	 * @param promoteStudentListXML
-	 * @param demoteStudentListXML
+	 * @param String classPromotionDTOXML
 	 * @return promotionEligibleClassList
 	 */
 	@POST
-	@Path("/promoteClass/{fromClass}/{toclass}/{userName}")
+	@Path("/promoteClass/")
 	@Produces("text/xml")
 	@Consumes("text/xml")
-	public String promoteClass(@PathParam("fromClass") String fromClass, @PathParam("toclass") String toClass, @PathParam("userName") String userName,
-			String promoteStudentListXML, String demoteStudentListXML) ;	
+	public String promoteClass(String classPromotionDTOXML) ;	
 }

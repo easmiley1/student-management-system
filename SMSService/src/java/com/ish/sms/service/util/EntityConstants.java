@@ -16,7 +16,8 @@ public interface EntityConstants {
 	public static final String SEMI_COLON = ";";
 	public static final String STUDENT_ID = "studentid";
 	public static final String CLASS_ID = "classid";
-	public final static String ACTIVE = "active";
+	public static final String ACTIVE = "active";
+	public static final String INACTIVE = "inactive"; 
 	
 
 	public static enum CLASS_DEF_MODIFICATION {
