@@ -72,7 +72,24 @@ public class AssociateOperations extends BaseOperations {
 		}
 		return studentList;
 	}
-	
+
+	/**
+	 * Method to return the student details for the given id.
+	 * 
+	 * @param studentId
+	 * @return studentDTO
+	 * @throws Exception
+	 */
+	@Transactional(readOnly = true)
+	public StudentDTO retrieveStudentDetails(Integer studentId) throws Exception {
+
+		Map<String, Object> queryParametersMap = new HashMap<String, Object>();
+		queryParametersMap.put(ID, studentId);
+		Student student = (Student) associateOperationsDAO.retrieveSingleResultForQueryWithParameters(FIND_STUDENT, Student.class, queryParametersMap);
+		StudentDTO studentDTO = associateOperationsUtil.convertStudentEntitytoDTO(student);
+		return studentDTO;
+	}
+
 	/**
 	 * Method to return the list of all the students for the given classIds.
 	 * 
@@ -85,13 +102,14 @@ public class AssociateOperations extends BaseOperations {
 
 		Map<String, Object> queryParametersMap = new HashMap<String, Object>();
 		List<Integer> classIdIntList = new ArrayList<Integer>();
-		for(String classId :classIdList){
+		for (String classId : classIdList) {
 			classIdIntList.add(new Integer(classId));
 		}
 		queryParametersMap.put(ID_LIST, classIdIntList);
 		StudentListDTO studentList = new StudentListDTO();
-		List<Student> studentsList = (List<Student>) associateOperationsDAO.retrieveResultListForQueryWithParameters(
-				FIND_ALL_STUDENTS_BY_CLASS_LIST, queryParametersMap);;
+		List<Student> studentsList = (List<Student>) associateOperationsDAO.retrieveResultListForQueryWithParameters(FIND_ALL_STUDENTS_BY_CLASS_LIST,
+				queryParametersMap);
+		;
 		for (Student student : studentsList) {
 			StudentDTO studentDTO = associateOperationsUtil.convertStudentEntitytoDTO(student);
 			studentList.getStudentDTOList().add(studentDTO);
