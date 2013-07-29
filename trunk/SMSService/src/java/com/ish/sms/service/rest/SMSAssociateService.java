@@ -3,6 +3,7 @@ package com.ish.sms.service.rest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -89,6 +90,26 @@ public class SMSAssociateService extends SMSBaseService{
 			e.printStackTrace();
 		}
 		return studentListXML;
+	}
+	
+	/**
+	 * Method to return the student details for the given id.
+	 * 
+	 * @return studentDTOXML
+	 */
+	@POST
+	@Path("/retrieveStudentDetails/{studentId}")
+	@Produces(MediaType.TEXT_XML)
+	public String retrieveStudentDetails(@PathParam("studentId") Integer studentId) {
+
+		String studentDTOXML = null;
+		try {
+			StudentDTO studentDTO = associateOperations.retrieveStudentDetails(studentId);
+			studentDTOXML = serviceTransformer.transformToXML(studentDTO, "studentDTO");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return studentDTOXML;
 	}
 
 	/**

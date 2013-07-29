@@ -12,6 +12,8 @@ public interface QueryConstants {
 	/* Associate Operations related queries*/
 	public static final String FIND_ALL_STUDENTS = "FIND_ALL_STUDENTS";
 	public static final String FIND_ALL_STUDENTS_QUERY = "select st from com.ish.sms.service.entity.Student st";
+	public static final String FIND_STUDENT = "FIND_STUDENT";
+	public static final String FIND_STUDENT_QUERY = "select st from com.ish.sms.service.entity.Student st where st.id=:id";
 	public static final String FIND_ALL_TEACHERS = "FIND_ALL_TEACHERS";
 	public static final String FIND_ALL_TEACHERS_QUERY = "select teacher from com.ish.sms.service.entity.Teacher teacher";
 	public static final String FIND_ALL_STUDENTS_BY_CLASS = "FIND_ALL_STUDENTS_BY_CLASS";
