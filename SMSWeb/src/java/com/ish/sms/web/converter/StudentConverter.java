@@ -59,9 +59,9 @@ public class StudentConverter implements Converter, Serializable, WebConstants {
 	public String getAsString(FacesContext context, UIComponent component, Object value) throws ConverterException {
 
 		StudentDTO studentDTO = (StudentDTO) value;
-		if (studentDTO == null)
+		if (studentDTO == null || studentDTO.getFirstName() == null)
 			return null;
-		return studentDTO.getFirstName().toString();
+		return studentDTO.getFirstName();
 	}
 
 }

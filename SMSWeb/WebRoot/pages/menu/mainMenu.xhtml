@@ -4,6 +4,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 	<f:view>
+	
 		<p:toolbar >
 			<p:toolbarGroup align="left" >
 				<p:menubar style="padding:0px;">
@@ -41,6 +42,11 @@
 							<p:menuitem value="Student Reports" action="#{attendanceReportAction.initAttendanceReport()}" ajax="false" />
 						</p:submenu>						
 					</p:submenu>
+					
+					<p:submenu label="Parent Portal" >
+						<p:menuitem value="Student Details" action="#{associateAction.initStudentDetails(2)}" ajax="false" />
+						<p:menuitem value="Attendance Details" action="#{attendanceReportAction.initStudentAttendanceReport(2)}" ajax="false" />
+					</p:submenu>					
 				</p:menubar>
 			</p:toolbarGroup>
 			

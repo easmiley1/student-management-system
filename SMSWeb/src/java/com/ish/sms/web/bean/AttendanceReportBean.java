@@ -24,10 +24,7 @@ import com.ish.sms.web.util.WebUtils;
  * @author Naren
  * 
  */
-/**
- * @author enselv
- * 
- */
+
 @ManagedBean(name = WebConstants.ATTENDANCE_REPORT_BEAN)
 @SessionScoped
 public class AttendanceReportBean extends BaseBean {
@@ -38,6 +35,22 @@ public class AttendanceReportBean extends BaseBean {
 	private ClassDTO selectedClassDTO = new ClassDTO();
 	private List<StudentDTO> studentDTOList = new ArrayList<StudentDTO>();
 	private StudentDTO selectedStudentDTO = new StudentDTO();
+	private boolean readOnly;
+
+	/**
+	 * @return the readOnly
+	 */
+	public boolean isReadOnly() {
+		return readOnly;
+	}
+
+	/**
+	 * @param readOnly
+	 *            the readOnly to set
+	 */
+	public void setReadOnly(boolean readOnly) {
+		this.readOnly = readOnly;
+	}
 
 	/**
 	 * @return the studentDTOList
@@ -155,17 +168,35 @@ public class AttendanceReportBean extends BaseBean {
 				setCategoryModel(categoryModel);
 		}
 	}
-	
+
 	/**
 	 * Method to create the default attendance report chart
 	 */
 	public void createDefaultChart() {
-		CartesianChartModel categoryModel = new CartesianChartModel();  
-		ChartSeries chartSeries = new ChartSeries();  
-		chartSeries.setLabel("Leave Attendance Report");  
-		chartSeries.set("Month", 0);  
-		categoryModel.addSeries(chartSeries);  
+		CartesianChartModel categoryModel = new CartesianChartModel();
+		ChartSeries chartSeries = new ChartSeries();
+		chartSeries.setLabel("Attendance Report");
+		chartSeries.set("Month", 0);
+		categoryModel.addSeries(chartSeries);
 		setCategoryModel(categoryModel);
 	}
-	
+
+	/**
+	 * Method to populate the student details for the drop downs for parent access reports
+	 * 
+	 * @param studentDTO
+	 */
+	public void populateStudentAttendanceDetails(StudentDTO studentDTO) {
+		
+		List<ClassDTO> classDTOList = new ArrayList<ClassDTO>();
+		List<StudentDTO> studentDTOList = new ArrayList<StudentDTO>();
+		classDTOList.add(studentDTO.getCurrentClassDTO());
+		studentDTOList.add(studentDTO);
+
+		setSelectedStudentDTO(studentDTO);
+		setSelectedClassDTO(studentDTO.getCurrentClassDTO());
+		setClassDTOList(classDTOList);
+		setStudentDTOList(studentDTOList);
+		setReadOnly(true);
+	}
 }

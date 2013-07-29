@@ -23,9 +23,9 @@ import com.ish.sms.web.util.WebConstants;
 public class AssociateBean extends BaseBean implements WebConstants {
 
 	private static final long serialVersionUID = 1L;
-	private AssociateDTO associateDTO;
-	private StudentDTO studentDTO;
-	private TeacherDTO teacherDTO;
+	private AssociateDTO associateDTO = new AssociateDTO();
+	private StudentDTO studentDTO = new StudentDTO();
+	private TeacherDTO teacherDTO = new TeacherDTO();
 	private List<StudentDTO> studentDTOList;
 	private List<TeacherDTO> teacherDTOList;	
 	private List<StudentDTO> filteredStudentList;

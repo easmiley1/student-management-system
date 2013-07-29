@@ -8,6 +8,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.beanutils.BeanUtils;
+
 import com.ish.sms.web.bean.AssociateBean;
 import com.ish.sms.web.util.WebUtils;
 
@@ -207,4 +209,24 @@ public class AssociateAction extends BaseAction {
 		}
 	}
 
+	/**
+	 * Method to get the details for the given student and navigate to the student details page
+	 * 
+	 * @param studentId
+	 * @return saveStudentDetails.xhtml"
+	 */
+	public String initStudentDetails(Integer studentId) {
+
+		try {
+			StudentDTO studentDTO = associateBusiness.retrieveStudentDetails(studentId);
+			associateBean.setReadOnlyMode(true);
+			associateBean.setStudentDTO(studentDTO);
+			BeanUtils.copyProperties(associateBean.getAssociateDTO(), studentDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+			WebUtils.registerErrorMessage();
+		}
+		return SAVE_STUDENT_PAGE;
+
+	}
 }
