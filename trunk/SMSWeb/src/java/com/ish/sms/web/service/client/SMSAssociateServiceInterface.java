@@ -3,6 +3,7 @@ package com.ish.sms.web.service.client;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -63,4 +64,13 @@ public interface SMSAssociateServiceInterface {
 	@Consumes(MediaType.TEXT_XML)
 	public String retrieveStudentsForClass(String classIdXML);
 
+	/**
+	 * Method to return the student details for the given id.
+	 * 
+	 * @return studentDTOXML
+	 */
+	@POST
+	@Path("/retrieveStudentDetails/{studentId}")
+	@Produces(MediaType.TEXT_XML)
+	public String retrieveStudentDetails(@PathParam("studentId") Integer studentId);
 }

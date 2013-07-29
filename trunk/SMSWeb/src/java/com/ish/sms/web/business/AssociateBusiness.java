@@ -98,4 +98,18 @@ public class AssociateBusiness extends BaseBusiness {
 		return teacherList.getTeacherDTOList();
 	}
 
+	/**
+	 * Method to return the list of all the students in the school.
+	 * 
+	 * @param studentId
+	 * @return student
+	 * @throws Exception
+	 */
+	public StudentDTO retrieveStudentDetails(Integer studentId) throws Exception {
+
+		String studentDTOXML = associateBusinessDelegate.retrieveStudentDetails(studentId);
+		StudentDTO studentDTO = serviceTransformer.parseXml(studentDTOXML);
+		return studentDTO;
+	}
+
 }

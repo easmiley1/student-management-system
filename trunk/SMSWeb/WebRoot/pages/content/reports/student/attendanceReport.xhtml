@@ -23,7 +23,7 @@
 										<h:outputText value="Class :" styleClass="labelText"/>
 									</h:panelGroup>
 									<p:selectOneMenu styleClass="mySelectStyle" converter="#{classConverter}" value="#{attendanceReportBean.selectedClassDTO}" 
-										ajaxSingle="true"  >
+										ajaxSingle="true"  disabled="#{attendanceReportBean.readOnly}">
 										<f:selectItems value="#{attendanceReportBean.classDTOList}" var="classDTO" itemValue="#{classDTO}"
 											itemLabel="#{classDTO.name}"/>
 										<p:ajax listener="#{attendanceReportAction.changeClass}" update="@all"/>	
@@ -35,7 +35,7 @@
 										<h:outputText value="*" styleClass="errorValidationText" />
 										<h:outputText value="Student :" styleClass="labelText"/>
 									</h:panelGroup>
-									<p:selectOneMenu id="studentselectid" styleClass="mySelectStyle" 
+									<p:selectOneMenu id="studentselectid" styleClass="mySelectStyle" disabled="#{attendanceReportBean.readOnly}" 
 										converter="#{studentConverter}" value="#{attendanceReportBean.selectedStudentDTO}" ajaxSingle="true"  >
 										<f:selectItems value="#{attendanceReportBean.studentDTOList}" var="studentDTO" itemValue="#{studentDTO}"
 											itemLabel="#{studentDTO.firstName}"/>
@@ -44,12 +44,12 @@
 
 								<h:panelGrid columns="2"  border="0" cellpadding="10px" cellspacing="10px" >
 									<p:commandButton value="Generate Report"  id="runReportBtn"  style="width:160px;height:30px;"  
-									 	action="#{attendanceReportAction.generateAttendanceReport}"	update="currYearReport"/>
+									 	action="#{attendanceReportAction.generateAttendanceReport}"	update="currYearReport" disabled="#{attendanceReportBean.readOnly}"/>
 								</h:panelGrid>	
 
 							</h:panelGrid>
 							
-							<p:barChart id="currYearReport" value="#{attendanceReportBean.categoryModel}" legendPosition="ne" title="Bar Chart" 
+							<p:barChart id="currYearReport" value="#{attendanceReportBean.categoryModel}" legendPosition="ne" title="Attendance Report" 
 								min="0" max="30" style="height:300px"/>  
   							
 						</p:panel>

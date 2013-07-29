@@ -58,4 +58,15 @@ public class AssociateBusinessDelegate extends BaseBusinessDelegate {
 		return smsServiceLocator.getSmsAssociateServiceInterface().retrieveAllTeachers();
 	}
 
+	/**
+	 * Method to return the student details for the given id.
+	 * 
+	 * @param studentId
+	 * @return student
+	 */
+	public String retrieveStudentDetails(Integer studentId) {
+
+		return smsServiceLocator.getSmsAssociateServiceInterface().retrieveStudentDetails(studentId);
+	}
+
 }

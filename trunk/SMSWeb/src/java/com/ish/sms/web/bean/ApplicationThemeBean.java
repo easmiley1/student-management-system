@@ -15,7 +15,7 @@ public class ApplicationThemeBean extends BaseBean {
 
 	private Map<String, String> themes;
 
-	private String theme = "hot-sneaks";
+	private String theme = "aristo";
 
 	public Map<String, String> getThemes() {
 		return themes;
@@ -70,7 +70,7 @@ public class ApplicationThemeBean extends BaseBean {
 	}
 
 	public void saveTheme() {
-		System.out.println(theme);
+		System.out.println("saving theme " + theme);
 	}
 
 }
