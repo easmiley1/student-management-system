@@ -53,6 +53,17 @@ public class ClassBusinessDelegate extends BaseBusinessDelegate {
 	}
 
 	/**
+	 * Method to retrieve the student grade details for a particular class id, student.
+	 * 
+	 * @param classId
+	 * @param studentId
+	 * @return studentGradeListDTOXml
+	 */
+	public String retrieveClassGradeDetailsForStudent(Integer classId, Integer studentId) {
+		return smsServiceLocator.getSmsClassServiceInterface().retrieveClassGradeDetailsForStudent(classId, studentId);
+	}
+
+	/**
 	 * Method to create or update a class grade details and return the persisted XML.
 	 * 
 	 * @param saveClassGradeDetailsXML

@@ -14,6 +14,7 @@ import com.ish.sms.service.dto.ClassListDTO;
 import com.ish.sms.service.dto.ClassPromotionDTO;
 import com.ish.sms.service.dto.ClassSubjectReferenceDataDTO;
 import com.ish.sms.service.dto.GradeDetailsDTO;
+import com.ish.sms.service.dto.ReportCardListDTO;
 import com.ish.sms.service.dto.StudentDTO;
 import com.ish.sms.service.dto.StudentGradeDTO;
 import com.ish.sms.service.dto.StudentGradeListDTO;
@@ -115,6 +116,27 @@ public class ClassOperations extends BaseOperations {
 				queryParametersMap);
 		StudentGradeListDTO studentGradeListDTO = classOperationsUtil.convertStudentGradeListtoDTO(studentGradeList);
 		return studentGradeListDTO;
+
+	}
+
+	/**
+	 * Method to retrieve the student grade details for a particular class id, exam and student
+	 * 
+	 * @param classId
+	 * @param studentId
+	 * @return {@link StudentGradeListDTO}
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	public ReportCardListDTO retrieveClassGradeDetailsForStudent(Integer classId, Integer studentID) throws Exception {
+
+		Map<String, Object> queryParametersMap = new HashMap<String, Object>();
+		queryParametersMap.put(ID, classId);
+		queryParametersMap.put(STUDENT_ID, studentID);
+		List<StudentGrade> studentGradeList = (List<StudentGrade>) classOperationsDAO.retrieveResultListForQueryWithParameters(
+				FIND_CLASS_GRADE_DETAILS_FOR_STUDENT, queryParametersMap);
+		ReportCardListDTO reportCardListDTO = classOperationsUtil.convertStudentGradeListTODTO(studentGradeList);
+		return reportCardListDTO;
 
 	}
 

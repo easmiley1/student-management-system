@@ -9,13 +9,16 @@ import org.apache.commons.beanutils.PropertyUtils;
 
 import com.ish.sms.service.dto.ClassDTO;
 import com.ish.sms.service.dto.ClassExamReferenceDataDTO;
-import com.ish.sms.service.dto.ClassGradeDetailsDTO;
 import com.ish.sms.service.dto.ClassSubjectReferenceDataDTO;
 import com.ish.sms.service.dto.ClassTimeTableDTO;
 import com.ish.sms.service.dto.ClassTimeTableListDTO;
 import com.ish.sms.service.dto.GradeDetailsDTO;
 import com.ish.sms.service.dto.GradeDetailsMap;
 import com.ish.sms.service.dto.ReferenceDataDTO;
+import com.ish.sms.service.dto.ReportCardDTO;
+import com.ish.sms.service.dto.ReportCardDetailsDTO;
+import com.ish.sms.service.dto.ReportCardDetailsMap;
+import com.ish.sms.service.dto.ReportCardListDTO;
 import com.ish.sms.service.dto.StudentDTO;
 import com.ish.sms.service.dto.StudentGradeDTO;
 import com.ish.sms.service.dto.StudentGradeListDTO;
@@ -325,7 +328,7 @@ public class ClassOperationsUtil extends BaseCommonOperationsUtil {
 	 * Method to convert to studentGradeList to ClassGradeDetailsDTO
 	 * 
 	 * @param studentGradeList
-	 * @return {@link ClassGradeDetailsDTO}
+	 * @return studentGradeListDTO
 	 */
 	public StudentGradeListDTO convertStudentGradeListtoDTO(List<StudentGrade> studentGradeList) throws Exception {
 
@@ -347,6 +350,36 @@ public class ClassOperationsUtil extends BaseCommonOperationsUtil {
 		}
 
 		return studentGradeListDTO;
+	}
+
+	/**
+	 * Method to convert the studentGradeList entity to reportcardDTO
+	 * 
+	 * @param studentGradeList
+	 * @return reportCardListDTO
+	 * @throws Exception
+	 */
+	public ReportCardListDTO convertStudentGradeListTODTO(List<StudentGrade> studentGradeList) throws Exception {
+
+		ReportCardListDTO reportCardListDTO = new ReportCardListDTO();
+
+		for (StudentGrade studentGrade : studentGradeList) {
+			
+			ClassSubjectReferenceDataDTO classSubjectReferenceDataDTO = convertClassSubjectReferenceDataEntitytoDTO(studentGrade.getClassSubjectReferenceData());
+			ClassExamReferenceDataDTO classExamReferenceDataDTO = convertClassExamReferenceDataEntitytoDTO(studentGrade.getClassExamReferenceData());
+			
+			ReportCardDTO reportCardDTO = new ReportCardDTO();
+			reportCardDTO.setClassSubjectReferenceDataDTO(classSubjectReferenceDataDTO);
+			ReportCardDetailsMap<ClassExamReferenceDataDTO, ReportCardDetailsDTO> reportCardDetailsMap = new ReportCardDetailsMap<ClassExamReferenceDataDTO, ReportCardDetailsDTO>();
+			ReportCardDetailsDTO reportCardDetailsDTO = new ReportCardDetailsDTO();
+			reportCardDetailsDTO.setGrade(studentGrade.getGrade());
+			reportCardDetailsDTO.setMark(studentGrade.getMark());
+			reportCardDetailsMap.put(classExamReferenceDataDTO, reportCardDetailsDTO);
+			reportCardDTO.setReportCardDetailsMap(reportCardDetailsMap);
+			reportCardListDTO.getReportCardDTOList().add(reportCardDTO);
+		}
+
+		return reportCardListDTO;
 	}
 
 	/**

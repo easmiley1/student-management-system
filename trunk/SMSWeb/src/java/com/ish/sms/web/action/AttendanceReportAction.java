@@ -1,26 +1,18 @@
 package com.ish.sms.web.action;
 
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import com.ish.sms.service.dto.ChartSeriesListDTO;
 import com.ish.sms.service.dto.StudentDTO;
 import com.ish.sms.web.bean.AttendanceReportBean;
 import com.ish.sms.web.bean.UserBean;
 import com.ish.sms.web.util.WebUtils;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
 
 /**
  * Action Bean class which is in view scope for all the attendance report related actions.
@@ -85,39 +77,6 @@ public class AttendanceReportAction extends BaseAction {
 				attendanceReportBean.createDefaultChart();
 			}
 			attendanceReportBean.setReadOnly(false);
-			HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-			HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-		    // Get the text that will be added to the PDF
-            String text = "dummyText";
-            if (text == null || text.trim().length() == 0) {
-                 text = "You didn't enter any text.";
-            }
-            // step 1
-            Document document = new Document();
-            // step 2
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            PdfWriter.getInstance(document, baos);
-            // step 3
-            document.open();
-            // step 4
-            document.add(new Paragraph(String.format(
-                "You have submitted the following text using the %s method:",
-                request.getMethod())));
-            document.add(new Paragraph(text));
-            // step 5
-            document.close();
- 
-            // setting some response headers
-            response.setHeader("Content-Disposition", "attachment; filename=\"" + "mypdf.pdf" );
-            // setting the content type
-            response.setContentType("application/pdf");
-            // the contentlength
-            response.setContentLength(baos.size());
-            // write ByteArrayOutputStream to the ServletOutputStream
-            OutputStream os = response.getOutputStream();
-            baos.writeTo(os);
-            os.flush();
-            os.close();			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

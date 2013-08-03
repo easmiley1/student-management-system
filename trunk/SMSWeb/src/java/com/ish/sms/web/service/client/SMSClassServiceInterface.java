@@ -61,6 +61,18 @@ public interface SMSClassServiceInterface {
 	public String retrieveClassGradeDetails(@PathParam("classId") Integer classId, @PathParam("classExamId") Integer classExamId);
 
 	/**
+	 * Method to retrieve the student grade details for a particular class id  and student
+	 * 
+	 * @param classId
+	 * @param studentId
+	 * @return studentGradeListDTOXml
+	 */
+	@GET
+	@Path("/retrieveClassGradeDetails/{classId}/{classExamId}/{studentId}")
+	@Produces("text/xml")
+	public String retrieveClassGradeDetailsForStudent(@PathParam("classId") Integer classId, @PathParam("studentId") Integer studentId);
+
+	/**
 	 * Method to create or update a class grade details and return the persisted XML.
 	 * 
 	 * @param saveClassGradeDetailsXML

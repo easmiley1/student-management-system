@@ -17,4 +17,9 @@
     	<jxb:baseType name="com.ish.sms.service.dto.GradeDetailsMap&lt;com.ish.sms.service.dto.ClassSubjectReferenceDataDTO,com.ish.sms.service.dto.GradeDetailsDTO&gt;" />
    	 </jxb:property>
   </jxb:bindings>  	
+  <jxb:bindings node="//xs:element[@name='reportCardDetailsMap']">
+  	 <jxb:property>
+    	<jxb:baseType name="com.ish.sms.service.dto.ReportCardDetailsMap&lt;com.ish.sms.service.dto.ClassExamReferenceDataDTO,com.ish.sms.service.dto.ReportCardDetailsDTO&gt;" />
+   	 </jxb:property>
+  </jxb:bindings>  	
 </jxb:bindings>
