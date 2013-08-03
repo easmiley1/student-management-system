@@ -1,0 +1,58 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<f:view>
+		<h:body>
+			<ui:include src="applicationStyles.xhtml" />
+			<ui:composition template="/pages/layout/commonLayout.xhtml">
+				<ui:define name="content">
+					<h:form id="reportCardForm">
+						<p:growl id="reportCardGrowl" showDetail="true" sticky="false" />
+    					
+    					<p:panel header="Report Card" styleClass="dialogBodyPanel" id="reportCardPanel">
+    						<p:blockUI block="reportCardForm" trigger="saveBtnIcon,classExamList" />    					
+    						<p:remoteCommand name="callRemoteCommandtoUpdateModel" actionListener="#{classGradeAction.markDirty}" process="@all" 
+    							update="saveBtnIcon,classExamList"/>
+							
+							<p:toolbar style="height:30px;" id="toolbarId">
+								<p:toolbarGroup align="left" >
+									<p:spacer width="20" height="20" />
+									<p:selectOneMenu id="studentselectid" styleClass="mySelectStyle"  
+										converter="#{studentConverter}" value="#{reportCardBean.selectedStudentDTO}" ajaxSingle="true"  >
+										<f:selectItems value="#{reportCardBean.studentDTOList}" var="studentDTO" itemValue="#{studentDTO}"
+											itemLabel="#{studentDTO.firstName}"/>
+									</p:selectOneMenu>
+									<p:spacer width="20" height="20" />									
+ 									<p:commandButton value="Generate PDF" id="saveBtnIcon" icon="ui-icon-disk" style="vertical-align:top;height:28px;"
+ 										action="#{classGradeAction.saveGradeBook}" disabled="#{classGradeBean.dataSaved}" update="reportCardGrowl,saveBtnIcon" />	 
+ 									
+								</h:panelGrid>
+ 									
+								</p:toolbarGroup>
+							</p:toolbar>
+							
+							<p:dataTable id="reportCardDataTableId" var="reportCardDTO" value="#{reportCardBean.reportCardDTOList}"
+							 scrollable="true" paginator="true" rows="10" rowsPerPageTemplate="10,15,20" 
+                 			 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" >
+                 				<p:column headerText="Subject" style="width:100px">
+                 					<h:outputText value="#{reportCardDTO.classSubjectReferenceDataDTO.referenceDataDTO.name}" />  
+                 				</p:column>
+								<p:columns value="#{reportCardBean.classExamReferenceDataDTOList}" var="column" columnIndexVar="colIndex" style="width:100px">
+									<f:facet name="header">  
+               							 #{column.referenceDataDTO.name}  
+            						</f:facet>  
+						             <h:outputText value="#{reportCardDTO.gradeDetailsMap[column].mark}"  ajaxSingle="true"  
+											style="width:40px;horizontal-align:center;vertical-align:center;">
+						             </h:outputText>  
+       							</p:columns>
+							</p:dataTable>							
+							
+						</p:panel>
+					</h:form>
+				</ui:define>
+			</ui:composition>
+		</h:body>
+	</f:view>
+</ui:composition>

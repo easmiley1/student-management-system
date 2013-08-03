@@ -1,11 +1,14 @@
 package com.ish.sms.web.business;
 
+import com.ish.sms.service.dto.ReportCardListDTO;
+
 import java.util.List;
 
 import com.ish.sms.service.dto.ClassDTO;
 import com.ish.sms.service.dto.ClassGradeDetailsDTO;
 import com.ish.sms.service.dto.ClassListDTO;
 import com.ish.sms.service.dto.ClassPromotionDTO;
+import com.ish.sms.service.dto.ReportCardDTO;
 import com.ish.sms.service.dto.StudentGradeDTO;
 import com.ish.sms.service.dto.StudentGradeListDTO;
 
@@ -69,6 +72,20 @@ public class ClassBusiness extends BaseBusiness {
 		String studentGradeListDTOXML = classBusinessDelegate.retrieveClassGradeDetails(classId, classExamId);
 		StudentGradeListDTO studentGradeListDTO = serviceTransformer.parseXml(studentGradeListDTOXML);
 		return studentGradeListDTO.getStudentGradeDTOList();
+	}
+
+	/**
+	 * Method to retrieve the student grade details for a particular class id, studentId.
+	 * 
+	 * @param classId
+	 * @param studentId
+	 * @return studentGradeDTOList
+	 * @throws Exception
+	 */
+	public List<ReportCardDTO> retrieveClassGradeDetailsForStudent(Integer classId, Integer studentId) throws Exception {
+		String studentGradeListDTOXML = classBusinessDelegate.retrieveClassGradeDetailsForStudent(classId, studentId);
+		ReportCardListDTO reportCardListDTO = serviceTransformer.parseXml(studentGradeListDTOXML);
+		return reportCardListDTO.getReportCardDTOList();
 	}
 
 	/**

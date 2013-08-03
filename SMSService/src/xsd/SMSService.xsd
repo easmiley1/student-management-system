@@ -125,6 +125,45 @@
 	</xs:complexType>
 
 	<!-- dto definitions corresponding to class grade definitions  - end-->
+
+	<!-- dto definitions corresponding to report card definitions  - start-->
+
+	<xs:complexType name="reportCardDetailsDTO">
+		<xs:sequence>
+			<xs:element name="mark" type="xs:int" minOccurs="0"/>
+			<xs:element name="grade" type="xs:string"  minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="reportCardDTO">
+		<xs:sequence>
+			<xs:element name="classSubjectReferenceDataDTO" type="classSubjectReferenceDataDTO" />
+			<xs:element name="reportCardDetailsMap" type="reportCardDetails" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="reportCardDetails">
+       	  <xs:sequence>
+           	<xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
+           	  	<xs:complexType>
+               	 	<xs:sequence>
+               			<xs:element name="key" type="classExamReferenceDataDTO"/>
+						<xs:element name="value" type="reportCardDetailsDTO" />		
+               	  	</xs:sequence>
+             	</xs:complexType>
+           	</xs:element>
+      	  </xs:sequence>
+   	</xs:complexType>	
+
+	<xs:complexType name="reportCardListDTO">
+		<xs:sequence>
+			<xs:element name="reportCardDTOList" type="reportCardDTO" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>	
+
+
+	<!-- dto definitions corresponding to report card definitions  - end-->
+
 	
 	<!-- dto definitions corresponding to class definitions  - start-->
 	

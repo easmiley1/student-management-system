@@ -37,6 +37,7 @@ public interface WebConstants {
 	public final static String SAVE_CLASS_PAGE = "/pages/content/class/details/add-modify/saveClassDetailsContainer.xhtml";
 	public final static String SAVE_CLASS_GRADE_PAGE = "/pages/content/class/grade/saveClassGrade.xhtml";
 	public final static String MODIFY_CLASS_LIST_PAGE = "/pages/content/class/details/search/modifyClassDetailsGridPage.xhtml";
+	public final static String REPORT_CARD_PAGE = "/pages/content/class/reportcard/reportCard.xhtml";
 	public final static String MODIFY_CLASS_TIME_TABLE = "/pages/content/class/details/timetable/saveClassTimeTable.xhtml";
 	public final static String ATTENDANCE_REPORT_PAGE = "/pages/content/reports/student/attendanceReport.xhtml";
 	public final static String CLASS_PROMOTION_PAGE = "/pages/content/class/promotion/classPromotionPage.xhtml";
@@ -72,6 +73,7 @@ public interface WebConstants {
 	public static final String REFERENCE_BEAN = "referenceBean";
 	public static final String CLASS_GRADE_BEAN = "classGradeBean";
 	public static final String ATTENDANCE_REPORT_BEAN = "attendanceReportBean";
+	public static final String REPORT_CARD_BEAN = "reportCardBean";
 	public static final String ASSOCIATE_BUSINESS_BEAN = "associateBusiness";
 	public static final String CLASS_PROMOTION_BEAN = "classPromotionBean";	
 	public static final String CLASS_ATTENDANCE_BUSINESS_BEAN = "classAttendanceBusiness";

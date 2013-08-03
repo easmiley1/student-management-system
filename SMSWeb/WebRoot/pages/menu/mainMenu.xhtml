@@ -34,7 +34,10 @@
 						<p:submenu label="Grade Book" >
 							<p:menuitem value="LKG A" action="#{classGradeAction.openClassGradePage(39)}" ajax="false" />
 						</p:submenu>
-						<p:menuitem value="Class Promotions" action="#{classPromotionAction.initClassPromotion()}" ajax="false"/>					
+						<p:menuitem value="Class Promotions" action="#{classPromotionAction.initClassPromotion()}" ajax="false"/>
+						<p:submenu label="Report Card" >
+							<p:menuitem value="LKG A" action="#{reportCardAction.openReportCardRegister(39)}" ajax="false" />
+						</p:submenu>
 					</p:submenu>
 
 					<p:submenu label="Reports" >

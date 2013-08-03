@@ -21,7 +21,8 @@ import com.ish.sms.service.util.QueryConstants;
  * @author Naren
  *
  */
-@NamedQueries({ @NamedQuery(name = QueryConstants.FIND_CLASS_GRADE_DETAILS, query = QueryConstants.FIND_CLASS_GRADE_DETAILS_QUERY) })
+@NamedQueries({ @NamedQuery(name = QueryConstants.FIND_CLASS_GRADE_DETAILS, query = QueryConstants.FIND_CLASS_GRADE_DETAILS_QUERY),
+	@NamedQuery(name = QueryConstants.FIND_CLASS_GRADE_DETAILS_FOR_STUDENT, query = QueryConstants.FIND_CLASS_GRADE_DETAILS_FOR_STUDENT_QUERY)})
 @Entity
 @Table(name = "class_grade_details")
 public class StudentGrade implements Serializable {
