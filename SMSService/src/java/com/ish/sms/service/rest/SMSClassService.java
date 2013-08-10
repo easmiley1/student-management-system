@@ -120,7 +120,7 @@ public class SMSClassService extends SMSBaseService {
 	 * @return studentGradeListDTOXml
 	 */
 	@GET
-	@Path("/retrieveClassGradeDetails/{classId}/{studentId}")
+	@Path("/retrieveClassGradeDetailsForStudent/{classId}/{studentId}")
 	@Produces("text/xml")
 	public String retrieveClassGradeDetailsForStudent(@PathParam("classId") Integer classId, @PathParam("studentId") Integer studentId) {
 
