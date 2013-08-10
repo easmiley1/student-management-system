@@ -30,6 +30,9 @@
 	<xs:element name="chartSeriesDTO" type="chartSeriesDTO" />
 	<xs:element name="chartSeriesListDTO" type="chartSeriesListDTO" />
 	<xs:element name="classPromotionDTO" type="classPromotionDTO" />
+	<xs:element name="reportCardDetailsDTO" type="reportCardDetailsDTO" />
+	<xs:element name="reportCardListDTO" type="reportCardListDTO" />
+	<xs:element name="reportCardDTO"  type="reportCardDTO" />
 			
 	<xs:complexType name="stringListDTO">
 		<xs:sequence>
