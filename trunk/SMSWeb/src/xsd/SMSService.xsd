@@ -8,7 +8,7 @@
 	<xs:element name="classListDTO" type="classListDTO" />	
 	<xs:element name="classAttendanceDefListDTO" type="classAttendanceDefListDTO" />
 	<xs:element name="associateDTO" type="associateDTO" /> 
-	<xs:element name="studentDTO" type="studentDTO" /> 
+	<xs:element name="studentDTO" type="studentDTO" />
 	<xs:element name="teacherDTO" type="teacherDTO" />
 	<xs:element name="referenceListDTO" type="referenceListDTO" />
 	<xs:element name="classDTO" type="classDTO" />
@@ -30,6 +30,9 @@
 	<xs:element name="chartSeriesDTO" type="chartSeriesDTO" />
 	<xs:element name="chartSeriesListDTO" type="chartSeriesListDTO" />
 	<xs:element name="classPromotionDTO" type="classPromotionDTO" />
+	<xs:element name="reportCardDetailsDTO" type="reportCardDetailsDTO" />
+	<xs:element name="reportCardListDTO" type="reportCardListDTO" />
+	<xs:element name="reportCardDTO"  type="reportCardDTO" />
 			
 	<xs:complexType name="stringListDTO">
 		<xs:sequence>

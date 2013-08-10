@@ -68,7 +68,7 @@ public interface SMSClassServiceInterface {
 	 * @return studentGradeListDTOXml
 	 */
 	@GET
-	@Path("/retrieveClassGradeDetails/{classId}/{classExamId}/{studentId}")
+	@Path("/retrieveClassGradeDetailsForStudent/{classId}/{studentId}")
 	@Produces("text/xml")
 	public String retrieveClassGradeDetailsForStudent(@PathParam("classId") Integer classId, @PathParam("studentId") Integer studentId);
 

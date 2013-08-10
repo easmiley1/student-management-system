@@ -12,24 +12,21 @@
 						<p:growl id="reportCardGrowl" showDetail="true" sticky="false" />
     					
     					<p:panel header="Report Card" styleClass="dialogBodyPanel" id="reportCardPanel">
-    						<p:blockUI block="reportCardForm" trigger="saveBtnIcon,classExamList" />    					
-    						<p:remoteCommand name="callRemoteCommandtoUpdateModel" actionListener="#{classGradeAction.markDirty}" process="@all" 
-    							update="saveBtnIcon,classExamList"/>
-							
+    						<p:blockUI block="reportCardForm" trigger="generatePdfBtn,studentselectList" />    					
+    									
 							<p:toolbar style="height:30px;" id="toolbarId">
 								<p:toolbarGroup align="left" >
 									<p:spacer width="20" height="20" />
-									<p:selectOneMenu id="studentselectid" styleClass="mySelectStyle"  
+									<p:selectOneMenu id="studentselectList" styleClass="mySelectStyle"  
 										converter="#{studentConverter}" value="#{reportCardBean.selectedStudentDTO}" ajaxSingle="true"  >
 										<f:selectItems value="#{reportCardBean.studentDTOList}" var="studentDTO" itemValue="#{studentDTO}"
 											itemLabel="#{studentDTO.firstName}"/>
+											<p:ajax listener="#{reportCardAction.changeStudent}" update="reportCardDataTableId" />
 									</p:selectOneMenu>
 									<p:spacer width="20" height="20" />									
- 									<p:commandButton value="Generate PDF" id="saveBtnIcon" icon="ui-icon-disk" style="vertical-align:top;height:28px;"
- 										action="#{classGradeAction.saveGradeBook}" disabled="#{classGradeBean.dataSaved}" update="reportCardGrowl,saveBtnIcon" />	 
- 									
-								</h:panelGrid>
- 									
+ 									<p:commandButton value="Generate PDF" id="generatePdfBtn" icon="ui-icon-disk" style="vertical-align:top;height:28px;"
+ 										action="#{reportCardAction.generatePDF}"  ajax="false" update="reportCardGrowl" />	 
+ 									 									
 								</p:toolbarGroup>
 							</p:toolbar>
 							
@@ -43,7 +40,7 @@
 									<f:facet name="header">  
                							 #{column.referenceDataDTO.name}  
             						</f:facet>  
-						             <h:outputText value="#{reportCardDTO.gradeDetailsMap[column].mark}"  ajaxSingle="true"  
+						             <h:outputText value="#{reportCardDTO.reportCardDetailsMap[column].mark}"  ajaxSingle="true"  
 											style="width:40px;horizontal-align:center;vertical-align:center;">
 						             </h:outputText>  
        							</p:columns>
