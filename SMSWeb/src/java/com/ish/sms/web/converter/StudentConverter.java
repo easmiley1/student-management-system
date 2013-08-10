@@ -12,6 +12,7 @@ import javax.faces.convert.ConverterException;
 
 import com.ish.sms.service.dto.StudentDTO;
 import com.ish.sms.web.bean.AttendanceReportBean;
+import com.ish.sms.web.bean.ReportCardBean;
 import com.ish.sms.web.util.WebConstants;
 import com.ish.sms.web.util.WebUtils;
 
@@ -30,14 +31,17 @@ public class StudentConverter implements Converter, Serializable, WebConstants {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * javax.faces.convert.Converter#getAsObject(javax.faces.context.FacesContext
-	 * , javax.faces.component.UIComponent, java.lang.String)
+	 * @see javax.faces.convert.Converter#getAsObject(javax.faces.context.FacesContext , javax.faces.component.UIComponent,
+	 * java.lang.String)
 	 */
 	public Object getAsObject(FacesContext context, UIComponent component, String value) throws ConverterException {
 
 		AttendanceReportBean attendanceReportBean = new WebUtils().findBean(ATTENDANCE_REPORT_BEAN);
 		List<StudentDTO> studentDTOList = attendanceReportBean.getStudentDTOList();
+		if (studentDTOList == null || studentDTOList.size() == 0) {
+			ReportCardBean reportCardBean = new WebUtils().findBean(REPORT_CARD_BEAN);
+			studentDTOList = reportCardBean.getStudentDTOList();
+		}
 		StudentDTO selectedStudentDTO = null;
 		for (StudentDTO studentDTO : studentDTOList) {
 			if (studentDTO.getFirstName().equalsIgnoreCase(value)) {
@@ -52,9 +56,8 @@ public class StudentConverter implements Converter, Serializable, WebConstants {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * javax.faces.convert.Converter#getAsString(javax.faces.context.FacesContext
-	 * , javax.faces.component.UIComponent, java.lang.Object)
+	 * @see javax.faces.convert.Converter#getAsString(javax.faces.context.FacesContext , javax.faces.component.UIComponent,
+	 * java.lang.Object)
 	 */
 	public String getAsString(FacesContext context, UIComponent component, Object value) throws ConverterException {
 
