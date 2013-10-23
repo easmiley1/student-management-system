@@ -94,5 +94,17 @@ public interface SMSClassServiceInterface {
 	@Path("/promoteClass/")
 	@Produces("text/xml")
 	@Consumes("text/xml")
-	public String promoteClass(String classPromotionDTOXML) ;	
+	public String promoteClass(String classPromotionDTOXML) ;
+	
+	/**
+	 * Method to save class student details.
+	 * 
+	 * @param classStudentDTOXML
+	 * @return classStudentDTOXML
+	 */
+	@POST
+	@Path("/saveClassStudentDetails/")
+	@Produces("text/xml")
+	@Consumes("text/xml")
+	public String saveClassStudentDetails(String classStudentDTOXML);
 }

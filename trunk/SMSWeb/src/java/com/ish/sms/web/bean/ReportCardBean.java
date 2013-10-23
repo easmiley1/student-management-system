@@ -9,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 
 import com.ish.sms.service.dto.ClassDTO;
 import com.ish.sms.service.dto.ClassExamReferenceDataDTO;
+import com.ish.sms.service.dto.ClassStudentDTO;
 import com.ish.sms.service.dto.ReportCardDTO;
 import com.ish.sms.service.dto.StudentDTO;
 import com.ish.sms.web.util.WebConstants;
@@ -31,7 +32,22 @@ public class ReportCardBean extends BaseBean {
 	private StudentDTO selectedStudentDTO = new StudentDTO();
 	private List<ClassExamReferenceDataDTO> classExamReferenceDataDTOList = new ArrayList<ClassExamReferenceDataDTO>();
 	private List<ReportCardDTO> reportCardDTOList = new ArrayList<ReportCardDTO>();
+	private ClassStudentDTO classStudentDTO = new ClassStudentDTO();
 	
+	/**
+	 * @return the classStudentDTO
+	 */
+	public ClassStudentDTO getClassStudentDTO() {
+		return classStudentDTO;
+	}
+
+	/**
+	 * @param classStudentDTO the classStudentDTO to set
+	 */
+	public void setClassStudentDTO(ClassStudentDTO classStudentDTO) {
+		this.classStudentDTO = classStudentDTO;
+	}
+
 	/**
 	 * @return the reportCardDTOList
 	 */
