@@ -12,6 +12,7 @@ import com.ish.sms.service.dto.ClassDTO;
 import com.ish.sms.service.dto.ClassGradeDetailsDTO;
 import com.ish.sms.service.dto.ClassListDTO;
 import com.ish.sms.service.dto.ClassPromotionDTO;
+import com.ish.sms.service.dto.ClassStudentDTO;
 import com.ish.sms.service.dto.ClassSubjectReferenceDataDTO;
 import com.ish.sms.service.dto.GradeDetailsDTO;
 import com.ish.sms.service.dto.ReportCardListDTO;
@@ -20,6 +21,7 @@ import com.ish.sms.service.dto.StudentGradeDTO;
 import com.ish.sms.service.dto.StudentGradeListDTO;
 import com.ish.sms.service.entity.Class;
 import com.ish.sms.service.entity.ClassExamReferenceData;
+import com.ish.sms.service.entity.ClassStudent;
 import com.ish.sms.service.entity.ClassSubjectReferenceData;
 import com.ish.sms.service.entity.Student;
 import com.ish.sms.service.entity.StudentGrade;
@@ -97,7 +99,22 @@ public class ClassOperations extends BaseOperations {
 		classDTO = classOperationsUtil.convertClassEntityToDTO(classObj);
 		return classDTO;
 	}
-
+	
+	/**
+	 * Method to save class student details in the database
+	 * 
+	 * @param {@link ClassStudentDTO}
+	 * @return {@link ClassStudentDTO}
+	 * @throws Exception
+	 */
+	@Transactional
+	public ClassStudentDTO saveClassStudentDetails(ClassStudentDTO classStudentDTO) throws Exception {
+		ClassStudent classStudent = classOperationsUtil.convertClassStudentDTOToEntity(classStudentDTO);
+		classStudent = (ClassStudent) classOperationsDAO.createOrUpdateEntity(classStudent);
+		classStudentDTO = classOperationsUtil.convertClassStudentEntityToDTO(classStudent);
+		return classStudentDTO;
+	}
+	
 	/**
 	 * Method to retrieve the student grade details for a particular class id
 	 * 
@@ -135,7 +152,11 @@ public class ClassOperations extends BaseOperations {
 		queryParametersMap.put(STUDENT_ID, studentID);
 		List<StudentGrade> studentGradeList = (List<StudentGrade>) classOperationsDAO.retrieveResultListForQueryWithParameters(
 				FIND_CLASS_GRADE_DETAILS_FOR_STUDENT, queryParametersMap);
+		ClassStudent classStudent = (ClassStudent) classOperationsDAO.retrieveSingleResultForQueryWithParameters(FIND_CLASS_STUDENT_DETAILS,
+				ClassStudent.class, queryParametersMap);
+		ClassStudentDTO classStudentDTO = classOperationsUtil.convertClassStudentEntityToDTO(classStudent);
 		ReportCardListDTO reportCardListDTO = classOperationsUtil.convertStudentGradeListTODTO(studentGradeList);
+		reportCardListDTO.setClassStudentDTO(classStudentDTO);
 		return reportCardListDTO;
 
 	}

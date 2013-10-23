@@ -33,7 +33,6 @@ public class BaseCommonOperationsUtil {
 		ClassDTO currentClassDTO = new ClassDTO();
 		ReferenceDataDTO modeofTransportDTO = new ReferenceDataDTO();
 		ReferenceDataDTO extraCurricularDTO = new ReferenceDataDTO();
-
 		// Populate all the attributes in the above created DTO's
 		PropertyUtils.copyProperties(studentDTO, student);
 		PropertyUtils.copyProperties(stateDTO, student.getState());
@@ -72,7 +71,7 @@ public class BaseCommonOperationsUtil {
 		Class currentClass = new Class();
 		ReferenceData modeofTransport = new ReferenceData();
 		ReferenceData extraCurricular = new ReferenceData();
-
+		
 		// Populate all the attributes in the above created entities for persisting in database.
 		PropertyUtils.copyProperties(studentDTO, student);
 		PropertyUtils.copyProperties(state, studentDTO.getStateDTO());

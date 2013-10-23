@@ -54,7 +54,10 @@ public interface QueryConstants {
 	public static final String FIND_CLASS_GRADE_DETAILS_QUERY = "select sg from com.ish.sms.service.entity.StudentGrade sg where sg.classRef.id=:id and sg.classExamReferenceData.id=:examId";
 	public static final String FIND_CLASS_GRADE_DETAILS_FOR_STUDENT = "FIND_CLASS_GRADE_DETAILS_FOR_STUDENT";
 	public static final String FIND_CLASS_GRADE_DETAILS_FOR_STUDENT_QUERY = "select sg from com.ish.sms.service.entity.StudentGrade sg where sg.classRef.id=:id and sg.student.id=:studentid";
-
+	public static final String FIND_CLASS_STUDENT_DETAILS = "FIND_CLASS_STUDENT_DETAILS";
+	public static final String FIND_CLASS_STUDENT_DETAILS_QUERY = "select cs from com.ish.sms.service.entity.ClassStudent cs where cs.classObj.id=:id and cs.student.id=:studentid";
+	
+	
 	/*User Details related queries*/
 	public static final String FIND_ALL_ROLES_QUERY = "select ur from com.ish.sms.service.entity.UserRole ur";
 	public static final String FIND_ALL_ROLES = "FIND_ALL_ROLES";	

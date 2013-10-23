@@ -9,6 +9,7 @@ import org.apache.commons.beanutils.PropertyUtils;
 
 import com.ish.sms.service.dto.ClassDTO;
 import com.ish.sms.service.dto.ClassExamReferenceDataDTO;
+import com.ish.sms.service.dto.ClassStudentDTO;
 import com.ish.sms.service.dto.ClassSubjectReferenceDataDTO;
 import com.ish.sms.service.dto.ClassTimeTableDTO;
 import com.ish.sms.service.dto.ClassTimeTableListDTO;
@@ -25,9 +26,11 @@ import com.ish.sms.service.dto.StudentGradeListDTO;
 import com.ish.sms.service.dto.TeacherDTO;
 import com.ish.sms.service.entity.Class;
 import com.ish.sms.service.entity.ClassExamReferenceData;
+import com.ish.sms.service.entity.ClassStudent;
 import com.ish.sms.service.entity.ClassSubjectReferenceData;
 import com.ish.sms.service.entity.ClassTimeTable;
 import com.ish.sms.service.entity.ReferenceData;
+import com.ish.sms.service.entity.Student;
 import com.ish.sms.service.entity.StudentGrade;
 import com.ish.sms.service.entity.Teacher;
 
@@ -364,10 +367,10 @@ public class ClassOperationsUtil extends BaseCommonOperationsUtil {
 		ReportCardListDTO reportCardListDTO = new ReportCardListDTO();
 
 		for (StudentGrade studentGrade : studentGradeList) {
-			
+
 			ClassSubjectReferenceDataDTO classSubjectReferenceDataDTO = convertClassSubjectReferenceDataEntitytoDTO(studentGrade.getClassSubjectReferenceData());
 			ClassExamReferenceDataDTO classExamReferenceDataDTO = convertClassExamReferenceDataEntitytoDTO(studentGrade.getClassExamReferenceData());
-			
+
 			ReportCardDTO reportCardDTO = new ReportCardDTO();
 			reportCardDTO.setClassSubjectReferenceDataDTO(classSubjectReferenceDataDTO);
 			ReportCardDetailsMap<ClassExamReferenceDataDTO, ReportCardDetailsDTO> reportCardDetailsMap = new ReportCardDetailsMap<ClassExamReferenceDataDTO, ReportCardDetailsDTO>();
@@ -397,4 +400,43 @@ public class ClassOperationsUtil extends BaseCommonOperationsUtil {
 			studentGradeDTO.setGradeDetailsMap(new GradeDetailsMap<ClassSubjectReferenceDataDTO, GradeDetailsDTO>());
 		studentGradeDTO.getGradeDetailsMap().put(classSubjectReferenceDataDTO, gradeDetailsDTO);
 	}
+
+	/**
+	 * Method to convert ClassStudent to DTO
+	 * 
+	 * @param classStudent
+	 * @return classStudentDTO
+	 * @throws Exception
+	 */
+	public ClassStudentDTO convertClassStudentEntityToDTO(ClassStudent classStudent) throws Exception {
+
+		ClassStudentDTO classStudentDTO = new ClassStudentDTO();
+		StudentDTO studentDTO = convertStudentEntitytoDTO(classStudent.getStudent());
+		ClassDTO classDTO = convertClassEntityToDTO(classStudent.getClassObj());
+		PropertyUtils.copyProperties(classStudentDTO, classStudent);
+		classStudentDTO.setStudentDTO(studentDTO);
+		classStudentDTO.setClassDTO(classDTO);
+		return classStudentDTO;
+
+	}
+
+	/**
+	 * Method to convert ClassStudentDTO to Entity
+	 * 
+	 * @param classStudent
+	 * @return classStudentDTO
+	 * @throws Exception
+	 */
+	public ClassStudent convertClassStudentDTOToEntity(ClassStudentDTO classStudentDTO) throws Exception {
+
+		ClassStudent classStudent = new ClassStudent();
+		PropertyUtils.copyProperties(classStudent, classStudentDTO);
+		Class classObj = convertClassDTOToEntity(classStudentDTO.getClassDTO());
+		Student student = convertStudentDTOToEntity(classStudentDTO.getStudentDTO());
+		classStudent.setStudent(student);
+		classStudent.setClassObj(classObj);
+		return classStudent;
+
+	}
+
 }
