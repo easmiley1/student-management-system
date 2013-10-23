@@ -12,7 +12,7 @@
 						<p:growl id="reportCardGrowl" showDetail="true" sticky="false" />
     					
     					<p:panel header="Report Card" styleClass="dialogBodyPanel" id="reportCardPanel">
-    						<p:blockUI block="reportCardForm" trigger="generatePdfBtn,studentselectList" />    					
+    						<p:blockUI block="reportCardForm" trigger="generatePdfBtn,studentselectList,saveCommentsBtn" />    					
     									
 							<p:toolbar style="height:30px;" id="toolbarId">
 								<p:toolbarGroup align="left" >
@@ -21,7 +21,7 @@
 										converter="#{studentConverter}" value="#{reportCardBean.selectedStudentDTO}" ajaxSingle="true"  >
 										<f:selectItems value="#{reportCardBean.studentDTOList}" var="studentDTO" itemValue="#{studentDTO}"
 											itemLabel="#{studentDTO.firstName}"/>
-											<p:ajax listener="#{reportCardAction.changeStudent}" update="reportCardDataTableId" />
+											<p:ajax listener="#{reportCardAction.changeStudent}" update="reportCardDataTableId,comments" />
 									</p:selectOneMenu>
 									<p:spacer width="20" height="20" />									
  									<p:commandButton value="Generate PDF" id="generatePdfBtn" icon="ui-icon-disk" style="vertical-align:top;height:28px;"
@@ -45,7 +45,18 @@
 						             </h:outputText>  
        							</p:columns>
 							</p:dataTable>							
-							
+
+							<p:toolbar style="height:30px;" id="commentstoolbarId">
+								<p:toolbarGroup align="left" >
+									<h:outputText value="Comments:" styleClass="labelTextBigBold"/>
+								</p:toolbarGroup>		
+								<p:toolbarGroup align="right" >	
+									<p:commandButton value="Save Comments" id="saveCommentsBtn" icon="ui-icon-disk" style="vertical-align:top;height:28px;"
+ 										action="#{reportCardAction.saveClassStudentDetails}" update="reportCardGrowl" />	 									
+								</p:toolbarGroup>			
+							</p:toolbar>												
+							<p:inputTextarea id="comments" styleClass="commonInput"  style="width:100%;height:100px;resize:none;overflow:auto;" 
+									value="#{reportCardBean.classStudentDTO.comments}" ajaxSingle="true"/>
 						</p:panel>
 					</h:form>
 				</ui:define>

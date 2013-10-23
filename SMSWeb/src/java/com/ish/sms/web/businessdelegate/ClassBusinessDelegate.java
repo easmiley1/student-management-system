@@ -82,5 +82,14 @@ public class ClassBusinessDelegate extends BaseBusinessDelegate {
 	public String promoteClass(String classPromotionDTOXML) {
 		return smsServiceLocator.getSmsClassServiceInterface().promoteClass(classPromotionDTOXML);
 	}
+	/**
+	 * Method to save class student details.
+	 * 
+	 * @param classStudentDTOXML
+	 * @return classStudentDTOXML
+	 */
+	public String saveClassStudentDetails(String classStudentDTOXML) {
+		return smsServiceLocator.getSmsClassServiceInterface().saveClassStudentDetails(classStudentDTOXML);
+	}
 
 }

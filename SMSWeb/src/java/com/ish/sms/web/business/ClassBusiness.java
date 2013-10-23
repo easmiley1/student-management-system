@@ -1,14 +1,13 @@
 package com.ish.sms.web.business;
 
-import com.ish.sms.service.dto.ReportCardListDTO;
-
 import java.util.List;
 
 import com.ish.sms.service.dto.ClassDTO;
 import com.ish.sms.service.dto.ClassGradeDetailsDTO;
 import com.ish.sms.service.dto.ClassListDTO;
 import com.ish.sms.service.dto.ClassPromotionDTO;
-import com.ish.sms.service.dto.ReportCardDTO;
+import com.ish.sms.service.dto.ClassStudentDTO;
+import com.ish.sms.service.dto.ReportCardListDTO;
 import com.ish.sms.service.dto.StudentGradeDTO;
 import com.ish.sms.service.dto.StudentGradeListDTO;
 
@@ -82,10 +81,10 @@ public class ClassBusiness extends BaseBusiness {
 	 * @return studentGradeDTOList
 	 * @throws Exception
 	 */
-	public List<ReportCardDTO> retrieveClassGradeDetailsForStudent(Integer classId, Integer studentId) throws Exception {
+	public ReportCardListDTO retrieveClassGradeDetailsForStudent(Integer classId, Integer studentId) throws Exception {
 		String studentGradeListDTOXML = classBusinessDelegate.retrieveClassGradeDetailsForStudent(classId, studentId);
 		ReportCardListDTO reportCardListDTO = serviceTransformer.parseXml(studentGradeListDTOXML);
-		return reportCardListDTO.getReportCardDTOList();
+		return reportCardListDTO;
 	}
 
 	/**
@@ -116,5 +115,19 @@ public class ClassBusiness extends BaseBusiness {
 		ClassListDTO classListDTO = serviceTransformer.parseXml(classListDTOXML);
 		return classListDTO.getClassDTOList();
 	}
+	/**
+	 * Method to promote/demote students and also create new classes if required.
+	 * 
+	 * @param classPromotionDTO
+	 * @return promotionEligibleClassList
+	 * @throws Exception
+	 */
+	public ClassStudentDTO saveClassStudentDetails(ClassStudentDTO classStudentDTO) throws Exception {
 
+		String classStudentDTOXML = serviceTransformer.transformToXML(classStudentDTO, CLASS_STUDENT_DTO);
+		String classListDTOXML = classBusinessDelegate.saveClassStudentDetails(classStudentDTOXML);
+		classStudentDTO = serviceTransformer.parseXml(classListDTOXML);
+		return classStudentDTO;
+	}
+	
 }

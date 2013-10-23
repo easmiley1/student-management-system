@@ -19,6 +19,7 @@ public interface WebConstants {
 	public final static String TEACHER_DTO = "teacherDTO";
 	public final static String STUDENTLIST_DTO = "studentListDTO";
 	public final static String CLASS_PROMOTION_DTO = "classPromotionDTO";
+	public final static String CLASS_STUDENT_DTO = "classStudentDTO";
 	public final static String CLASS_DTO = "classDTO";
 	public final static String STUDENTGRADEDETAILS_DTO = "studentGradeListDTO";
 	public final static String CLASSGRADEDETAILS_DTO = "classGradeDetailsDTO";
@@ -93,6 +94,7 @@ public interface WebConstants {
 	public static final String STUDENT_SAVED_SUCCESSFULLY = "Student Succcessfully Saved";
 	public static final String TEACHER_SAVED_SUCCESSFULLY = "Teacher Succcessfully Saved";
 	public static final String CLASS_SAVED_SUCCESSFULLY = "Class Succcessfully Saved";
+	public static final String COMMENTS_SAVED_SUCCESSFULLY = "Comments Succcessfully Saved";
 	public static final String REGISTER_DEF_SAVED = "Register definition changes saved successfully";
 	public static final String REGISTER_SAVED = "Register changes saved successfully for : ";
 	public static final String GRADE_DETAILS_SAVED = "Grade Details saved successfully for exam : ";
@@ -108,4 +110,18 @@ public interface WebConstants {
 	public static final String SUBJECT_DETAIL_NOT_FOUND = "No subjects are associated to this class and hence create/modify grade details for this class ";
 	public static final String CLASS_PROMOTION = "Class Promoted Successfully";
 	public static final String CLASS_PROMOTION_DETAILS = "Class #fromClass is successfuly promoted to #toClass";
+
+	/* PDF Related Constants */
+	public static final String TIMES_NEW_ROMAN = "Times-Roman";
+	public static final String BLUE_COLOR = "#E1ECF5";
+	public static final String STUDENT = "Student : ";
+	public static final String CLASS = "Class : " ;
+	public static final String COMMENTS = "Comments:";
+	public static final String RESPONSE_HEADER_CONTENT = "Content-Disposition";
+	public static final String RESPONSE_HEADER_ATTACHEMENT =  "attachment; filename=\"";
+	public static final String PDF_EXTENSION = ".pdf";
+	public static final String NEW_LINE = " \n";
+	public static final String CONTENT_TYPE = "application/pdf";
+	public static final String SUBJECT = "Subject";
+	public static final String BLANK = " ";
 }
