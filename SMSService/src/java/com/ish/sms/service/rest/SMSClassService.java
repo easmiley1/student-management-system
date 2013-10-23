@@ -13,6 +13,7 @@ import com.ish.sms.service.dto.ClassDTO;
 import com.ish.sms.service.dto.ClassGradeDetailsDTO;
 import com.ish.sms.service.dto.ClassListDTO;
 import com.ish.sms.service.dto.ClassPromotionDTO;
+import com.ish.sms.service.dto.ClassStudentDTO;
 import com.ish.sms.service.dto.ReportCardListDTO;
 import com.ish.sms.service.dto.StudentGradeListDTO;
 
@@ -111,7 +112,7 @@ public class SMSClassService extends SMSBaseService {
 		}
 		return studentGradeListDTOXml;
 	}
-	
+
 	/**
 	 * Method to retrieve the student grade details for a particular class id, exam and student
 	 * 
@@ -126,13 +127,13 @@ public class SMSClassService extends SMSBaseService {
 
 		String reportCardListDTOXml = null;
 		try {
-			ReportCardListDTO reportCardListDTO = classOperations.retrieveClassGradeDetailsForStudent(classId,  studentId);
+			ReportCardListDTO reportCardListDTO = classOperations.retrieveClassGradeDetailsForStudent(classId, studentId);
 			reportCardListDTOXml = serviceTransformer.transformToXML(reportCardListDTO, "reportCardListDTO");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return reportCardListDTOXml;
-	}	
+	}
 
 	/**
 	 * Method to create or update a class grade details and return the persisted XML.
@@ -181,4 +182,27 @@ public class SMSClassService extends SMSBaseService {
 		}
 		return classListXML;
 	}
+
+	/**
+	 * Method to save class student details.
+	 * 
+	 * @param classStudentDTOXML
+	 * @return classStudentDTOXML
+	 */
+	@POST
+	@Path("/saveClassStudentDetails/")
+	@Produces("text/xml")
+	@Consumes("text/xml")
+	public String saveClassStudentDetails(String classStudentDTOXML) {
+
+		try {
+			ClassStudentDTO classStudentDTO = serviceTransformer.tryParseXml(classStudentDTOXML);
+			classStudentDTO = classOperations.saveClassStudentDetails(classStudentDTO);
+			classStudentDTOXML = serviceTransformer.transformToXML(classStudentDTO, "classStudentDTO");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return classStudentDTOXML;
+	}
+
 }

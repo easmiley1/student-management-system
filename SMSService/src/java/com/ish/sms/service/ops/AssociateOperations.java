@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ish.sms.service.dto.StudentDTO;
 import com.ish.sms.service.dto.StudentListDTO;
 import com.ish.sms.service.dto.TeacherDTO;
+import com.ish.sms.service.entity.ClassStudent;
 import com.ish.sms.service.entity.Student;
 import com.ish.sms.service.entity.Teacher;
 
@@ -34,6 +35,9 @@ public class AssociateOperations extends BaseOperations {
 
 		Student student = associateOperationsUtil.convertStudentDTOToEntity(studentDTO);
 		student = (Student) associateOperationsDAO.createOrUpdateEntity(student);
+		ClassStudent classStudent = new ClassStudent();
+		classStudent.setClassObj(student.getCurrentClass());
+		classStudent.setStudent(student);
 		PropertyUtils.copyProperties(studentDTO, student);
 		return studentDTO;
 	}
