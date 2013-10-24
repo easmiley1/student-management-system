@@ -17,7 +17,7 @@
 							<p:toolbar style="height:30px;" id="toolbarId">
 								<p:toolbarGroup align="left" >
 									<p:spacer width="20" height="20" />
-									<p:selectOneMenu id="studentselectList" styleClass="mySelectStyle"  
+									<p:selectOneMenu id="studentselectList" styleClass="mySelectStyle"  disabled="#{reportCardBean.readOnly}" 
 										converter="#{studentConverter}" value="#{reportCardBean.selectedStudentDTO}" ajaxSingle="true"  >
 										<f:selectItems value="#{reportCardBean.studentDTOList}" var="studentDTO" itemValue="#{studentDTO}"
 											itemLabel="#{studentDTO.firstName}"/>
@@ -46,17 +46,19 @@
        							</p:columns>
 							</p:dataTable>							
 
+							<p:spacer width="20" height="20" />
+							
 							<p:toolbar style="height:30px;" id="commentstoolbarId">
 								<p:toolbarGroup align="left" >
 									<h:outputText value="Comments:" styleClass="labelTextBigBold"/>
 								</p:toolbarGroup>		
 								<p:toolbarGroup align="right" >	
 									<p:commandButton value="Save Comments" id="saveCommentsBtn" icon="ui-icon-disk" style="vertical-align:top;height:28px;"
- 										action="#{reportCardAction.saveClassStudentDetails}" update="reportCardGrowl" />	 									
+ 										action="#{reportCardAction.saveClassStudentDetails}" update="reportCardGrowl" disabled="#{reportCardBean.readOnly}" />	 									
 								</p:toolbarGroup>			
 							</p:toolbar>												
-							<p:inputTextarea id="comments" styleClass="commonInput"  style="width:100%;height:100px;resize:none;overflow:auto;" 
-									value="#{reportCardBean.classStudentDTO.comments}" ajaxSingle="true"/>
+							<p:inputTextarea id="comments" styleClass="commonInput"  style="width:100%;height:130px;resize:none;overflow:auto;" 
+									value="#{reportCardBean.classStudentDTO.comments}" ajaxSingle="true" disabled="#{reportCardBean.readOnly}"/>
 						</p:panel>
 					</h:form>
 				</ui:define>

@@ -33,7 +33,22 @@ public class ReportCardBean extends BaseBean {
 	private List<ClassExamReferenceDataDTO> classExamReferenceDataDTOList = new ArrayList<ClassExamReferenceDataDTO>();
 	private List<ReportCardDTO> reportCardDTOList = new ArrayList<ReportCardDTO>();
 	private ClassStudentDTO classStudentDTO = new ClassStudentDTO();
+	private boolean readOnly;
 	
+	/**
+	 * @return the readOnly
+	 */
+	public boolean isReadOnly() {
+		return readOnly;
+	}
+
+	/**
+	 * @param readOnly the readOnly to set
+	 */
+	public void setReadOnly(boolean readOnly) {
+		this.readOnly = readOnly;
+	}
+
 	/**
 	 * @return the classStudentDTO
 	 */
@@ -121,6 +136,10 @@ public class ReportCardBean extends BaseBean {
 		this.selectedStudentDTO = selectedStudentDTO;
 	}
 
+	/**
+	 * @param classDTO
+	 * @return
+	 */
 	public boolean setClassDetails(ClassDTO classDTO) {
 
 		List<ClassExamReferenceDataDTO> classExamReferenceDataDTOList = classDTO.getClassExamReferenceDataDTOList();
@@ -134,4 +153,13 @@ public class ReportCardBean extends BaseBean {
 		return true;
 	}
 
+	/**
+	 * @param studentDTO
+	 */
+	public void setStudentDetails(StudentDTO studentDTO) {
+		List<StudentDTO> studentDTOList = new ArrayList<StudentDTO>();
+		studentDTOList.add(studentDTO);
+		setStudentDTOList(studentDTOList);
+		setSelectedStudentDTO(studentDTO);
+	}
 }

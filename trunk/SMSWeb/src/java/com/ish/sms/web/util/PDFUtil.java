@@ -64,13 +64,14 @@ public class PDFUtil implements WebConstants {
 		PdfPTable table = new PdfPTable(reportCardBean.getClassExamReferenceDataDTOList().size() + 1);
 		table.setWidthPercentage(100);
 
-		PdfPCell cell = new PdfPCell(new Phrase(SUBJECT));
+		PdfPCell cell = new PdfPCell(new Phrase(SUBJECT, fontbold));
 		cell.setBackgroundColor(blueBackgroundColor);
 		table.addCell(cell);
 		columnRelativeWidths[0] = 1.5f;
 
+		// set column headers
 		for (int i = 0; i < reportCardBean.getClassExamReferenceDataDTOList().size(); i++) {
-			cell = new PdfPCell(new Phrase(reportCardBean.getClassExamReferenceDataDTOList().get(i).getReferenceDataDTO().getName()));
+			cell = new PdfPCell(new Phrase(reportCardBean.getClassExamReferenceDataDTOList().get(i).getReferenceDataDTO().getName(), fontbold));
 			cell.setBackgroundColor(blueBackgroundColor);
 			table.addCell(cell);
 			columnRelativeWidths[i] = 1f;
@@ -78,7 +79,7 @@ public class PDFUtil implements WebConstants {
 		table.setWidths(columnRelativeWidths);
 
 		for (ReportCardDTO reportCardDTO : reportCardBean.getReportCardDTOList()) {
-			cell = new PdfPCell(new Phrase(reportCardDTO.getClassSubjectReferenceDataDTO().getReferenceDataDTO().getName()));
+			cell = new PdfPCell(new Phrase(reportCardDTO.getClassSubjectReferenceDataDTO().getReferenceDataDTO().getName(), fontbold));
 			cell.setBackgroundColor(blueBackgroundColor);
 			table.addCell(cell);
 			for (ClassExamReferenceDataDTO classExamReferenceDataDTO : reportCardBean.getClassExamReferenceDataDTOList()) {

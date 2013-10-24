@@ -64,13 +64,44 @@ public class ReportCardAction extends BaseAction {
 				reportCardBean.setReportCardDTOList(reportCardListDTO.getReportCardDTOList());
 				reportCardBean.setClassStudentDTO(reportCardListDTO.getClassStudentDTO());
 			}
-
+			reportCardBean.setReadOnly(false);
 		} catch (Exception e) {
 			e.printStackTrace();
 			WebUtils.registerErrorMessage();
 		}
 		return REPORT_CARD_PAGE;
 	}
+
+	/**
+	 * Method to populate the student list and populate the report card for the given student.
+	 * 
+	 * @param classId
+	 * @return reportCard.xhtml
+	 */
+	public String openReportCardRegisterForStudent(Integer studentId) {
+
+		try {
+			StudentDTO studentDTO = associateBusiness.retrieveStudentDetails(studentId);
+			reportCardBean.setStudentDetails(studentDTO);
+			ClassDTO classDTO = classBusiness.retrieveClassForId(studentDTO.getCurrentClassDTO().getId());
+			if (!reportCardBean.setClassDetails(classDTO)) {
+				return REPORT_CARD_PAGE;
+			} else {
+				setStudentDetails();
+				ReportCardListDTO reportCardListDTO = classBusiness.retrieveClassGradeDetailsForStudent(studentDTO.getCurrentClassDTO().getId(), reportCardBean
+						.getSelectedStudentDTO().getId());
+				reportCardBean.setReportCardDTOList(reportCardListDTO.getReportCardDTOList());
+				reportCardBean.setClassStudentDTO(reportCardListDTO.getClassStudentDTO());
+			}
+			reportCardBean.setReadOnly(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+			WebUtils.registerErrorMessage();
+		}
+		return REPORT_CARD_PAGE;
+	}
+
+	
 
 	/**
 	 * Method to listen the student change event and set the appropriate student report card.

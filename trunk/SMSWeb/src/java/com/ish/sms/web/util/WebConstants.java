@@ -119,7 +119,7 @@ public interface WebConstants {
 	public static final String COMMENTS = "Comments:";
 	public static final String RESPONSE_HEADER_CONTENT = "Content-Disposition";
 	public static final String RESPONSE_HEADER_ATTACHEMENT =  "attachment; filename=\"";
-	public static final String PDF_EXTENSION = ".pdf";
+	public static final String PDF_EXTENSION = "_Reportcard.pdf";
 	public static final String NEW_LINE = " \n";
 	public static final String CONTENT_TYPE = "application/pdf";
 	public static final String SUBJECT = "Subject";
