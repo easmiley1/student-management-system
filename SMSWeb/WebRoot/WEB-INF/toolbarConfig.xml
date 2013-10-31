@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+	
+	<context:annotation-config />
+
+	<bean id="smsSpringFactory" class="com.ish.sms.web.util.SMSSpringFactory"/>
+	<bean id="jbossCacheProvider" class="com.ish.sms.web.cache.JBossCacheProvider"/>
+	<bean id="serviceTransformer" class="com.ish.sms.web.service.ServiceTransformer" />
+
+	<!-- Web Business Operations beans declaration -->
+	<bean id="associateBusiness" class="com.ish.sms.web.business.AssociateBusiness"/>
+	<bean id="referenceBusiness" class="com.ish.sms.web.business.ReferenceBusiness"/>
+	<bean id="classBusiness" class="com.ish.sms.web.business.ClassBusiness"/>
+	<bean id="classAttendanceBusiness" class="com.ish.sms.web.business.ClassAttendanceBusiness"/>
+	<bean id="userBusiness" class="com.ish.sms.web.business.UserBusiness"/>
+	<bean id="reportBusiness" class="com.ish.sms.web.business.ReportBusiness" />
+	
+	<!--Business Delegate beans declaration -->
+	<bean id="associateBusinessDelegate" class="com.ish.sms.web.businessdelegate.AssociateBusinessDelegate" />
+	<bean id="referenceBusinessDelegate" class="com.ish.sms.web.businessdelegate.ReferenceBusinessDelegate" />
+	<bean id="classBusinessDelegate" class="com.ish.sms.web.businessdelegate.ClassBusinessDelegate" />
+	<bean id="classAttendanceBusinessDelegate" class="com.ish.sms.web.businessdelegate.ClassAttendanceBusinessDelegate" />
+	<bean id="userBusinessDelegate" class="com.ish.sms.web.businessdelegate.UserBusinessDelegate" />
+	<bean id="reportBusinessDelegate" class="com.ish.sms.web.businessdelegate.ReportBusinessDelegate" />
+
+	<bean id="smsServiceLocator" class="com.ish.sms.web.service.SMSServiceLocator">
+		<constructor-arg value="http://localhost:8080/SMSService/websvc/smsAssociateService" />
+		<constructor-arg value="http://localhost:8080/SMSService/websvc/smsReferenceService" />
+		<constructor-arg value="http://localhost:8080/SMSService/websvc/smsClassService" />
+		<constructor-arg value="http://localhost:8080/SMSService/websvc/smsClassAttendanceService" />
+		<constructor-arg value="http://localhost:8080/SMSService/websvc/smsUserService" />
+		<constructor-arg value="http://localhost:8080/SMSService/websvc/smsReportService" />		
+	</bean>	
+	
+ 	<bean id="referenceDataTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+	  	<property name="jobDetail" ref="referenceDataLoadJob"/>
+	  	<property name="startDelay" value="0"/>
+	  	<property name="repeatInterval" value="144000000"/>
+	</bean>	
+
+    <bean id="referenceDataLoadJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+	  <property name="targetObject" ref="referenceMetaDataScheduler"/>
+	  <property name="targetMethod" value="loadReferenceData"/>	  
+	  <property name="concurrent" value="false"/>
+	</bean>
+	
+	<bean id="referenceMetaDataScheduler" class="com.ish.sms.web.scheduler.ReferenceMetaDataScheduler">	
+		<property name="jbossCacheProvider" ref="jbossCacheProvider" />
+	</bean>
+	
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+	  <property name="triggers">
+	    <list>
+	       <ref bean="referenceDataTrigger"/>
+	    </list>
+	  </property>
+	</bean>	
+		
+</beans>
+
+
