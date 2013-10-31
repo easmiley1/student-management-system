@@ -79,7 +79,9 @@
 			<xs:element name="userRoleDTO" type="userRoleDTO" />
 			<xs:element name="name" type="xs:string"/>
 			<xs:element name="password" type="xs:string" />
-			<xs:element name="classListDTO" type="classListDTO" />
+			<xs:element name="classListDTO" type="classListDTO" minOccurs="0"  />
+			<xs:element name="studentListDTO" type="studentListDTO" minOccurs="0" 	/>
+			
 		</xs:sequence>
 	</xs:complexType>
 	<!-- dto definitions corresponding to user definitions  - end-->
