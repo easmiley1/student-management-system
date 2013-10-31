@@ -20,7 +20,9 @@ public interface QueryConstants {
 	public static final String FIND_ALL_STUDENTS_BY_CLASS_QUERY = "select st from com.ish.sms.service.entity.Student st where st.currentClass.id =:id";
 	public static final String FIND_ALL_STUDENTS_BY_CLASS_LIST = "FIND_ALL_STUDENTS_BY_CLASS_LIST";
 	public static final String FIND_ALL_STUDENTS_BY_CLASS_LIST_QUERY = "select st from com.ish.sms.service.entity.Student st where st.currentClass.id in :idList";
-
+	public static final String FIND_ALL_STUDENTS_FOR_ID_LIST = "FIND_ALL_STUDENTS_FOR_ID_LIST";
+	public static final String FIND_ALL_STUDENTS_FOR_ID_LIST_QUERY = "select st from com.ish.sms.service.entity.Student st where st.id in :idList";
+	
 	/* Reference Data Operations related queries*/
 	public static final String FIND_ALL_REFERENCE_DATA = "FIND_ALL_REFERENCE_DATA";
 	public static final String FIND_ALL_REFERENCE_DATA_QUERY = "select ref from com.ish.sms.service.entity.ReferenceData ref";

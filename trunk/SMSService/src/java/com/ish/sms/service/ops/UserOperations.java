@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ish.sms.service.dto.ClassListDTO;
+import com.ish.sms.service.dto.StudentListDTO;
 import com.ish.sms.service.dto.UserDetailsDTO;
 import com.ish.sms.service.entity.User;
 
@@ -32,7 +33,9 @@ public class UserOperations extends BaseOperations {
 		queryParametersMap.put(NAME, name);
 		User user = (User) userOperationsDAO.retrieveSingleResultForQueryWithParameters(FIND_USER_FOR_NAME, User.class, queryParametersMap);
 		UserDetailsDTO userDetailsDTO = userOperationsUtil.convertUserEntitytoDTO(user);
-		if (user.getUserRole().getRoleName().equals(ROLE_NAME.TEACHER_ROLE.name())) {
+		
+		if (user.getUserRole().getRoleName().equals(ROLE_NAME.TEACHER_ROLE.name()) || user.getUserRole().getRoleName().equals(ROLE_NAME.OFFICE_ROLE.name())
+				|| user.getUserRole().getRoleName().equals(ROLE_NAME.ADMIN_ROLE.name())) {
 
 			String[] classIdArray = user.getAssociateAccess().split(SEMI_COLON);
 			List<Integer> classIdList = new ArrayList<Integer>();
@@ -41,6 +44,16 @@ public class UserOperations extends BaseOperations {
 			}
 			ClassListDTO classListDTO = retrieveClassesForIdList(classIdList);
 			userDetailsDTO.setClassListDTO(classListDTO);
+		} else if (user.getUserRole().getRoleName().equals(ROLE_NAME.PARENT_ROLE.name())){
+			
+			String[] studentIdArray = user.getAssociateAccess().split(SEMI_COLON);
+			List<Integer> studentIdList = new ArrayList<Integer>();
+			for (String studentStr : studentIdArray) {
+				studentIdList.add(new Integer(studentStr));
+			}
+			StudentListDTO studentListDTO = retrieveStudentForIdList(studentIdList);
+			userDetailsDTO.setStudentListDTO(studentListDTO);
+			
 		}
 
 		return userDetailsDTO;

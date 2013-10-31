@@ -78,23 +78,6 @@ public class AssociateOperations extends BaseOperations {
 	}
 
 	/**
-	 * Method to return the student details for the given id.
-	 * 
-	 * @param studentId
-	 * @return studentDTO
-	 * @throws Exception
-	 */
-	@Transactional(readOnly = true)
-	public StudentDTO retrieveStudentDetails(Integer studentId) throws Exception {
-
-		Map<String, Object> queryParametersMap = new HashMap<String, Object>();
-		queryParametersMap.put(ID, studentId);
-		Student student = (Student) associateOperationsDAO.retrieveSingleResultForQueryWithParameters(FIND_STUDENT, Student.class, queryParametersMap);
-		StudentDTO studentDTO = associateOperationsUtil.convertStudentEntitytoDTO(student);
-		return studentDTO;
-	}
-
-	/**
 	 * Method to return the list of all the students for the given classIds.
 	 * 
 	 * @return studentList
