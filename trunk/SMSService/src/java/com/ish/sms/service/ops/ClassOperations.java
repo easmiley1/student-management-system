@@ -14,6 +14,7 @@ import com.ish.sms.service.dto.ClassListDTO;
 import com.ish.sms.service.dto.ClassPromotionDTO;
 import com.ish.sms.service.dto.ClassStudentDTO;
 import com.ish.sms.service.dto.ClassSubjectReferenceDataDTO;
+import com.ish.sms.service.dto.ClassTimeTableListDTO;
 import com.ish.sms.service.dto.GradeDetailsDTO;
 import com.ish.sms.service.dto.ReportCardListDTO;
 import com.ish.sms.service.dto.StudentDTO;
@@ -23,6 +24,7 @@ import com.ish.sms.service.entity.Class;
 import com.ish.sms.service.entity.ClassExamReferenceData;
 import com.ish.sms.service.entity.ClassStudent;
 import com.ish.sms.service.entity.ClassSubjectReferenceData;
+import com.ish.sms.service.entity.ClassTimeTable;
 import com.ish.sms.service.entity.Student;
 import com.ish.sms.service.entity.StudentGrade;
 import com.ish.sms.service.entity.User;
@@ -113,6 +115,25 @@ public class ClassOperations extends BaseOperations {
 		classStudent = (ClassStudent) classOperationsDAO.createOrUpdateEntity(classStudent);
 		classStudentDTO = classOperationsUtil.convertClassStudentEntityToDTO(classStudent);
 		return classStudentDTO;
+	}
+	
+
+	/**
+	 * Method to return the timetable for a particular teacher
+	 * 
+	 * @param teacherId
+	 * @return classTimetableListDTO
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	public ClassTimeTableListDTO retrieveTimetableforTeacher(Integer teacherId) throws Exception {
+		
+		Map<String, Object> queryParametersMap = new HashMap<String, Object>();
+		queryParametersMap.put(TEACHER_ID, teacherId);
+		List<ClassTimeTable> classTimeTableList = (List<ClassTimeTable>) classOperationsDAO.retrieveResultListForQueryWithParameters(
+				FIND_CLASS_TIME_TABLE_FOR_TEACHER, queryParametersMap);
+		ClassTimeTableListDTO classTimeTableListDTO = classOperationsUtil.convertClassTimeTableListEntitytoDTO(classTimeTableList);
+		return classTimeTableListDTO;
 	}
 	
 	/**

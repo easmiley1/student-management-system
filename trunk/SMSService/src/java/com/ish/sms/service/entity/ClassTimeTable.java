@@ -21,7 +21,8 @@ import com.ish.sms.service.util.QueryConstants;
  * @author Naren
  * 
  */
-@NamedQueries({ @NamedQuery(name = QueryConstants.FIND_CLASS_TIME_TABLE, query = QueryConstants.FIND_CLASS_TIME_TABLE_QUERY) })
+@NamedQueries({ @NamedQuery(name = QueryConstants.FIND_CLASS_TIME_TABLE, query = QueryConstants.FIND_CLASS_TIME_TABLE_QUERY),
+		@NamedQuery(name = QueryConstants.FIND_CLASS_TIME_TABLE_FOR_TEACHER, query = QueryConstants.FIND_CLASS_TIME_TABLE_FOR_TEACHER_QUERY) })
 @Entity
 @Table(name = "class_time_table")
 public class ClassTimeTable implements Serializable {
@@ -50,10 +51,10 @@ public class ClassTimeTable implements Serializable {
 
 	@Column(name = "class_end_time")
 	private String endTime;
-	
-	@Column(name="period_seq")
+
+	@Column(name = "period_seq")
 	private String periodName;
-	
+
 	/**
 	 * @return the classSubjectReferenceData
 	 */
@@ -62,7 +63,8 @@ public class ClassTimeTable implements Serializable {
 	}
 
 	/**
-	 * @param classSubjectReferenceData the classSubjectReferenceData to set
+	 * @param classSubjectReferenceData
+	 *            the classSubjectReferenceData to set
 	 */
 	public void setClassSubjectReferenceData(ClassSubjectReferenceData classSubjectReferenceData) {
 		this.classSubjectReferenceData = classSubjectReferenceData;
@@ -76,7 +78,8 @@ public class ClassTimeTable implements Serializable {
 	}
 
 	/**
-	 * @param periodName the periodName to set
+	 * @param periodName
+	 *            the periodName to set
 	 */
 	public void setPeriodName(String periodName) {
 		this.periodName = periodName;
