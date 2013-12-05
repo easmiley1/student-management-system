@@ -14,6 +14,7 @@ import com.ish.sms.service.dto.ClassGradeDetailsDTO;
 import com.ish.sms.service.dto.ClassListDTO;
 import com.ish.sms.service.dto.ClassPromotionDTO;
 import com.ish.sms.service.dto.ClassStudentDTO;
+import com.ish.sms.service.dto.ClassTimeTableListDTO;
 import com.ish.sms.service.dto.ReportCardListDTO;
 import com.ish.sms.service.dto.StudentGradeListDTO;
 
@@ -111,6 +112,27 @@ public class SMSClassService extends SMSBaseService {
 			e.printStackTrace();
 		}
 		return studentGradeListDTOXml;
+	}
+
+	/**
+	 * Method to return the timetable for a particular teacher
+	 * 
+	 * @param teacherId
+	 * @return classTimetableXml
+	 */
+	@GET
+	@Path("/retrieveTimetableforTeacher/{teacherId}")
+	@Produces("text/xml")
+	public String retrieveTimetableforTeacher(@PathParam("teacherId") Integer teacherId) {
+
+		String classTimeTableListDTOXml = null;
+		try {
+			ClassTimeTableListDTO classTimeTableListDTO = classOperations.retrieveTimetableforTeacher(teacherId);
+			classTimeTableListDTOXml = serviceTransformer.transformToXML(classTimeTableListDTO, "classTimeTableListDTO");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return classTimeTableListDTOXml;
 	}
 
 	/**

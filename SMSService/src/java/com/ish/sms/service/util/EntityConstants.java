@@ -18,6 +18,7 @@ public interface EntityConstants {
 	public static final String CLASS_ID = "classid";
 	public static final String ACTIVE = "active";
 	public static final String INACTIVE = "inactive"; 
+	public static final String TEACHER_ID = "teacherid";
 	
 
 	public static enum CLASS_DEF_MODIFICATION {

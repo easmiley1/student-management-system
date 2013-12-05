@@ -161,4 +161,21 @@ public class BaseOperations implements QueryConstants, EntityConstants {
 		StudentDTO studentDTO = associateOperationsUtil.convertStudentEntitytoDTO(student);
 		return studentDTO;
 	}
+
+	/**
+	 * Method to return the teacher details for the given id.
+	 * 
+	 * @param teacherId
+	 * @return teacherDTO
+	 * @throws Exception
+	 */
+	@Transactional(readOnly = true)
+	public TeacherDTO retrieveTeacherDetails(Integer teacherId) throws Exception {
+
+		Map<String, Object> queryParametersMap = new HashMap<String, Object>();
+		queryParametersMap.put(ID, teacherId);
+		Teacher teacher = (Teacher) associateOperationsDAO.retrieveSingleResultForQueryWithParameters(FIND_TEACHER, Teacher.class, queryParametersMap);
+		TeacherDTO teacherDTO = associateOperationsUtil.convertTeacherEntityToDTO(teacher);
+		return teacherDTO;
+	}
 }

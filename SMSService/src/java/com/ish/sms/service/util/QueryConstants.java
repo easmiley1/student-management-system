@@ -14,6 +14,8 @@ public interface QueryConstants {
 	public static final String FIND_ALL_STUDENTS_QUERY = "select st from com.ish.sms.service.entity.Student st";
 	public static final String FIND_STUDENT = "FIND_STUDENT";
 	public static final String FIND_STUDENT_QUERY = "select st from com.ish.sms.service.entity.Student st where st.id=:id";
+	public static final String FIND_TEACHER = "FIND_TEACHER";
+	public static final String FIND_TEACHER_QUERY = "select tr from com.ish.sms.service.entity.Teacher tr where tr.id=:id";
 	public static final String FIND_ALL_TEACHERS = "FIND_ALL_TEACHERS";
 	public static final String FIND_ALL_TEACHERS_QUERY = "select teacher from com.ish.sms.service.entity.Teacher teacher";
 	public static final String FIND_ALL_STUDENTS_BY_CLASS = "FIND_ALL_STUDENTS_BY_CLASS";
@@ -52,6 +54,8 @@ public interface QueryConstants {
 	public static final String FIND_ASSOCIATE_ATTENDANCE_DATA_QUERY = "select aa from com.ish.sms.service.entity.AssociateAttendance aa where aa.classAttendanceDef.id=:id";
 	public static final String FIND_CLASS_TIME_TABLE = "FIND_CLASS_TIME_TABLE";
 	public static final String FIND_CLASS_TIME_TABLE_QUERY = "select ctt from com.ish.sms.service.entity.ClassTimeTable ctt where ctt.classRef.id=:id";
+	public static final String FIND_CLASS_TIME_TABLE_FOR_TEACHER = "FIND_CLASS_TIME_TABLE_FOR_TEACHER";
+	public static final String FIND_CLASS_TIME_TABLE_FOR_TEACHER_QUERY = "select ctt from com.ish.sms.service.entity.ClassTimeTable ctt where ctt.classSubjectReferenceData.teacherRef.id=:teacherid";
 	public static final String FIND_CLASS_GRADE_DETAILS = "FIND_CLASS_GRADE_DETAILS";
 	public static final String FIND_CLASS_GRADE_DETAILS_QUERY = "select sg from com.ish.sms.service.entity.StudentGrade sg where sg.classRef.id=:id and sg.classExamReferenceData.id=:examId";
 	public static final String FIND_CLASS_GRADE_DETAILS_FOR_STUDENT = "FIND_CLASS_GRADE_DETAILS_FOR_STUDENT";

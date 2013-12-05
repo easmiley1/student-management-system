@@ -19,12 +19,14 @@ import com.ish.sms.service.util.QueryConstants;
  * @author Naren
  * 
  */
-@NamedQueries({ @NamedQuery(name = QueryConstants.FIND_ALL_TEACHERS, query = QueryConstants.FIND_ALL_TEACHERS_QUERY) })
+@NamedQueries({ @NamedQuery(name = QueryConstants.FIND_ALL_TEACHERS, query = QueryConstants.FIND_ALL_TEACHERS_QUERY),
+		@NamedQuery(name = QueryConstants.FIND_TEACHER, query = QueryConstants.FIND_TEACHER_QUERY) })
 @Entity
 @Table(name = "Teacher_Details")
 public class Teacher {
 
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "teacher_id")
 	private Integer id;
 	@Column(nullable = false, name = "first_name")
@@ -38,7 +40,7 @@ public class Teacher {
 	@Column(nullable = false, name = "address")
 	private String address;
 	@ManyToOne
-	@JoinColumn( name = "state")
+	@JoinColumn(name = "state")
 	private ReferenceData state;
 	@Column(nullable = false, name = "city")
 	private String city;
@@ -53,7 +55,7 @@ public class Teacher {
 	@Column(nullable = true, name = "other_contact_info")
 	private String otherContactInfo;
 	@ManyToOne
-	@JoinColumn( name = "blood_group")
+	@JoinColumn(name = "blood_group")
 	private ReferenceData bloodGroup;
 	@Column(nullable = false, name = "date_of_joining")
 	private String dateofJoining;
@@ -71,266 +73,332 @@ public class Teacher {
 	private String education;
 	@Column(nullable = true, name = "experience")
 	private Integer experience;
+
 	/**
 	 * @return the id
 	 */
 	public Integer getId() {
 		return id;
 	}
+
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	/**
 	 * @return the firstName
 	 */
 	public String getFirstName() {
 		return firstName;
 	}
+
 	/**
-	 * @param firstName the firstName to set
+	 * @param firstName
+	 *            the firstName to set
 	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+
 	/**
 	 * @return the fatherName
 	 */
 	public String getFatherName() {
 		return fatherName;
 	}
+
 	/**
-	 * @param fatherName the fatherName to set
+	 * @param fatherName
+	 *            the fatherName to set
 	 */
 	public void setFatherName(String fatherName) {
 		this.fatherName = fatherName;
 	}
+
 	/**
 	 * @return the motherName
 	 */
 	public String getMotherName() {
 		return motherName;
 	}
+
 	/**
-	 * @param motherName the motherName to set
+	 * @param motherName
+	 *            the motherName to set
 	 */
 	public void setMotherName(String motherName) {
 		this.motherName = motherName;
 	}
+
 	/**
 	 * @return the gender
 	 */
 	public String getGender() {
 		return gender;
 	}
+
 	/**
-	 * @param gender the gender to set
+	 * @param gender
+	 *            the gender to set
 	 */
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+
 	/**
 	 * @return the address
 	 */
 	public String getAddress() {
 		return address;
 	}
+
 	/**
-	 * @param address the address to set
+	 * @param address
+	 *            the address to set
 	 */
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	/**
 	 * @return the state
 	 */
 	public ReferenceData getState() {
 		return state;
 	}
+
 	/**
-	 * @param state the state to set
+	 * @param state
+	 *            the state to set
 	 */
 	public void setState(ReferenceData state) {
 		this.state = state;
 	}
+
 	/**
 	 * @return the city
 	 */
 	public String getCity() {
 		return city;
 	}
+
 	/**
-	 * @param city the city to set
+	 * @param city
+	 *            the city to set
 	 */
 	public void setCity(String city) {
 		this.city = city;
 	}
+
 	/**
 	 * @return the zipCode
 	 */
 	public int getZipCode() {
 		return zipCode;
 	}
+
 	/**
-	 * @param zipCode the zipCode to set
+	 * @param zipCode
+	 *            the zipCode to set
 	 */
 	public void setZipCode(int zipCode) {
 		this.zipCode = zipCode;
 	}
+
 	/**
 	 * @return the contactNo
 	 */
 	public int getContactNo() {
 		return contactNo;
 	}
+
 	/**
-	 * @param contactNo the contactNo to set
+	 * @param contactNo
+	 *            the contactNo to set
 	 */
 	public void setContactNo(int contactNo) {
 		this.contactNo = contactNo;
 	}
+
 	/**
 	 * @return the contactEmail
 	 */
 	public String getContactEmail() {
 		return contactEmail;
 	}
+
 	/**
-	 * @param contactEmail the contactEmail to set
+	 * @param contactEmail
+	 *            the contactEmail to set
 	 */
 	public void setContactEmail(String contactEmail) {
 		this.contactEmail = contactEmail;
 	}
+
 	/**
 	 * @return the emergencyContactNo
 	 */
 	public int getEmergencyContactNo() {
 		return emergencyContactNo;
 	}
+
 	/**
-	 * @param emergencyContactNo the emergencyContactNo to set
+	 * @param emergencyContactNo
+	 *            the emergencyContactNo to set
 	 */
 	public void setEmergencyContactNo(int emergencyContactNo) {
 		this.emergencyContactNo = emergencyContactNo;
 	}
+
 	/**
 	 * @return the otherContactInfo
 	 */
 	public String getOtherContactInfo() {
 		return otherContactInfo;
 	}
+
 	/**
-	 * @param otherContactInfo the otherContactInfo to set
+	 * @param otherContactInfo
+	 *            the otherContactInfo to set
 	 */
 	public void setOtherContactInfo(String otherContactInfo) {
 		this.otherContactInfo = otherContactInfo;
 	}
+
 	/**
 	 * @return the bloodGroup
 	 */
 	public ReferenceData getBloodGroup() {
 		return bloodGroup;
 	}
+
 	/**
-	 * @param bloodGroup the bloodGroup to set
+	 * @param bloodGroup
+	 *            the bloodGroup to set
 	 */
 	public void setBloodGroup(ReferenceData bloodGroup) {
 		this.bloodGroup = bloodGroup;
 	}
+
 	/**
 	 * @return the dateofJoining
 	 */
 	public String getDateofJoining() {
 		return dateofJoining;
 	}
+
 	/**
-	 * @param dateofJoining the dateofJoining to set
+	 * @param dateofJoining
+	 *            the dateofJoining to set
 	 */
 	public void setDateofJoining(String dateofJoining) {
 		this.dateofJoining = dateofJoining;
 	}
+
 	/**
 	 * @return the comments
 	 */
 	public String getComments() {
 		return comments;
 	}
+
 	/**
-	 * @param comments the comments to set
+	 * @param comments
+	 *            the comments to set
 	 */
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
+
 	/**
 	 * @return the previousSchool
 	 */
 	public String getPreviousSchool() {
 		return previousSchool;
 	}
+
 	/**
-	 * @param previousSchool the previousSchool to set
+	 * @param previousSchool
+	 *            the previousSchool to set
 	 */
 	public void setPreviousSchool(String previousSchool) {
 		this.previousSchool = previousSchool;
 	}
+
 	/**
 	 * @return the age
 	 */
 	public Integer getAge() {
 		return age;
 	}
+
 	/**
-	 * @param age the age to set
+	 * @param age
+	 *            the age to set
 	 */
 	public void setAge(Integer age) {
 		this.age = age;
 	}
+
 	/**
 	 * @return the dateofBirth
 	 */
 	public String getDateofBirth() {
 		return dateofBirth;
 	}
+
 	/**
-	 * @param dateofBirth the dateofBirth to set
+	 * @param dateofBirth
+	 *            the dateofBirth to set
 	 */
 	public void setDateofBirth(String dateofBirth) {
 		this.dateofBirth = dateofBirth;
 	}
+
 	/**
 	 * @return the previousOccupation
 	 */
 	public String getPreviousOccupation() {
 		return previousOccupation;
 	}
+
 	/**
-	 * @param previousOccupation the previousOccupation to set
+	 * @param previousOccupation
+	 *            the previousOccupation to set
 	 */
 	public void setPreviousOccupation(String previousOccupation) {
 		this.previousOccupation = previousOccupation;
 	}
+
 	/**
 	 * @return the education
 	 */
 	public String getEducation() {
 		return education;
 	}
+
 	/**
-	 * @param education the education to set
+	 * @param education
+	 *            the education to set
 	 */
 	public void setEducation(String education) {
 		this.education = education;
 	}
+
 	/**
 	 * @return the experience
 	 */
 	public Integer getExperience() {
 		return experience;
 	}
+
 	/**
-	 * @param experience the experience to set
+	 * @param experience
+	 *            the experience to set
 	 */
 	public void setExperience(Integer experience) {
 		this.experience = experience;

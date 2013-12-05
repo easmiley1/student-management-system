@@ -43,6 +43,23 @@ public class User {
 	@Column(name = "associate_access")
 	private String associateAccess;
 
+	@Column(name="user_associate_id")
+	private String associateId;
+	
+	/**
+	 * @return the associateId
+	 */
+	public String getAssociateId() {
+		return associateId;
+	}
+
+	/**
+	 * @param associateId the associateId to set
+	 */
+	public void setAssociateId(String associateId) {
+		this.associateId = associateId;
+	}
+
 	/**
 	 * @return the id
 	 */
