@@ -1,7 +1,6 @@
 package com.ish.sms.web.businessdelegate;
 
 
-
 /**
  * Class Business Delegate which is used to lookup the class rest service and call the same.
  * 
@@ -82,6 +81,7 @@ public class ClassBusinessDelegate extends BaseBusinessDelegate {
 	public String promoteClass(String classPromotionDTOXML) {
 		return smsServiceLocator.getSmsClassServiceInterface().promoteClass(classPromotionDTOXML);
 	}
+
 	/**
 	 * Method to save class student details.
 	 * 
@@ -92,4 +92,13 @@ public class ClassBusinessDelegate extends BaseBusinessDelegate {
 		return smsServiceLocator.getSmsClassServiceInterface().saveClassStudentDetails(classStudentDTOXML);
 	}
 
+	/**
+	 * Method to return the timetable for a particular teacher
+	 * 
+	 * @param teacherId
+	 * @return classTimetableXml
+	 */
+	public String retrieveTimetableforTeacherInteger(Integer teacherId) {
+		return smsServiceLocator.getSmsClassServiceInterface().retrieveTimetableforTeacher(teacherId);
+	}
 }

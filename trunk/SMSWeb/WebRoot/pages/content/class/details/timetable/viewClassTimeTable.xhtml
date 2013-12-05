@@ -27,19 +27,15 @@
 											 <h:outputText value="#{timeTable.periodName}" />
 										</p:column>										
 										<p:column headerText="Subject" style="width:150px">
-											<p:selectOneMenu id="subjectName"  styleClass="mySelectStyle" converter="classDetailsReferenceDataConverter" 
-											value="#{timeTable.classSubjectReferenceDataDTO}" ajaxSingle="true"  >
-												<f:selectItems value="#{classBean.selectedClassSubjectReferenceDataDTOList}" var="subjectDTO" 
-												itemValue="#{subjectDTO}" itemLabel="#{subjectDTO.referenceDataDTO.name}"/>
-											</p:selectOneMenu>			
+											 <h:outputText value="#{timeTable.classSubjectReferenceDataDTO.referenceDataDTO.name}"/>	
 										</p:column>
 										<p:column headerText="Start Time" style="width:220px" ajaxSingle="true">
 											<p:calendar value="#{timeTable.startTime}" id="startTime" pattern="HH:mm" timeOnly="true" 
-											converter="TimeConverter" />
+											converter="TimeConverter" disabled="true"/>
 										</p:column>
 										<p:column headerText="End Time" style="width:220px">
 											<p:calendar value="#{timeTable.endTime}"  id= "endTime" pattern="HH:mm" timeOnly="true" ajaxSingle="true"
-											converter="TimeConverter" />
+											converter="TimeConverter" disabled="true"/>
 										</p:column>
 									</p:dataTable>
 								</p:panel>	
