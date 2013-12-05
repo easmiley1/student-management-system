@@ -11,6 +11,7 @@ import org.primefaces.event.FlowEvent;
 import org.primefaces.model.DualListModel;
 
 import com.ish.sms.service.dto.ClassDTO;
+import com.ish.sms.service.dto.ClassTimeTableListDTO;
 import com.ish.sms.service.dto.ReferenceDataDTO;
 import com.ish.sms.web.bean.ClassBean;
 import com.ish.sms.web.bean.UserBean;
@@ -104,12 +105,55 @@ public class ClassAction extends BaseAction {
 	}
 
 	/**
+	 * Open the classTime table for a given teacher
+	 * 
+	 * @param teacherId
+	 * @return saveClassTimeTable.xhtml
+	 */
+	public String openClassTimeTableForTeacher(Integer teacherId) {
+
+		try {
+			ClassTimeTableListDTO classTimeTableListDTO = classBusiness.retrieveTimetableforTeacherInteger(teacherId);
+			classBean.getClassDTO().setClassTimeTableDTOList(classTimeTableListDTO.getClassTimeTableDTOList());
+			if (classTimeTableListDTO.getClassTimeTableDTOList() != null && classTimeTableListDTO.getClassTimeTableDTOList().size() > 0) {
+				classBean.populateTimeTableGrid();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			WebUtils.registerErrorMessage();
+		}
+		return VIEW_CLASS_TIME_TABLE;
+	}
+
+	/**
 	 * Get the details of the selected class to be displayed and modified and populate the timetable grid
 	 * 
 	 * @param classId
-	 * @return saveClassDetails.xhtml
+	 * @return saveClassTimeTable.xhtml
 	 */
-	public String openClassTimeTable(Integer classId) {
+	public String openClassTimeTableForClass(Integer classId) {
+		retrieveTimeTable(classId);
+		return MODIFY_CLASS_TIME_TABLE;
+
+	}
+
+	/**
+	 * Get the details of the selected class to be displayed and modified and populate the timetable grid
+	 * 
+	 * @param classId
+	 * @return saveClassTimeTable.xhtml
+	 */
+	public String openClassTimeTableForStudent(Integer classId) {
+		retrieveTimeTable(classId);
+		return VIEW_CLASS_TIME_TABLE;
+
+	}
+
+	/**
+	 * @param classId
+	 * @return
+	 */
+	private void retrieveTimeTable(Integer classId) {
 		try {
 			ClassDTO classDTO = classBusiness.retrieveClassForId(classId);
 			classBean.setClassDTO(classDTO);
@@ -123,7 +167,6 @@ public class ClassAction extends BaseAction {
 			e.printStackTrace();
 			WebUtils.registerErrorMessage();
 		}
-		return MODIFY_CLASS_TIME_TABLE;
 	}
 
 	/**

@@ -40,6 +40,7 @@ public interface WebConstants {
 	public final static String MODIFY_CLASS_LIST_PAGE = "/pages/content/class/details/search/modifyClassDetailsGridPage.xhtml";
 	public final static String REPORT_CARD_PAGE = "/pages/content/class/reportcard/reportCard.xhtml";
 	public final static String MODIFY_CLASS_TIME_TABLE = "/pages/content/class/details/timetable/saveClassTimeTable.xhtml";
+	public final static String VIEW_CLASS_TIME_TABLE = "/pages/content/class/details/timetable/viewClassTimeTable.xhtml";
 	public final static String ATTENDANCE_REPORT_PAGE = "/pages/content/reports/student/attendanceReport.xhtml";
 	public final static String CLASS_PROMOTION_PAGE = "/pages/content/class/promotion/classPromotionPage.xhtml";
 
@@ -87,8 +88,8 @@ public interface WebConstants {
 	public static final String STUDENT_CONVERTER = "studentConverter";
 
 	/* Message related constants */
-	public static final String SAVE_FAILED = "Save Failed @ ";
-	public static final String CONTACT_TECHNICAL_TEAM = "Server Error. Please contact Technical Support";
+	public static final String SYSTEM_ERROR = "System Error @ ";
+	public static final String CONTACT_TECHNICAL_TEAM = "Please contact Technical Support";
 	public static final String SAVE_SUCCESSFULL = "Save Successful";
 	public static final String STUDENT_SAVED_SUCCESSFULLY = "Student Succcessfully Saved";
 	public static final String TEACHER_SAVED_SUCCESSFULLY = "Teacher Succcessfully Saved";
@@ -125,7 +126,7 @@ public interface WebConstants {
 	public static final String BLANK = " ";
 
 	/* Role name enum */
-	public static enum ROLE_NAME {
+	public enum ROLE_NAME {
 		ADMIN_ROLE, OFFICE_ROLE, PARENT_ROLE, TEACHER_ROLE
 	}
 
@@ -150,6 +151,8 @@ public interface WebConstants {
 	public static final String ATTENDANCE_DETAILS_MENU_ID = "attendanceDetailsMenuId";
 	public static final String ATTENDANCE_DETAILS_ACTION_EXPR = "#{attendanceReportAction.initStudentAttendanceReport(";
 	public static final String REPORT_CARD_ACTION_EXPR = "#{reportCardAction.openReportCardRegisterForStudent(";
+	public static final String OPEN_STUDENT_TIMETABLE_ACTION = "#{classAction.openClassTimeTableForStudent(";
+
 	// Student Management
 	public static final String STUDENT_MANAGEMENT = "Student Management";
 	public static final String STUDENT_MANAGEMENT_SUBMENU_ID = "studentManagementSubmenuId";
@@ -191,7 +194,7 @@ public interface WebConstants {
 	public static final String OPEN_REGISTER_ACTION = "#{attendanceRegisterAction.openAttendanceRegister(";
 	public static final String TIME_TABLE = "Time Table";
 	public static final String TIME_TABLE_SUBMENU_ID = "timeTableSubmenuId";
-	public static final String OPEN_TIMETABLE_ACTION = "#{classAction.openClassTimeTable(";
+	public static final String OPEN_TIMETABLE_ACTION = "#{classAction.openClassTimeTableForClass(";
 	public static final String OPEN_TIMETABLE_ID = "openTimeTableMenuId";
 	public static final String GRADE_BOOK = "Grade Book";
 	public static final String GRADE_BOOK_SUBMENU_ID = "gradeBookSubmenuId";
@@ -205,8 +208,23 @@ public interface WebConstants {
 	public static final String REPORTS = "Reports";
 	public static final String REPORTS_SUBMENU_ID = "reportsSubmenuId";
 	public static final String ATTENDANCE_REPORTS = "Attendance Reports";
-	public static final String ATTENDANCE_REPORTS_MENU_ID = "attendanceReportsSubmenuId";
+	public static final String ATTENDANCE_REPORTS_MENU_ID = "attendanceReportsMenuId";
 	public static final String ATTENDANCE_REPORTS_ACTION = "#{attendanceReportAction.initAttendanceReport()}";
-	
+	// My pages
+	public static final String MY_PAGES = "My Pages";
+	public static final String MY_PAGES_SUBMENU_ID = "myPagesSubMenuId";
+	public static final String MY_SCHEDULE = "My Schedule";
+	public static final String MY_SCHEDULE_MENU_ID = "myScheduleMenuId";
+	public static final String MY_SCHEDULE_ACTION = "#{classAction.openClassTimeTableForTeacher(";
 
+	public enum ROLE_NAMES {
+		ADMIN_ROLE(1), OFFICE_ROLE(2), PARENT_ROLE(3), TEACHER_ROLE(4);
+		Integer id ;
+		private ROLE_NAMES(int i){
+			id = i;
+		}
+		public String toString(){
+			return id.toString();
+		}
+	}
 }

@@ -98,7 +98,7 @@ public class WebUtils implements WebConstants {
 	 */
 	public static void registerErrorMessage() {
 		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, SAVE_FAILED + new Date(), CONTACT_TECHNICAL_TEAM));
+		context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, SYSTEM_ERROR + new Date(), CONTACT_TECHNICAL_TEAM));
 	}
 
 	/**

@@ -46,7 +46,7 @@ public interface SMSClassServiceInterface {
 	@GET
 	@Path("/retrieveAllClassesForPromotion/{userName}")
 	@Produces("text/xml")
-	public String retrieveAllClassesForPromotion(@PathParam("userName") String userName );
+	public String retrieveAllClassesForPromotion(@PathParam("userName") String userName);
 
 	/**
 	 * Method to retrieve the student grade details for a particular class id and classExamId
@@ -61,7 +61,7 @@ public interface SMSClassServiceInterface {
 	public String retrieveClassGradeDetails(@PathParam("classId") Integer classId, @PathParam("classExamId") Integer classExamId);
 
 	/**
-	 * Method to retrieve the student grade details for a particular class id  and student
+	 * Method to retrieve the student grade details for a particular class id and student
 	 * 
 	 * @param classId
 	 * @param studentId
@@ -83,19 +83,20 @@ public interface SMSClassServiceInterface {
 	@Produces("text/xml")
 	@Consumes("text/xml")
 	public String saveClassGradeDetails(String xml);
-	
+
 	/**
 	 * Method to promote/demote students and also create new classes if required.
 	 * 
-	 * @param String classPromotionDTOXML
+	 * @param String
+	 *            classPromotionDTOXML
 	 * @return promotionEligibleClassList
 	 */
 	@POST
 	@Path("/promoteClass/")
 	@Produces("text/xml")
 	@Consumes("text/xml")
-	public String promoteClass(String classPromotionDTOXML) ;
-	
+	public String promoteClass(String classPromotionDTOXML);
+
 	/**
 	 * Method to save class student details.
 	 * 
@@ -107,4 +108,15 @@ public interface SMSClassServiceInterface {
 	@Produces("text/xml")
 	@Consumes("text/xml")
 	public String saveClassStudentDetails(String classStudentDTOXML);
+
+	/**
+	 * Method to return the timetable for a particular teacher
+	 * 
+	 * @param teacherId
+	 * @return classTimetableXml
+	 */
+	@GET
+	@Path("/retrieveTimetableforTeacher/{teacherId}")
+	@Produces("text/xml")
+	public String retrieveTimetableforTeacher(@PathParam("teacherId") Integer teacherId);
 }

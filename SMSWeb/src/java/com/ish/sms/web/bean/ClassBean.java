@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 
 import org.primefaces.model.DualListModel;
 
@@ -36,6 +36,23 @@ public class ClassBean extends BaseBean {
 	private List<ClassSubjectReferenceDataDTO> selectedClassSubjectReferenceDataDTOList  = new ArrayList<ClassSubjectReferenceDataDTO>();
 	private DualListModel<ReferenceDataDTO> examDTODualListModel = new DualListModel<ReferenceDataDTO>();
 	private SubjectDataModel subjectDataModel = new SubjectDataModel();
+	@ManagedProperty(value = "#{referenceBean}")
+	private ReferenceBean referenceBean;
+
+	
+	/**
+	 * @return the referenceBean
+	 */
+	public ReferenceBean getReferenceBean() {
+		return referenceBean;
+	}
+
+	/**
+	 * @param referenceBean the referenceBean to set
+	 */
+	public void setReferenceBean(ReferenceBean referenceBean) {
+		this.referenceBean = referenceBean;
+	}
 
 	/**
 	 * @return the classDTOList
@@ -158,8 +175,6 @@ public class ClassBean extends BaseBean {
 	 */
 	public void createDefaultTimeTable() {
 		List<ClassTimeTableDTO> newClasstimeTableList = new ArrayList<ClassTimeTableDTO>();
-		FacesContext context = FacesContext.getCurrentInstance();
-		ReferenceBean referenceBean = (ReferenceBean) context.getApplication().evaluateExpressionGet(context, "#{" + REFERENCE_BEAN + "}", Object.class);
 		List<ReferenceDataDTO> dayOfWeekDTOList = referenceBean.getDaysOfWeekDTOList();
 		for (ReferenceDataDTO dayOfWeekDTO : dayOfWeekDTOList) {
 			Integer noOfPeriods = new Integer(dayOfWeekDTO.getAdditionalData());
@@ -195,8 +210,6 @@ public class ClassBean extends BaseBean {
 		List<ClassSubjectReferenceDataDTO> classSubjectTargetList = new ArrayList<ClassSubjectReferenceDataDTO>();
 		List<ReferenceDataDTO> classExamSourceList = new ArrayList<ReferenceDataDTO>();
 		List<ReferenceDataDTO> classExamTargetList = new ArrayList<ReferenceDataDTO>();
-		FacesContext context = FacesContext.getCurrentInstance();
-		ReferenceBean referenceBean = (ReferenceBean) context.getApplication().evaluateExpressionGet(context, "#{" + REFERENCE_BEAN + "}", Object.class);
 
 		
 		/* Target list which is also used to filter the source */

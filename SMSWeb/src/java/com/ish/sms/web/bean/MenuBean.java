@@ -1,5 +1,10 @@
 package com.ish.sms.web.bean;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
@@ -18,6 +23,7 @@ import org.primefaces.component.toolbar.ToolbarGroup;
 import com.ish.sms.service.dto.ClassDTO;
 import com.ish.sms.service.dto.ClassListDTO;
 import com.ish.sms.service.dto.StudentDTO;
+import com.ish.sms.service.dto.TeacherDTO;
 import com.ish.sms.service.dto.UserDetailsDTO;
 import com.ish.sms.web.util.WebConstants;
 
@@ -99,6 +105,8 @@ public class MenuBean implements Serializable, WebConstants {
 		}
 		/* If user role - Teacher role */
 		else if (userDetailsDTO.getUserRoleDTO().getRoleName().equals(ROLE_NAME.TEACHER_ROLE.name())) {
+			TeacherDTO teacherDTO = userDetailsDTO.getTeacherDTO();
+			createMyPagesMenu(facesContext, application, teacherDTO, menuBar);
 			createClassMaintenanceMenu(facesContext, application, menuBar, classListDTO);
 		}
 		/* If user role - Admin role */
@@ -119,6 +127,22 @@ public class MenuBean implements Serializable, WebConstants {
 	 * @param studentDTO
 	 * @param uiDropDownMenu
 	 */
+	private void createMyPagesMenu(FacesContext facesContext, Application application, TeacherDTO teacherDTO, Menubar menuBar) {
+
+		Submenu submenu = createSubMenu(application, MY_PAGES, MY_PAGES_SUBMENU_ID);
+		MenuItem myScheduleMenuItem = createMenuItem(facesContext, application, MY_SCHEDULE, MY_SCHEDULE_MENU_ID, MY_SCHEDULE_ACTION + teacherDTO.getId() + CLOSE_BRACES,
+				String.class, new Class[] { Integer.class });
+
+		submenu.getChildren().add(myScheduleMenuItem);
+		menuBar.getChildren().add(submenu);
+	}
+
+	/**
+	 * @param facesContext
+	 * @param application
+	 * @param studentDTO
+	 * @param uiDropDownMenu
+	 */
 	private void createParentPortalMenu(FacesContext facesContext, Application application, StudentDTO studentDTO, Menubar menuBar) {
 
 		Submenu submenu = createSubMenu(application, PARENT_PORTAL, PARENT_PORTAL_SUBMENU_ID);
@@ -128,10 +152,13 @@ public class MenuBean implements Serializable, WebConstants {
 				+ studentDTO.getId() + CLOSE_BRACES, String.class, new Class[] { Integer.class });
 		MenuItem reportCardMenuItem = createMenuItem(facesContext, application, REPORT_CARD, REPORT_CARD_MENU_ID, REPORT_CARD_ACTION_EXPR + studentDTO.getId()
 				+ CLOSE_BRACES, String.class, new Class[] { Integer.class });
+		MenuItem timeTableMenuItem = createMenuItem(facesContext, application, TIME_TABLE, TIME_TABLE_SUBMENU_ID, OPEN_STUDENT_TIMETABLE_ACTION
+				+ studentDTO.getCurrentClassDTO().getId() + CLOSE_BRACES, String.class, new Class[] { Integer.class });
 
 		submenu.getChildren().add(personalDetailsMenuItem);
 		submenu.getChildren().add(attendanceDetailsMenuItem);
 		submenu.getChildren().add(reportCardMenuItem);
+		submenu.getChildren().add(timeTableMenuItem);
 		menuBar.getChildren().add(submenu);
 	}
 
@@ -287,6 +314,50 @@ public class MenuBean implements Serializable, WebConstants {
 		submenu.setLabel(label);
 		submenu.setId(id);
 		return submenu;
+	}
+
+	public static void main(String args[]) throws Exception{
+		FileOutputStream fileOut = new FileOutputStream("employee.ser");
+		ObjectOutputStream out = new ObjectOutputStream(fileOut);
+		out.writeObject(new MenuBean());
+		out.close();
+		fileOut.close();
+		
+		FileInputStream fileIn = new FileInputStream("employee.ser");
+		ObjectInputStream in = new ObjectInputStream(fileIn);
+		in.readObject();
+		fileIn.close();
+	}
+
+	int i;
+
+	MenuBean(int i) {
+		this.i = i;
+	}
+
+	public int hashCode() {
+		System.out.println("hashCode " + i);
+		return i;
+	}
+
+	public boolean equals(Object object) {
+		if (i == ((MenuBean) object).i) {
+			return true;
+		}
+		System.out.println("equals " + i);
+		return false;
+	}
+
+	private void writeObject(ObjectOutputStream aOutputStream) throws IOException {
+		System.out.println("write object");
+		// perform the default serialization for all non-transient, non-static fields
+		aOutputStream.defaultWriteObject();
+	}
+
+	private void readObject(ObjectInputStream aInputStream) throws ClassNotFoundException, IOException {
+		System.out.println("read object");
+		// always perform the default de-serialization first
+		aInputStream.defaultReadObject();
 	}
 
 }

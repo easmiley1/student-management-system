@@ -7,6 +7,7 @@ import com.ish.sms.service.dto.ClassGradeDetailsDTO;
 import com.ish.sms.service.dto.ClassListDTO;
 import com.ish.sms.service.dto.ClassPromotionDTO;
 import com.ish.sms.service.dto.ClassStudentDTO;
+import com.ish.sms.service.dto.ClassTimeTableListDTO;
 import com.ish.sms.service.dto.ReportCardListDTO;
 import com.ish.sms.service.dto.StudentGradeDTO;
 import com.ish.sms.service.dto.StudentGradeListDTO;
@@ -115,6 +116,7 @@ public class ClassBusiness extends BaseBusiness {
 		ClassListDTO classListDTO = serviceTransformer.parseXml(classListDTOXML);
 		return classListDTO.getClassDTOList();
 	}
+
 	/**
 	 * Method to promote/demote students and also create new classes if required.
 	 * 
@@ -129,5 +131,17 @@ public class ClassBusiness extends BaseBusiness {
 		classStudentDTO = serviceTransformer.parseXml(classListDTOXML);
 		return classStudentDTO;
 	}
-	
+
+	/**
+	 * Method to return the timetable for a particular teacher
+	 * 
+	 * @param teacherId
+	 * @return ClassTimeTableListDTO
+	 */
+	public ClassTimeTableListDTO retrieveTimetableforTeacherInteger(Integer teacherId) throws Exception {
+		String ClassTimeTableListDTOXML = classBusinessDelegate.retrieveTimetableforTeacherInteger(teacherId);
+		ClassTimeTableListDTO classTimeTableListDTO = serviceTransformer.parseXml(ClassTimeTableListDTOXML);
+		return classTimeTableListDTO;
+
+	}
 }
