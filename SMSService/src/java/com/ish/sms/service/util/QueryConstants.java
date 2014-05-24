@@ -69,6 +69,8 @@ public interface QueryConstants {
 	public static final String FIND_ALL_ROLES = "FIND_ALL_ROLES";	
 	public static final String FIND_ALL_USERS_QUERY = "select user from com.ish.sms.service.entity.User user";
 	public static final String FIND_ALL_USERS = "FIND_ALL_USERS";	
+	public static final String FIND_USER_FOR_ID = "FIND_USER_FOR_ID";
+	public static final String FIND_USER_FOR_ID_QUERY = "select user from com.ish.sms.service.entity.User user where user.id=:id";
 	public static final String FIND_USER_FOR_NAME = "FIND_USER_FOR_NAME";
 	public static final String FIND_USER_FOR_NAME_QUERY = "select user from com.ish.sms.service.entity.User user where user.name=:name";
 	

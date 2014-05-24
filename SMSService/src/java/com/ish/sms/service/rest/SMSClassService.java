@@ -78,13 +78,13 @@ public class SMSClassService extends SMSBaseService {
 	 * @return classListXML
 	 */
 	@GET
-	@Path("/retrieveAllClassesForPromotion/{userName}")
+	@Path("/retrieveAllClassesForPromotion/{userId}")
 	@Produces("text/xml")
-	public String retrieveAllClassesForPromotion(@PathParam("userName") String userName) {
+	public String retrieveAllClassesForPromotion(@PathParam("userId") Integer userId) {
 
 		String classListXML = null;
 		try {
-			ClassListDTO classListDTO = classOperations.retrieveAllClassesForPromotion(userName);
+			ClassListDTO classListDTO = classOperations.retrieveAllClassesForPromotion(userId);
 			classListXML = serviceTransformer.transformToXML(classListDTO, "classListDTO");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -197,7 +197,7 @@ public class SMSClassService extends SMSBaseService {
 		String classListXML = null;
 		try {
 			ClassPromotionDTO classPromotionDTO = serviceTransformer.tryParseXml(classPromotionDTOXML);
-			ClassListDTO classListDTO = classOperations.promoteClass(classPromotionDTO);
+			ClassListDTO classListDTO = classOperations.savePromoteClass(classPromotionDTO);
 			classListXML = serviceTransformer.transformToXML(classListDTO, "classListDTO");
 		} catch (Exception e) {
 			e.printStackTrace();
