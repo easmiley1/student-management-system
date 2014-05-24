@@ -35,8 +35,8 @@ public class ClassBusinessDelegate extends BaseBusinessDelegate {
 	 * @return classListXML
 	 */
 
-	public String retrieveAllClassesForPromotion(String userName) {
-		return smsServiceLocator.getSmsClassServiceInterface().retrieveAllClassesForPromotion(userName);
+	public String retrieveAllClassesForPromotion(Integer userId) {
+		return smsServiceLocator.getSmsClassServiceInterface().retrieveAllClassesForPromotion(userId);
 	}
 
 	/**

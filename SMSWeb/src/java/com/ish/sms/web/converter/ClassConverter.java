@@ -61,7 +61,7 @@ public class ClassConverter implements Converter, Serializable, WebConstants {
 		ClassDTO classDTO = (ClassDTO) value;
 		if (classDTO == null)
 			return null;
-		return classDTO.getName().toString();
+		return classDTO.getName();
 	}
 
 }
