@@ -58,7 +58,7 @@ public class ClassOperations extends BaseOperations {
 	 * @throws Exception
 	 */
 	@SuppressWarnings("unchecked")
-	public ClassListDTO retrieveAllClassesForPromotion(String userName) throws Exception {
+	public ClassListDTO retrieveAllClassesForPromotion(Integer userId) throws Exception {
 
 		/* Get list of active class for the previous year eligible for promotion */
 		Map<String, Object> queryParametersMap = new HashMap<String, Object>();
@@ -68,8 +68,8 @@ public class ClassOperations extends BaseOperations {
 
 		/* Get list of classes that the user has access to. */
 		queryParametersMap.clear();
-		queryParametersMap.put(NAME, userName);
-		User user = (User) userOperationsDAO.retrieveSingleResultForQueryWithParameters(FIND_USER_FOR_NAME, User.class, queryParametersMap);
+		queryParametersMap.put(ID, userId);
+		User user = (User) userOperationsDAO.retrieveSingleResultForQueryWithParameters(FIND_USER_FOR_ID, User.class, queryParametersMap);
 		String[] classIdArray = user.getAssociateAccess().split(SEMI_COLON);
 		List<Integer> classIdList = new ArrayList<Integer>();
 		for (String classStr : classIdArray) {
@@ -242,7 +242,7 @@ public class ClassOperations extends BaseOperations {
 	 * @throws Exception
 	 */
 	@Transactional
-	public ClassListDTO promoteClass(ClassPromotionDTO classPromotionDTO) throws Exception {
+	public ClassListDTO savePromoteClass(ClassPromotionDTO classPromotionDTO) throws Exception {
 
 		Integer newStartYear = Calendar.getInstance().get(Calendar.YEAR);
 		Integer promotionYear = newStartYear - 1;
@@ -257,7 +257,7 @@ public class ClassOperations extends BaseOperations {
 		promotionClass.setActive(INACTIVE);
 		classOperationsDAO.createOrUpdateEntity(promotionClass);
 
-		return retrieveAllClassesForPromotion(classPromotionDTO.getUserName());
+		return retrieveAllClassesForPromotion(classPromotionDTO.getUserId());
 	}
 
 	/**

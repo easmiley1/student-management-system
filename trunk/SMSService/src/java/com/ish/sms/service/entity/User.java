@@ -20,7 +20,8 @@ import com.ish.sms.service.util.QueryConstants;
  * 
  */
 @NamedQueries({ @NamedQuery(name = QueryConstants.FIND_ALL_USERS, query = QueryConstants.FIND_ALL_USERS_QUERY),
-		@NamedQuery(name = QueryConstants.FIND_USER_FOR_NAME, query = QueryConstants.FIND_USER_FOR_NAME_QUERY) })
+		@NamedQuery(name = QueryConstants.FIND_USER_FOR_ID, query = QueryConstants.FIND_USER_FOR_ID_QUERY),
+		@NamedQuery(name=QueryConstants.FIND_USER_FOR_NAME, query=QueryConstants.FIND_USER_FOR_NAME_QUERY)})
 @Entity
 @Table(name = "user_details")
 public class User {

@@ -21,7 +21,7 @@ public class ReportOperations extends BaseOperations {
 	 * @return {@link ChartSeriesListDTO}
 	 */
 	@SuppressWarnings("unchecked")
-	public ChartSeriesListDTO generateStudentAttendanceReport(Integer classId, Integer studentId) {
+	public ChartSeriesListDTO retrieveStudentAttendanceReport(Integer classId, Integer studentId) {
 
 		Map<String, Object> queryParametersMap = new HashMap<String, Object>();
 		queryParametersMap.put(CLASS_ID, classId);

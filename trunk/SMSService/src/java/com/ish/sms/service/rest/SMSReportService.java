@@ -31,7 +31,7 @@ public class SMSReportService extends SMSBaseService {
 
 		String chartSeriesListDTOXML = null;
 		try {
-			ChartSeriesListDTO chartSeriesListDTO = reportOperations.generateStudentAttendanceReport(classId, studentId);
+			ChartSeriesListDTO chartSeriesListDTO = reportOperations.retrieveStudentAttendanceReport(classId, studentId);
 			chartSeriesListDTOXML = serviceTransformer.transformToXML(chartSeriesListDTO, "chartSeriesListDTO");
 		} catch (Exception e) {
 			e.printStackTrace();
