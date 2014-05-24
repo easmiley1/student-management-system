@@ -176,7 +176,7 @@
 	
 	<xs:complexType name="classPromotionDTO">
 		<xs:sequence>
-			<xs:element name="userName" type="xs:string" />
+			<xs:element name="userId" type="xs:int" />
 			<xs:element name="fromClassName" type="xs:string" />
 			<xs:element name="toClassName" type="xs:string" />
 			<xs:element name="promoteStudentDTOList" type="studentDTO"	minOccurs="0" maxOccurs="unbounded" />

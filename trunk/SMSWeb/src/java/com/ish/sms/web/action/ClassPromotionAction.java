@@ -76,7 +76,7 @@ public class ClassPromotionAction extends BaseAction {
 		classPromotionBean.setPromotionYear(promotionYear.toString());
 
 		try {
-			List<ClassDTO> classDTOList = classBusiness.retrieveAllClassesForPromotion(userBean.getUserDetailsDTO().getName());
+			List<ClassDTO> classDTOList = classBusiness.retrieveAllClassesForPromotion(userBean.getUserDetailsDTO().getId());
 			if (classPromotionBean.setClassDetails(classDTOList)) {
 				setStudentDetails();
 			}

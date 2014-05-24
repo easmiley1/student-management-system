@@ -44,9 +44,9 @@ public interface SMSClassServiceInterface {
 	 * @return classListXML
 	 */
 	@GET
-	@Path("/retrieveAllClassesForPromotion/{userName}")
+	@Path("/retrieveAllClassesForPromotion/{userId}")
 	@Produces("text/xml")
-	public String retrieveAllClassesForPromotion(@PathParam("userName") String userName);
+	public String retrieveAllClassesForPromotion(@PathParam("userId") Integer userId);
 
 	/**
 	 * Method to retrieve the student grade details for a particular class id and classExamId

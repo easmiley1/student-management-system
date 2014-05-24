@@ -54,8 +54,8 @@ public class ClassBusiness extends BaseBusiness {
 	 * @throws Exception
 	 * 
 	 */
-	public List<ClassDTO> retrieveAllClassesForPromotion(String userName) throws Exception {
-		String classDTOXML = classBusinessDelegate.retrieveAllClassesForPromotion(userName);
+	public List<ClassDTO> retrieveAllClassesForPromotion(Integer userId) throws Exception {
+		String classDTOXML = classBusinessDelegate.retrieveAllClassesForPromotion(userId);
 		ClassListDTO classListDTO = serviceTransformer.parseXml(classDTOXML);
 		return classListDTO.getClassDTOList();
 	}

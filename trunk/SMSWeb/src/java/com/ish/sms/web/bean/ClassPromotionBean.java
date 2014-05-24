@@ -159,7 +159,7 @@ public class ClassPromotionBean extends BaseBean {
 		ClassPromotionDTO classPromotionDTO = new ClassPromotionDTO();
 		classPromotionDTO.setDemoteStudentDTOList(demoteStudentDTOList);
 		classPromotionDTO.setPromoteStudentDTOList(promoteStudentDTOList);
-		classPromotionDTO.setUserName(userBean.getUserDetailsDTO().getName());
+		classPromotionDTO.setUserId(userBean.getUserDetailsDTO().getId());
 		classPromotionDTO.setFromClassName(getSelectedClassDTO().getName());
 		classPromotionDTO.setToClassName(getToClass());
 		return classPromotionDTO;
